@@ -17,7 +17,13 @@ func open(message: String, on_confirm: Callable):
 		show();
 
 func _on_confirm_button(on_confirm: Callable):
+	reset();
+	on_confirm.call();
+
+func _on_cancel_button_button_up():
+	reset();
+
+func reset():
 	confirm_button.disconnect("button_up", _on_confirm_button);
 	InventoryEvents.visibility_current_item.emit(true);
-	on_confirm.call();
-	
+	hide();

@@ -230,3 +230,5 @@ grow_horizontal = 2
 grow_vertical = 0
 texture_normal = ExtResource("12_cgxjl")
 stretch_mode = 5
+
+[connection signal="button_up" from="CanvasLayer/ConfirmDialog/CancelButton" to="CanvasLayer/ConfirmDialog" method="_on_cancel_button_button_up"]

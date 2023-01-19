@@ -12,4 +12,3 @@ func _show_dialog(item):
 
 func _on_delete_item(item):
 	InventoryEvents.reset_current_item.emit();
-	confirm_dialog.hide();
