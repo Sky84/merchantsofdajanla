@@ -17,6 +17,11 @@ func _ready():
 	if container_id == null:
 		printerr("container_id is not set");
 	InventoryEvents.container_data_changed.connect(_on_data_changed);
+	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
+
+func _on_reset_current_item():
+	_current_item = null;
+	InventoryEvents.emit_signal("item_in_container_selected", {});
 
 func _on_data_changed(__container_id:String, __items:Dictionary):
 	if container_id != __container_id:
@@ -102,3 +107,9 @@ func _pick_one_from(slot: Dictionary):
 	else:
 		slot = {};
 	return slot;
+
+func _input(event):
+	if event is InputEventMouseButton and _current_item:
+		var click_outside = !get_rect().has_point(event.position); 
+		if (click_outside and !event.is_pressed()):
+			InventoryEvents.dialog_confirm_delete_item.emit(_current_item);
