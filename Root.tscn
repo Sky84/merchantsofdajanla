@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7wia6qf6ljyr"]
+
+[ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
+[ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
+[ext_resource type="PackedScene" uid="uid://b7msndjt5poq4" path="res://Container/SlotItemButton.tscn" id="3_fvd0d"]
+[ext_resource type="Script" path="res://Container/Container.gd" id="4_nvdet"]
+[ext_resource type="Script" path="res://PlayerMouseAction.gd" id="5_y8xwh"]
+[ext_resource type="Texture2D" uid="uid://bh55kdohnkvd3" path="res://Container/SlotItemButton.png" id="6_txoik"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_myw4y"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_ml5m8"]
+font_size = 8
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Inventory" type="Node2D" parent="Player"]
+script = ExtResource("4_nvdet")
+_start_items_json_path = "PlayerStartItems.json"
+_items_container_view_path = NodePath("../../CanvasLayer/Inventory")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 430.0
+offset_top = 79.0
+offset_right = -520.0
+offset_bottom = -153.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_rqpfe")
+container_id = "player_inventory"
+_item_button_scene = ExtResource("2_1jyiy")
+_item_slot_button_scene = ExtResource("3_fvd0d")
+
+[node name="Label" type="Label" parent="CanvasLayer/Inventory"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -24.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Left click - all ; Right click - one"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ItemsContainerView" type="GridContainer" parent="CanvasLayer/Inventory/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 4
+
+[node name="PlayerMouseAction" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_y8xwh")
+
+[node name="TextureIcon" type="TextureRect" parent="CanvasLayer/PlayerMouseAction"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_txoik")
+
+[node name="LabelName" type="Label" parent="CanvasLayer/PlayerMouseAction"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "qsdqsd qsdqsdqsd"
+label_settings = SubResource("LabelSettings_myw4y")
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="LabelAmount" type="Label" parent="CanvasLayer/PlayerMouseAction"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "99"
+label_settings = SubResource("LabelSettings_ml5m8")
+horizontal_alignment = 2
+vertical_alignment = 2

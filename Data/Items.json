@@ -1,0 +1,15 @@
+{
+    "wood": {
+        "name": "Wood",
+        "icon_path": "res://icon.svg",
+        "base_price": 10
+    },
+    "black_wood": {
+        "name": "Black Wood",
+        "prototype": "wood"
+    },
+    "sand": {
+        "name": "Sand",
+        "icon_path": "res://icon.svg"
+    }
+}
