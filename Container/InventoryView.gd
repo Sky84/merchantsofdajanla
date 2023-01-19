@@ -6,7 +6,7 @@ extends Panel
 
 @onready var _items_container:GridContainer = get_node("MarginContainer/ItemsContainerView");
 
-var slots = {};
+var slots: Dictionary = {};
 var _items = {};
 @onready var _total_items = floor(size.y/(32+10))*4;
 
@@ -27,7 +27,7 @@ func _on_data_changed(__container_id:String, __items:Dictionary):
 	_update_items();
 
 func init_slots():
-	var row = floor(_total_items / _items_container.columns);
+	var row = floori(_total_items / _items_container.columns);
 	var items_to_place = _items.duplicate(true);
 	for x in _items_container.columns:
 		slots[x] = {};
@@ -44,7 +44,6 @@ func _update_items():
 	for child in childs:
 		child.queue_free()
 		_items_container.remove_child(child);
-	
 	for x in slots:
 		for y in slots[x]:
 			var slot = slots[x][y];
