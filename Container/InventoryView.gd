@@ -3,12 +3,15 @@ extends Panel
 @export var container_id: String;
 @export var _item_button_scene: PackedScene;
 @export var _item_slot_button_scene: PackedScene;
+@onready var hover_texture = $HoverTexture
 
 @onready var _items_container:GridContainer = get_node("MarginContainer/ItemsContainerView");
 
 var slots: Dictionary = {};
 var _items = {};
-@onready var _total_items = floor(size.y/(32+10))*4;
+
+var item_with_gap = (32+10);
+@onready var _total_items = floor(size.y/item_with_gap)*4;
 
 var _current_item = null;
 
@@ -113,3 +116,9 @@ func _input(event):
 		var click_outside = !get_rect().has_point(event.position); 
 		if (click_outside and !event.is_pressed()):
 			InventoryEvents.dialog_confirm_delete_item.emit(_current_item);
+	elif event is InputEventMouseMotion and get_rect().has_point(event.position):
+		var rows = floori(_total_items / _items_container.columns);
+		var local_mouse_position = Vector2(_items_container.get_local_mouse_position() / item_with_gap).floor();
+		local_mouse_position = clamp(local_mouse_position, Vector2(0,0), Vector2(_items_container.columns-1, rows-1));
+		var hover_texture_position = (local_mouse_position * item_with_gap);
+		hover_texture.position = _items_container.position + hover_texture_position;

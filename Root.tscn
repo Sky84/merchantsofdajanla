@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bv0f05ma23njp"]
+[gd_scene load_steps=18 format=3 uid="uid://bv0f05ma23njp"]
 
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
 [ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cd86hslikfwrg" path="res://Container/background_Inventory.png" id="5_xgam2"]
 [ext_resource type="Script" path="res://PlayerMouseAction.gd" id="5_y8xwh"]
 [ext_resource type="Texture2D" uid="uid://bh55kdohnkvd3" path="res://Container/SlotItemButton.png" id="6_txoik"]
+[ext_resource type="Texture2D" uid="uid://b3xovictnxfkq" path="res://Container/overboxinventaire.png" id="7_2iuyc"]
 [ext_resource type="Texture2D" uid="uid://depuvlnbptfgp" path="res://Dialog/infobox.png" id="8_o04mf"]
 [ext_resource type="Script" path="res://Dialog/ConfirmDialog.gd" id="9_w5px2"]
 [ext_resource type="Texture2D" uid="uid://c5lq1q4j53o5w" path="res://Dialog/buttoninfoOK.png" id="11_u6uvj"]
@@ -56,6 +57,15 @@ script = ExtResource("1_rqpfe")
 container_id = "player_inventory"
 _item_button_scene = ExtResource("2_1jyiy")
 _item_slot_button_scene = ExtResource("3_fvd0d")
+
+[node name="HoverTexture" type="TextureRect" parent="CanvasLayer/Inventory"]
+z_index = 2
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_2iuyc")
+stretch_mode = 5
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Inventory"]
 texture_filter = 1
