@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bi8ntv83c31wj"]
+
+[ext_resource type="FontFile" uid="uid://dguvsf2vek1bd" path="res://NFPixels-Regular.ttf" id="1_ayebw"]
+
+[resource]
+default_font = ExtResource("1_ayebw")

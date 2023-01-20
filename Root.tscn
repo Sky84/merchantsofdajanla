@@ -1,24 +1,20 @@
-[gd_scene load_steps=18 format=3 uid="uid://bv0f05ma23njp"]
+[gd_scene load_steps=19 format=3 uid="uid://tl1hl306u3ao"]
 
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
 [ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
 [ext_resource type="Script" path="res://HUDController.gd" id="2_f2rh2"]
+[ext_resource type="Theme" uid="uid://bi8ntv83c31wj" path="res://Theme.tres" id="3_bkpua"]
 [ext_resource type="PackedScene" uid="uid://b7msndjt5poq4" path="res://Container/SlotItemButton.tscn" id="3_fvd0d"]
 [ext_resource type="Script" path="res://Container/Container.gd" id="4_nvdet"]
 [ext_resource type="Texture2D" uid="uid://cd86hslikfwrg" path="res://Container/background_Inventory.png" id="5_xgam2"]
-[ext_resource type="Script" path="res://PlayerMouseAction.gd" id="5_y8xwh"]
-[ext_resource type="Texture2D" uid="uid://bh55kdohnkvd3" path="res://Container/SlotItemButton.png" id="6_txoik"]
 [ext_resource type="Texture2D" uid="uid://b3xovictnxfkq" path="res://Container/overboxinventaire.png" id="7_2iuyc"]
 [ext_resource type="Texture2D" uid="uid://depuvlnbptfgp" path="res://Dialog/infobox.png" id="8_o04mf"]
+[ext_resource type="PackedScene" uid="uid://dqrhq147safqm" path="res://PlayerMouseAction/player_mouse_action.tscn" id="9_4eyub"]
 [ext_resource type="Script" path="res://Dialog/ConfirmDialog.gd" id="9_w5px2"]
 [ext_resource type="Texture2D" uid="uid://c5lq1q4j53o5w" path="res://Dialog/buttoninfoOK.png" id="11_u6uvj"]
 [ext_resource type="Texture2D" uid="uid://2qdgjgc5uvi3" path="res://Dialog/buttoninfoNO.png" id="12_cgxjl"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_myw4y"]
-font_size = 8
-
-[sub_resource type="LabelSettings" id="LabelSettings_ml5m8"]
-font_size = 8
+[ext_resource type="Texture2D" uid="uid://pvm21erntbth" path="res://icon.svg" id="14_c0as5"]
+[ext_resource type="Script" path="res://Container/InfoPanelController.gd" id="15_b1fgb"]
 
 [sub_resource type="Gradient" id="Gradient_m7jcj"]
 offsets = PackedFloat32Array(0, 0.0187668)
@@ -26,6 +22,13 @@ colors = PackedColorArray(0, 0, 0, 1, 0.0196078, 0.0196078, 0.0196078, 0.317647)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4qsxi"]
 gradient = SubResource("Gradient_m7jcj")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggd2w"]
+bg_color = Color(0.188235, 0.0666667, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="Node2D" type="Node2D"]
 
@@ -53,6 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("3_bkpua")
 script = ExtResource("1_rqpfe")
 container_id = "player_inventory"
 _item_button_scene = ExtResource("2_1jyiy")
@@ -102,50 +106,7 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 5
 
-[node name="PlayerMouseAction" type="Control" parent="CanvasLayer"]
-z_index = 2
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-script = ExtResource("5_y8xwh")
-
-[node name="TextureIcon" type="TextureRect" parent="CanvasLayer/PlayerMouseAction"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("6_txoik")
-
-[node name="LabelName" type="Label" parent="CanvasLayer/PlayerMouseAction"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "qsdqsd qsdqsdqsd"
-label_settings = SubResource("LabelSettings_myw4y")
-horizontal_alignment = 1
-autowrap_mode = 3
-text_overrun_behavior = 3
-
-[node name="LabelAmount" type="Label" parent="CanvasLayer/PlayerMouseAction"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -37.0
-offset_top = -24.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "99"
-label_settings = SubResource("LabelSettings_ml5m8")
-horizontal_alignment = 2
-vertical_alignment = 2
+[node name="PlayerMouseAction" parent="CanvasLayer" instance=ExtResource("9_4eyub")]
 
 [node name="ConfirmDialog" type="Panel" parent="CanvasLayer"]
 visible = false
@@ -160,6 +121,7 @@ offset_bottom = -314.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("3_bkpua")
 script = ExtResource("9_w5px2")
 metadata/_edit_use_anchors_ = true
 
@@ -240,6 +202,70 @@ offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
 texture_normal = ExtResource("12_cgxjl")
+stretch_mode = 5
+
+[node name="InfoPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -101.0
+offset_right = -122.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_bkpua")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ggd2w")
+script = ExtResource("15_b1fgb")
+
+[node name="NameLabel" type="RichTextLabel" parent="CanvasLayer/InfoPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.318519
+anchor_top = 0.0408163
+anchor_right = 1.00741
+anchor_bottom = 0.27551
+grow_horizontal = 0
+text = "Carotte"
+fit_content_height = true
+metadata/_edit_use_anchors_ = true
+
+[node name="TypeLabel" type="RichTextLabel" parent="CanvasLayer/InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 21.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Aliment"
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="CanvasLayer/InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 45.0
+offset_right = -4.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "C'est bon pour la santé"
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/InfoPanel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 38.0
+offset_bottom = 40.0
+texture = ExtResource("14_c0as5")
+expand_mode = 1
 stretch_mode = 5
 
 [connection signal="button_up" from="CanvasLayer/ConfirmDialog/CancelButton" to="CanvasLayer/ConfirmDialog" method="_on_cancel_button_button_up"]

@@ -1,15 +1,20 @@
 {
     "wood": {
         "name": "Wood",
+        "type": "Material",
+        "description": "(Clint) It's wood",
         "icon_path": "res://icon.svg",
         "base_price": 10
     },
     "black_wood": {
         "name": "Black Wood",
+        "description": "Wood but black",
         "prototype": "wood"
     },
     "sand": {
         "name": "Sand",
+        "type": "Material",
+        "description": "A bunch of sand",
         "icon_path": "res://icon.svg"
     }
 }
