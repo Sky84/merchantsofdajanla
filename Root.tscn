@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://tl1hl306u3ao"]
+[gd_scene load_steps=20 format=3 uid="uid://tl1hl306u3ao"]
 
+[ext_resource type="Script" path="res://PlayerController.gd" id="1_lb21v"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
 [ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
 [ext_resource type="Script" path="res://HUDController.gd" id="2_f2rh2"]
@@ -33,6 +34,7 @@ corner_radius_bottom_left = 3
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="Node2D" parent="."]
+script = ExtResource("1_lb21v")
 
 [node name="Inventory" type="Node2D" parent="Player"]
 script = ExtResource("4_nvdet")
@@ -205,6 +207,7 @@ texture_normal = ExtResource("12_cgxjl")
 stretch_mode = 5
 
 [node name="InfoPanel" type="Panel" parent="CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

@@ -1,5 +1,7 @@
 extends Node
 
+signal visibility_inventory(value: bool);
+
 signal player_action_inventory;
 
 signal item_in_container_selected(item);

@@ -5,9 +5,10 @@ extends Panel
 @export var _item_slot_button_scene: PackedScene;
 @export var rows: int;
 
-@onready var hover_texture = $HoverTexture
+@onready var hover_texture = $HoverTexture;
 @onready var _items_container:GridContainer = get_node("MarginContainer/ItemsContainerView");
 @onready var _total_items = rows*_items_container.columns;
+@onready var info_panel = %InfoPanel
 
 var slots: Dictionary = {};
 var _items = {};
@@ -24,6 +25,11 @@ func _ready():
 		printerr("rows is not set");
 	InventoryEvents.container_data_changed.connect(_on_data_changed);
 	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
+	InventoryEvents.visibility_inventory.connect(_on_visibility_inventory);
+
+func _on_visibility_inventory(value: bool):
+	visible = value;
+	info_panel.visible = value;
 
 func _on_reset_current_item():
 	_current_item = null;
