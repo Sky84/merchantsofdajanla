@@ -1,9 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://tl1hl306u3ao"]
+[gd_scene load_steps=45 format=3 uid="uid://ga2xe2rceiek"]
 
-[ext_resource type="Script" path="res://PlayerController.gd" id="1_lb21v"]
+[ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
 [ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
 [ext_resource type="Script" path="res://HUDController.gd" id="2_f2rh2"]
+[ext_resource type="Texture2D" uid="uid://i147aclt0cip" path="res://Player/body5-Sheet.png" id="3_1acms"]
+[ext_resource type="Texture2D" uid="uid://bmt861dbb85d7" path="res://Player/walkcycle.png" id="3_5bn4v"]
 [ext_resource type="Theme" uid="uid://bi8ntv83c31wj" path="res://Theme.tres" id="3_bkpua"]
 [ext_resource type="PackedScene" uid="uid://b7msndjt5poq4" path="res://Container/SlotItemButton.tscn" id="3_fvd0d"]
 [ext_resource type="Script" path="res://Container/Container.gd" id="4_nvdet"]
@@ -17,6 +19,163 @@
 [ext_resource type="Texture2D" uid="uid://pvm21erntbth" path="res://icon.svg" id="14_c0as5"]
 [ext_resource type="Script" path="res://Container/InfoPanelController.gd" id="15_b1fgb"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grlca"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j647b"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0adjj"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_57c7m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4p38t"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4qfse"]
+states/idle/node = SubResource("AnimationNodeAnimation_grlca")
+states/idle/position = Vector2(358, 84)
+states/walk/node = SubResource("AnimationNodeAnimation_j647b")
+states/walk/position = Vector2(516, 92)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_4p38t")]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_q05ni"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8gml"]
+atlas = ExtResource("3_1acms")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34syq"]
+atlas = ExtResource("3_1acms")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs7k0"]
+atlas = ExtResource("3_1acms")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu2cb"]
+atlas = ExtResource("3_1acms")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yhsw"]
+atlas = ExtResource("3_1acms")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdnga"]
+atlas = ExtResource("3_5bn4v")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugucw"]
+atlas = ExtResource("3_5bn4v")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm3v8"]
+atlas = ExtResource("3_5bn4v")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s84v"]
+atlas = ExtResource("3_5bn4v")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0m0e"]
+atlas = ExtResource("3_5bn4v")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eumfq"]
+atlas = ExtResource("3_5bn4v")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jdqag"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8gml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34syq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs7k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu2cb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yhsw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdnga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugucw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm3v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s84v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0m0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eumfq")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxhpu"]
+height = 56.0
+
+[sub_resource type="Animation" id="Animation_si24n"]
+resource_name = "walk"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_vk8fn"]
+resource_name = "idle"
+length = 1.25
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mcocu"]
+_data = {
+"idle": SubResource("Animation_vk8fn"),
+"walk": SubResource("Animation_si24n")
+}
+
 [sub_resource type="Gradient" id="Gradient_m7jcj"]
 offsets = PackedFloat32Array(0, 0.0187668)
 colors = PackedColorArray(0, 0, 0, 1, 0.0196078, 0.0196078, 0.0196078, 0.317647)
@@ -25,7 +184,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.0196078, 0.0196078, 0.0196078, 0.317647)
 gradient = SubResource("Gradient_m7jcj")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggd2w"]
-bg_color = Color(0.188235, 0.0666667, 0, 1)
+bg_color = Color(0.270588, 0.156863, 0.235294, 0.839216)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -33,18 +192,40 @@ corner_radius_bottom_left = 3
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" type="Node2D" parent="."]
-script = ExtResource("1_lb21v")
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_diug7")
+
+[node name="AnimationTree" type="AnimationTree" parent="Player"]
+tree_root = SubResource("AnimationNodeStateMachine_4qfse")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_q05ni")
 
 [node name="Inventory" type="Node2D" parent="Player"]
 script = ExtResource("4_nvdet")
 _start_items_json_path = "PlayerStartItems.json"
 _items_container_view_path = NodePath("../../CanvasLayer/Inventory")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
+frames = SubResource("SpriteFrames_jdqag")
+animation = &"idle"
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_lxhpu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_mcocu")
+}
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_f2rh2")
 
 [node name="Inventory" type="Panel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -109,6 +290,8 @@ theme_override_constants/v_separation = 10
 columns = 5
 
 [node name="PlayerMouseAction" parent="CanvasLayer" instance=ExtResource("9_4eyub")]
+offset_left = -207.0
+offset_right = -167.0
 
 [node name="ConfirmDialog" type="Panel" parent="CanvasLayer"]
 visible = false
@@ -208,6 +391,7 @@ stretch_mode = 5
 
 [node name="InfoPanel" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
