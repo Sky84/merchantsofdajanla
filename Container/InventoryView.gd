@@ -3,15 +3,16 @@ extends Panel
 @export var container_id: String;
 @export var _item_button_scene: PackedScene;
 @export var _item_slot_button_scene: PackedScene;
-@onready var hover_texture = $HoverTexture
+@export var rows: int;
 
+@onready var hover_texture = $HoverTexture
 @onready var _items_container:GridContainer = get_node("MarginContainer/ItemsContainerView");
+@onready var _total_items = rows*_items_container.columns;
 
 var slots: Dictionary = {};
 var _items = {};
 
 var item_with_gap = (32+10);
-@onready var _total_items = floor(size.y/item_with_gap)*4;
 
 var _current_item = null;
 
@@ -19,6 +20,8 @@ var _current_item = null;
 func _ready():
 	if container_id == null:
 		printerr("container_id is not set");
+	if rows == 0:
+		printerr("rows is not set");
 	InventoryEvents.container_data_changed.connect(_on_data_changed);
 	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
 
@@ -35,11 +38,10 @@ func _on_data_changed(__container_id:String, __items:Dictionary):
 	_update_items();
 
 func init_slots():
-	var row = floori(_total_items / _items_container.columns);
 	var items_to_place = _items.duplicate(true);
 	for x in _items_container.columns:
 		slots[x] = {};
-		for y in row:
+		for y in rows:
 			if items_to_place.size() > 0:
 				var item_key = items_to_place.keys().front();
 				slots[x][y] = items_to_place[item_key];
@@ -117,8 +119,8 @@ func _input(event):
 		if (click_outside and !event.is_pressed()):
 			InventoryEvents.dialog_confirm_delete_item.emit(_current_item);
 	elif event is InputEventMouseMotion and get_rect().has_point(event.position):
-		var rows = floori(_total_items / _items_container.columns);
 		var local_mouse_position = Vector2(_items_container.get_local_mouse_position() / item_with_gap).floor();
-		local_mouse_position = clamp(local_mouse_position, Vector2(0,0), Vector2(_items_container.columns-1, rows-1));
-		var hover_texture_position = (local_mouse_position * item_with_gap);
+		local_mouse_position.x = clamp(local_mouse_position.x, 0, _items_container.columns-1);
+		local_mouse_position.y = clamp(local_mouse_position.y, 0, rows-1);
+		var hover_texture_position = (local_mouse_position * item_with_gap) - Vector2(1,0);
 		hover_texture.position = _items_container.position + hover_texture_position;
