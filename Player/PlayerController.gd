@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 @export var speed_walk = 100;
+@onready var animation_tree = $AnimationTree
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 var _is_inventory_visible = false;
 
 # Called when the node enters the scene tree for the first time.
@@ -10,8 +13,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	move_and_slide();
 	_handle_animation();
+	move_and_slide();
 
 func _input(event):
 	if event is InputEventKey:
@@ -26,4 +29,7 @@ func _handle_movement(event: InputEventKey):
 	velocity = Vector2(direction_x*speed_walk, direction_y*speed_walk);
 
 func _handle_animation():
-	pass
+	if velocity.x != 0:
+		animated_sprite_2d.scale.x = 1 if velocity.x > 0 else -1;
+	animation_tree.set("parameters/conditions/isWalking", velocity != Vector2.ZERO);
+	animation_tree.set("parameters/conditions/isIdle", velocity == Vector2.ZERO);
