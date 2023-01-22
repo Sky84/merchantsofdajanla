@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed_walk = 100;
 @onready var animation_tree = $AnimationTree
-@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var animated_sprite_2d = $SkinAnimatedSprite2D
 
 var _is_inventory_visible = false;
 
