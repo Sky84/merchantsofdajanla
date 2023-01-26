@@ -1,11 +1,45 @@
 extends Node2D
 
 @onready var skin_animated_sprite_2d = $"../SkinAnimatedSprite2D";
+@onready var clothes_animated_sprites: Array = get_children();
+
+const clothes_type_name: String = 'AnimatedSprite2D';
+
+const CLOTH_NAMES = {
+	HAIRS = 'Hairs',
+	SHIRTS = 'Shirts',
+	PANTS = 'Pants'
+}
+
+# set in runtime to be Ex. {HairsAnimatedSprite2D: 0}
+var clothes_map_indexes = {};
+
+func _ready():
+	for cloth_id in CLOTH_NAMES:
+		var cloth_scene_name = CLOTH_NAMES[cloth_id]+clothes_type_name;
+		var cloth_scene = get_node(cloth_scene_name);
+		if cloth_scene:
+			clothes_map_indexes[cloth_scene_name] = 0;
+			change_cloth_by_name(cloth_scene_name, clothes_map_indexes[cloth_scene_name]);
+
+func change_cloth_by_name(cloth_name: String, index: int):
+	if clothes_map_indexes.has(cloth_name):
+		clothes_map_indexes[cloth_name] = index;
+		var sprite_name = cloth_name.replace(clothes_type_name, '')+'_'+str(index);
+		_get_cloth_scene_by_name(cloth_name).frames = load('res://Player/SpriteFrames/'+sprite_name+'.tres');
+		return;
+	printerr('change_cloth_by_name:: '+str(index)+' for '+cloth_name+'dont exist in clothes_map_indexes')
+
+func _get_cloth_scene_by_name(cloth_name: String) -> AnimatedSprite2D:
+	for cloth in clothes_animated_sprites:
+		if cloth.name == cloth_name:
+			return cloth;
+	printerr('_get_cloth_scene_by_name:: '+cloth_name+'dont exist in clothes_animated_sprites');
+	return null;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var current_animation_name = skin_animated_sprite_2d.animation;
-	var clothes_animated_sprites: Array = get_children();
 	for animated_sprite in clothes_animated_sprites:
 		animated_sprite.frame = skin_animated_sprite_2d.frame;
 		if animated_sprite.animation != current_animation_name:
