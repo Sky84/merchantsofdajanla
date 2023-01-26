@@ -1,11 +1,9 @@
-[gd_scene load_steps=46 format=3 uid="uid://ga2xe2rceiek"]
+[gd_scene load_steps=32 format=3 uid="uid://ga2xe2rceiek"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
 [ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
 [ext_resource type="Script" path="res://HUDController.gd" id="2_f2rh2"]
-[ext_resource type="Texture2D" uid="uid://i147aclt0cip" path="res://Player/body5-Sheet.png" id="3_1acms"]
-[ext_resource type="Texture2D" uid="uid://bmt861dbb85d7" path="res://Player/walkcycle.png" id="3_5bn4v"]
 [ext_resource type="Theme" uid="uid://bi8ntv83c31wj" path="res://Theme.tres" id="3_bkpua"]
 [ext_resource type="PackedScene" uid="uid://b7msndjt5poq4" path="res://Container/SlotItemButton.tscn" id="3_fvd0d"]
 [ext_resource type="Script" path="res://Container/Container.gd" id="4_nvdet"]
@@ -46,96 +44,6 @@ transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_q05ni"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_arcs4"]
-atlas = ExtResource("3_1acms")
-region = Rect2(0, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4717m"]
-atlas = ExtResource("3_1acms")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i1b0q"]
-atlas = ExtResource("3_1acms")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xycqk"]
-atlas = ExtResource("3_1acms")
-region = Rect2(96, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1q8kx"]
-atlas = ExtResource("3_1acms")
-region = Rect2(128, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c5d6x"]
-atlas = ExtResource("3_5bn4v")
-region = Rect2(0, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jxa0e"]
-atlas = ExtResource("3_5bn4v")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jymmw"]
-atlas = ExtResource("3_5bn4v")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hoirt"]
-atlas = ExtResource("3_5bn4v")
-region = Rect2(96, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_100f3"]
-atlas = ExtResource("3_5bn4v")
-region = Rect2(128, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sae0j"]
-atlas = ExtResource("3_5bn4v")
-region = Rect2(160, 0, 32, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_whsc7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_arcs4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4717m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i1b0q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xycqk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1q8kx")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c5d6x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxa0e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jymmw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hoirt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_100f3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sae0j")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxhpu"]
 height = 56.0
 
@@ -147,19 +55,19 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SkinAnimatedSprite2D:frame")
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite2D:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SkinAnimatedSprite2D:animation")
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite2D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -176,7 +84,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SkinAnimatedSprite2D:frame")
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -188,7 +96,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SkinAnimatedSprite2D:animation")
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite2D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -226,7 +134,6 @@ script = ExtResource("1_diug7")
 [node name="AnimationTree" type="AnimationTree" parent="Player"]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_q05ni")
 parameters/conditions/isIdle = false
 parameters/conditions/isWalking = false
@@ -235,12 +142,6 @@ parameters/conditions/isWalking = false
 script = ExtResource("4_nvdet")
 _start_items_json_path = "PlayerStartItems.json"
 _items_container_view_path = NodePath("../../CanvasLayer/Inventory")
-
-[node name="SkinAnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-texture_filter = 1
-frames = SubResource("SpriteFrames_whsc7")
-animation = &"idle"
-frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 3)
@@ -254,17 +155,18 @@ libraries = {
 [node name="ClothAnimations" type="Node2D" parent="Player"]
 script = ExtResource("5_rrxt5")
 
+[node name="SkinsAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/ClothAnimations"]
+texture_filter = 1
+playing = true
+
 [node name="HairsAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/ClothAnimations"]
 texture_filter = 1
-animation = &"idle"
 
 [node name="ShirtsAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/ClothAnimations"]
 texture_filter = 1
-animation = &"idle"
 
 [node name="PantsAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/ClothAnimations"]
 texture_filter = 1
-animation = &"idle"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_f2rh2")

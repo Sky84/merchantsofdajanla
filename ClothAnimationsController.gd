@@ -1,11 +1,12 @@
 extends Node2D
 
-@onready var skin_animated_sprite_2d = $"../SkinAnimatedSprite2D";
+@onready var skins_animated_sprite_2d = $SkinsAnimatedSprite2D;
 @onready var clothes_animated_sprites: Array = get_children();
 
 const clothes_type_name: String = 'AnimatedSprite2D';
 
 const CLOTH_NAMES = {
+	SKINS = 'Skins',
 	HAIRS = 'Hairs',
 	SHIRTS = 'Shirts',
 	PANTS = 'Pants'
@@ -15,20 +16,22 @@ const CLOTH_NAMES = {
 var clothes_map_indexes = {};
 
 func _ready():
-	for cloth_id in CLOTH_NAMES:
-		var cloth_scene_name = CLOTH_NAMES[cloth_id]+clothes_type_name;
+	for cloth_name in CLOTH_NAMES:
+		var cloth_scene_name = CLOTH_NAMES[cloth_name]+clothes_type_name;
 		var cloth_scene = get_node(cloth_scene_name);
 		if cloth_scene:
 			clothes_map_indexes[cloth_scene_name] = 0;
-			change_cloth_by_name(cloth_scene_name, clothes_map_indexes[cloth_scene_name]);
+			change_cloth_by_index(CLOTH_NAMES[cloth_name], clothes_map_indexes[cloth_scene_name]);
 
-func change_cloth_by_name(cloth_name: String, index: int):
-	if clothes_map_indexes.has(cloth_name):
-		clothes_map_indexes[cloth_name] = index;
+func change_cloth_by_index(cloth_name: String, index: int):
+	var cloth_scene_name = cloth_name+clothes_type_name;
+	if clothes_map_indexes.has(cloth_scene_name):
+		clothes_map_indexes[cloth_scene_name] = index;
 		var sprite_name = cloth_name.replace(clothes_type_name, '')+'_'+str(index);
-		_get_cloth_scene_by_name(cloth_name).frames = load('res://Player/SpriteFrames/'+sprite_name+'.tres');
+		_get_cloth_scene_by_name(cloth_scene_name).frames = load('res://Player/SpriteFrames/'+sprite_name+'.tres');
 		return;
-	printerr('change_cloth_by_name:: '+str(index)+' for '+cloth_name+'dont exist in clothes_map_indexes')
+	printerr('change_cloth_by_index:: '+str(index)+' for '+cloth_scene_name+' dont exist in clothes_map_indexes')
+	printerr('change_cloth_by_index::clothes_map_indexes '+ JSON.stringify(clothes_map_indexes))
 
 func _get_cloth_scene_by_name(cloth_name: String) -> AnimatedSprite2D:
 	for cloth in clothes_animated_sprites:
@@ -39,9 +42,9 @@ func _get_cloth_scene_by_name(cloth_name: String) -> AnimatedSprite2D:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var current_animation_name = skin_animated_sprite_2d.animation;
+	var current_animation_name = skins_animated_sprite_2d.animation;
 	for animated_sprite in clothes_animated_sprites:
-		animated_sprite.frame = skin_animated_sprite_2d.frame;
+		animated_sprite.frame = skins_animated_sprite_2d.frame;
+		animated_sprite.scale.x = skins_animated_sprite_2d.scale.x;
 		if animated_sprite.animation != current_animation_name:
 			animated_sprite.animation = current_animation_name;
-			animated_sprite.scale.x = skin_animated_sprite_2d.scale.x;

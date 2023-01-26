@@ -1,14 +1,15 @@
 extends CharacterBody2D
 
 @export var speed_walk = 100;
-@onready var animation_tree = $AnimationTree
-@onready var animated_sprite_2d = $SkinAnimatedSprite2D
+@onready var animation_tree = $AnimationTree;
+@onready var animated_sprite_2d = $ClothAnimations/SkinsAnimatedSprite2D
+
 
 var _is_inventory_visible = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	animation_tree.active = true;
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
