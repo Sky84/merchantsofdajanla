@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 class_name ItemsContainer
 
 @export var _start_items_json_path: String;

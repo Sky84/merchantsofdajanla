@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ga2xe2rceiek"]
+[gd_scene load_steps=35 format=3 uid="uid://ga2xe2rceiek"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://2qdgjgc5uvi3" path="res://Dialog/buttoninfoNO.png" id="12_cgxjl"]
 [ext_resource type="Texture2D" uid="uid://pvm21erntbth" path="res://icon.svg" id="14_c0as5"]
 [ext_resource type="Script" path="res://Container/InfoPanelController.gd" id="15_b1fgb"]
+[ext_resource type="Script" path="res://CameraController.gd" id="18_h1wyc"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grlca"]
 animation = &"idle"
@@ -44,8 +45,9 @@ transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_q05ni"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxhpu"]
-height = 56.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pn48d"]
+radius = 0.0145487
+height = 0.074163
 
 [sub_resource type="Animation" id="Animation_vk8fn"]
 resource_name = "idle"
@@ -55,7 +57,7 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite2D:playing")
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,7 +69,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite2D:animation")
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -84,7 +86,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite2D:frame")
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite2D:animation")
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -126,10 +128,17 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_thy0m"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[sub_resource type="SphereMesh" id="SphereMesh_5s22d"]
+
+[node name="Root" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010429, 0.313422, 0.430039)
 script = ExtResource("1_diug7")
+speed_walk = 8.0
+camera = NodePath("../Camera3D")
 
 [node name="AnimationTree" type="AnimationTree" parent="Player"]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
@@ -138,35 +147,45 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_q05ni")
 parameters/conditions/isIdle = false
 parameters/conditions/isWalking = false
 
-[node name="Inventory" type="Node2D" parent="Player"]
+[node name="Inventory" type="Node3D" parent="Player"]
 script = ExtResource("4_nvdet")
 _start_items_json_path = "PlayerStartItems.json"
 _items_container_view_path = NodePath("../../CanvasLayer/Inventory")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 3)
-shape = SubResource("CapsuleShape2D_lxhpu")
+[node name="CollisionShape2D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_pn48d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 libraries = {
 "": SubResource("AnimationLibrary_mcocu")
 }
 
-[node name="ClothAnimations" type="Node2D" parent="Player"]
+[node name="ClothAnimations" type="Node3D" parent="Player"]
 script = ExtResource("5_rrxt5")
 
-[node name="SkinsAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/ClothAnimations"]
-texture_filter = 1
-playing = true
+[node name="HairsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
 
-[node name="HairsAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/ClothAnimations"]
-texture_filter = 1
+[node name="ShirtsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
 
-[node name="ShirtsAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/ClothAnimations"]
-texture_filter = 1
+[node name="PantsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
 
-[node name="PantsAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/ClothAnimations"]
-texture_filter = 1
+[node name="SkinsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_f2rh2")
@@ -363,7 +382,6 @@ anchor_right = 1.00741
 anchor_bottom = 0.27551
 grow_horizontal = 0
 text = "Carotte"
-fit_content_height = true
 metadata/_edit_use_anchors_ = true
 
 [node name="TypeLabel" type="RichTextLabel" parent="CanvasLayer/InfoPanel"]
@@ -401,5 +419,25 @@ offset_bottom = 40.0
 texture = ExtResource("14_c0as5")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.0202091, 1.8603, 0.882298)
+current = true
+script = ExtResource("18_h1wyc")
+player = NodePath("../Player")
+offset = Vector3(0, -2, -2)
+camera_speed = 5.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_thy0m")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.602782, 0.369726, 1.2232)
+mesh = SubResource("SphereMesh_5s22d")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.861824, 0.105593, -0.496094, 0.0701163, 0.943896, 0.322714, 0.502338, -0.312907, 0.806068, 0, 1.01327, 1.20783)
+shadow_enabled = true
+directional_shadow_split_1 = 0.186
 
 [connection signal="button_up" from="CanvasLayer/ConfirmDialog/CancelButton" to="CanvasLayer/ConfirmDialog" method="_on_cancel_button_button_up"]

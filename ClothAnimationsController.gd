@@ -1,9 +1,9 @@
-extends Node2D
+extends Node3D
 
-@onready var skins_animated_sprite_2d = $SkinsAnimatedSprite2D;
+@onready var skins_animated_sprite_3d = $SkinsAnimatedSprite3D;
 @onready var clothes_animated_sprites: Array = get_children();
 
-const clothes_type_name: String = 'AnimatedSprite2D';
+const clothes_type_name: String = 'AnimatedSprite3D';
 
 const CLOTH_NAMES = {
 	SKINS = 'Skins',
@@ -12,7 +12,7 @@ const CLOTH_NAMES = {
 	PANTS = 'Pants'
 }
 
-# set in runtime to be Ex. {HairsAnimatedSprite2D: 0}
+# set in runtime to be Ex. {HairsAnimatedSprite3D: 0}
 var clothes_map_indexes = {};
 
 func _ready():
@@ -33,7 +33,7 @@ func change_cloth_by_index(cloth_name: String, index: int):
 	printerr('change_cloth_by_index:: '+str(index)+' for '+cloth_scene_name+' dont exist in clothes_map_indexes')
 	printerr('change_cloth_by_index::clothes_map_indexes '+ JSON.stringify(clothes_map_indexes))
 
-func _get_cloth_scene_by_name(cloth_name: String) -> AnimatedSprite2D:
+func _get_cloth_scene_by_name(cloth_name: String) -> AnimatedSprite3D:
 	for cloth in clothes_animated_sprites:
 		if cloth.name == cloth_name:
 			return cloth;
@@ -42,9 +42,9 @@ func _get_cloth_scene_by_name(cloth_name: String) -> AnimatedSprite2D:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var current_animation_name = skins_animated_sprite_2d.animation;
+	var current_animation_name = skins_animated_sprite_3d.animation;
 	for animated_sprite in clothes_animated_sprites:
-		animated_sprite.frame = skins_animated_sprite_2d.frame;
-		animated_sprite.scale.x = skins_animated_sprite_2d.scale.x;
+		animated_sprite.frame = skins_animated_sprite_3d.frame;
+		animated_sprite.scale.x = skins_animated_sprite_3d.scale.x;
 		if animated_sprite.animation != current_animation_name:
 			animated_sprite.animation = current_animation_name;
