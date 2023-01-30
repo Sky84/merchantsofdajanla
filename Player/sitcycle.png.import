@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i147aclt0cip"
-path.s3tc="res://.godot/imported/body5-Sheet.png-fc45f5d47802184994b876949d8a57fc.s3tc.ctex"
-path.etc2="res://.godot/imported/body5-Sheet.png-fc45f5d47802184994b876949d8a57fc.etc2.ctex"
+uid="uid://dlrseb2r0dw84"
+path.s3tc="res://.godot/imported/sitcycle.png-055e6beba8b3d212d0717d0529fb6713.s3tc.ctex"
+path.etc2="res://.godot/imported/sitcycle.png-055e6beba8b3d212d0717d0529fb6713.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Player/body5-Sheet.png"
-dest_files=["res://.godot/imported/body5-Sheet.png-fc45f5d47802184994b876949d8a57fc.s3tc.ctex", "res://.godot/imported/body5-Sheet.png-fc45f5d47802184994b876949d8a57fc.etc2.ctex"]
+source_file="res://Player/sitcycle.png"
+dest_files=["res://.godot/imported/sitcycle.png-055e6beba8b3d212d0717d0529fb6713.s3tc.ctex", "res://.godot/imported/sitcycle.png-055e6beba8b3d212d0717d0529fb6713.etc2.ctex"]
 
 [params]
 

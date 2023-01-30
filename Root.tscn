@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ga2xe2rceiek"]
+[gd_scene load_steps=43 format=3 uid="uid://ga2xe2rceiek"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://HUDController.gd" id="2_f2rh2"]
 [ext_resource type="Theme" uid="uid://bi8ntv83c31wj" path="res://Theme.tres" id="3_bkpua"]
 [ext_resource type="PackedScene" uid="uid://b7msndjt5poq4" path="res://Container/SlotItemButton.tscn" id="3_fvd0d"]
+[ext_resource type="SpriteFrames" uid="uid://brp1xx76ygf2m" path="res://Player/SpriteFrames/Skins_0.tres" id="4_15agw"]
 [ext_resource type="Script" path="res://Container/Container.gd" id="4_nvdet"]
 [ext_resource type="Script" path="res://ClothAnimationsController.gd" id="5_rrxt5"]
 [ext_resource type="Texture2D" uid="uid://cd86hslikfwrg" path="res://Container/background_Inventory.png" id="5_xgam2"]
@@ -22,6 +23,9 @@
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grlca"]
 animation = &"idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1bh7k"]
+animation = &"run"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j647b"]
 animation = &"walk"
 
@@ -36,12 +40,32 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"isIdle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vm8ug"]
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jqkw0"]
+advance_mode = 2
+advance_condition = &"isWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pp7fy"]
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f620p"]
+advance_mode = 2
+advance_condition = &"isIdle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4qfse"]
+states/Start/position = Vector2(95, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_grlca")
 states/idle/position = Vector2(358, 84)
+states/run/node = SubResource("AnimationNodeAnimation_1bh7k")
+states/run/position = Vector2(460, 240)
 states/walk/node = SubResource("AnimationNodeAnimation_j647b")
-states/walk/position = Vector2(516, 92)
-transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_b5pm3")]
+states/walk/position = Vector2(579, 84)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_b5pm3"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_vm8ug"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_jqkw0"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_pp7fy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f620p")]
+graph_offset = Vector2(-50, 15)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_q05ni"]
 
@@ -57,26 +81,26 @@ step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:playing")
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [&"idle"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [&"idle"]
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_si24n"]
@@ -108,9 +132,71 @@ tracks/1/keys = {
 "values": [&"walk"]
 }
 
+[sub_resource type="Animation" id="Animation_ri3q8"]
+resource_name = "run"
+length = 1.25
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_sgpdw"]
+resource_name = "sit"
+length = 1.25
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"sit"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mcocu"]
 _data = {
 "idle": SubResource("Animation_vk8fn"),
+"run": SubResource("Animation_ri3q8"),
+"sit": SubResource("Animation_sgpdw"),
 "walk": SubResource("Animation_si24n")
 }
 
@@ -145,6 +231,7 @@ tree_root = SubResource("AnimationNodeStateMachine_4qfse")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_q05ni")
 parameters/conditions/isIdle = false
+parameters/conditions/isRunning = false
 parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="Player"]
@@ -186,6 +273,8 @@ shaded = true
 double_sided = false
 alpha_cut = 2
 texture_filter = 0
+sprite_frames = ExtResource("4_15agw")
+animation = &"run"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_f2rh2")
