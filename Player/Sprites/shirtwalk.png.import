@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4te66sf3l02b"
-path="res://.godot/imported/shortwalk.png-d50d7b7b171934ceb23528615a0b752a.ctex"
+uid="uid://bot33nsteo2rk"
+path="res://.godot/imported/shirtwalk.png-525211595b344079749f819767b80f45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/shortwalk.png"
-dest_files=["res://.godot/imported/shortwalk.png-d50d7b7b171934ceb23528615a0b752a.ctex"]
+source_file="res://Player/Sprites/shirtwalk.png"
+dest_files=["res://.godot/imported/shirtwalk.png-525211595b344079749f819767b80f45.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c87o01cu200g4"
-path="res://.godot/imported/pantswalk.png-ca4100e0d3973acc42203b6d4bb64dec.ctex"
+uid="uid://d1wkaauv7q4qw"
+path="res://.godot/imported/fightcycle.png-27901cc329213c4a1efdb535b692bb7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/pantswalk.png"
-dest_files=["res://.godot/imported/pantswalk.png-ca4100e0d3973acc42203b6d4bb64dec.ctex"]
+source_file="res://Player/Sprites/fightcycle.png"
+dest_files=["res://.godot/imported/fightcycle.png-27901cc329213c4a1efdb535b692bb7d.ctex"]
 
 [params]
 

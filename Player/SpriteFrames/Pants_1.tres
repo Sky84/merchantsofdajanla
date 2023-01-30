@@ -1,7 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://dlyl74br0ljgs"]
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://b8iny7yatylha"]
 
-[ext_resource type="Texture2D" uid="uid://cc1i1on3cpstn" path="res://Player/pantsidle.png" id="1_v0575"]
-[ext_resource type="Texture2D" uid="uid://c87o01cu200g4" path="res://Player/pantswalk.png" id="2_4pgu8"]
+[ext_resource type="Texture2D" uid="uid://cc1i1on3cpstn" path="res://Player/Sprites/pantsidle.png" id="1_v0575"]
+[ext_resource type="Texture2D" uid="uid://c87o01cu200g4" path="res://Player/Sprites/pantswalk.png" id="2_4pgu8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tie6e"]
 atlas = ExtResource("1_v0575")
@@ -49,6 +49,11 @@ region = Rect2(160, 0, 32, 64)
 
 [resource]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tie6e")

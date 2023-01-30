@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg3aqnknehlhj"
-path.s3tc="res://.godot/imported/runplaceholder.png-38991316506fd1f57ed143d190d33d5d.s3tc.ctex"
-path.etc2="res://.godot/imported/runplaceholder.png-38991316506fd1f57ed143d190d33d5d.etc2.ctex"
+uid="uid://bmt861dbb85d7"
+path.s3tc="res://.godot/imported/walkcycle.png-94a686f2b76d53ff6fd920080ffa8e81.s3tc.ctex"
+path.etc2="res://.godot/imported/walkcycle.png-94a686f2b76d53ff6fd920080ffa8e81.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Player/runplaceholder.png"
-dest_files=["res://.godot/imported/runplaceholder.png-38991316506fd1f57ed143d190d33d5d.s3tc.ctex", "res://.godot/imported/runplaceholder.png-38991316506fd1f57ed143d190d33d5d.etc2.ctex"]
+source_file="res://Player/Sprites/walkcycle.png"
+dest_files=["res://.godot/imported/walkcycle.png-94a686f2b76d53ff6fd920080ffa8e81.s3tc.ctex", "res://.godot/imported/walkcycle.png-94a686f2b76d53ff6fd920080ffa8e81.etc2.ctex"]
 
 [params]
 

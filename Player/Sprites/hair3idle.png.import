@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddsijyt6614vj"
-path="res://.godot/imported/hair3walk.png-18ec46ea1bae2df7255d9ac1e6fa445a.ctex"
+uid="uid://bujo6vahccjja"
+path="res://.godot/imported/hair3idle.png-df4f76fe536a8d37fb0c42705619642e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/hair3walk.png"
-dest_files=["res://.godot/imported/hair3walk.png-18ec46ea1bae2df7255d9ac1e6fa445a.ctex"]
+source_file="res://Player/Sprites/hair3idle.png"
+dest_files=["res://.godot/imported/hair3idle.png-df4f76fe536a8d37fb0c42705619642e.ctex"]
 
 [params]
 

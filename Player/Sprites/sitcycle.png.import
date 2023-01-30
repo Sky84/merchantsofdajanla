@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmt861dbb85d7"
-path.s3tc="res://.godot/imported/walkcycle.png-f7817e484779db1b1d10a338f4fb393d.s3tc.ctex"
-path.etc2="res://.godot/imported/walkcycle.png-f7817e484779db1b1d10a338f4fb393d.etc2.ctex"
+uid="uid://dlrseb2r0dw84"
+path.s3tc="res://.godot/imported/sitcycle.png-f10d1c88f26d9268f9c6f67ba00ea3d1.s3tc.ctex"
+path.etc2="res://.godot/imported/sitcycle.png-f10d1c88f26d9268f9c6f67ba00ea3d1.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Player/walkcycle.png"
-dest_files=["res://.godot/imported/walkcycle.png-f7817e484779db1b1d10a338f4fb393d.s3tc.ctex", "res://.godot/imported/walkcycle.png-f7817e484779db1b1d10a338f4fb393d.etc2.ctex"]
+source_file="res://Player/Sprites/sitcycle.png"
+dest_files=["res://.godot/imported/sitcycle.png-f10d1c88f26d9268f9c6f67ba00ea3d1.s3tc.ctex", "res://.godot/imported/sitcycle.png-f10d1c88f26d9268f9c6f67ba00ea3d1.etc2.ctex"]
 
 [params]
 

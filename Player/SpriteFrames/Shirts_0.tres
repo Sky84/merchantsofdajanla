@@ -1,7 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://b4oxdp7kqks5i"]
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://dt3tgxtd8u511"]
 
-[ext_resource type="Texture2D" uid="uid://csd0cgtca7dbc" path="res://Player/shirtidle.png" id="1_dk35i"]
-[ext_resource type="Texture2D" uid="uid://bot33nsteo2rk" path="res://Player/shirtwalk.png" id="2_jfuo7"]
+[ext_resource type="Texture2D" uid="uid://csd0cgtca7dbc" path="res://Player/Sprites/shirtidle.png" id="1_dk35i"]
+[ext_resource type="Texture2D" uid="uid://bot33nsteo2rk" path="res://Player/Sprites/shirtwalk.png" id="2_jfuo7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boe6d"]
 atlas = ExtResource("1_dk35i")
@@ -49,6 +49,11 @@ region = Rect2(160, 0, 32, 64)
 
 [resource]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_boe6d")

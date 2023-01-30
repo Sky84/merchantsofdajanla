@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bot33nsteo2rk"
-path="res://.godot/imported/shirtwalk.png-2aee5ca276aeeef4470dee8e7b603114.ctex"
+uid="uid://c87o01cu200g4"
+path="res://.godot/imported/pantswalk.png-62be899f7c88ed4103951f4748b9d7cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/shirtwalk.png"
-dest_files=["res://.godot/imported/shirtwalk.png-2aee5ca276aeeef4470dee8e7b603114.ctex"]
+source_file="res://Player/Sprites/pantswalk.png"
+dest_files=["res://.godot/imported/pantswalk.png-62be899f7c88ed4103951f4748b9d7cc.ctex"]
 
 [params]
 

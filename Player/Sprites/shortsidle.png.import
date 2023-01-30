@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csf2jrthwckdd"
-path="res://.godot/imported/shortsidle.png-1f8255f08230c860a26484497c7b8df2.ctex"
+path="res://.godot/imported/shortsidle.png-d88ee91d6b93626dc1c8a9c7a1b83e0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/shortsidle.png"
-dest_files=["res://.godot/imported/shortsidle.png-1f8255f08230c860a26484497c7b8df2.ctex"]
+source_file="res://Player/Sprites/shortsidle.png"
+dest_files=["res://.godot/imported/shortsidle.png-d88ee91d6b93626dc1c8a9c7a1b83e0c.ctex"]
 
 [params]
 

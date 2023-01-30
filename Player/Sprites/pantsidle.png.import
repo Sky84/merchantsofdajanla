@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bujo6vahccjja"
-path="res://.godot/imported/hair3idle.png-65538c7cac3d1a4493a7fcc27ab4e21f.ctex"
+uid="uid://cc1i1on3cpstn"
+path="res://.godot/imported/pantsidle.png-c56eecaa973cb6f367c2e74a3407bd44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/hair3idle.png"
-dest_files=["res://.godot/imported/hair3idle.png-65538c7cac3d1a4493a7fcc27ab4e21f.ctex"]
+source_file="res://Player/Sprites/pantsidle.png"
+dest_files=["res://.godot/imported/pantsidle.png-c56eecaa973cb6f367c2e74a3407bd44.ctex"]
 
 [params]
 

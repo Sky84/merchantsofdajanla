@@ -38,9 +38,10 @@ func _handle_animation():
 	cloth_animations.rotation.x = camera.rotation.x;
 	if velocity.x != 0:
 		animated_sprite_3d.scale.x = 1 if velocity.x > 0 else -1;
+	var speed_run_gap = 2;
 	var is_idle = velocity == Vector3.ZERO;
-	var is_walking = velocity != Vector3.ZERO and velocity.length() < 1;
-	var is_running = velocity != Vector3.ZERO and velocity.length() > 1;
+	var is_walking = velocity != Vector3.ZERO and velocity.length() <= speed_run_gap;
+	var is_running = velocity != Vector3.ZERO and velocity.length() > speed_run_gap;
 	animation_tree.set("parameters/conditions/isIdle", is_idle);
 	animation_tree.set("parameters/conditions/isWalking", is_walking);
 	animation_tree.set("parameters/conditions/isRunning", is_running);

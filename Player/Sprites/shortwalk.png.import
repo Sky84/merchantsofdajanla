@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc1i1on3cpstn"
-path="res://.godot/imported/pantsidle.png-8940d879d19c188b37f6b19ff832a37e.ctex"
+uid="uid://4te66sf3l02b"
+path="res://.godot/imported/shortwalk.png-25b20f3727ad6286b2ae57c64bf653eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/pantsidle.png"
-dest_files=["res://.godot/imported/pantsidle.png-8940d879d19c188b37f6b19ff832a37e.ctex"]
+source_file="res://Player/Sprites/shortwalk.png"
+dest_files=["res://.godot/imported/shortwalk.png-25b20f3727ad6286b2ae57c64bf653eb.ctex"]
 
 [params]
 
