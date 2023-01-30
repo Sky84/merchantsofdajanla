@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-JsonResourceLoader="*res://JSONResourceLoader.gd"
-GameItems="*res://GameItems.gd"
-InventoryEvents="*res://InventoryEvents.gd"
+JsonResourceLoader="*res://Core/JSONResourceLoader.gd"
+GameItems="*res://Core/GameItems.gd"
+InventoryEvents="*res://Container/InventoryEvents.gd"
 
 [display]
 

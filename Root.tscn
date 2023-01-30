@@ -1,14 +1,14 @@
-[gd_scene load_steps=43 format=3 uid="uid://ga2xe2rceiek"]
+[gd_scene load_steps=43 format=3 uid="uid://b4c620dwf2srl"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
 [ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
-[ext_resource type="Script" path="res://HUDController.gd" id="2_f2rh2"]
 [ext_resource type="Theme" uid="uid://bi8ntv83c31wj" path="res://Theme.tres" id="3_bkpua"]
 [ext_resource type="PackedScene" uid="uid://b7msndjt5poq4" path="res://Container/SlotItemButton.tscn" id="3_fvd0d"]
+[ext_resource type="Script" path="res://Player/ClothAnimationsController.gd" id="3_qp1w2"]
 [ext_resource type="SpriteFrames" uid="uid://brp1xx76ygf2m" path="res://Player/SpriteFrames/Skins_0.tres" id="4_15agw"]
 [ext_resource type="Script" path="res://Container/Container.gd" id="4_nvdet"]
-[ext_resource type="Script" path="res://ClothAnimationsController.gd" id="5_rrxt5"]
+[ext_resource type="Script" path="res://Player/HUDController.gd" id="5_jbwpl"]
 [ext_resource type="Texture2D" uid="uid://cd86hslikfwrg" path="res://Container/background_Inventory.png" id="5_xgam2"]
 [ext_resource type="Texture2D" uid="uid://b3xovictnxfkq" path="res://Container/overboxinventaire.png" id="7_2iuyc"]
 [ext_resource type="Texture2D" uid="uid://depuvlnbptfgp" path="res://Dialog/infobox.png" id="8_o04mf"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://2qdgjgc5uvi3" path="res://Dialog/buttoninfoNO.png" id="12_cgxjl"]
 [ext_resource type="Texture2D" uid="uid://pvm21erntbth" path="res://icon.svg" id="14_c0as5"]
 [ext_resource type="Script" path="res://Container/InfoPanelController.gd" id="15_b1fgb"]
-[ext_resource type="Script" path="res://CameraController.gd" id="18_h1wyc"]
+[ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grlca"]
 animation = &"idle"
@@ -103,35 +103,6 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
-[sub_resource type="Animation" id="Animation_si24n"]
-resource_name = "walk"
-length = 1.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk"]
-}
-
 [sub_resource type="Animation" id="Animation_ri3q8"]
 resource_name = "run"
 length = 1.25
@@ -192,6 +163,35 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_si24n"]
+resource_name = "walk"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mcocu"]
 _data = {
 "idle": SubResource("Animation_vk8fn"),
@@ -248,7 +248,7 @@ libraries = {
 }
 
 [node name="ClothAnimations" type="Node3D" parent="Player"]
-script = ExtResource("5_rrxt5")
+script = ExtResource("3_qp1w2")
 
 [node name="HairsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 shaded = true
@@ -277,7 +277,7 @@ sprite_frames = ExtResource("4_15agw")
 animation = &"run"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("2_f2rh2")
+script = ExtResource("5_jbwpl")
 
 [node name="Inventory" type="Panel" parent="CanvasLayer"]
 visible = false
@@ -512,7 +512,7 @@ stretch_mode = 5
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.0202091, 1.8603, 0.882298)
 current = true
-script = ExtResource("18_h1wyc")
+script = ExtResource("19_7llnf")
 player = NodePath("../Player")
 offset = Vector3(0, -2, -2)
 camera_speed = 5.0
