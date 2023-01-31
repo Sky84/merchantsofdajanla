@@ -8,7 +8,7 @@ extends CharacterBody3D
 @onready var cloth_animations = $ClothAnimations;
 @onready var animated_sprite_3d = $ClothAnimations/SkinsAnimatedSprite3D;
 
-
+var _is_blocked = false;
 var _speed_walk_factor: float = 10.0;
 var _is_inventory_visible = false;
 
@@ -34,7 +34,8 @@ func _handle_movement():
 	var speed_run = max(1, Input.get_action_strength("run") * speed_run_factor);
 	var is_attacking = Input.get_action_strength("attack") > 0;
 	var speed = (speed_walk / _speed_walk_factor) * speed_run;
-	speed = 0 if is_attacking else speed;
+	if _is_blocked:
+		speed = 0;
 	velocity = Vector3(direction_x, 0, direction_z).normalized() * speed;
 
 func _handle_animation():
@@ -48,3 +49,8 @@ func _handle_animation():
 	animation_tree.set("parameters/conditions/isIdle", is_idle);
 	animation_tree.set("parameters/conditions/isWalking", is_walking);
 	animation_tree.set("parameters/conditions/isRunning", is_running);
+
+
+func _on_animation_tree_animation_finished(anim_name):
+	const animations_who_block: Array = ["attack"];
+	_is_blocked = animations_who_block.has(anim_name);
