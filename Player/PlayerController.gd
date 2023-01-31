@@ -33,10 +33,9 @@ func _handle_movement():
 	var direction_z = Input.get_action_strength("down") - Input.get_action_strength("up");
 	var speed_run = max(1, Input.get_action_strength("run") * speed_run_factor);
 	var speed = (speed_walk / _speed_walk_factor) * speed_run;
-	velocity = Vector3(direction_x*speed, 0, direction_z*speed).normalized() * speed;
+	velocity = Vector3(direction_x, 0, direction_z).normalized() * speed;
 
 func _handle_animation():
-	cloth_animations.rotation.x = camera.rotation.x;
 	if velocity.x != 0:
 		animated_sprite_3d.scale.x = 1 if velocity.x > 0 else -1;
 	var is_idle = velocity == Vector3.ZERO;
