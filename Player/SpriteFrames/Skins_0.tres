@@ -1,9 +1,26 @@
-[gd_resource type="SpriteFrames" load_steps=24 format=3 uid="uid://b116yvdld6l6t"]
+[gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://b116yvdld6l6t"]
 
+[ext_resource type="Texture2D" uid="uid://d1wkaauv7q4qw" path="res://Player/Sprites/fightcycle.png" id="1_bcxnv"]
 [ext_resource type="Texture2D" uid="uid://i147aclt0cip" path="res://Player/Sprites/body5-Sheet.png" id="1_me4eb"]
 [ext_resource type="Texture2D" uid="uid://cg3aqnknehlhj" path="res://Player/Sprites/runplaceholder.png" id="2_c4nfd"]
 [ext_resource type="Texture2D" uid="uid://dlrseb2r0dw84" path="res://Player/Sprites/sitcycle.png" id="3_b7p0y"]
 [ext_resource type="Texture2D" uid="uid://bmt861dbb85d7" path="res://Player/Sprites/walkcycle.png" id="4_7itak"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl6h6"]
+atlas = ExtResource("1_bcxnv")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lltwx"]
+atlas = ExtResource("1_bcxnv")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_if2ro"]
+atlas = ExtResource("1_bcxnv")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_045ek"]
+atlas = ExtResource("1_bcxnv")
+region = Rect2(96, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arcs4"]
 atlas = ExtResource("1_me4eb")
@@ -83,7 +100,19 @@ region = Rect2(160, 0, 32, 64)
 
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl6h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lltwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_if2ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_045ek")
+}],
 "loop": true,
 "name": &"hit",
 "speed": 5.0

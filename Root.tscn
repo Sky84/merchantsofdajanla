@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://t6ajbtrwkora"]
+[gd_scene load_steps=54 format=3 uid="uid://t6ajbtrwkora"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
@@ -21,6 +21,9 @@
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
 [ext_resource type="Texture2D" uid="uid://chkh5cot03sov" path="res://dirt.png" id="20_w8qi4"]
 [ext_resource type="Material" uid="uid://c2xui8wsgb5ig" path="res://PixelMaterial.tres" id="21_2hbfu"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
+animation = &"attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grlca"]
 animation = &"idle"
@@ -58,15 +61,44 @@ advance_condition = &"isRunning"
 advance_mode = 2
 advance_condition = &"isIdle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ne8y"]
+advance_mode = 2
+advance_condition = &"isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v212b"]
+advance_mode = 2
+advance_condition = &"isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ko48a"]
+advance_mode = 2
+advance_condition = &"isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_alvd4"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_idgsq"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r00va"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isIdle"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4qfse"]
 states/Start/position = Vector2(95, 100)
+states/attack/node = SubResource("AnimationNodeAnimation_mr8qj")
+states/attack/position = Vector2(753, 240)
 states/idle/node = SubResource("AnimationNodeAnimation_grlca")
 states/idle/position = Vector2(358, 84)
 states/run/node = SubResource("AnimationNodeAnimation_1bh7k")
 states/run/position = Vector2(460, 240)
 states/walk/node = SubResource("AnimationNodeAnimation_j647b")
 states/walk/position = Vector2(579, 84)
-transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_b5pm3"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_vm8ug"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_jqkw0"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_pp7fy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f620p")]
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_b5pm3"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_vm8ug"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_jqkw0"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_pp7fy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f620p"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_6ne8y"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_v212b"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_ko48a"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_alvd4"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_idgsq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_r00va")]
 graph_offset = Vector2(-50, 15)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_q05ni"]
@@ -74,6 +106,35 @@ graph_offset = Vector2(-50, 15)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pn48d"]
 radius = 0.548919
 height = 3.88508
+
+[sub_resource type="Animation" id="Animation_ekqna"]
+resource_name = "attack"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hit"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
 
 [sub_resource type="Animation" id="Animation_vk8fn"]
 resource_name = "idle"
@@ -195,6 +256,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mcocu"]
 _data = {
+"attack": SubResource("Animation_ekqna"),
 "idle": SubResource("Animation_vk8fn"),
 "run": SubResource("Animation_ri3q8"),
 "sit": SubResource("Animation_sgpdw"),
@@ -235,6 +297,7 @@ camera = NodePath("../Camera3D")
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_q05ni")
+parameters/conditions/isAttacking = false
 parameters/conditions/isIdle = false
 parameters/conditions/isRunning = false
 parameters/conditions/isWalking = false
@@ -288,7 +351,7 @@ shaded = true
 double_sided = false
 alpha_cut = 2
 texture_filter = 0
-frames = ExtResource("4_cvpnb")
+sprite_frames = ExtResource("4_cvpnb")
 animation = &"idle"
 frame = 1
 

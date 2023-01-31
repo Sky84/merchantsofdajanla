@@ -32,7 +32,9 @@ func _handle_movement():
 	var direction_x = Input.get_action_strength("right") - Input.get_action_strength("left");
 	var direction_z = Input.get_action_strength("down") - Input.get_action_strength("up");
 	var speed_run = max(1, Input.get_action_strength("run") * speed_run_factor);
+	var is_attacking = Input.get_action_strength("attack") > 0;
 	var speed = (speed_walk / _speed_walk_factor) * speed_run;
+	speed = 0 if is_attacking else speed;
 	velocity = Vector3(direction_x, 0, direction_z).normalized() * speed;
 
 func _handle_animation():
@@ -41,6 +43,8 @@ func _handle_animation():
 	var is_idle = velocity == Vector3.ZERO;
 	var is_walking = velocity != Vector3.ZERO and velocity.length() <= run_animation_gap;
 	var is_running = velocity != Vector3.ZERO and velocity.length() > run_animation_gap;
+	var is_attacking = Input.get_action_strength("attack");
+	animation_tree.set("parameters/conditions/isAttacking", is_attacking);
 	animation_tree.set("parameters/conditions/isIdle", is_idle);
 	animation_tree.set("parameters/conditions/isWalking", is_walking);
 	animation_tree.set("parameters/conditions/isRunning", is_running);
