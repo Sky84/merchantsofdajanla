@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://dt3tgxtd8u511"]
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://dt3tgxtd8u511"]
 
 [ext_resource type="Texture2D" uid="uid://csd0cgtca7dbc" path="res://Player/Sprites/shirtidle.png" id="1_dk35i"]
+[ext_resource type="Texture2D" uid="uid://bbowg1h3bsa3" path="res://Player/Sprites/runshirt.png" id="2_73o4m"]
 [ext_resource type="Texture2D" uid="uid://bot33nsteo2rk" path="res://Player/Sprites/shirtwalk.png" id="2_jfuo7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boe6d"]
@@ -22,6 +23,30 @@ region = Rect2(96, 0, 32, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mqmd4"]
 atlas = ExtResource("1_dk35i")
 region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcljg"]
+atlas = ExtResource("2_73o4m")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5rx1"]
+atlas = ExtResource("2_73o4m")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dog12"]
+atlas = ExtResource("2_73o4m")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v31ix"]
+atlas = ExtResource("2_73o4m")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udyrc"]
+atlas = ExtResource("2_73o4m")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utvsu"]
+atlas = ExtResource("2_73o4m")
+region = Rect2(160, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7clb"]
 atlas = ExtResource("2_jfuo7")
@@ -74,7 +99,25 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcljg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5rx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dog12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v31ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udyrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utvsu")
+}],
 "loop": true,
 "name": &"run",
 "speed": 5.0

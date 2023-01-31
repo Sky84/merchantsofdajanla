@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var speed_walk: float = 1.0;
 @export var speed_run_factor: float = 2.0;
+@export var run_animation_gap = 3;
 @export var camera: Camera3D;
 @onready var animation_tree = $AnimationTree;
 @onready var cloth_animations = $ClothAnimations;
@@ -38,10 +39,9 @@ func _handle_animation():
 	cloth_animations.rotation.x = camera.rotation.x;
 	if velocity.x != 0:
 		animated_sprite_3d.scale.x = 1 if velocity.x > 0 else -1;
-	var speed_run_gap = 2;
 	var is_idle = velocity == Vector3.ZERO;
-	var is_walking = velocity != Vector3.ZERO and velocity.length() <= speed_run_gap;
-	var is_running = velocity != Vector3.ZERO and velocity.length() > speed_run_gap;
+	var is_walking = velocity != Vector3.ZERO and velocity.length() <= run_animation_gap;
+	var is_running = velocity != Vector3.ZERO and velocity.length() > run_animation_gap;
 	animation_tree.set("parameters/conditions/isIdle", is_idle);
 	animation_tree.set("parameters/conditions/isWalking", is_walking);
 	animation_tree.set("parameters/conditions/isRunning", is_running);
