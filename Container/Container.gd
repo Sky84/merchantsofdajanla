@@ -5,7 +5,7 @@ class_name ItemsContainer
 @export var _items_container_view_path: NodePath;
 
 @onready var _view: Panel = get_node(_items_container_view_path);
-var _start_items;
+var _start_items = {};
 var _items = {};
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +18,7 @@ func _ready():
 func _on_view_ready():
 	if _start_items_json_path:
 		_start_items = GameItems.get_start_items(_start_items_json_path);
-		_add_items(_start_items);
+	_add_items(_start_items);
 
 func _add_items(items_to_add:Dictionary):
 	for id in items_to_add:
