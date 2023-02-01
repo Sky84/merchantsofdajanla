@@ -7,7 +7,6 @@ extends Panel
 
 @onready var hover_texture = $HoverTexture;
 @onready var _items_container:GridContainer = get_node("MarginContainer/ItemsContainerView");
-@onready var _total_items = rows*_items_container.columns;
 @onready var info_panel = %InfoPanel;
 
 var slots: Dictionary = {};

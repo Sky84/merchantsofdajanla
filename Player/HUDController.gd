@@ -10,5 +10,5 @@ func _show_dialog(item):
 	var message = "Drop and delete "+str(item.amount)+" "+item.name+"(s) ?";
 	confirm_dialog.open(message, _on_delete_item.bind(item));
 
-func _on_delete_item(item):
+func _on_delete_item(_item):
 	InventoryEvents.reset_current_item.emit();

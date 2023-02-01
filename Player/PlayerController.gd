@@ -17,7 +17,7 @@ func _ready():
 	animation_tree.active = true;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	_handle_movement();
 	_handle_animation();
 	move_and_slide();
@@ -32,7 +32,6 @@ func _handle_movement():
 	var direction_x = Input.get_action_strength("right") - Input.get_action_strength("left");
 	var direction_z = Input.get_action_strength("down") - Input.get_action_strength("up");
 	var speed_run = max(1, Input.get_action_strength("run") * speed_run_factor);
-	var is_attacking = Input.get_action_strength("attack") > 0;
 	var speed = (speed_walk / _speed_walk_factor) * speed_run;
 	if _is_blocked:
 		speed = 0;
@@ -50,7 +49,6 @@ func _handle_animation():
 	animation_tree.set("parameters/conditions/isWalking", is_walking);
 	animation_tree.set("parameters/conditions/isRunning", is_running);
 
-
-func _on_animation_tree_animation_finished(anim_name):
-	const animations_who_block: Array = ["attack"];
-	_is_blocked = animations_who_block.has(anim_name);
+#set by animation in AnimationPlayer
+func _on_animation_set_block(value: bool):
+	_is_blocked = value;
