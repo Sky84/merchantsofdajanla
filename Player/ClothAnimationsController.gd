@@ -9,7 +9,8 @@ const CLOTH_NAMES = {
 	SKINS = 'Skins',
 	HAIRS = 'Hairs',
 	SHIRTS = 'Shirts',
-	PANTS = 'Pants'
+	PANTS = 'Pants',
+	WEAPONS = 'Weapons'
 }
 
 # set in runtime to be Ex. {HairsAnimatedSprite3D: 0}
