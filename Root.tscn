@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://t6ajbtrwkora"]
+[gd_scene load_steps=58 format=3 uid="uid://t6ajbtrwkora"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://Container/InfoPanelController.gd" id="15_b1fgb"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
 [ext_resource type="Texture2D" uid="uid://bfinq7yop12ha" path="res://Container/shortcutbar.png" id="20_celon"]
+[ext_resource type="Script" path="res://ShortcutBar.gd" id="20_qqguq"]
 [ext_resource type="Texture2D" uid="uid://chkh5cot03sov" path="res://dirt.png" id="20_w8qi4"]
 [ext_resource type="Material" uid="uid://c2xui8wsgb5ig" path="res://PixelMaterial.tres" id="21_2hbfu"]
 
@@ -393,6 +394,7 @@ animation = &"hit"
 script = ExtResource("5_jbwpl")
 
 [node name="Inventory" type="Panel" parent="CanvasLayer"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -640,12 +642,13 @@ offset_right = 139.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_20ljf")
-script = ExtResource("1_rqpfe")
+script = ExtResource("20_qqguq")
 container_id = "shortcut_bar"
 _item_button_scene = ExtResource("2_1jyiy")
 _item_slot_button_scene = ExtResource("3_fvd0d")
 rows = 1
 gap_hover_selector = 2
+hover_selector_mode = "mouse_keyboard_input"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
 layout_mode = 1
@@ -659,6 +662,7 @@ texture = ExtResource("20_celon")
 [node name="HoverTexture" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
 z_index = 2
 texture_filter = 1
+layout_mode = 0
 offset_left = 36.0
 offset_top = 23.0
 offset_right = 68.0
