@@ -14,8 +14,9 @@ var slots: Dictionary = {};
 var _items = {};
 
 var item_with_gap = (32+10);
-
 var _current_item = null;
+var inventory_visible: bool = false;
+var mouse_outside: bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +31,7 @@ func _ready():
 func _on_visibility_inventory(value: bool):
 	visible = value;
 	info_panel.visible = value;
+	inventory_visible = value;
 
 func _on_reset_current_item():
 	_current_item = null;
@@ -120,13 +122,19 @@ func _pick_one_from(slot: Dictionary):
 	return slot;
 
 func _input(event):
-	if event is InputEventMouseButton and _current_item:
-		var click_outside = !get_rect().has_point(event.position); 
-		if (click_outside and !event.is_pressed()):
-			InventoryEvents.dialog_confirm_delete_item.emit(_current_item);
-	elif event is InputEventMouseMotion and get_rect().has_point(event.position):
-		var local_mouse_position = Vector2(_items_container.get_local_mouse_position() / item_with_gap).floor();
-		local_mouse_position.x = clamp(local_mouse_position.x, 0, _items_container.columns-1);
-		local_mouse_position.y = clamp(local_mouse_position.y, 0, rows-1);
-		var hover_texture_position = (local_mouse_position * item_with_gap) - Vector2(1,0);
-		hover_texture.position = _items_container.position + hover_texture_position;
+	if event is InputEventMouse:
+		var check_mouse_outside = !get_rect().has_point(event.position);
+		if mouse_outside != check_mouse_outside:
+			mouse_outside = check_mouse_outside;
+			if inventory_visible:
+				InventoryEvents.emit_signal("mouse_in_view", mouse_outside);
+		if event is InputEventMouseMotion:
+			if !mouse_outside:
+				var local_mouse_position = Vector2(_items_container.get_local_mouse_position() / item_with_gap).floor();
+				local_mouse_position.x = clamp(local_mouse_position.x, 0, _items_container.columns-1);
+				local_mouse_position.y = clamp(local_mouse_position.y, 0, rows-1);
+				var hover_texture_position = (local_mouse_position * item_with_gap) - Vector2(1,0);
+				hover_texture.position = _items_container.position + hover_texture_position;
+		if event is InputEventMouseButton and _current_item:
+			if (mouse_outside and !event.is_pressed()):
+				InventoryEvents.dialog_confirm_delete_item.emit(_current_item);
