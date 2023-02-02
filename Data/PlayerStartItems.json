@@ -1,11 +1,14 @@
 {
-    "black_wood": {
-        "amount": 10
-    },
-    "wood": {
-        "amount": 10
-    },
-    "sand": {
-        "amount": 15
-    }
+	"black_wood": {
+		"amount": 10
+	},
+	"wood": {
+		"amount": 10
+	},
+	"sand": {
+		"amount": 15
+	},
+	"stand": {
+		"amount": 1
+	}
 }

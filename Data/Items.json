@@ -1,20 +1,27 @@
 {
-    "wood": {
-        "name": "Wood",
-        "type": "Material",
-        "description": "(Clint) It's wood",
-        "icon_path": "res://icon.svg",
-        "base_price": 10
-    },
-    "black_wood": {
-        "name": "Black Wood",
-        "description": "Wood but black",
-        "prototype": "wood"
-    },
-    "sand": {
-        "name": "Sand",
-        "type": "Material",
-        "description": "A bunch of sand",
-        "icon_path": "res://icon.svg"
-    }
+	"wood": {
+		"name": "Wood",
+		"type": "Material",
+		"description": "(Clint) It's wood",
+		"icon_path": "res://icon.svg",
+		"base_price": 10
+	},
+	"black_wood": {
+		"name": "Black Wood",
+		"description": "Wood but black",
+		"prototype": "wood"
+	},
+	"sand": {
+		"name": "Sand",
+		"type": "Material",
+		"description": "A bunch of sand",
+		"icon_path": "res://icon.svg"
+	},
+	"stand": {
+		"name": "Stand",
+		"type": "Posable",
+		"description": "A stand to sell an item",
+		"icon_path": "res://icon.svg",
+		"scene_path": "res://stand.tscn"
+	}
 }
