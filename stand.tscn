@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnr81def61rql"]
+
+[ext_resource type="Script" path="res://stand.gd" id="1_mkiih"]
+[ext_resource type="PackedScene" uid="uid://bkfth1id2s0ma" path="res://Stand/Model/Stand.gltf" id="2_fbtmy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vwdeg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xjq8f"]
+size = Vector3(2.018, 1.37028, 2.01786)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37394, 0.400764, -0.322072)
+script = ExtResource("1_mkiih")
+metadata/_edit_group_ = true
+
+[node name="Stand" parent="." instance=ExtResource("2_fbtmy")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("SphereShape3D_vwdeg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+shape = SubResource("BoxShape3D_xjq8f")
+
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
