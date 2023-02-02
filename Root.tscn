@@ -288,7 +288,7 @@ shaded = true
 double_sided = false
 alpha_cut = 2
 texture_filter = 0
-frames = ExtResource("4_cvpnb")
+sprite_frames = ExtResource("4_cvpnb")
 animation = &"idle"
 frame = 1
 
