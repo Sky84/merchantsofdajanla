@@ -532,6 +532,9 @@ script = ExtResource("19_7llnf")
 player = NodePath("../Player")
 camera_speed = 5.0
 
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+collision_mask = 2
+
 [node name="Plane" type="MeshInstance3D" parent="."]
 transform = Transform3D(24.8713, 0, 0, 0, 1, 0, 0, 0, 23.8066, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_x3l8u")
