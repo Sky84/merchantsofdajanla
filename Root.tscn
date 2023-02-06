@@ -348,6 +348,7 @@ script = ExtResource("3_qp1w2")
 
 [node name="WeaponsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.561, 0.01)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -358,6 +359,7 @@ animation = &"hit"
 
 [node name="HairsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -366,6 +368,7 @@ texture_filter = 0
 
 [node name="ShirtsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -374,6 +377,7 @@ texture_filter = 0
 
 [node name="PantsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -382,6 +386,7 @@ texture_filter = 0
 
 [node name="SkinsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -648,9 +653,9 @@ _item_button_scene = ExtResource("2_1jyiy")
 _item_slot_button_scene = ExtResource("3_fvd0d")
 rows = 1
 gap_hover_selector = 2
-hover_selector_mode = "mouse_keyboard_input"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -662,6 +667,7 @@ texture = ExtResource("20_celon")
 [node name="HoverTexture" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
 z_index = 2
 texture_filter = 1
+use_parent_material = true
 layout_mode = 0
 offset_left = 36.0
 offset_top = 23.0
@@ -671,6 +677,7 @@ texture = ExtResource("7_2iuyc")
 stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShortcutBar"]
+use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -681,6 +688,7 @@ theme_override_constants/margin_left = 39
 theme_override_constants/margin_top = 24
 
 [node name="ItemsContainerView" type="GridContainer" parent="CanvasLayer/ShortcutBar/MarginContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 10
