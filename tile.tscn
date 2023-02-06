@@ -1,19 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpq13q8bmf8k7"]
+[gd_scene load_steps=3 format=3 uid="uid://bf5kowwqr03ey"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4ypq2"]
-size = Vector3(2, 0.1, 2)
-
-[sub_resource type="QuadMesh" id="QuadMesh_pxxrd"]
+[sub_resource type="QuadMesh" id="QuadMesh_t4liu"]
 size = Vector2(2, 2)
 orientation = 1
 
-[node name="StaticBody3D" type="StaticBody3D"]
-collision_layer = 2
+[sub_resource type="BoxShape3D" id="BoxShape3D_s43h1"]
+size = Vector3(1.99975, 0.01, 1.98669)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_4ypq2")
+[node name="Tile" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-layers = 2
-mesh = SubResource("QuadMesh_pxxrd")
-skeleton = NodePath("../CollisionShape3D")
+mesh = SubResource("QuadMesh_t4liu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_s43h1")

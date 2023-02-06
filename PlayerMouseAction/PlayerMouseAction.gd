@@ -34,7 +34,7 @@ func _mouse_in_view(status:bool) -> void:
 		CameraEvents.on_ray_intersect_plane.connect(_put_item_on_map);
 		#instancier le model si necessaire (cad -> si item_data.scene_path) existe
 		var _scene: PackedScene = load(_selected_item_scene_path);
-		_selected_item_node = _scene.instantiate();		
+		_selected_item_node = _scene.instantiate();
 		add_child(_selected_item_node);
 	elif _selected_item_node != null:
 		CameraEvents.disconnect("on_ray_intersect_plane", _put_item_on_map);
