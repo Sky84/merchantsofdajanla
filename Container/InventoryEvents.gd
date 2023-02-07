@@ -16,4 +16,4 @@ signal reset_current_item;
 
 signal show_info_item(item);
 
-signal mouse_in_view(is_in_view:bool);
+signal mouse_outside(is_outside: bool);
