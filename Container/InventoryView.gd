@@ -32,6 +32,7 @@ func _on_visibility_inventory(value: bool):
 	visible = value;
 	info_panel.visible = value;
 	inventory_visible = value;
+	check_mouse_outside();
 
 func _on_reset_current_item():
 	_current_item = null;
@@ -121,13 +122,19 @@ func _pick_one_from(slot: Dictionary):
 		slot = {};
 	return slot;
 
+func check_mouse_outside() -> void:
+	if not inventory_visible:
+		InventoryEvents.mouse_outside.emit(true);
+	else:
+		var mouse_position = get_global_mouse_position();
+		var is_outside = !get_rect().has_point(mouse_position);
+		if mouse_outside != is_outside:
+			mouse_outside = is_outside;
+		InventoryEvents.mouse_outside.emit(mouse_outside);
+
 func _input(event):
 	if event is InputEventMouse:
-		var check_mouse_outside = !get_rect().has_point(event.position);
-		if mouse_outside != check_mouse_outside:
-			mouse_outside = check_mouse_outside;
-			if inventory_visible:
-				InventoryEvents.emit_signal("mouse_in_view", mouse_outside);
+		check_mouse_outside();
 		if event is InputEventMouseMotion:
 			if !mouse_outside:
 				var local_mouse_position = Vector2(_items_container.get_local_mouse_position() / item_with_gap).floor();
