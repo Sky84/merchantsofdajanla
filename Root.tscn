@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://t6ajbtrwkora"]
+[gd_scene load_steps=58 format=3 uid="uid://t6ajbtrwkora"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://pvm21erntbth" path="res://icon.svg" id="14_c0as5"]
 [ext_resource type="Script" path="res://Container/InfoPanelController.gd" id="15_b1fgb"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
+[ext_resource type="Texture2D" uid="uid://bfinq7yop12ha" path="res://Container/shortcutbar.png" id="20_celon"]
+[ext_resource type="Script" path="res://ShortcutBar.gd" id="20_qqguq"]
 [ext_resource type="Texture2D" uid="uid://chkh5cot03sov" path="res://dirt.png" id="20_w8qi4"]
 [ext_resource type="Material" uid="uid://c2xui8wsgb5ig" path="res://PixelMaterial.tres" id="21_2hbfu"]
 
@@ -295,6 +297,8 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20ljf"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3l8u"]
 albedo_texture = ExtResource("20_w8qi4")
 texture_filter = 0
@@ -325,6 +329,10 @@ script = ExtResource("4_nvdet")
 _start_items_json_path = "PlayerStartItems.json"
 _items_container_view_path = NodePath("../../CanvasLayer/Inventory")
 
+[node name="ShortcutBar" type="Node3D" parent="Player"]
+script = ExtResource("4_nvdet")
+_items_container_view_path = NodePath("../../CanvasLayer/ShortcutBar")
+
 [node name="CollisionShape2D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("CapsuleShape3D_pn48d")
@@ -340,6 +348,7 @@ script = ExtResource("3_qp1w2")
 
 [node name="WeaponsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.561, 0.01)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -350,6 +359,7 @@ animation = &"hit"
 
 [node name="HairsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -358,6 +368,7 @@ texture_filter = 0
 
 [node name="ShirtsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -366,6 +377,7 @@ texture_filter = 0
 
 [node name="PantsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -374,6 +386,7 @@ texture_filter = 0
 
 [node name="SkinsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
@@ -387,6 +400,7 @@ script = ExtResource("5_jbwpl")
 
 [node name="Inventory" type="Panel" parent="CanvasLayer"]
 visible = false
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -406,6 +420,8 @@ container_id = "player_inventory"
 _item_button_scene = ExtResource("2_1jyiy")
 _item_slot_button_scene = ExtResource("3_fvd0d")
 rows = 4
+gap_hover_selector = 10
+offset_hover_selector = Vector2(1, 0)
 metadata/_edit_group_ = true
 
 [node name="HoverTexture" type="TextureRect" parent="CanvasLayer/Inventory"]
@@ -451,12 +467,14 @@ theme_override_constants/v_separation = 10
 columns = 5
 
 [node name="PlayerMouseAction" parent="CanvasLayer" instance=ExtResource("9_4eyub")]
+texture_filter = 1
 offset_left = -207.0
 offset_right = -167.0
 
 [node name="ConfirmDialog" type="Panel" parent="CanvasLayer"]
 visible = false
 z_index = 3
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -553,6 +571,7 @@ stretch_mode = 5
 [node name="InfoPanel" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -614,6 +633,66 @@ offset_bottom = 40.0
 texture = ExtResource("14_c0as5")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ShortcutBar" type="Panel" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -139.0
+offset_top = -74.0
+offset_right = 139.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_20ljf")
+script = ExtResource("20_qqguq")
+container_id = "shortcut_bar"
+_item_button_scene = ExtResource("2_1jyiy")
+_item_slot_button_scene = ExtResource("3_fvd0d")
+rows = 1
+gap_hover_selector = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_celon")
+
+[node name="HoverTexture" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
+z_index = 2
+texture_filter = 1
+use_parent_material = true
+layout_mode = 0
+offset_left = 36.0
+offset_top = 23.0
+offset_right = 68.0
+offset_bottom = 55.0
+texture = ExtResource("7_2iuyc")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShortcutBar"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 39
+theme_override_constants/margin_top = 24
+
+[node name="ItemsContainerView" type="GridContainer" parent="CanvasLayer/ShortcutBar/MarginContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 10
+columns = 6
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 0.731354, 0.681998, 0, -0.681998, 0.731354, 4.5, 12, 10)

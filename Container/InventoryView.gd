@@ -1,18 +1,21 @@
 extends Panel
+class_name InventoryView
 
 @export var container_id: String;
 @export var _item_button_scene: PackedScene;
 @export var _item_slot_button_scene: PackedScene;
 @export var rows: int;
+@export var gap_hover_selector: int;
+@export var offset_hover_selector: Vector2;
 
 @onready var hover_texture = $HoverTexture;
-@onready var _items_container:GridContainer = get_node("MarginContainer/ItemsContainerView");
+@onready var _items_container: GridContainer = get_node("MarginContainer/ItemsContainerView");
 @onready var info_panel = %InfoPanel;
+@onready var item_with_gap = (32+gap_hover_selector);
 
 var slots: Dictionary = {};
 var _items = {};
 
-var item_with_gap = (32+10);
 
 var _current_item = null;
 
@@ -127,5 +130,5 @@ func _input(event):
 		var local_mouse_position = Vector2(_items_container.get_local_mouse_position() / item_with_gap).floor();
 		local_mouse_position.x = clamp(local_mouse_position.x, 0, _items_container.columns-1);
 		local_mouse_position.y = clamp(local_mouse_position.y, 0, rows-1);
-		var hover_texture_position = (local_mouse_position * item_with_gap) - Vector2(1,0);
+		var hover_texture_position = (local_mouse_position * item_with_gap) - offset_hover_selector;
 		hover_texture.position = _items_container.position + hover_texture_position;
