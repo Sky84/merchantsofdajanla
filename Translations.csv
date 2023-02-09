@@ -1,0 +1,37 @@
+keys,en,fr
+ITEMS.WOOD,Wood,Bois
+ITEMS.SAND,Sand,Sable
+ITEMS.BREAD,Bread,Pain
+ITEMS.APPLE,Apple,Pomme
+ITEMS.CACTUS,Cactus,Cactus
+ITEMS.COOCKED_CHICKEN,Coocked chicken,Poulet cuit
+ITEMS.STEW,Stew,Ragoût
+ITEMS.COCONUT,Coconut,Noix de coco
+ITEMS.STAND,Stand,Stand
+ITEMS.BED,Bed,Lit
+ITEMS.CHAIR,Chair,Chaise
+ITEMS.TABLE,Table,Table
+ITEMS.RED_PILLOW,Red pillow,Oreiller rouge
+ITEMS.BLUE_PILLOW,Blue pillow,Oreiller bleu
+ITEMS.AXE,Axe,Hache
+ITEMS.PICKAXE,Pickaxe,Pioche
+ITEMS.SHOVEL,Shovel,Pelle
+ITEMS.SWORD,Sword,Épée
+ITEMS.WOOD.DESCRIPTION,(Clint) It's wood,(Clint) C'est du bois
+ITEMS.SAND.DESCRIPTION,A bunch of sand,Un tas de sable
+ITEMS.BREAD.DESCRIPTION,A crispy bread.,Un pain croustillant.
+ITEMS.APPLE.DESCRIPTION,A red apple.,Une pomme rouge.
+ITEMS.CACTUS.DESCRIPTION,A small cactus.,Un petit cactus.
+ITEMS.COOCKED_CHICKEN.DESCRIPTION,A tasty chicken.,Un poulet savoureux.
+ITEMS.STEW.DESCRIPTION,A hot stew.,Un ragoût chaud.
+ITEMS.COCONUT.DESCRIPTION,A very hard coconut.,Une noix de coco très dure.
+ITEMS.STAND.DESCRIPTION,A stand to sell an item,Un stand pour vendre un article
+ITEMS.BED.DESCRIPTION,A bed to sleep.,Un lit pour dormir.
+ITEMS.CHAIR.DESCRIPTION,A fancy chair,Une chaise fantaisie
+ITEMS.TABLE.DESCRIPTION,A fancy table,Une table fantaisie
+ITEMS.RED_PILLOW.DESCRIPTION,A cozy big red pillow,Un gros oreiller rouge douillet
+ITEMS.BLUE_PILLOW.DESCRIPTION,A cozy big blue pillow,Un gros oreiller bleu douillet
+ITEMS.SWORD.DESCRIPTION,A sword,Une épée
+ITEMS.AXE.DESCRIPTION,An axe. Chop some tree.,Une hache. Coupez un arbre.
+ITEMS.PICKAXE.DESCRIPTION,A pickaxe. To mine some ore.,Une pioche. Pour extraire du minerai.
+ITEMS.SHOVEL.DESCRIPTION,A shovel. You can dig with it.,Une pelle. On peut creuser avec.
