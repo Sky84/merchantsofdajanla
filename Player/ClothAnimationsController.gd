@@ -9,7 +9,8 @@ const CLOTH_NAMES = {
 	SKINS = 'Skins',
 	HAIRS = 'Hairs',
 	SHIRTS = 'Shirts',
-	PANTS = 'Pants'
+	PANTS = 'Pants',
+	WEAPONS = 'Weapons'
 }
 
 # set in runtime to be Ex. {HairsAnimatedSprite3D: 0}
@@ -41,7 +42,7 @@ func _get_cloth_scene_by_name(cloth_name: String) -> AnimatedSprite3D:
 	return null;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var current_animation_name = skins_animated_sprite_3d.animation;
 	for animated_sprite in clothes_animated_sprites:
 		animated_sprite.frame = skins_animated_sprite_3d.frame;

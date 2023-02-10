@@ -1,0 +1,59 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://eyq6aiiknqur"]
+
+[ext_resource type="Texture2D" uid="uid://bdqrt2hhcybv0" path="res://Player/Sprites/sword1.png" id="1_aw1as"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amu6n"]
+atlas = ExtResource("1_aw1as")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrl2p"]
+atlas = ExtResource("1_aw1as")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mopci"]
+atlas = ExtResource("1_aw1as")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hihy"]
+atlas = ExtResource("1_aw1as")
+region = Rect2(288, 0, 96, 96)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amu6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrl2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mopci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hihy")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

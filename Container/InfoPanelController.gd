@@ -13,8 +13,8 @@ func _ready():
 func open(item: Dictionary):
 	if(!visible):
 		show();
-	name_label.text = item.name;
+	name_label.text = tr(item.name);
 	type_label.text = item.type;
-	description_label.text = item.description;
+	description_label.text = tr(item.description);
 	icon.texture = load(item.icon_path);
 

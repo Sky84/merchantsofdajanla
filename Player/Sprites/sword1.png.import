@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1wkaauv7q4qw"
-path.s3tc="res://.godot/imported/fightcycle.png-27901cc329213c4a1efdb535b692bb7d.s3tc.ctex"
+uid="uid://bdqrt2hhcybv0"
+path.s3tc="res://.godot/imported/sword1.png-51e6cc442010e8266a5ff787e0d6c57a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Player/Sprites/fightcycle.png"
-dest_files=["res://.godot/imported/fightcycle.png-27901cc329213c4a1efdb535b692bb7d.s3tc.ctex"]
+source_file="res://Player/Sprites/sword1.png"
+dest_files=["res://.godot/imported/sword1.png-51e6cc442010e8266a5ff787e0d6c57a.s3tc.ctex"]
 
 [params]
 

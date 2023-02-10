@@ -1,8 +1,25 @@
-[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://f0jcsvd1dvbj"]
+[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://f0jcsvd1dvbj"]
 
+[ext_resource type="Texture2D" uid="uid://02a7id27okbr" path="res://Player/Sprites/fighthair3.png" id="1_er5hq"]
 [ext_resource type="Texture2D" uid="uid://bujo6vahccjja" path="res://Player/Sprites/hair3idle.png" id="1_ha7ad"]
 [ext_resource type="Texture2D" uid="uid://ddsijyt6614vj" path="res://Player/Sprites/hair3walk.png" id="2_pghco"]
 [ext_resource type="Texture2D" uid="uid://do7tb4ycg28v5" path="res://Player/Sprites/runhair3.png" id="2_txsbf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj38e"]
+atlas = ExtResource("1_er5hq")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qomby"]
+atlas = ExtResource("1_er5hq")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t31yi"]
+atlas = ExtResource("1_er5hq")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0fk2"]
+atlas = ExtResource("1_er5hq")
+region = Rect2(96, 0, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv8fb"]
 atlas = ExtResource("1_ha7ad")
@@ -74,7 +91,19 @@ region = Rect2(160, 0, 32, 64)
 
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wj38e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qomby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t31yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0fk2")
+}],
 "loop": true,
 "name": &"hit",
 "speed": 5.0

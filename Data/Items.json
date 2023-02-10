@@ -1,27 +1,170 @@
 {
 	"wood": {
-		"name": "Wood",
+		"name": "ITEMS.WOOD",
 		"type": "Material",
-		"description": "(Clint) It's wood",
+		"description": "ITEMS.WOOD.DESCRIPTION",
 		"icon_path": "res://icon.svg",
 		"base_price": 10
 	},
-	"black_wood": {
-		"name": "Black Wood",
-		"description": "Wood but black",
-		"prototype": "wood"
-	},
 	"sand": {
-		"name": "Sand",
+		"name": "ITEMS.SAND",
 		"type": "Material",
-		"description": "A bunch of sand",
-		"icon_path": "res://icon.svg"
+		"description": "ITEMS.SAND.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"base_price": 10
+	},
+	"bread": {
+		"name": "ITEMS.BREAD",
+		"type": "Consomable",
+		"description": "ITEMS.BREAD.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"base_price": 4
+	},
+	"apple": {
+		"name": "ITEMS.APPLE",
+		"type": "Consomable",
+		"description": "ITEMS.APPLE.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"base_price": 3
+	},
+	"cactus": {
+		"name": "ITEMS.CACTUS",
+		"type": "Consomable",
+		"description": "ITEMS.CACTUS.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"base_price": 1
+	},
+	"chicken_coocked": {
+		"name": "ITEMS.COOCKED_CHICKEN",
+		"type": "Consomable",
+		"description": "ITEMS.COOCKED_CHICKEN.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"base_price": 3
+	},
+	"stew": {
+		"name": "ITEMS.STEW",
+		"type": "Consomable",
+		"description": "ITEMS.STEW.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"base_price": 5
+	},
+	"coconut": {
+		"name": "ITEMS.COCONUT",
+		"type": "Consomable",
+		"description": "ITEMS.COCONUT.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"base_price": 1
 	},
 	"stand": {
-		"name": "Stand",
+		"name": "ITEMS.STAND",
 		"type": "Posable",
-		"description": "A stand to sell an item",
+		"description": "ITEMS.STAND.DESCRIPTION",
 		"icon_path": "res://icon.svg",
-		"scene_path": "res://stand.tscn"
+		"scene_path": "res://stand.tscn",
+		"base_price": 250
+
+	},
+	"bed": {
+		"name": "ITEMS.BED",
+		"type": "Posable",
+		"description": "ITEMS.BED.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"scene_path": "res://stand.tscn",
+		"base_price": 500
+	},
+	"chair": {
+		"name": "ITEMS.CHAIR",
+		"type": "Posable",
+		"description": "ITEMS.CHAIR.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"scene_path": "res://stand.tscn",
+		"base_price": 250
+	},
+	"table": {
+		"name": "ITEMS.TABLE",
+		"type": "Posable",
+		"description": "ITEMS.TABLE.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"scene_path": "res://stand.tscn",
+		"base_price": 250
+	},
+	"sitting_pillow_red": {
+		"name": "ITEMS.RED_PILLOW",
+		"type": "Posable",
+		"description": "ITEMS.RED_PILLOW.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"scene_path": "res://stand.tscn",
+		"base_price": 250
+	},
+	"sitting_pillow_blue": {
+		"name": "ITEMS.BLUE_PILLOW",
+		"type": "Posable",
+		"description": "ITEMS.BLUE_PILLOW.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"scene_path": "res://stand.tscn",
+		"base_price": 250
+	},
+	"sword": {
+		"name": "ITEMS.SWORD",
+		"type": "Tool",
+		"description": "ITEMS.SWORD.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"target": [
+			"alive"
+		],
+		"base_price": 100
+	},
+	"axe": {
+		"name": "ITEMS.AXE",
+		"type": "Tool",
+		"description": "ITEMS.AXE.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"target": [
+			"tree",
+			"alive"
+		],
+		"base_price": 100
+	},
+	"pickaxe": {
+		"name": "ITEMS.PICKAXE",
+		"type": "Tool",
+		"description": "ITEMS.PICKAXE.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"target": [
+			"ore",
+			"alive"
+		],
+		"base_price": 100
+	},
+	"shovel": {
+		"name": "ITEMS.SHOVEL",
+		"type": "Tool",
+		"description": "ITEMS.SHOVEL.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"target": [
+			"hole",
+			"alive"
+		],
+		"base_price": 100
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

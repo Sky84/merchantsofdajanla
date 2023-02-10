@@ -1,19 +1,22 @@
 extends Panel
+class_name InventoryView
 
 @export var container_id: String;
+@export var _show_panel_info: bool = true;
 @export var _item_button_scene: PackedScene;
 @export var _item_slot_button_scene: PackedScene;
 @export var rows: int;
+@export var gap_hover_selector: int;
+@export var offset_hover_selector: Vector2;
 
 @onready var hover_texture = $HoverTexture;
-@onready var _items_container:GridContainer = get_node("MarginContainer/ItemsContainerView");
-@onready var _total_items = rows*_items_container.columns;
+@onready var _items_container: GridContainer = get_node("MarginContainer/ItemsContainerView");
 @onready var info_panel = %InfoPanel;
+@onready var item_with_gap = (32+gap_hover_selector);
 
 var slots: Dictionary = {};
 var _items = {};
 
-var item_with_gap = (32+10);
 var _current_item = null;
 var inventory_visible: bool = false;
 var mouse_outside: bool = false;
@@ -72,7 +75,7 @@ func _update_items():
 			if !slot.is_empty():
 				var item_instance = _item_button_scene.instantiate();
 				slot_instance.add_child(item_instance);
-				item_instance.init_item(slot);
+				item_instance.init_item(slot, _show_panel_info);
 
 func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: int):
 	var is_pick_one = button_index == MOUSE_BUTTON_RIGHT;
