@@ -13,7 +13,6 @@ func _ready():
 	InventoryEvents.visibility_current_item.connect(_set_visibility);
 
 func _set_item(item_data: Dictionary):
-	_reset_item();
 	if !item_data.is_empty():
 		_set_visibility(true);
 		_selected_item = item_data;
@@ -21,6 +20,8 @@ func _set_item(item_data: Dictionary):
 			_set_material_item();
 		elif _selected_item.type == "Posable":
 			_set_posable_item();
+	else:
+		_reset_item();
 
 # Set base properties as all items have at least
 # id, name, amount and icon
@@ -31,7 +32,8 @@ func _set_base_properties() -> void:
 
 func _set_posable_item() -> void:
 	InventoryEvents.mouse_outside.connect(_mouse_outside);
-	CameraEvents.on_ray_intersect_plane.connect(_put_item_on_map);
+	CameraEvents.on_ray_intersect_plane.connect(_preview_item_on_map);
+	InventoryEvents.place_item_on_map.connect(_place_item_on_map);
 	_set_base_properties();
 
 func _set_material_item():
@@ -41,31 +43,48 @@ func _set_visibility(value:bool):
 	visible = value;
 	
 func _reset_item() -> void:
+	print('resetting item');
 	_set_visibility(false);
-	_selected_item = {};
+	
 	_label_name.text = '';
 	_label_amount.text = '';
 	_texture_icon.texture = null;
-	if not InventoryEvents.mouse_outside.get_connections().is_empty():
+	if InventoryEvents.mouse_outside.is_connected(_mouse_outside):
 		InventoryEvents.mouse_outside.disconnect(_mouse_outside);
-	if not CameraEvents.on_ray_intersect_plane.get_connections().is_empty():
-		CameraEvents.on_ray_intersect_plane.disconnect(_put_item_on_map);
+	if CameraEvents.on_ray_intersect_plane.is_connected(_preview_item_on_map):
+		CameraEvents.on_ray_intersect_plane.disconnect(_preview_item_on_map);
+	if InventoryEvents.place_item_on_map.is_connected(_place_item_on_map):
+		InventoryEvents.place_item_on_map.disconnect(_place_item_on_map);
+	if _selected_item_node != null:
+		_destroy_posable_preview();
+
+func _create_posable_preview() -> void:
+	print('creating posable preview');
+	var _scene: PackedScene = load(_selected_item.scene_path);
+	_selected_item_node = _scene.instantiate();
+	add_child(_selected_item_node);
+	
+func _destroy_posable_preview() -> void:
+	print('destroying posable preview');
+	_selected_item_node.queue_free();
 
 func _mouse_outside(status:bool) -> void:
 	if _selected_item.type != "Posable":
 		return;
 	if status:
 		if _selected_item_node == null:
-			var _scene: PackedScene = load(_selected_item.scene_path);
-			_selected_item_node = _scene.instantiate();
-			add_child(_selected_item_node);
+			_create_posable_preview();
 	elif _selected_item_node != null:
-		_selected_item_node.queue_free();
+		_destroy_posable_preview();
 
-func _put_item_on_map(position: Vector3) -> void:
+func _preview_item_on_map(position: Vector3) -> void:
 	if _selected_item_node != null:
 		_selected_item_node.set_position(position);
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		global_position = get_global_mouse_position();
+
+func _place_item_on_map(item: Dictionary) -> void:
+	_set_item(item);
+	GridMapEvents.place_item_at.emit(_selected_item, _selected_item_node.global_position);

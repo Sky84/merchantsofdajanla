@@ -17,3 +17,5 @@ signal reset_current_item;
 signal show_info_item(item);
 
 signal mouse_outside(is_outside: bool);
+
+signal place_item_on_map(item: Dictionary);

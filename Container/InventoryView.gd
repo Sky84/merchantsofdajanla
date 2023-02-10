@@ -39,7 +39,7 @@ func _on_visibility_inventory(value: bool):
 
 func _on_reset_current_item():
 	_current_item = null;
-	InventoryEvents.emit_signal("item_in_container_selected", {});
+	InventoryEvents.item_in_container_selected.emit({});
 
 func _on_data_changed(__container_id:String, __items:Dictionary):
 	if container_id != __container_id:
@@ -83,15 +83,15 @@ func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: 
 	if _current_item == null: # handling first click on slot
 		if !slot_empty:
 			if is_pick_one: # handling player want just to pick one item
-				slots[slot_x][slot_y] = _pick_one_from(slots[slot_x][slot_y]);
-				_current_item = _get_one_item_of(slot);
+				slots[slot_x][slot_y] = InventoryUtils._pick_one_from(slots[slot_x][slot_y]);
+				_current_item = InventoryUtils._get_one_item_of(slot);
 			else:
 				_current_item = slot;
 				slots[slot_x][slot_y] = {};
 	else: # handling click with current item (Ex. Player click to move or add one more to current)
 		if !slot_empty: # handling on occupied slot
 			if is_pick_one && slot.id == _current_item.id: # add one more to current_item if there are the same
-				slots[slot_x][slot_y] = _pick_one_from(slots[slot_x][slot_y]);
+				slots[slot_x][slot_y] = InventoryUtils._pick_one_from(slots[slot_x][slot_y]);
 				_current_item.amount = _current_item.amount + 1;
 			elif !is_pick_one: # just placing the current_item and taking the item slot
 				if slot.id == _current_item.id:
@@ -102,28 +102,15 @@ func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: 
 					_current_item = slot;
 		else: #handling placing all or just one
 			if is_pick_one:
-				slots[slot_x][slot_y] = _get_one_item_of(_current_item);
-				var item_alone: Dictionary = _pick_one_from(_current_item);
+				slots[slot_x][slot_y] = InventoryUtils._get_one_item_of(_current_item);
+				var item_alone: Dictionary = InventoryUtils._pick_one_from(_current_item);
 				_current_item = null if item_alone.is_empty() else item_alone;
 			else:
 				slots[slot_x][slot_y] = _current_item;
 				_current_item = null;
 	_update_items();
 	var mouse_item = {} if _current_item == null else _current_item;
-	InventoryEvents.emit_signal("item_in_container_selected", mouse_item);
-
-func _get_one_item_of(slot: Dictionary):
-	var next_current = slot.duplicate(true);
-	next_current.amount = 1;
-	return next_current;
-
-func _pick_one_from(slot: Dictionary):
-	var slot_amount = slot.amount;
-	if slot_amount > 1:
-		slot.amount = slot_amount - 1;
-	else:
-		slot = {};
-	return slot;
+	InventoryEvents.item_in_container_selected.emit(mouse_item);
 
 func check_mouse_outside() -> void:
 	if not inventory_visible:
@@ -146,5 +133,22 @@ func _input(event):
 				var hover_texture_position = (local_mouse_position * item_with_gap) - Vector2(1,0);
 				hover_texture.position = _items_container.position + hover_texture_position;
 		if event is InputEventMouseButton and _current_item:
-			if (mouse_outside and !event.is_pressed()):
-				InventoryEvents.dialog_confirm_delete_item.emit(_current_item);
+			_handle_mouse_click(event);
+				
+func _handle_mouse_click(event: InputEventMouseButton) -> void:
+	var mouse_left_released = !event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT;
+	var mouse_right_released = !event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT;
+	if mouse_outside:
+		if mouse_left_released:
+			_handle_delete_item();
+		if mouse_right_released:
+			_handle_place_item();
+
+func _handle_delete_item() -> void:
+	InventoryEvents.dialog_confirm_delete_item.emit(_current_item);
+	
+func _handle_place_item() -> void:
+	_current_item = InventoryUtils._pick_one_from(_current_item);
+	InventoryEvents.place_item_on_map.emit(_current_item);
+#	if _current_item.is_empty():
+#		_on_reset_current_item();
