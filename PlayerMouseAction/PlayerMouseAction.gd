@@ -7,6 +7,8 @@ extends Control
 var _selected_item: Dictionary;
 var _selected_item_node: StaticBody3D;
 
+var _posable_collider: Area3D;
+
 func _ready():
 	visible = false;
 	InventoryEvents.item_in_container_selected.connect(_set_item);
@@ -31,9 +33,12 @@ func _set_base_properties() -> void:
 	_texture_icon.texture = load(_selected_item.icon_path);
 
 func _set_posable_item() -> void:
-	InventoryEvents.mouse_outside.connect(_mouse_outside);
-	CameraEvents.on_ray_intersect_plane.connect(_preview_item_on_map);
-	InventoryEvents.place_item_on_map.connect(_place_item_on_map);
+	if not InventoryEvents.mouse_outside.is_connected(_mouse_outside):
+		InventoryEvents.mouse_outside.connect(_mouse_outside);
+	if not CameraEvents.on_ray_intersect_plane.is_connected(_preview_item_on_map):
+		CameraEvents.on_ray_intersect_plane.connect(_preview_item_on_map);
+	if not InventoryEvents.place_item_on_map.is_connected(_place_item_on_map):
+		InventoryEvents.place_item_on_map.connect(_place_item_on_map);
 	_set_base_properties();
 
 func _set_material_item():
@@ -45,7 +50,6 @@ func _set_visibility(value:bool):
 func _reset_item() -> void:
 	print('resetting item');
 	_set_visibility(false);
-	
 	_label_name.text = '';
 	_label_amount.text = '';
 	_texture_icon.texture = null;
@@ -59,13 +63,11 @@ func _reset_item() -> void:
 		_destroy_posable_preview();
 
 func _create_posable_preview() -> void:
-	print('creating posable preview');
 	var _scene: PackedScene = load(_selected_item.scene_path);
 	_selected_item_node = _scene.instantiate();
 	add_child(_selected_item_node);
 	
 func _destroy_posable_preview() -> void:
-	print('destroying posable preview');
 	_selected_item_node.queue_free();
 
 func _mouse_outside(status:bool) -> void:
@@ -88,3 +90,7 @@ func _input(event):
 func _place_item_on_map(item: Dictionary) -> void:
 	_set_item(item);
 	GridMapEvents.place_item_at.emit(_selected_item, _selected_item_node.global_position);
+
+func _create_posable_collider() -> void:
+	_posable_collider = Area3D.new();
+	pass;

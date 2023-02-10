@@ -354,7 +354,8 @@ sprite_frames = ExtResource("5_bdeek")
 animation = &"hit"
 
 [node name="HairsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273, 2.08165e-12)
+top_level = true
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -363,7 +364,8 @@ alpha_cut = 2
 texture_filter = 0
 
 [node name="ShirtsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273, 2.08165e-12)
+top_level = true
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -372,7 +374,8 @@ alpha_cut = 2
 texture_filter = 0
 
 [node name="PantsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273, 2.08165e-12)
+top_level = true
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true

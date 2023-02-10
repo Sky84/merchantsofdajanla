@@ -150,5 +150,5 @@ func _handle_delete_item() -> void:
 func _handle_place_item() -> void:
 	_current_item = InventoryUtils._pick_one_from(_current_item);
 	InventoryEvents.place_item_on_map.emit(_current_item);
-#	if _current_item.is_empty():
-#		_on_reset_current_item();
+	if _current_item.is_empty():
+		_on_reset_current_item();
