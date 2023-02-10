@@ -40,14 +40,19 @@ func _handle_movement():
 func _handle_animation():
 	if velocity.x != 0:
 		animated_sprite_3d.scale.x = 1 if velocity.x > 0 else -1;
-	var is_idle = velocity == Vector3.ZERO;
-	var is_walking = velocity != Vector3.ZERO and velocity.length() <= run_animation_gap;
-	var is_running = velocity != Vector3.ZERO and velocity.length() > run_animation_gap;
-	var is_attacking = Input.get_action_strength("attack");
-	animation_tree.set("parameters/conditions/isAttacking", is_attacking);
-	animation_tree.set("parameters/conditions/isIdle", is_idle);
-	animation_tree.set("parameters/conditions/isWalking", is_walking);
-	animation_tree.set("parameters/conditions/isRunning", is_running);
+	var state = get_state();
+	animation_tree.set("parameters/conditions/isAttacking", state.is_attacking);
+	animation_tree.set("parameters/conditions/isIdle", state.is_idle);
+	animation_tree.set("parameters/conditions/isWalking", state.is_walking);
+	animation_tree.set("parameters/conditions/isRunning", state.is_running);
+
+func get_state() -> Dictionary:
+	return {
+		"is_idle": velocity == Vector3.ZERO,
+		"is_walking": velocity != Vector3.ZERO and velocity.length() <= run_animation_gap,
+		"is_running": velocity != Vector3.ZERO and velocity.length() > run_animation_gap,
+		"is_attacking": Input.get_action_strength("attack") && 
+	};
 
 #set by animation in AnimationPlayer
 func _on_animation_set_block(value: bool):
