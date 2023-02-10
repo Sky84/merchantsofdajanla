@@ -1,9 +1,8 @@
-[gd_scene load_steps=56 format=3 uid="uid://t6ajbtrwkora"]
+[gd_scene load_steps=55 format=3 uid="uid://t6ajbtrwkora"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
 [ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
-[ext_resource type="Theme" uid="uid://dtc0anbhbcv2q" path="res://Theme.tres" id="3_bkpua"]
 [ext_resource type="PackedScene" uid="uid://b7msndjt5poq4" path="res://Container/SlotItemButton.tscn" id="3_fvd0d"]
 [ext_resource type="Script" path="res://Player/ClothAnimationsController.gd" id="3_qp1w2"]
 [ext_resource type="SpriteFrames" uid="uid://b116yvdld6l6t" path="res://Player/SpriteFrames/Skins_0.tres" id="4_cvpnb"]
@@ -339,11 +338,11 @@ libraries = {
 }
 
 [node name="ClothAnimations" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.273, 0)
 script = ExtResource("3_qp1w2")
 
 [node name="WeaponsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.561, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22505, 0.00999993)
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -354,8 +353,7 @@ sprite_frames = ExtResource("5_bdeek")
 animation = &"hit"
 
 [node name="HairsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273, 2.08165e-12)
-top_level = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.08165e-12)
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -364,8 +362,6 @@ alpha_cut = 2
 texture_filter = 0
 
 [node name="ShirtsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273, 2.08165e-12)
-top_level = true
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -374,8 +370,6 @@ alpha_cut = 2
 texture_filter = 0
 
 [node name="PantsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273, 2.08165e-12)
-top_level = true
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -384,7 +378,6 @@ alpha_cut = 2
 texture_filter = 0
 
 [node name="SkinsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -413,7 +406,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("3_bkpua")
 script = ExtResource("1_rqpfe")
 container_id = "player_inventory"
 _item_button_scene = ExtResource("2_1jyiy")
@@ -484,7 +476,6 @@ offset_bottom = -314.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("3_bkpua")
 script = ExtResource("9_w5px2")
 metadata/_edit_use_anchors_ = true
 
@@ -582,7 +573,6 @@ offset_right = -122.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_bkpua")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ggd2w")
 script = ExtResource("15_b1fgb")
 
