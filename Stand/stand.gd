@@ -5,7 +5,6 @@ extends StaticBody3D;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print('toto');
 	_set_all_colliders_state(true);
 	
 func _set_all_colliders_state(state: bool) -> void:

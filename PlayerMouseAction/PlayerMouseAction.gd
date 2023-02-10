@@ -48,7 +48,6 @@ func _set_visibility(value:bool):
 	visible = value;
 	
 func _reset_item() -> void:
-	print('resetting item');
 	_set_visibility(false);
 	_label_name.text = '';
 	_label_amount.text = '';
