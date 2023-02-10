@@ -138,7 +138,7 @@ func _input(event):
 func _handle_mouse_click(event: InputEventMouseButton) -> void:
 	var mouse_left_released = !event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT;
 	var mouse_right_released = !event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT;
-	if mouse_outside:
+	if mouse_outside or inventory_visible == false:
 		if mouse_left_released:
 			_handle_delete_item();
 		if mouse_right_released:
