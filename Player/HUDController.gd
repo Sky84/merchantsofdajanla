@@ -7,7 +7,7 @@ func _ready():
 	InventoryEvents.dialog_confirm_delete_item.connect(_show_dialog);
 
 func _show_dialog(item):
-	var message = "Drop and delete "+str(item.amount)+" "+item.name+"(s) ?";
+	var message = tr("DIALOG.CONFIRM_DELETE")+" "+str(item.amount)+" "+tr(item.name)+"(s) ?";
 	confirm_dialog.open(message, _on_delete_item.bind(item));
 
 func _on_delete_item(_item):

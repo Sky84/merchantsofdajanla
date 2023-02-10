@@ -76,4 +76,4 @@ mouse_scroll_down={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Translations.en.translation", "res://Translations.fr.translation")
+locale/translations=PackedStringArray("res://Traductions.en.translation", "res://Traductions.fr.translation")

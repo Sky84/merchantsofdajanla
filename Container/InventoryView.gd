@@ -2,6 +2,7 @@ extends Panel
 class_name InventoryView
 
 @export var container_id: String;
+@export var _show_panel_info: bool = true;
 @export var _item_button_scene: PackedScene;
 @export var _item_slot_button_scene: PackedScene;
 @export var rows: int;
@@ -71,7 +72,7 @@ func _update_items():
 			if !slot.is_empty():
 				var item_instance = _item_button_scene.instantiate();
 				slot_instance.add_child(item_instance);
-				item_instance.init_item(slot);
+				item_instance.init_item(slot, _show_panel_info);
 
 func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: int):
 	var is_pick_one = button_index == MOUSE_BUTTON_RIGHT;

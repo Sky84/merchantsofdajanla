@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
 [ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
-[ext_resource type="Theme" uid="uid://odfkk6g5awiu" path="res://Theme.tres" id="3_bkpua"]
+[ext_resource type="Theme" uid="uid://c1mo4tv7c0o16" path="res://Theme.tres" id="3_bkpua"]
 [ext_resource type="PackedScene" uid="uid://b7msndjt5poq4" path="res://Container/SlotItemButton.tscn" id="3_fvd0d"]
 [ext_resource type="Script" path="res://Player/ClothAnimationsController.gd" id="3_qp1w2"]
 [ext_resource type="SpriteFrames" uid="uid://b116yvdld6l6t" path="res://Player/SpriteFrames/Skins_0.tres" id="4_cvpnb"]
@@ -331,6 +331,7 @@ _items_container_view_path = NodePath("../../CanvasLayer/Inventory")
 
 [node name="ShortcutBar" type="Node3D" parent="Player"]
 script = ExtResource("4_nvdet")
+_start_items_json_path = "PlayerStartItems.json"
 _items_container_view_path = NodePath("../../CanvasLayer/ShortcutBar")
 
 [node name="CollisionShape2D" type="CollisionShape3D" parent="Player"]
@@ -649,6 +650,7 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_20ljf")
 script = ExtResource("20_qqguq")
 container_id = "shortcut_bar"
+_show_panel_info = false
 _item_button_scene = ExtResource("2_1jyiy")
 _item_slot_button_scene = ExtResource("3_fvd0d")
 rows = 1
