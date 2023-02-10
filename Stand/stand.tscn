@@ -13,8 +13,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.0
 script = ExtResource("1_mkiih")
 metadata/_edit_group_ = true
 
-[node name="Stand" parent="." instance=ExtResource("2_fbtmy")]
-
 [node name="ProximityArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProximityArea"]
@@ -24,3 +22,5 @@ shape = SubResource("SphereShape3D_3w7ju")
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70315, 0)
 shape = SubResource("BoxShape3D_tt3mk")
+
+[node name="Stand" parent="." instance=ExtResource("2_fbtmy")]
