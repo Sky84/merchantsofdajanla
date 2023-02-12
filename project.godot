@@ -19,7 +19,8 @@ config/icon="res://icon.svg"
 
 JsonResourceLoader="*res://Core/JSONResourceLoader.gd"
 GameItems="*res://Core/GameItems.gd"
-InventoryEvents="*res://Container/InventoryEvents.gd"
+InventoryEvents="*res://EventBus/InventoryEvents.gd"
+HudEvents="*res://EventBus/HUDEvents.gd"
 
 [display]
 

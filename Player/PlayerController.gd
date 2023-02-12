@@ -11,10 +11,12 @@ extends CharacterBody3D
 var _is_blocked = false;
 var _speed_walk_factor: float = 10.0;
 var _is_inventory_visible = false;
+var _current_mouse_target: Control;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_tree.active = true;
+	HudEvents.on_mouse_current_target.connect(_on_mouse_current_target_changed);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -27,6 +29,9 @@ func _input(event):
 		if event.is_action_released("TAB"):
 			_is_inventory_visible = !_is_inventory_visible;
 			InventoryEvents.visibility_inventory.emit(_is_inventory_visible);
+
+func _on_mouse_current_target_changed(target: Control):
+	_current_mouse_target = target;
 
 func _handle_movement():
 	var direction_x = Input.get_action_strength("right") - Input.get_action_strength("left");
@@ -51,7 +56,7 @@ func get_state() -> Dictionary:
 		"is_idle": velocity == Vector3.ZERO,
 		"is_walking": velocity != Vector3.ZERO and velocity.length() <= run_animation_gap,
 		"is_running": velocity != Vector3.ZERO and velocity.length() > run_animation_gap,
-		"is_attacking": Input.get_action_strength("attack") && 
+		"is_attacking": Input.get_action_strength("attack") and _current_mouse_target == null
 	};
 
 #set by animation in AnimationPlayer
