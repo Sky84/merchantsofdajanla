@@ -13,6 +13,7 @@ func _ready():
 	visible = false;
 	InventoryEvents.item_in_container_selected.connect(_set_item);
 	InventoryEvents.visibility_current_item.connect(_set_visibility);
+	HudEvents.update_player_mouse_action.connect(_set_base_properties);
 
 func _set_item(item_data: Dictionary):
 	if !item_data.is_empty():
@@ -99,7 +100,6 @@ func _input(event):
 		global_position = get_global_mouse_position();
 
 func _place_item_on_map(item: Dictionary) -> void:
-	_set_item(item);
 	GridMapEvents.place_item_at.emit(_selected_item, _selected_item_node.global_position);
 
 func _create_posable_collider() -> void:

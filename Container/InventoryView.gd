@@ -156,3 +156,4 @@ func _handle_place_item() -> void:
 		
 func _on_item_placed() -> void:
 	_current_item = InventoryUtils._pick_one_from(_current_item);
+	HudEvents.update_player_mouse_action.emit();

@@ -15,10 +15,10 @@ func _place_item_at(item_data: Dictionary, _global_position: Vector3) -> void:
 	if not has_item_at(_global_position):
 		var scene: StaticBody3D = load(item_data.scene_path).instantiate();
 		_map_items.add_child(scene);
-		scene._init_posable();
 		scene.set_global_position(_global_position);
 		var pos = _global_to_local(_global_position);
 		_map_objects[pos] = scene;
+		scene._init_posable();
 		GridMapEvents.item_placed.emit();
 		return;
 	# Send event to tell it's not possible to put an item at this given position
