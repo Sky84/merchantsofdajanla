@@ -11,10 +11,12 @@ extends CharacterBody3D
 var _is_blocked = false;
 var _speed_walk_factor: float = 10.0;
 var _is_inventory_visible = false;
+var _current_mouse_target: Control;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_tree.active = true;
+	HudEvents.on_mouse_current_target.connect(_on_mouse_current_target_changed);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -28,6 +30,9 @@ func _input(event):
 			_is_inventory_visible = !_is_inventory_visible;
 			InventoryEvents.visibility_inventory.emit(_is_inventory_visible);
 
+func _on_mouse_current_target_changed(target: Control):
+	_current_mouse_target = target;
+
 func _handle_movement():
 	var direction_x = Input.get_action_strength("right") - Input.get_action_strength("left");
 	var direction_z = Input.get_action_strength("down") - Input.get_action_strength("up");
@@ -40,14 +45,19 @@ func _handle_movement():
 func _handle_animation():
 	if velocity.x != 0:
 		animated_sprite_3d.scale.x = 1 if velocity.x > 0 else -1;
-	var is_idle = velocity == Vector3.ZERO;
-	var is_walking = velocity != Vector3.ZERO and velocity.length() <= run_animation_gap;
-	var is_running = velocity != Vector3.ZERO and velocity.length() > run_animation_gap;
-	var is_attacking = Input.get_action_strength("attack");
-	animation_tree.set("parameters/conditions/isAttacking", is_attacking);
-	animation_tree.set("parameters/conditions/isIdle", is_idle);
-	animation_tree.set("parameters/conditions/isWalking", is_walking);
-	animation_tree.set("parameters/conditions/isRunning", is_running);
+	var state = get_state();
+	animation_tree.set("parameters/conditions/isAttacking", state.is_attacking);
+	animation_tree.set("parameters/conditions/isIdle", state.is_idle);
+	animation_tree.set("parameters/conditions/isWalking", state.is_walking);
+	animation_tree.set("parameters/conditions/isRunning", state.is_running);
+
+func get_state() -> Dictionary:
+	return {
+		"is_idle": velocity == Vector3.ZERO,
+		"is_walking": velocity != Vector3.ZERO and velocity.length() <= run_animation_gap,
+		"is_running": velocity != Vector3.ZERO and velocity.length() > run_animation_gap,
+		"is_attacking": Input.get_action_strength("attack") and _current_mouse_target == null
+	};
 
 #set by animation in AnimationPlayer
 func _on_animation_set_block(value: bool):

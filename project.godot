@@ -19,10 +19,11 @@ config/icon="res://icon.svg"
 
 JsonResourceLoader="*res://Core/JSONResourceLoader.gd"
 GameItems="*res://Core/GameItems.gd"
-InventoryEvents="*res://Container/InventoryEvents.gd"
 CameraEvents="*res://Container/CameraEvents.gd"
 GridMapEvents="*res://Map/GridMapEvents.gd"
 InventoryUtils="*res://Container/InventoryUtils.gd"
+InventoryEvents="*res://EventBus/InventoryEvents.gd"
+HudEvents="*res://EventBus/HUDEvents.gd"
 
 [display]
 

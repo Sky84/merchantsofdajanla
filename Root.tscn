@@ -388,7 +388,9 @@ sprite_frames = ExtResource("4_cvpnb")
 animation = &"hit"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 script = ExtResource("5_jbwpl")
+mouse_targets_node_to_exclude = Array[NodePath]([NodePath("PlayerMouseAction")])
 
 [node name="Inventory" type="Panel" parent="CanvasLayer"]
 visible = false
