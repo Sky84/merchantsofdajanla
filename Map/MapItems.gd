@@ -24,7 +24,6 @@ func _place_item_at(item_data: Dictionary, _global_position: Vector3) -> void:
 	# Send event to tell it's not possible to put an item at this given position
 
 func has_item_at(position: Vector3) -> bool:
-	print(_map_objects);
 	return _map_objects.has(_global_to_local(position));
 
 # Convert a global position (from map point of view) to the grid map position (index of the tile)

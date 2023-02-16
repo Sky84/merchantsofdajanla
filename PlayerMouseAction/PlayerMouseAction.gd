@@ -81,10 +81,18 @@ func _mouse_outside(status:bool) -> void:
 func _preview_item_on_map(position: Vector3, grid_map: GridMap) -> void:
 	if _selected_item_node != null:
 		_selected_item_node.set_position(position);
-		var mesh_instance: MeshInstance3D = _selected_item_node.get_node("Model/Node2/cube");
-		var material: StandardMaterial3D = mesh_instance.mesh.surface_get_material(0).duplicate();
+		var mesh_instance: MeshInstance3D = _get_mesh_in_child(_selected_item_node);
+		var material: StandardMaterial3D = mesh_instance.mesh.surface_get_material(0).duplicate(true);
 		material.albedo_color = Color(1, 0, 0) if grid_map.has_item_at(position) else Color(1,1,1);
-		mesh_instance.mesh.surface_set_material(0, material);
+		mesh_instance.set_surface_override_material(0, material);
+
+func _get_mesh_in_child(parent_node: Node3D) -> MeshInstance3D:
+	var meshes = parent_node.find_children("*", "MeshInstance3D", true, false);
+	if not meshes.is_empty():
+		return meshes[0];
+	printerr("PlayerMouseAction::_get_mesh_in_child:: no mesh in:");
+	parent_node.print_tree_pretty();
+	return;
 
 func _input(event):
 	if event is InputEventMouseMotion:
