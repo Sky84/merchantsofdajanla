@@ -1,14 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6rj4nqk2ttf3"]
 
 [ext_resource type="Script" path="res://Stand/stand.gd" id="1_mkiih"]
-[ext_resource type="PackedScene" uid="uid://bkfth1id2s0ma" path="res://Stand/Model/Stand.gltf" id="2_fbtmy"]
+[ext_resource type="PackedScene" uid="uid://bgnyfaj6us2r3" path="res://Stand/Model/Stand.gltf" id="2_fbtmy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3w7ju"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tt3mk"]
+margin = 2.619
 size = Vector3(2.018, 1.37028, 2.01786)
 
-[node name="StaticBody3D" type="StaticBody3D"]
+[node name="Stand" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 script = ExtResource("1_mkiih")
 metadata/_edit_group_ = true
@@ -23,4 +24,4 @@ shape = SubResource("SphereShape3D_3w7ju")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70315, 0)
 shape = SubResource("BoxShape3D_tt3mk")
 
-[node name="Stand" parent="." instance=ExtResource("2_fbtmy")]
+[node name="Model" parent="." instance=ExtResource("2_fbtmy")]

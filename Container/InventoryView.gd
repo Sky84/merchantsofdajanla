@@ -12,7 +12,8 @@ class_name InventoryView
 @onready var hover_texture = $HoverTexture;
 @onready var _items_container: GridContainer = get_node("MarginContainer/ItemsContainerView");
 @onready var info_panel = %InfoPanel;
-@onready var item_with_gap = (32+gap_hover_selector);
+@onready var item_with_gap = (32 + gap_hover_selector);
+
 
 var slots: Dictionary = {};
 var _items = {};
@@ -30,6 +31,7 @@ func _ready():
 	InventoryEvents.container_data_changed.connect(_on_data_changed);
 	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
 	InventoryEvents.visibility_inventory.connect(_on_visibility_inventory);
+	GridMapEvents.item_placed.connect(_on_item_placed);
 
 func _on_visibility_inventory(value: bool):
 	visible = value;
@@ -148,7 +150,9 @@ func _handle_delete_item() -> void:
 	InventoryEvents.dialog_confirm_delete_item.emit(_current_item);
 	
 func _handle_place_item() -> void:
-	_current_item = InventoryUtils._pick_one_from(_current_item);
 	InventoryEvents.place_item_on_map.emit(_current_item);
 	if _current_item.is_empty():
 		_on_reset_current_item();
+		
+func _on_item_placed() -> void:
+	_current_item = InventoryUtils._pick_one_from(_current_item);

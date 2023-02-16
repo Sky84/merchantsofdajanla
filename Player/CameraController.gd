@@ -29,4 +29,4 @@ func _physics_process(delta):
 	if not intersection.is_empty():
 		var local_pos = (intersection.position / _grid_map.cell_size).floor()
 		var _pos = _grid_map.map_to_local(local_pos);
-		CameraEvents.emit_signal("on_ray_intersect_plane", _pos);
+		CameraEvents.on_ray_intersect_plane.emit(_pos, intersection.collider);
