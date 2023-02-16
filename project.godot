@@ -24,6 +24,7 @@ GridMapEvents="*res://Map/GridMapEvents.gd"
 InventoryUtils="*res://Container/InventoryUtils.gd"
 InventoryEvents="*res://EventBus/InventoryEvents.gd"
 HudEvents="*res://EventBus/HUDEvents.gd"
+NodeUtils="*res://Core/NodeUtils.gd"
 
 [display]
 
