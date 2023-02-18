@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://t6ajbtrwkora"]
+[gd_scene load_steps=57 format=3 uid="uid://t6ajbtrwkora"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
@@ -22,7 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://diohqhwpc0w4e" path="res://Container/shortcutbar.png" id="20_celon"]
 [ext_resource type="Script" path="res://ShortcutBar.gd" id="20_qqguq"]
 [ext_resource type="Material" uid="uid://c2xui8wsgb5ig" path="res://PixelMaterial.tres" id="21_2hbfu"]
-[ext_resource type="PackedScene" uid="uid://bq3qkkp84eou3" path="res://Map/grid_map.tscn" id="21_xty35"]
+[ext_resource type="PackedScene" uid="uid://1y210wsag8ov" path="res://Stand/TransactionView/StandTransaction.tscn" id="21_samwx"]
+[ext_resource type="PackedScene" path="res://Map/grid_map.tscn" id="21_xty35"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -400,7 +401,7 @@ unique_name_in_owner = true
 script = ExtResource("5_jbwpl")
 mouse_targets_node_to_exclude = Array[NodePath]([NodePath("PlayerMouseAction")])
 
-[node name="Inventory" type="Panel" parent="CanvasLayer"]
+[node name="Inventory" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("_items_container")]
 visible = false
 texture_filter = 1
 anchors_preset = 8
@@ -423,6 +424,7 @@ _item_slot_button_scene = ExtResource("3_fvd0d")
 rows = 4
 gap_hover_selector = 10
 offset_hover_selector = Vector2(1, 0)
+_items_container = NodePath("MarginContainer/ItemsContainerView")
 metadata/_edit_group_ = true
 
 [node name="HoverTexture" type="TextureRect" parent="CanvasLayer/Inventory"]
@@ -633,7 +635,7 @@ texture = ExtResource("14_c0as5")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ShortcutBar" type="Panel" parent="CanvasLayer"]
+[node name="ShortcutBar" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("_items_container")]
 texture_filter = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -653,6 +655,7 @@ _item_button_scene = ExtResource("2_1jyiy")
 _item_slot_button_scene = ExtResource("3_fvd0d")
 rows = 1
 gap_hover_selector = 2
+_items_container = NodePath("MarginContainer/ItemsContainerView")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
 use_parent_material = true
@@ -693,6 +696,9 @@ layout_mode = 2
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 10
 columns = 6
+
+[node name="StandTransaction" parent="CanvasLayer" instance=ExtResource("21_samwx")]
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 0.731354, 0.681998, 0, -0.681998, 0.731354, 4.5, 12, 10)

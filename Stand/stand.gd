@@ -1,9 +1,9 @@
-extends Posable;
+extends Posable
 
 @onready var _collider := $Collider;
-@onready var _action_placeholder := $ActionPlaceholder;
 
 func _ready():
+	super._ready();
 	_disable_collider(true);
 	
 func _disable_collider(state: bool) -> void:
@@ -11,6 +11,3 @@ func _disable_collider(state: bool) -> void:
 
 func _init_posable():
 	_disable_collider(false);
-
-func get_action_placeholder() -> Node3D:
-	return _action_placeholder;

@@ -1,0 +1,2 @@
+extends InventoryView
+class_name StandTransactionView

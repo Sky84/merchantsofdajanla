@@ -13,8 +13,8 @@ var _speed_walk_factor: float = 10.0;
 var _is_inventory_visible = false;
 var _current_mouse_target: Control;
 
-var _detected_posables = {};
-var _closest_posable: Posable = null;
+var _nearest_interactives = {};
+var _nearest_interactive: MapItem = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,7 +26,7 @@ func _process(_delta):
 	_handle_movement();
 	_handle_animation();
 	move_and_slide();
-	_update_closest_posable();
+	_update_nearest_interactive();
 
 func _input(event):
 	if event is InputEventKey:
@@ -70,29 +70,28 @@ func _on_animation_set_block(value: bool):
 func _distance_to_obj(body: Node3D) -> float:
 	return global_position.distance_to(body.get_global_position());
 
-func _update_closest_posable() -> void:
-	var closest_changed = false;
-	if _detected_posables.is_empty() and _closest_posable:
-		_closest_posable = null;
-		closest_changed = true;
-	for key in _detected_posables:
-		var posable = _detected_posables[key];
-		if not _closest_posable:
-			_closest_posable = posable;
-			closest_changed = true;
-		elif _closest_posable == posable:
+func _update_nearest_interactive() -> void:
+	var nearest_interactive_changed = false;
+	if _nearest_interactives.is_empty() and _nearest_interactive:
+		_nearest_interactive = null;
+		nearest_interactive_changed = true;
+	for key in _nearest_interactives:
+		var interactive = _nearest_interactives[key];
+		if not _nearest_interactive:
+			_nearest_interactive = interactive;
+			nearest_interactive_changed = true;
+		elif _nearest_interactive == interactive:
 			continue;
-		elif _distance_to_obj(posable) < _distance_to_obj(_closest_posable):
-			_closest_posable = posable;
-			closest_changed = true;
-	if closest_changed:
-		PlayerEvents._new_closest_posable.emit(_closest_posable);
+		elif _distance_to_obj(interactive) < _distance_to_obj(_nearest_interactive):
+			_nearest_interactive = interactive;
+			nearest_interactive_changed = true;
+	if nearest_interactive_changed:
+		PlayerEvents._on_nearest_interactive_changed.emit(_nearest_interactive);
 
 func _on_object_detector_body_entered(body: Node3D):
-	if body is Posable:
-		_detected_posables[body.name] = body;
-
+	if body is MapItem and body.is_interactive():
+		_nearest_interactives[body.name] = body;
 
 func _on_object_detector_body_exited(body: Node3D):
-	if body is Posable and _detected_posables.has(body.name):
-		_detected_posables.erase(body.name);
+	if body is MapItem and body.is_interactive() and _nearest_interactives.has(body.name):
+		_nearest_interactives.erase(body.name);

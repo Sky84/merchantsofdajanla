@@ -8,9 +8,9 @@ class_name InventoryView
 @export var rows: int;
 @export var gap_hover_selector: int;
 @export var offset_hover_selector: Vector2;
+@export var _items_container: GridContainer;
 
 @onready var hover_texture = $HoverTexture;
-@onready var _items_container: GridContainer = get_node("MarginContainer/ItemsContainerView");
 @onready var info_panel = %InfoPanel;
 @onready var item_with_gap = (32 + gap_hover_selector);
 

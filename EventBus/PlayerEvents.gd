@@ -1,3 +1,3 @@
 extends Node
 
-signal _new_closest_posable(posable: Posable);
+signal _on_nearest_interactive_changed(posable: MapItem);

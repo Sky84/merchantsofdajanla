@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://1y210wsag8ov"]
+
+[ext_resource type="Texture2D" uid="uid://gdwqltl2lokn" path="res://Container/background_Inventory.png" id="4_c3rvn"]
+[ext_resource type="Texture2D" uid="uid://bebfn82u888q2" path="res://Stand/TransactionView/Assets/plus.png" id="5_0xb5c"]
+[ext_resource type="Texture2D" uid="uid://v8wrediy8m64" path="res://Stand/TransactionView/Assets/cross1.png" id="5_e4a0g"]
+[ext_resource type="Texture2D" uid="uid://btbq8mx7g1fyb" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="6_ihhhv"]
+[ext_resource type="Texture2D" uid="uid://bhplgtewblhs0" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="6_qj65p"]
+[ext_resource type="Texture2D" uid="uid://bm2wp3coqo6h6" path="res://Stand/TransactionView/Assets/minus.png" id="7_ltay7"]
+[ext_resource type="Texture2D" uid="uid://das0rlol8ylwl" path="res://Stand/TransactionView/Assets/price.png" id="7_ttwvh"]
+[ext_resource type="Texture2D" uid="uid://bs3qckg3ula15" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="8_mvs78"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3wxqv"]
+line_spacing = 2.08165e-12
+font_size = 10
+
+[node name="StandTransaction" type="Panel"]
+anchors_preset = -1
+anchor_left = 0.539
+anchor_top = 0.541
+anchor_right = 0.539
+anchor_bottom = 0.541
+offset_left = -51.928
+offset_top = -34.568
+offset_right = 52.072
+offset_bottom = 34.432
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="HoverTexture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_c3rvn")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ItemsContainerView" type="GridContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 9
+
+[node name="PlusButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_ihhhv")
+texture_hover = ExtResource("5_0xb5c")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_ttwvh")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="Value" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/TextureRect"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.521
+anchor_right = 0.5
+anchor_bottom = 0.521
+offset_left = -24.0
+offset_top = -8.504
+offset_right = 24.0
+offset_bottom = 8.496
+text = "100"
+label_settings = SubResource("LabelSettings_3wxqv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinusButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_mvs78")
+texture_hover = ExtResource("7_ltay7")
+
+[node name="CloseButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -10.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 10.0
+grow_horizontal = 0
+texture_normal = ExtResource("6_qj65p")
+texture_hover = ExtResource("5_e4a0g")
+stretch_mode = 3

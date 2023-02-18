@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6rj4nqk2ttf3"]
+[gd_scene load_steps=5 format=3 uid="uid://c6rj4nqk2ttf3"]
 
 [ext_resource type="Script" path="res://Stand/stand.gd" id="1_mkiih"]
 [ext_resource type="PackedScene" uid="uid://bgnyfaj6us2r3" path="res://Stand/Model/Stand.gltf" id="2_fbtmy"]
+[ext_resource type="Script" path="res://Container/Container.gd" id="2_ng57h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tt3mk"]
 margin = 2.619
@@ -10,7 +11,12 @@ size = Vector3(2.018, 1.37028, 2.01786)
 [node name="Stand" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 script = ExtResource("1_mkiih")
+_interactive_label_container_path = NodePath("InteractiveLabelContainer")
+_is_interactive = true
 metadata/_edit_group_ = true
+
+[node name="Container" type="Node3D" parent="."]
+script = ExtResource("2_ng57h")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70315, 0)
@@ -18,5 +24,5 @@ shape = SubResource("BoxShape3D_tt3mk")
 
 [node name="Model" parent="." instance=ExtResource("2_fbtmy")]
 
-[node name="ActionPlaceholder" type="Node3D" parent="."]
+[node name="InteractiveLabelContainer" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.5, 2.08165e-12)

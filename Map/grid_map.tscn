@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq3qkkp84eou3"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://Map/MapItems.gd" id="1_fvegg"]
+[ext_resource type="Script" path="res://Map/MapItemsController.gd" id="1_fvegg"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_mhadn"]
 size = Vector2(2, 2)
