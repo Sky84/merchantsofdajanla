@@ -13,6 +13,9 @@ var _speed_walk_factor: float = 10.0;
 var _is_inventory_visible = false;
 var _current_mouse_target: Control;
 
+var _detected_posables = {};
+var _closest_posable: Posable = null;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_tree.active = true;
@@ -23,6 +26,7 @@ func _process(_delta):
 	_handle_movement();
 	_handle_animation();
 	move_and_slide();
+	_update_closest_posable();
 
 func _input(event):
 	if event is InputEventKey:
@@ -62,3 +66,33 @@ func get_state() -> Dictionary:
 #set by animation in AnimationPlayer
 func _on_animation_set_block(value: bool):
 	_is_blocked = value;
+
+func _distance_to_obj(body: Node3D) -> float:
+	return global_position.distance_to(body.get_global_position());
+
+func _update_closest_posable() -> void:
+	var closest_changed = false;
+	if _detected_posables.is_empty() and _closest_posable:
+		_closest_posable = null;
+		closest_changed = true;
+	for key in _detected_posables:
+		var posable = _detected_posables[key];
+		if not _closest_posable:
+			_closest_posable = posable;
+			closest_changed = true;
+		elif _closest_posable == posable:
+			continue;
+		elif _distance_to_obj(posable) < _distance_to_obj(_closest_posable):
+			_closest_posable = posable;
+			closest_changed = true;
+	if closest_changed:
+		PlayerEvents._new_closest_posable.emit(_closest_posable);
+
+func _on_object_detector_body_entered(body: Node3D):
+	if body is Posable:
+		_detected_posables[body.name] = body;
+
+
+func _on_object_detector_body_exited(body: Node3D):
+	if body is Posable and _detected_posables.has(body.name):
+		_detected_posables.erase(body.name);
