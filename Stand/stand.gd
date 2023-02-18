@@ -1,19 +1,16 @@
-extends StaticBody3D;
+extends Posable;
 
-@onready var _proximity_collider := $ProximityArea/CollisionShape3D;
 @onready var _collider := $Collider;
+@onready var _action_placeholder := $ActionPlaceholder;
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	_disable_all_colliders(true);
+	_disable_collider(true);
 	
-func _disable_all_colliders(state: bool) -> void:
-	_proximity_collider.set_disabled(state);
+func _disable_collider(state: bool) -> void:
 	_collider.set_disabled(state);
 
 func _init_posable():
-	_disable_all_colliders(false);
+	_disable_collider(false);
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass;
+func get_action_placeholder() -> Node3D:
+	return _action_placeholder;
