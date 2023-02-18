@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://t6ajbtrwkora"]
+[gd_scene load_steps=56 format=3 uid="uid://t6ajbtrwkora"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
@@ -282,6 +282,9 @@ _data = {
 "walk": SubResource("Animation_si24n")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
+radius = 4.0
+
 [sub_resource type="Gradient" id="Gradient_m7jcj"]
 offsets = PackedFloat32Array(0, 0.0187668)
 colors = PackedColorArray(0, 0, 0, 1, 0.0196078, 0.0196078, 0.0196078, 0.317647)
@@ -386,6 +389,11 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("4_cvpnb")
 animation = &"hit"
+
+[node name="ObjectDetector" type="Area3D" parent="Player"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/ObjectDetector"]
+shape = SubResource("SphereShape3D_deg7w")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -708,4 +716,6 @@ mesh = SubResource("PlaneMesh_8xbuk")
 
 [node name="GridMap" parent="." instance=ExtResource("21_xty35")]
 
+[connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
+[connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]
 [connection signal="button_up" from="CanvasLayer/ConfirmDialog/CancelButton" to="CanvasLayer/ConfirmDialog" method="_on_cancel_button_button_up"]
