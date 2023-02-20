@@ -1,5 +1,15 @@
 extends MapItem
 class_name Posable
 
+@onready var _collider := $Collider;
+
+func _ready():
+	_disable_collider(true);
+	super._ready();
+
 func _init_posable():
-	printerr('Posable _init_posable function has been called. Check all Posable extensions have implemented this method.');
+	_disable_collider(false);
+	_update_id();
+
+func _disable_collider(state: bool) -> void:
+	_collider.set_disabled(state);

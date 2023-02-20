@@ -326,14 +326,14 @@ parameters/conditions/isWalking = false
 [node name="Inventory" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
 _start_items_json_path = "PlayerStartItems.json"
-_container_id = "player_inventory"
+container_id = "player_inventory"
 rows = 4
 columns = 5
 
 [node name="ShortcutBar" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
 _start_items_json_path = "PlayerStartItems.json"
-_container_id = "shortcut_bar"
+container_id = "shortcut_bar"
 rows = 1
 columns = 6
 

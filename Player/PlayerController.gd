@@ -33,6 +33,10 @@ func _input(event):
 		if event.is_action_released("TAB"):
 			_is_inventory_visible = !_is_inventory_visible;
 			InventoryEvents.visibility_inventory.emit(_is_inventory_visible);
+		if event.is_action_released("use"):
+			_is_inventory_visible = false;
+			if _nearest_interactive != null:
+				_nearest_interactive.interact();
 
 func _on_mouse_current_target_changed(target: Control):
 	_current_mouse_target = target;

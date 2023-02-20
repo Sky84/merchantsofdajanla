@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjwx7lpp4b6jm"]
+[gd_scene load_steps=11 format=3 uid="uid://bjwx7lpp4b6jm"]
 
+[ext_resource type="Script" path="res://Stand/TransactionView/StandView.gd" id="1_u80jx"]
 [ext_resource type="Texture2D" uid="uid://bj84gpby6t63l" path="res://Containers/Sprites/background_Inventory.png" id="4_c3rvn"]
 [ext_resource type="Texture2D" uid="uid://cvrorlum8cd6x" path="res://Stand/TransactionView/Assets/plus.png" id="5_0xb5c"]
 [ext_resource type="Texture2D" uid="uid://cftakkwkieeir" path="res://Stand/TransactionView/Assets/cross1.png" id="5_e4a0g"]
@@ -13,7 +14,7 @@
 line_spacing = 2.08165e-12
 font_size = 10
 
-[node name="StandTransaction" type="Panel"]
+[node name="StandTransaction" type="Panel" node_paths=PackedStringArray("_items_container")]
 anchors_preset = -1
 anchor_left = 0.539
 anchor_top = 0.541
@@ -25,6 +26,8 @@ offset_right = 52.072
 offset_bottom = 34.432
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_u80jx")
+_items_container = NodePath("MarginContainer/HBoxContainer/ItemsContainerView")
 metadata/_edit_group_ = true
 
 [node name="HoverTexture" type="TextureRect" parent="."]

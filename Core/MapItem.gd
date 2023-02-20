@@ -6,7 +6,7 @@ class_name MapItem
 
 var _interactive_label_container: Node3D = null;
 
-@onready var id: String = NodeUtils.get_map_item_id(self);
+var id: String;
 
 func is_interactive() -> bool:
 	return _is_interactive;
@@ -14,7 +14,12 @@ func is_interactive() -> bool:
 func _ready():
 	if not _interactive_label_container_path.is_empty():
 		_interactive_label_container = get_node(_interactive_label_container_path);
-		
+
+func _update_id():
+	id = NodeUtils.get_map_item_id(self);
+
+func interact() -> void:
+	pass
 
 func get_interactive_label_container() -> Node3D:
 	if not _is_interactive:

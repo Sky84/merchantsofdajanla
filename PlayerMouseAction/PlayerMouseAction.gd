@@ -70,7 +70,7 @@ func _create_posable_preview() -> void:
 func _destroy_posable_preview() -> void:
 	var mesh = NodeUtils.get_mesh_in_child(_selected_item_node);
 	# workaround to prevent godot error not already fixed about duplicated material 
-	mesh.set("surface_material_override/0", null);
+	mesh.set_surface_override_material(0, null);
 	_selected_item_node.queue_free();
 
 func _mouse_outside(status:bool) -> void:
