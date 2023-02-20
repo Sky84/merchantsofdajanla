@@ -1,10 +1,10 @@
 extends Posable
 
-@onready var _container: ItemsContainer = $Container
+@onready var _container: PosableContainer = $Container
 
 func _init_posable():
 	super._init_posable();
-	_container.container_id = id;
+	_container.register_container(id);
 
 func interact() -> void:
-	print(_container.container_id)
+	HudEvents.open_stand.emit(_container.container_id);

@@ -8,9 +8,7 @@ func _ready():
 		printerr("container_id is not set");
 	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
 	InventoryEvents.container_data_changed.connect(_update_shortcut_bar);
-	var container_config = ContainersController.get_container_config(container_id);
-	_rows = container_config.rows;
-	_items_container.columns = container_config.columns;
+	_load_container_config();
 	_update_shortcut_bar(container_id);
 
 func _update_shortcut_bar(_container_id: String) -> void:

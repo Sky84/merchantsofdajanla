@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjwx7lpp4b6jm"]
+[gd_scene load_steps=13 format=3 uid="uid://bjwx7lpp4b6jm"]
 
 [ext_resource type="Script" path="res://Stand/TransactionView/StandView.gd" id="1_u80jx"]
+[ext_resource type="PackedScene" path="res://Containers/ItemButton/ItemButton.tscn" id="2_2w3k1"]
+[ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="3_7y3jc"]
 [ext_resource type="Texture2D" uid="uid://bj84gpby6t63l" path="res://Containers/Sprites/background_Inventory.png" id="4_c3rvn"]
 [ext_resource type="Texture2D" uid="uid://cvrorlum8cd6x" path="res://Stand/TransactionView/Assets/plus.png" id="5_0xb5c"]
 [ext_resource type="Texture2D" uid="uid://cftakkwkieeir" path="res://Stand/TransactionView/Assets/cross1.png" id="5_e4a0g"]
@@ -15,6 +17,7 @@ line_spacing = 2.08165e-12
 font_size = 10
 
 [node name="StandTransaction" type="Panel" node_paths=PackedStringArray("_items_container")]
+texture_filter = 1
 anchors_preset = -1
 anchor_left = 0.539
 anchor_top = 0.541
@@ -27,7 +30,10 @@ offset_bottom = 34.432
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u80jx")
-_items_container = NodePath("MarginContainer/HBoxContainer/ItemsContainerView")
+_show_panel_info = false
+_item_button_scene = ExtResource("2_2w3k1")
+_item_slot_button_scene = ExtResource("3_7y3jc")
+_items_container = NodePath("ItemsContainerView")
 metadata/_edit_group_ = true
 
 [node name="HoverTexture" type="TextureRect" parent="."]
@@ -48,43 +54,47 @@ patch_margin_top = 12
 patch_margin_right = 12
 patch_margin_bottom = 12
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ItemsContainerView" type="GridContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -10.0
+offset_right = 35.0
+offset_bottom = 10.0
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="ItemsContainerView" type="GridContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -20.0
+offset_right = -27.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/separation = 9
 
-[node name="PlusButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="PlusButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("6_ihhhv")
 texture_hover = ExtResource("5_0xb5c")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("7_ttwvh")
 expand_mode = 5
 stretch_mode = 3
 
-[node name="Value" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/TextureRect"]
+[node name="Value" type="Label" parent="VBoxContainer/TextureRect"]
 layout_mode = 2
 anchor_left = 0.5
 anchor_top = 0.521
@@ -99,7 +109,7 @@ label_settings = SubResource("LabelSettings_3wxqv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MinusButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="MinusButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("8_mvs78")
 texture_hover = ExtResource("7_ltay7")

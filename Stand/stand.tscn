@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8okcsfchdnel"]
 
 [ext_resource type="Script" path="res://Stand/StandController.gd" id="1_ggsjm"]
-[ext_resource type="Script" path="res://Containers/Container.gd" id="2_xvupl"]
+[ext_resource type="Script" path="res://Containers/PosableContainer.gd" id="2_lnpxt"]
 [ext_resource type="PackedScene" uid="uid://bnvjhomy70pu6" path="res://Stand/Model/Stand.gltf" id="3_edxpx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tt3mk"]
@@ -16,7 +16,7 @@ _is_interactive = true
 metadata/_edit_group_ = true
 
 [node name="Container" type="Node3D" parent="."]
-script = ExtResource("2_xvupl")
+script = ExtResource("2_lnpxt")
 rows = 1
 columns = 1
 

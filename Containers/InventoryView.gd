@@ -27,6 +27,9 @@ func _ready():
 	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
 	InventoryEvents.visibility_inventory.connect(_on_visibility_inventory);
 	GridMapEvents.item_placed.connect(_on_item_placed);
+	_load_container_config();
+
+func _load_container_config():
 	var container_config = ContainersController.get_container_config(container_id);
 	_rows = container_config.rows;
 	_items_container.columns = container_config.columns; 
