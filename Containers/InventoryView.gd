@@ -5,7 +5,6 @@ class_name InventoryView
 @export var _show_panel_info: bool = true;
 @export var _item_button_scene: PackedScene;
 @export var _item_slot_button_scene: PackedScene;
-@export var rows: int;
 @export var gap_hover_selector: int;
 @export var offset_hover_selector: Vector2;
 @export var _items_container: GridContainer;
@@ -14,56 +13,37 @@ class_name InventoryView
 @onready var info_panel = %InfoPanel;
 @onready var item_with_gap = (32 + gap_hover_selector);
 
-
-var slots: Dictionary = {};
 var _items = {};
 
 var _current_item = null;
 var inventory_visible: bool = false;
 var mouse_outside: bool = false;
+var _rows: int;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if container_id == null:
 		printerr("container_id is not set");
-	if rows == 0:
-		printerr("rows is not set");
-	InventoryEvents.container_data_changed.connect(_on_data_changed);
 	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
 	InventoryEvents.visibility_inventory.connect(_on_visibility_inventory);
 	GridMapEvents.item_placed.connect(_on_item_placed);
+	var container_config = ContainersController.get_container_config(container_id);
+	_rows = container_config.rows;
+	_items_container.columns = container_config.columns; 
 
 func _on_visibility_inventory(value: bool):
+	var slots = ContainersController.get_container_data(container_id);
 	visible = value;
 	info_panel.visible = value;
 	inventory_visible = value;
 	check_mouse_outside();
+	_update_items(slots);
 
 func _on_reset_current_item():
 	_current_item = null;
 	InventoryEvents.item_in_container_selected.emit({});
 
-func _on_data_changed(__container_id:String, __items:Dictionary):
-	if container_id != __container_id:
-		return;
-	_items = __items;
-	if slots.keys().size() == 0:
-		init_slots();
-	_update_items();
-
-func init_slots():
-	var items_to_place = _items.duplicate(true);
-	for x in _items_container.columns:
-		slots[x] = {};
-		for y in rows:
-			if items_to_place.size() > 0:
-				var item_key = items_to_place.keys().front();
-				slots[x][y] = items_to_place[item_key];
-				items_to_place.erase(item_key)
-			else:
-				slots[x][y] = {};
-
-func _update_items():
+func _update_items(slots: Dictionary):
 	var childs = _items_container.get_children();
 	for child in childs:
 		child.queue_free();
@@ -80,6 +60,7 @@ func _update_items():
 				item_instance.init_item(slot, _show_panel_info);
 
 func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: int):
+	var slots = ContainersController.get_container_data(container_id);
 	var is_pick_one = button_index == MOUSE_BUTTON_RIGHT;
 	var slot_empty = slot.is_empty();
 	if _current_item == null: # handling first click on slot
@@ -110,7 +91,7 @@ func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: 
 			else:
 				slots[slot_x][slot_y] = _current_item;
 				_current_item = null;
-	_update_items();
+	_update_items(slots);
 	var mouse_item = {} if _current_item == null else _current_item;
 	InventoryEvents.item_in_container_selected.emit(mouse_item);
 
@@ -131,7 +112,7 @@ func _input(event):
 			if !mouse_outside:
 				var local_mouse_position = Vector2(_items_container.get_local_mouse_position() / item_with_gap).floor();
 				local_mouse_position.x = clamp(local_mouse_position.x, 0, _items_container.columns-1);
-				local_mouse_position.y = clamp(local_mouse_position.y, 0, rows-1);
+				local_mouse_position.y = clamp(local_mouse_position.y, 0, _rows-1);
 				var hover_texture_position = (local_mouse_position * item_with_gap) - Vector2(1,0);
 				hover_texture.position = _items_container.position + hover_texture_position;
 		if event is InputEventMouseButton and _current_item:

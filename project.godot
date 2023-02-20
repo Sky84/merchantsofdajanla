@@ -26,6 +26,7 @@ InventoryEvents="*res://EventBus/InventoryEvents.gd"
 HudEvents="*res://EventBus/HUDEvents.gd"
 NodeUtils="*res://Core/NodeUtils.gd"
 PlayerEvents="*res://EventBus/PlayerEvents.gd"
+ContainersController="*res://Core/ContainersController.gd"
 
 [display]
 

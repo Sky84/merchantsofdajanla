@@ -326,12 +326,16 @@ parameters/conditions/isWalking = false
 [node name="Inventory" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
 _start_items_json_path = "PlayerStartItems.json"
-_items_container_view_path = NodePath("../../CanvasLayer/Inventory")
+_container_id = "player_inventory"
+rows = 4
+columns = 5
 
 [node name="ShortcutBar" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
 _start_items_json_path = "PlayerStartItems.json"
-_items_container_view_path = NodePath("../../CanvasLayer/ShortcutBar")
+_container_id = "shortcut_bar"
+rows = 1
+columns = 6
 
 [node name="CollisionShape2D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -422,7 +426,6 @@ script = ExtResource("7_bhmso")
 container_id = "player_inventory"
 _item_button_scene = ExtResource("8_q3116")
 _item_slot_button_scene = ExtResource("9_fg4y3")
-rows = 4
 gap_hover_selector = 10
 offset_hover_selector = Vector2(1, 0)
 _items_container = NodePath("MarginContainer/ItemsContainerView")
@@ -468,7 +471,6 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 5
 
 [node name="PlayerMouseAction" parent="CanvasLayer" instance=ExtResource("9_4eyub")]
 texture_filter = 1
@@ -654,7 +656,6 @@ container_id = "shortcut_bar"
 _show_panel_info = false
 _item_button_scene = ExtResource("8_q3116")
 _item_slot_button_scene = ExtResource("9_fg4y3")
-rows = 1
 gap_hover_selector = 2
 _items_container = NodePath("MarginContainer/ItemsContainerView")
 

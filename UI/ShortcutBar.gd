@@ -6,10 +6,17 @@ var index_position_selector: int = 0;
 func _ready():
 	if container_id == null:
 		printerr("container_id is not set");
-	if rows == 0:
-		printerr("rows is not set");
-	InventoryEvents.container_data_changed.connect(_on_data_changed);
 	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
+	InventoryEvents.container_data_changed.connect(_update_shortcut_bar);
+	var container_config = ContainersController.get_container_config(container_id);
+	_rows = container_config.rows;
+	_items_container.columns = container_config.columns;
+	_update_shortcut_bar(container_id);
+
+func _update_shortcut_bar(_container_id: String) -> void:
+	if container_id == _container_id:
+		var slots = ContainersController.get_container_data(container_id);
+		_update_items(slots);
 
 func _update_selector_position():
 	var local_mouse_position = Vector2(index_position_selector, 0);
