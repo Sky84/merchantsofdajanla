@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://csqw66molf22g"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://tooltip.gd" id="1_uh0mb"]
+[ext_resource type="Script" path="res://UI/Tooltip/tooltip.gd" id="1_uh0mb"]
 
 [sub_resource type="Animation" id="Animation_uhwnc"]
 resource_name = "floating_label"

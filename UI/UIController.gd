@@ -1,11 +1,11 @@
 extends CanvasLayer
-class_name HUDController
+class_name UIController
 
 @export var mouse_targets_node_to_exclude: Array[NodePath];
 
 @onready var confirm_dialog: Panel = $ConfirmDialog;
 
-var tooltip = preload("res://tooltip.tscn").instantiate();
+var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: MapItem = null;
 var _current_mouse_target: Control;
 

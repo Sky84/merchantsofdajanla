@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bikf4hg62eg2o"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
 
-[ext_resource type="Shader" path="res://PixelOutline.gdshader" id="1_6w8wm"]
+[ext_resource type="Shader" path="res://UI/Shaders/PixelOutline.gdshader" id="1_6w8wm"]
 
 [resource]
 shader = ExtResource("1_6w8wm")

@@ -19,9 +19,9 @@ config/icon="res://icon.svg"
 
 JsonResourceLoader="*res://Core/JSONResourceLoader.gd"
 GameItems="*res://Core/GameItems.gd"
-CameraEvents="*res://Container/CameraEvents.gd"
-GridMapEvents="*res://Map/GridMapEvents.gd"
-InventoryUtils="*res://Container/InventoryUtils.gd"
+CameraEvents="*res://EventBus/CameraEvents.gd"
+GridMapEvents="*res://EventBus/GridMapEvents.gd"
+InventoryUtils="*res://Core/InventoryUtils.gd"
 InventoryEvents="*res://EventBus/InventoryEvents.gd"
 HudEvents="*res://EventBus/HUDEvents.gd"
 NodeUtils="*res://Core/NodeUtils.gd"
@@ -87,4 +87,4 @@ use={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Traductions.en.translation", "res://Traductions.fr.translation")
+locale/translations=PackedStringArray("res://Translations/Traductions.en.translation", "res://Translations/Traductions.fr.translation")

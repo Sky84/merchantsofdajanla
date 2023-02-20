@@ -1,13 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://1y210wsag8ov"]
+[gd_scene load_steps=10 format=3 uid="uid://bjwx7lpp4b6jm"]
 
-[ext_resource type="Texture2D" uid="uid://gdwqltl2lokn" path="res://Container/background_Inventory.png" id="4_c3rvn"]
-[ext_resource type="Texture2D" uid="uid://bebfn82u888q2" path="res://Stand/TransactionView/Assets/plus.png" id="5_0xb5c"]
-[ext_resource type="Texture2D" uid="uid://v8wrediy8m64" path="res://Stand/TransactionView/Assets/cross1.png" id="5_e4a0g"]
-[ext_resource type="Texture2D" uid="uid://btbq8mx7g1fyb" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="6_ihhhv"]
-[ext_resource type="Texture2D" uid="uid://bhplgtewblhs0" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="6_qj65p"]
-[ext_resource type="Texture2D" uid="uid://bm2wp3coqo6h6" path="res://Stand/TransactionView/Assets/minus.png" id="7_ltay7"]
-[ext_resource type="Texture2D" uid="uid://das0rlol8ylwl" path="res://Stand/TransactionView/Assets/price.png" id="7_ttwvh"]
-[ext_resource type="Texture2D" uid="uid://bs3qckg3ula15" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="8_mvs78"]
+[ext_resource type="Texture2D" uid="uid://bj84gpby6t63l" path="res://Containers/Sprites/background_Inventory.png" id="4_c3rvn"]
+[ext_resource type="Texture2D" uid="uid://cvrorlum8cd6x" path="res://Stand/TransactionView/Assets/plus.png" id="5_0xb5c"]
+[ext_resource type="Texture2D" uid="uid://cftakkwkieeir" path="res://Stand/TransactionView/Assets/cross1.png" id="5_e4a0g"]
+[ext_resource type="Texture2D" uid="uid://ciytid7ccyadu" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="6_ihhhv"]
+[ext_resource type="Texture2D" uid="uid://cg7h4ks2crdo2" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="6_qj65p"]
+[ext_resource type="Texture2D" uid="uid://6k7s3pn1t4sp" path="res://Stand/TransactionView/Assets/minus.png" id="7_ltay7"]
+[ext_resource type="Texture2D" uid="uid://diedw7xihsigu" path="res://Stand/TransactionView/Assets/price.png" id="7_ttwvh"]
+[ext_resource type="Texture2D" uid="uid://bp1pmjcgqtdod" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="8_mvs78"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3wxqv"]
 line_spacing = 2.08165e-12

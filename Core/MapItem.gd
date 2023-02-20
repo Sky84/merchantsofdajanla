@@ -6,6 +6,8 @@ class_name MapItem
 
 var _interactive_label_container: Node3D = null;
 
+@onready var id: String = NodeUtils.get_map_item_id(self);
+
 func is_interactive() -> bool:
 	return _is_interactive;
 

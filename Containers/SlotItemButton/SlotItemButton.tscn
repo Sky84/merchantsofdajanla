@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhvoo0yx808v7"]
+
+[ext_resource type="Texture2D" uid="uid://0agops6wwyru" path="res://Containers/Sprites/SlotItemButton.png" id="1_bccep"]
+[ext_resource type="Script" path="res://Containers/SlotItemButton/SlotItemButton.gd" id="2_ks4ie"]
+
+[node name="SlotButton" type="TextureButton"]
+texture_filter = 1
+offset_right = 32.0
+offset_bottom = 32.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+button_mask = 3
+texture_normal = ExtResource("1_bccep")
+script = ExtResource("2_ks4ie")

@@ -66,7 +66,7 @@ func init_slots():
 func _update_items():
 	var childs = _items_container.get_children();
 	for child in childs:
-		child.queue_free()
+		child.queue_free();
 		_items_container.remove_child(child);
 	for x in slots:
 		for y in slots[x]:

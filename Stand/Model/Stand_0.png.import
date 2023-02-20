@@ -2,17 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byoyyvm3mrtrf"
-path.etc2="res://.godot/imported/Stand_0.png-c7226ce85c83d69ce5c4d12275e1a0d5.etc2.ctex"
+uid="uid://dbtxsty065dwe"
+path.s3tc="res://.godot/imported/Stand_0.png-c7226ce85c83d69ce5c4d12275e1a0d5.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Stand/Model/Stand_0.png"
-dest_files=["res://.godot/imported/Stand_0.png-c7226ce85c83d69ce5c4d12275e1a0d5.etc2.ctex"]
+dest_files=["res://.godot/imported/Stand_0.png-c7226ce85c83d69ce5c4d12275e1a0d5.s3tc.ctex"]
 
 [params]
 
