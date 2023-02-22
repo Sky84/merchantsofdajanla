@@ -26,8 +26,8 @@ func _input(event):
 	if event is InputEventMouse:
 		var value_to_add: int = event.get_action_strength("mouse_scroll_up") - event.get_action_strength("mouse_scroll_down");
 		index_position_selector = fposmod(index_position_selector + value_to_add, _items_container.columns);
-	if event is InputEventMouseButton and _current_item:
-		var click_outside = !get_rect().has_point(event.position); 
-		if (click_outside and !event.is_pressed()):
-			InventoryEvents.dialog_confirm_delete_item.emit(_current_item);
+		if event is InputEventMouseButton and ContainersController.current_item.value \
+			and ui_controller.get_current_mouse_target() == null:
+			check_mouse_outside();
+			_handle_mouse_click(event);
 	_update_selector_position();

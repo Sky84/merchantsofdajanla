@@ -17,8 +17,8 @@ func _ready():
 	PlayerEvents._on_nearest_interactive_changed.connect(_show_tooltip_on_interactive);
 	for child in get_children():
 		if not mouse_targets_node_to_exclude.has(child.get_path()):
-			child.mouse_entered.connect(_om_mouse_current_target.bind(child));
-			child.mouse_exited.connect(_om_mouse_current_target.bind(null));
+			child.mouse_entered.connect(_om_mouse_current_target.bind(child, true));
+			child.mouse_exited.connect(_om_mouse_current_target.bind(child, false));
 
 func _show_stand_dialog(container_id: String) -> void:
 	stand_transaction.open(container_id);
@@ -30,8 +30,16 @@ func _show_confirm_dialog(item):
 func _on_delete_item(_item):
 	InventoryEvents.reset_current_item.emit();
 
-func _om_mouse_current_target(target: Control) -> void:
-	HudEvents.on_mouse_current_target.emit(target);
+func _om_mouse_current_target(target: Control, is_mouse_hover: bool) -> void:
+	var mouse_position = target.get_local_mouse_position();
+	var stay_in_child = Rect2(Vector2(), target.size).has_point(mouse_position);
+	if not is_mouse_hover and stay_in_child:
+		return;
+	var target_to_emit = target if is_mouse_hover else null;
+	_current_mouse_target = target_to_emit;
+
+func get_current_mouse_target() -> Control:
+	return _current_mouse_target;
 
 func _show_tooltip_on_interactive(posable: MapItem) -> void:
 	if _nearest_interactive:

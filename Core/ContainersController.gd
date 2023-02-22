@@ -2,6 +2,11 @@ extends Node
 
 var _containers: Dictionary = {};
 
+var current_item: Dictionary = {
+	"container_id": null,
+	"value": {}
+};
+
 func register_container(container_id: String, rows: int, columns: int, items: Dictionary) -> void:
 	_containers[container_id] = {
 		"slots": _init_slots(rows, columns, items),
@@ -31,6 +36,12 @@ func update(container_id: String, _items: Dictionary) -> void:
 				var slot = slots[x][y];
 				slot = _items[item_id];
 	InventoryEvents.container_data_changed.emit(container_id);
+
+func set_current_item(container_id: String, item: Dictionary):
+	current_item = {
+		"container_id": container_id,
+		"value": item
+	};
 
 func get_container_data(container_id: String) -> Dictionary:
 	return _containers[container_id].slots;

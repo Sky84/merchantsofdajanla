@@ -11,5 +11,11 @@ func open(_container_id: String) -> void:
 	_update_items(container_data)
 	visible = true;
 
+func _input(event):
+	pass
+
+func _handle_mouse_click(event: InputEventMouseButton) -> void:
+	pass
+
 func close() -> void:
 	visible = false;

@@ -4,14 +4,15 @@ extends CharacterBody3D
 @export var speed_run_factor: float = 2.0;
 @export var run_animation_gap = 3;
 @export var camera: Camera3D;
+
 @onready var animation_tree = $AnimationTree;
 @onready var cloth_animations = $ClothAnimations;
 @onready var animated_sprite_3d = $ClothAnimations/SkinsAnimatedSprite3D;
+@onready var ui_controller: UIController = %CanvasLayer;
 
 var _is_blocked = false;
 var _speed_walk_factor: float = 10.0;
 var _is_inventory_visible = false;
-var _current_mouse_target: Control;
 
 var _nearest_interactives = {};
 var _nearest_interactive: MapItem = null;
@@ -19,7 +20,6 @@ var _nearest_interactive: MapItem = null;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_tree.active = true;
-	HudEvents.on_mouse_current_target.connect(_on_mouse_current_target_changed);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -37,9 +37,6 @@ func _input(event):
 			_is_inventory_visible = false;
 			if _nearest_interactive != null:
 				_nearest_interactive.interact();
-
-func _on_mouse_current_target_changed(target: Control):
-	_current_mouse_target = target;
 
 func _handle_movement():
 	var direction_x = Input.get_action_strength("right") - Input.get_action_strength("left");
@@ -64,7 +61,7 @@ func get_state() -> Dictionary:
 		"is_idle": velocity == Vector3.ZERO,
 		"is_walking": velocity != Vector3.ZERO and velocity.length() <= run_animation_gap,
 		"is_running": velocity != Vector3.ZERO and velocity.length() > run_animation_gap,
-		"is_attacking": Input.get_action_strength("attack") and _current_mouse_target == null
+		"is_attacking": Input.get_action_strength("attack") and ui_controller.get_current_mouse_target() == null
 	};
 
 #set by animation in AnimationPlayer
