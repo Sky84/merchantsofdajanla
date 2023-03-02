@@ -94,8 +94,8 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		global_position = get_global_mouse_position();
 
-func _place_item_on_map(item: Dictionary) -> void:
-	GridMapEvents.place_item_at.emit(_selected_item, _selected_item_node.global_position);
+func _place_item_on_map(item: Dictionary, container_owner: String) -> void:
+	GridMapEvents.place_item_at.emit(_selected_item, _selected_item_node.global_position, container_owner);
 
 func _create_posable_collider() -> void:
 	_posable_collider = Area3D.new();

@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var speed_run_factor: float = 2.0;
 @export var run_animation_gap = 3;
 @export var camera: Camera3D;
+@export var _owner_id: String;
 
 @onready var animation_tree = $AnimationTree;
 @onready var cloth_animations = $ClothAnimations;
@@ -36,7 +37,7 @@ func _input(event):
 		if event.is_action_released("use"):
 			_is_inventory_visible = false;
 			if _nearest_interactive != null:
-				_nearest_interactive.interact();
+				_nearest_interactive.interact(_owner_id);
 
 func _handle_movement():
 	var direction_x = Input.get_action_strength("right") - Input.get_action_strength("left");

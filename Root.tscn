@@ -313,6 +313,7 @@ up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_diug7")
 speed_walk = 30.0
 camera = NodePath("../Camera3D")
+_owner_id = "player"
 
 [node name="AnimationTree" type="AnimationTree" parent="Player"]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
@@ -326,6 +327,7 @@ parameters/conditions/isWalking = false
 [node name="Inventory" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
 _start_items_json_path = "PlayerStartItems.json"
+_container_owner = "player"
 container_id = "player_inventory"
 rows = 4
 columns = 5
@@ -333,6 +335,7 @@ columns = 5
 [node name="ShortcutBar" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
 _start_items_json_path = "PlayerStartItems.json"
+_container_owner = "player"
 container_id = "shortcut_bar"
 rows = 1
 columns = 6

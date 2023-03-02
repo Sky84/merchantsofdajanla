@@ -18,6 +18,7 @@ var _items = {};
 
 var mouse_outside: bool = false;
 var _rows: int;
+var _container_owner: String;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,7 +32,8 @@ func _ready():
 func _load_container_config():
 	var container_config = ContainersController.get_container_config(container_id);
 	_rows = container_config.rows;
-	_items_container.columns = container_config.columns; 
+	_items_container.columns = container_config.columns;
+	_container_owner = container_config.container_owner;
 
 func _on_visibility_inventory(value: bool):
 	var slots = ContainersController.get_container_data(container_id);
@@ -134,12 +136,12 @@ func _handle_mouse_click(event: InputEventMouseButton) -> void:
 
 func _handle_delete_item() -> void:
 	InventoryEvents.dialog_confirm_delete_item.emit(ContainersController.current_item.value);
-	
+
 func _handle_place_item() -> void:
-	InventoryEvents.place_item_on_map.emit(ContainersController.current_item.value);
+	InventoryEvents.place_item_on_map.emit(ContainersController.current_item.value, _container_owner);
 	if ContainersController.current_item.value.is_empty():
 		_on_reset_current_item();
-		
+
 func _on_item_placed() -> void:
 	var current_item = InventoryUtils._pick_one_from(ContainersController.current_item.value);
 	ContainersController.set_current_item(container_id, current_item);

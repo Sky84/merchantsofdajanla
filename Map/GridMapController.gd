@@ -11,14 +11,14 @@ func _ready():
 # Place an element of type 'Posable' on the map at a given position
 # Add the element to the _map_objects array
 # Save the position (local to grid map) -> the coordinates of a tile in the grid map
-func _place_item_at(item_data: Dictionary, _global_position: Vector3) -> void:
+func _place_item_at(item_data: Dictionary, _global_position: Vector3, _owner: String = "") -> void:
 	if not has_item_at(_global_position):
 		var scene: StaticBody3D = load(item_data.scene_path).instantiate();
 		_map_items.add_child(scene);
 		scene.set_global_position(_global_position);
 		var pos = _global_to_local(_global_position);
 		_map_objects[pos] = scene;
-		scene._init_posable();
+		scene._init_posable(_owner);
 		GridMapEvents.item_placed.emit();
 		return;
 	# Send event to tell it's not possible to put an item at this given position

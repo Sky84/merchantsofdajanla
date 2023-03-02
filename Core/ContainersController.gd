@@ -7,8 +7,9 @@ var current_item: Dictionary = {
 	"value": {}
 };
 
-func register_container(container_id: String, rows: int, columns: int, items: Dictionary) -> void:
+func register_container(container_id: String, rows: int, columns: int, items: Dictionary, container_owner: String = "") -> void:
 	_containers[container_id] = {
+		"container_owner": container_owner,
 		"slots": _init_slots(rows, columns, items),
 		"rows": rows,
 		"columns": columns
