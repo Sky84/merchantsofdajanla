@@ -7,20 +7,20 @@
 [ext_resource type="SpriteFrames" uid="uid://eyq6aiiknqur" path="res://Player/SpriteFrames/Weapons_0.tres" id="5_bdeek"]
 [ext_resource type="Script" path="res://UI/UIController.gd" id="6_wlfhe"]
 [ext_resource type="Script" path="res://Containers/InventoryView.gd" id="7_bhmso"]
-[ext_resource type="PackedScene" path="res://Containers/ItemButton/ItemButton.tscn" id="8_q3116"]
+[ext_resource type="PackedScene" uid="uid://c40ngw2hn56t4" path="res://Containers/ItemButton/ItemButton.tscn" id="8_q3116"]
 [ext_resource type="PackedScene" uid="uid://dqrhq147safqm" path="res://PlayerMouseAction/player_mouse_action.tscn" id="9_4eyub"]
 [ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="9_fg4y3"]
-[ext_resource type="Texture2D" uid="uid://bs6ts63gimrwe" path="res://Containers/Sprites/overboxinventaire.png" id="10_a5fgx"]
-[ext_resource type="Texture2D" uid="uid://bj84gpby6t63l" path="res://Containers/Sprites/background_Inventory.png" id="11_3wma5"]
+[ext_resource type="Texture2D" uid="uid://cpach7qgaggl2" path="res://Containers/Sprites/overboxinventaire.png" id="10_a5fgx"]
+[ext_resource type="Texture2D" uid="uid://nygirwtvql0b" path="res://Containers/Sprites/background_Inventory.png" id="11_3wma5"]
 [ext_resource type="Script" path="res://Dialogs/ConfirmDialog/ConfirmDialog.gd" id="13_inwci"]
-[ext_resource type="Texture2D" uid="uid://kl0iwom47kof" path="res://icon.svg" id="14_c0as5"]
-[ext_resource type="Texture2D" uid="uid://bqkibhumg27cy" path="res://Dialogs/Sprites/infobox.png" id="14_v6gi6"]
-[ext_resource type="Texture2D" uid="uid://b28utrgegh8cr" path="res://Dialogs/Sprites/buttoninfoOK.png" id="15_ox7wf"]
-[ext_resource type="Texture2D" uid="uid://catxmox5luw8t" path="res://Dialogs/Sprites/buttoninfoNO.png" id="16_wbqma"]
+[ext_resource type="Texture2D" uid="uid://dmjkbhu7phsmj" path="res://icon.svg" id="14_c0as5"]
+[ext_resource type="Texture2D" uid="uid://cik5cvgxiu6s5" path="res://Dialogs/Sprites/infobox.png" id="14_v6gi6"]
+[ext_resource type="Texture2D" uid="uid://yap3pllcaabo" path="res://Dialogs/Sprites/buttoninfoOK.png" id="15_ox7wf"]
+[ext_resource type="Texture2D" uid="uid://boao6xqeh3scc" path="res://Dialogs/Sprites/buttoninfoNO.png" id="16_wbqma"]
 [ext_resource type="Script" path="res://Containers/InfoPanelController.gd" id="17_eto80"]
 [ext_resource type="Script" path="res://UI/ShortcutBar.gd" id="19_6dhmn"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
-[ext_resource type="Texture2D" uid="uid://dpwmoaaijexu2" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
+[ext_resource type="Texture2D" uid="uid://c8ijywe1bb3si" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
 [ext_resource type="PackedScene" uid="uid://bjwx7lpp4b6jm" path="res://Stand/TransactionView/StandTransaction.tscn" id="21_samwx"]
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
 [ext_resource type="Material" uid="uid://c2xui8wsgb5ig" path="res://UI/Shaders/PixelMaterial.tres" id="23_c60d1"]
@@ -707,9 +707,6 @@ columns = 6
 
 [node name="StandTransaction" parent="CanvasLayer" instance=ExtResource("21_samwx")]
 visible = false
-container_id = ""
-gap_hover_selector = 0
-offset_hover_selector = Vector2(0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 0.731354, 0.681998, 0, -0.681998, 0.731354, 4.5, 12, 10)

@@ -61,6 +61,11 @@ func _update_items(slots: Dictionary):
 				var item_instance = _item_button_scene.instantiate();
 				slot_instance.add_child(item_instance);
 				item_instance.init_item(slot, _show_panel_info);
+			_update_custom_item(x, y, slot_instance);
+
+#use this function when you need to setup label or other element that does not exist in base class
+func _update_custom_item(slot_x: int, slot_y: int, slot_instance: SlotButton) -> void:
+	pass
 
 func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: int):
 	var slots = ContainersController.get_container_data(container_id);
@@ -129,7 +134,6 @@ func _handle_mouse_click(event: InputEventMouseButton) -> void:
 	var mouse_right_released = !event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT;
 	if mouse_outside or not visible:
 		if mouse_left_released:
-			print(name)
 			_handle_delete_item();
 		if mouse_right_released:
 			_handle_place_item();

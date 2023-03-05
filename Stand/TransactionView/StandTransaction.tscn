@@ -1,16 +1,16 @@
 [gd_scene load_steps=13 format=3 uid="uid://bjwx7lpp4b6jm"]
 
 [ext_resource type="Script" path="res://Stand/TransactionView/StandView.gd" id="1_u80jx"]
-[ext_resource type="PackedScene" path="res://Containers/ItemButton/ItemButton.tscn" id="2_2w3k1"]
+[ext_resource type="PackedScene" uid="uid://c2bkkurj1uowk" path="res://Stand/TransactionView/StandItemButton/StandItemButton.tscn" id="2_bhe3d"]
 [ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="3_7y3jc"]
-[ext_resource type="Texture2D" uid="uid://bj84gpby6t63l" path="res://Containers/Sprites/background_Inventory.png" id="4_c3rvn"]
-[ext_resource type="Texture2D" uid="uid://cvrorlum8cd6x" path="res://Stand/TransactionView/Assets/plus.png" id="5_0xb5c"]
-[ext_resource type="Texture2D" uid="uid://cftakkwkieeir" path="res://Stand/TransactionView/Assets/cross1.png" id="5_e4a0g"]
-[ext_resource type="Texture2D" uid="uid://ciytid7ccyadu" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="6_ihhhv"]
-[ext_resource type="Texture2D" uid="uid://cg7h4ks2crdo2" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="6_qj65p"]
-[ext_resource type="Texture2D" uid="uid://6k7s3pn1t4sp" path="res://Stand/TransactionView/Assets/minus.png" id="7_ltay7"]
-[ext_resource type="Texture2D" uid="uid://diedw7xihsigu" path="res://Stand/TransactionView/Assets/price.png" id="7_ttwvh"]
-[ext_resource type="Texture2D" uid="uid://bp1pmjcgqtdod" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="8_mvs78"]
+[ext_resource type="Texture2D" uid="uid://nygirwtvql0b" path="res://Containers/Sprites/background_Inventory.png" id="4_c3rvn"]
+[ext_resource type="Texture2D" uid="uid://77bljncj6jnd" path="res://Stand/TransactionView/Assets/plus.png" id="5_0xb5c"]
+[ext_resource type="Texture2D" uid="uid://ds876bi8u3cke" path="res://Stand/TransactionView/Assets/cross1.png" id="5_e4a0g"]
+[ext_resource type="Texture2D" uid="uid://botoy6wgjeytd" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="6_ihhhv"]
+[ext_resource type="Texture2D" uid="uid://dodnq6whgouk5" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="6_qj65p"]
+[ext_resource type="Texture2D" uid="uid://dc5w1kyeo61ew" path="res://Stand/TransactionView/Assets/minus.png" id="7_ltay7"]
+[ext_resource type="Texture2D" uid="uid://bt28pqec8cmyl" path="res://Stand/TransactionView/Assets/price.png" id="7_ttwvh"]
+[ext_resource type="Texture2D" uid="uid://qo07y3vds2u7" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="8_mvs78"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3wxqv"]
 line_spacing = 2.08165e-12
@@ -31,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u80jx")
 _show_panel_info = false
-_item_button_scene = ExtResource("2_2w3k1")
+_item_button_scene = ExtResource("2_bhe3d")
 _item_slot_button_scene = ExtResource("3_7y3jc")
 _items_container = NodePath("ItemsContainerView")
 metadata/_edit_group_ = true

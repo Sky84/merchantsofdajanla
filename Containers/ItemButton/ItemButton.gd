@@ -1,4 +1,5 @@
 extends Button
+class_name ItemButton
 
 @onready var _label_amount = $Amount;
 

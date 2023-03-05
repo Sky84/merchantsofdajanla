@@ -1,4 +1,5 @@
 extends TextureButton
+class_name SlotButton
 
 signal pressed_with(click_index, slot, x, y)
 
