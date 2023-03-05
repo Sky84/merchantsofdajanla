@@ -1,11 +1,13 @@
 extends Node
 
+func get_items(container_id: String) -> Dictionary:
+	var slots = ContainersController.get_container_data(container_id).duplicate(true);
+	for x in slots:
+		for y in slots[x]:
+			var item = slots[x][y];
+			if item:
+				item.current_price = get_current_price(item.id);
+	return slots;
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func get_current_price(item_id: String):
+	return GameItems.get_item(item_id).base_price;

@@ -707,6 +707,9 @@ columns = 6
 
 [node name="StandTransaction" parent="CanvasLayer" instance=ExtResource("21_samwx")]
 visible = false
+container_id = ""
+gap_hover_selector = 0
+offset_hover_selector = Vector2(0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 0.731354, 0.681998, 0, -0.681998, 0.731354, 4.5, 12, 10)
