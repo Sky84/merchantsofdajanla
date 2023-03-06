@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://b157uf5trptfd"]
 
 [ext_resource type="Script" path="res://UI/Tooltip/tooltip.gd" id="1_uh0mb"]
 
@@ -19,6 +19,7 @@ _data = {
 }
 
 [node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.166126, 0.648767)
 script = ExtResource("1_uh0mb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -28,6 +29,7 @@ libraries = {
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+pixel_size = 0.0035
 billboard = 1
 double_sided = false
 font_size = 140

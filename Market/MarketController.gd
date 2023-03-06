@@ -14,3 +14,7 @@ func get_current_price(item: Dictionary):
 	if 'current_price' in item:
 		current_price = item.current_price;
 	return current_price;
+
+func get_first_item(container_id: String) -> Dictionary:
+	var item = MarketController.get_items(container_id)[0][0];
+	return item;

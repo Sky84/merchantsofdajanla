@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8okcsfchdnel"]
+[gd_scene load_steps=7 format=3 uid="uid://c8okcsfchdnel"]
 
 [ext_resource type="Script" path="res://Stand/StandController.gd" id="1_ggsjm"]
 [ext_resource type="Script" path="res://Containers/PosableContainer.gd" id="2_lnpxt"]
@@ -7,6 +7,23 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_tt3mk"]
 margin = 2.619
 size = Vector3(2.018, 1.37028, 2.01786)
+
+[sub_resource type="Animation" id="Animation_fkdxh"]
+resource_name = "floating"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 2.5, -0.5, 1, 1, 0, 2.9, -0.5, 2, 1, 0, 2.5, -0.5)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_se274"]
+_data = {
+"floating": SubResource("Animation_fkdxh")
+}
 
 [node name="Stand" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
@@ -28,3 +45,11 @@ shape = SubResource("BoxShape3D_tt3mk")
 
 [node name="InteractiveLabelContainer" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.5, 2.08165e-12)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.58523, -0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_se274")
+}

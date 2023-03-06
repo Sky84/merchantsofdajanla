@@ -284,7 +284,7 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
-radius = 4.0
+radius = 2.56796
 
 [sub_resource type="Gradient" id="Gradient_m7jcj"]
 offsets = PackedFloat32Array(0, 0.0187668)
