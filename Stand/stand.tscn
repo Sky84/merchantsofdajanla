@@ -48,6 +48,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.5, 2.08165e-12
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.58523, -0.5)
+pixel_size = 0.03
+texture_filter = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
