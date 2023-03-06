@@ -19,10 +19,11 @@ func _set_item(item_data: Dictionary):
 	if !item_data.is_empty():
 		_set_visibility(true);
 		_selected_item = item_data;
-		if _selected_item.type == "Material":
-			_set_material_item();
-		elif _selected_item.type == "Posable":
-			_set_posable_item();
+		match _selected_item.type:
+			"Material", "Consomable":
+				_set_material_item();
+			"Posable":
+				_set_posable_item();
 	else:
 		_reset_item();
 

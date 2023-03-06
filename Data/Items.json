@@ -17,42 +17,42 @@
 		"name": "ITEMS.BREAD",
 		"type": "Consomable",
 		"description": "ITEMS.BREAD.DESCRIPTION",
-		"icon_path": "res://icon.svg",
+		"icon_path": "res://Items/bread.png",
 		"base_price": 4
 	},
 	"apple": {
 		"name": "ITEMS.APPLE",
 		"type": "Consomable",
 		"description": "ITEMS.APPLE.DESCRIPTION",
-		"icon_path": "res://icon.svg",
+		"icon_path": "res://Items/apple.png",
 		"base_price": 3
 	},
 	"cactus": {
 		"name": "ITEMS.CACTUS",
 		"type": "Consomable",
 		"description": "ITEMS.CACTUS.DESCRIPTION",
-		"icon_path": "res://icon.svg",
+		"icon_path": "res://Items/cactus.png",
 		"base_price": 1
 	},
 	"chicken_coocked": {
 		"name": "ITEMS.COOCKED_CHICKEN",
 		"type": "Consomable",
 		"description": "ITEMS.COOCKED_CHICKEN.DESCRIPTION",
-		"icon_path": "res://icon.svg",
+		"icon_path": "res://Items/coocked.png",
 		"base_price": 3
 	},
 	"stew": {
 		"name": "ITEMS.STEW",
 		"type": "Consomable",
 		"description": "ITEMS.STEW.DESCRIPTION",
-		"icon_path": "res://icon.svg",
+		"icon_path": "res://Items/stew.png",
 		"base_price": 5
 	},
 	"coconut": {
 		"name": "ITEMS.COCONUT",
 		"type": "Consomable",
 		"description": "ITEMS.COCONUT.DESCRIPTION",
-		"icon_path": "res://icon.svg",
+		"icon_path": "res://Items/coconut.png",
 		"base_price": 1
 	},
 	"stand": {
