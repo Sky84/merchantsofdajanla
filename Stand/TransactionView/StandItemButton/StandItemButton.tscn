@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2bkkurj1uowk"]
 
-[ext_resource type="Texture2D" uid="uid://dmjkbhu7phsmj" path="res://icon.svg" id="1_6cv8u"]
+[ext_resource type="Texture2D" uid="uid://kl0iwom47kof" path="res://icon.svg" id="1_6cv8u"]
 [ext_resource type="Theme" uid="uid://dtc0anbhbcv2q" path="res://UI/Theme.tres" id="1_31o8c"]
 [ext_resource type="Script" path="res://Stand/TransactionView/StandItemButton/StandItemButton.gd" id="2_3sk7v"]
 
@@ -52,14 +52,9 @@ vertical_alignment = 1
 [node name="Price" type="Label" parent="."]
 z_index = 1
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -286.0
-offset_top = 54.0
-offset_right = -274.0
-offset_bottom = 70.0
-grow_horizontal = 0
+offset_left = 4.0
+offset_right = 16.0
+offset_bottom = 16.0
 theme_override_font_sizes/font_size = 9
 text = "99"
 horizontal_alignment = 1
