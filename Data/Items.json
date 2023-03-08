@@ -1,4 +1,11 @@
 {
+	"money": {
+		"name": "ITEMS.MONEY",
+		"type": "Material",
+		"description": "ITEMS.MONEY.DESCRIPTION",
+		"icon_path": "res://icon.svg",
+		"base_price": 0
+	},
 	"wood": {
 		"name": "ITEMS.WOOD",
 		"type": "Material",

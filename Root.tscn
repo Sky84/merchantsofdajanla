@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://c46cumn6bwrxv"]
+[gd_scene load_steps=58 format=3 uid="uid://c46cumn6bwrxv"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_niwxe"]
@@ -21,8 +21,9 @@
 [ext_resource type="Script" path="res://UI/ShortcutBar.gd" id="19_6dhmn"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
 [ext_resource type="Texture2D" uid="uid://dpwmoaaijexu2" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
-[ext_resource type="PackedScene" uid="uid://bjwx7lpp4b6jm" path="res://Stand/TransactionView/StandTransaction.tscn" id="21_samwx"]
+[ext_resource type="PackedScene" uid="uid://cb7i0apyk7kif" path="res://Stand/TransactionView/StandSetup/StandSetup.tscn" id="21_samwx"]
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
+[ext_resource type="PackedScene" uid="uid://b2wjdlipuc437" path="res://Stand/TransactionView/StandTransaction/StandTransaction.tscn" id="22_dogdb"]
 [ext_resource type="Material" uid="uid://c2xui8wsgb5ig" path="res://UI/Shaders/PixelMaterial.tres" id="23_c60d1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
@@ -306,6 +307,15 @@ corner_radius_bottom_left = 3
 material = ExtResource("23_c60d1")
 
 [node name="Root" type="Node3D"]
+
+[node name="FakeSeller" type="Node3D" parent="."]
+
+[node name="FakeInventory" type="Node3D" parent="FakeSeller"]
+script = ExtResource("2_niwxe")
+_container_owner = "player1"
+container_id = "fake_inventory"
+rows = 10
+columns = 10
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98, 2.08165e-12, 0.43)
@@ -705,7 +715,10 @@ theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 10
 columns = 6
 
-[node name="StandTransaction" parent="CanvasLayer" instance=ExtResource("21_samwx")]
+[node name="StandSetup" parent="CanvasLayer" instance=ExtResource("21_samwx")]
+visible = false
+
+[node name="StandTransaction" parent="CanvasLayer" instance=ExtResource("22_dogdb")]
 visible = false
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]

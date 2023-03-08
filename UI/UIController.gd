@@ -4,7 +4,8 @@ class_name UIController
 @export var mouse_targets_node_to_exclude: Array[NodePath];
 
 @onready var confirm_dialog: Panel = $ConfirmDialog;
-@onready var stand_transaction: StandTransactionView = $StandTransaction
+@onready var stand_setup: StandSetupView = $StandSetup;
+@onready var stand_transaction: StandTransactionView = $StandTransaction;
 
 var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: MapItem = null;
@@ -13,15 +14,19 @@ var _current_mouse_target: Control;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	InventoryEvents.dialog_confirm_delete_item.connect(_show_confirm_dialog);
-	HudEvents.open_stand.connect(_show_stand_dialog);
+	HudEvents.open_stand_setup.connect(_show_stand_setup_dialog);
+	HudEvents.open_stand_transaction.connect(_show_stand_transaction_dialog);
 	PlayerEvents._on_nearest_interactive_changed.connect(_show_tooltip_on_interactive);
 	for child in get_children():
 		if not mouse_targets_node_to_exclude.has(child.get_path()):
 			child.mouse_entered.connect(_om_mouse_current_target.bind(child, true));
 			child.mouse_exited.connect(_om_mouse_current_target.bind(child, false));
 
-func _show_stand_dialog(container_id: String, screen_position: Vector2) -> void:
-	stand_transaction.open(container_id, screen_position);
+func _show_stand_setup_dialog(container_id: String, screen_position: Vector2) -> void:
+	stand_setup.open(container_id, screen_position);
+
+func _show_stand_transaction_dialog(container_id: String, _interract_owner_id: String, screen_position: Vector2) -> void:
+	stand_transaction.open(container_id, _interract_owner_id, screen_position);
 
 func _show_confirm_dialog(item):
 	var message = tr("DIALOG.CONFIRM_DELETE")+" "+str(item.amount)+" "+tr(item.name)+"(s) ?";

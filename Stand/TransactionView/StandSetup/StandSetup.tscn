@@ -1,22 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjwx7lpp4b6jm"]
+[gd_scene load_steps=13 format=3 uid="uid://cb7i0apyk7kif"]
 
-[ext_resource type="Script" path="res://Stand/TransactionView/StandView.gd" id="1_u80jx"]
-[ext_resource type="PackedScene" uid="uid://c2bkkurj1uowk" path="res://Stand/TransactionView/StandItemButton/StandItemButton.tscn" id="2_bhe3d"]
-[ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="3_7y3jc"]
-[ext_resource type="Texture2D" uid="uid://bj84gpby6t63l" path="res://Containers/Sprites/background_Inventory.png" id="4_c3rvn"]
-[ext_resource type="Texture2D" uid="uid://cvrorlum8cd6x" path="res://Stand/TransactionView/Assets/plus.png" id="5_0xb5c"]
-[ext_resource type="Texture2D" uid="uid://cftakkwkieeir" path="res://Stand/TransactionView/Assets/cross1.png" id="5_e4a0g"]
-[ext_resource type="Texture2D" uid="uid://ciytid7ccyadu" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="6_ihhhv"]
-[ext_resource type="Texture2D" uid="uid://cg7h4ks2crdo2" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="6_qj65p"]
-[ext_resource type="Texture2D" uid="uid://6k7s3pn1t4sp" path="res://Stand/TransactionView/Assets/minus.png" id="7_ltay7"]
-[ext_resource type="Texture2D" uid="uid://diedw7xihsigu" path="res://Stand/TransactionView/Assets/price.png" id="7_ttwvh"]
-[ext_resource type="Texture2D" uid="uid://bp1pmjcgqtdod" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="8_mvs78"]
+[ext_resource type="Script" path="res://Stand/TransactionView/StandSetup/StandSetup.gd" id="1_stkue"]
+[ext_resource type="PackedScene" uid="uid://c2bkkurj1uowk" path="res://Stand/TransactionView/StandItemButton/StandItemButton.tscn" id="2_weptw"]
+[ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="3_fp3kt"]
+[ext_resource type="Texture2D" uid="uid://bj84gpby6t63l" path="res://Containers/Sprites/background_Inventory.png" id="4_plg6d"]
+[ext_resource type="Texture2D" uid="uid://ciytid7ccyadu" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="5_fcvg1"]
+[ext_resource type="Texture2D" uid="uid://cvrorlum8cd6x" path="res://Stand/TransactionView/Assets/plus.png" id="6_ty6e2"]
+[ext_resource type="Texture2D" uid="uid://diedw7xihsigu" path="res://Stand/TransactionView/Assets/price.png" id="7_slyjt"]
+[ext_resource type="Texture2D" uid="uid://bp1pmjcgqtdod" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="8_e5cdi"]
+[ext_resource type="Texture2D" uid="uid://6k7s3pn1t4sp" path="res://Stand/TransactionView/Assets/minus.png" id="9_nqlka"]
+[ext_resource type="Texture2D" uid="uid://cg7h4ks2crdo2" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="10_wmdmx"]
+[ext_resource type="Texture2D" uid="uid://cftakkwkieeir" path="res://Stand/TransactionView/Assets/cross1.png" id="11_j4naa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3wxqv"]
 line_spacing = 2.08165e-12
 font_size = 10
 
-[node name="StandTransaction" type="Panel" node_paths=PackedStringArray("_items_container")]
+[node name="StandSetup" type="Panel" node_paths=PackedStringArray("_items_container")]
 texture_filter = 1
 anchors_preset = -1
 anchor_left = 0.539
@@ -29,11 +29,11 @@ offset_right = 52.072
 offset_bottom = 34.432
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_u80jx")
+script = ExtResource("1_stkue")
 MAX_PRICE = 999
 _show_panel_info = false
-_item_button_scene = ExtResource("2_bhe3d")
-_item_slot_button_scene = ExtResource("3_7y3jc")
+_item_button_scene = ExtResource("2_weptw")
+_item_slot_button_scene = ExtResource("3_fp3kt")
 _items_container = NodePath("ItemsContainerView")
 metadata/_edit_group_ = true
 
@@ -49,7 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_c3rvn")
+texture = ExtResource("4_plg6d")
 patch_margin_left = 12
 patch_margin_top = 12
 patch_margin_right = 12
@@ -86,12 +86,12 @@ theme_override_constants/separation = 9
 
 [node name="PlusButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("6_ihhhv")
-texture_hover = ExtResource("5_0xb5c")
+texture_normal = ExtResource("5_fcvg1")
+texture_hover = ExtResource("6_ty6e2")
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("7_ttwvh")
+texture = ExtResource("7_slyjt")
 expand_mode = 5
 stretch_mode = 3
 
@@ -112,8 +112,8 @@ vertical_alignment = 1
 
 [node name="MinusButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("8_mvs78")
-texture_hover = ExtResource("7_ltay7")
+texture_normal = ExtResource("8_e5cdi")
+texture_hover = ExtResource("9_nqlka")
 
 [node name="CloseButton" type="TextureButton" parent="."]
 layout_mode = 1
@@ -125,8 +125,8 @@ offset_top = -5.0
 offset_right = 5.0
 offset_bottom = 10.0
 grow_horizontal = 0
-texture_normal = ExtResource("6_qj65p")
-texture_hover = ExtResource("5_e4a0g")
+texture_normal = ExtResource("10_wmdmx")
+texture_hover = ExtResource("11_j4naa")
 stretch_mode = 3
 
 [connection signal="pressed" from="VBoxContainer/PlusButton" to="." method="_on_plus_button_pressed"]

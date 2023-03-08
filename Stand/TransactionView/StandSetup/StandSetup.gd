@@ -1,5 +1,5 @@
 extends InventoryView
-class_name StandTransactionView
+class_name StandSetupView
 
 @onready var item_value_label = $VBoxContainer/TextureRect/Value;
 @export var MAX_PRICE: int;

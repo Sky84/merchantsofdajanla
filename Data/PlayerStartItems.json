@@ -1,4 +1,7 @@
 {
+	"money": {
+		"amount": 500
+	},
 	"bread": {
 		"amount": 10
 	},

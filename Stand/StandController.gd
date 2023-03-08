@@ -31,9 +31,9 @@ func _on_item_container_changed(mouse_item: Dictionary) -> void:
 func interact(_interract_owner_id: String) -> void:
 	print("_container_owner: "+_container._container_owner);
 	print("_interract_owner_id: "+_interract_owner_id);
+	var screen_position: Vector2 = _camera.unproject_position(global_position) - Vector2(64,80);
 	if _is_interact_from_owner(_interract_owner_id):
-		var screen_position: Vector2 = _camera.unproject_position(global_position) - Vector2(64,80);
-		HudEvents.open_stand.emit(_container.container_id, screen_position);
+		HudEvents.open_stand_setup.emit(_container.container_id, screen_position);
 	else:
-		#MarketController.trade()
 		print('buy from _interract_owner_id:'+ _interract_owner_id);
+		HudEvents.open_stand_transaction.emit(_container.container_id, _interract_owner_id, screen_position);
