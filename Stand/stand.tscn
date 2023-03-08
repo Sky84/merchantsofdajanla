@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Stand/StandController.gd" id="1_ggsjm"]
 [ext_resource type="Script" path="res://Containers/PosableContainer.gd" id="2_lnpxt"]
 [ext_resource type="PackedScene" uid="uid://bnvjhomy70pu6" path="res://Stand/Model/Stand.gltf" id="3_edxpx"]
-[ext_resource type="Texture2D" uid="uid://dwr0hjw1net01" path="res://Items/apple.png" id="4_hasim"]
+[ext_resource type="Texture2D" uid="uid://bk67kgh1hq3ty" path="res://UI/Sprites/moneycoin.png" id="4_f22sb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tt3mk"]
 margin = 2.619
@@ -47,17 +47,27 @@ shape = SubResource("BoxShape3D_tt3mk")
 [node name="InteractiveLabelContainer" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.5, 2.08165e-12)
 
+[node name="PriceLabel3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -3.27826e-07, 0, 3.27826e-07, 1, 0.301028, 0.68596, 1.0109)
+pixel_size = 0.0035
+billboard = 2
+double_sided = false
+texture_filter = 0
+font_size = 140
+horizontal_alignment = 2
+
+[node name="MoneySprite3D" type="Sprite3D" parent="PriceLabel3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 3.27826e-07, 0, -3.27826e-07, 1, 0.202782, 0.0021947, 0.0301492)
+pixel_size = 0.03
+billboard = 2
+double_sided = false
+texture_filter = 0
+texture = ExtResource("4_f22sb")
+
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.58523, -0.5)
 pixel_size = 0.03
 texture_filter = 0
-texture = ExtResource("4_hasim")
-
-[node name="PriceLabel3D" type="Label3D" parent="Sprite3D"]
-transform = Transform3D(1, 0, 0, 0, 0.939692, -0.34202, 0, 0.34202, 0.939692, 0, 0.191682, 0.231991)
-pixel_size = 0.0035
-billboard = 1
-font_size = 140
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

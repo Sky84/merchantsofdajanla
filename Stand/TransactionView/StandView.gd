@@ -19,12 +19,6 @@ func _update_items(slots: Dictionary) -> void:
 	super._update_items(slots);
 	_update_price();
 
-# We know that going to be called just once because there is only one item for stand
-func _update_custom_item(slot_x: int, slot_y: int, slot_instance: SlotButton) -> void:
-	if slot_instance.get_child_count() > 0:
-		var item_instance: StandItemButton = slot_instance.get_child(0);
-		item_instance._set_price(MarketController.get_first_item(container_id).current_price);
-
 func _update_price() -> void:
 	var item = MarketController.get_first_item(container_id);
 	var current_price = MAX_PRICE if not "current_price" in item else item.current_price;
