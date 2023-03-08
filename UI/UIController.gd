@@ -20,8 +20,8 @@ func _ready():
 			child.mouse_entered.connect(_om_mouse_current_target.bind(child, true));
 			child.mouse_exited.connect(_om_mouse_current_target.bind(child, false));
 
-func _show_stand_dialog(container_id: String) -> void:
-	stand_transaction.open(container_id);
+func _show_stand_dialog(container_id: String, screen_position: Vector2) -> void:
+	stand_transaction.open(container_id, screen_position);
 
 func _show_confirm_dialog(item):
 	var message = tr("DIALOG.CONFIRM_DELETE")+" "+str(item.amount)+" "+tr(item.name)+"(s) ?";

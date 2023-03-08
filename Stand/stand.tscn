@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8okcsfchdnel"]
+[gd_scene load_steps=8 format=3 uid="uid://c8okcsfchdnel"]
 
 [ext_resource type="Script" path="res://Stand/StandController.gd" id="1_ggsjm"]
 [ext_resource type="Script" path="res://Containers/PosableContainer.gd" id="2_lnpxt"]
 [ext_resource type="PackedScene" uid="uid://bnvjhomy70pu6" path="res://Stand/Model/Stand.gltf" id="3_edxpx"]
+[ext_resource type="Texture2D" uid="uid://dwr0hjw1net01" path="res://Items/apple.png" id="4_hasim"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tt3mk"]
 margin = 2.619
@@ -50,6 +51,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.5, 2.08165e-12
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.58523, -0.5)
 pixel_size = 0.03
 texture_filter = 0
+texture = ExtResource("4_hasim")
+
+[node name="PriceLabel3D" type="Label3D" parent="Sprite3D"]
+transform = Transform3D(1, 0, 0, 0, 0.939692, -0.34202, 0, 0.34202, 0.939692, 0, 0.191682, 0.231991)
+pixel_size = 0.0035
+billboard = 1
+font_size = 140
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

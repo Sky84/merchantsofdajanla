@@ -7,11 +7,12 @@ class_name StandTransactionView
 func _ready():
 	pass
 
-func open(_container_id: String) -> void:
+func open(_container_id: String, _position: Vector2) -> void:
 	container_id = _container_id;
 	_load_container_config();
 	var items = MarketController.get_items(container_id);
 	_update_items(items);
+	global_position = _position;
 	visible = true;
 
 func _update_items(slots: Dictionary) -> void:
@@ -43,9 +44,14 @@ func _on_minus_button_pressed():
 	item.current_price = clampi(item.current_price - 1, 0, MAX_PRICE);
 	var items = MarketController.get_items(container_id);
 	_update_items(items);
+	HudEvents.price_item_changed.emit(item);
 
 func _on_plus_button_pressed():
 	var item = MarketController.get_first_item(container_id);
 	item.current_price = clampi(item.current_price + 1, 0, MAX_PRICE);
 	var items = MarketController.get_items(container_id);
 	_update_items(items);
+	HudEvents.price_item_changed.emit(item);
+
+func _on_close_button_pressed():
+	close();
