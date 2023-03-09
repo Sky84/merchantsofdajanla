@@ -7,9 +7,10 @@ var current_item: Dictionary = {
 	"value": {}
 };
 
-func register_container(container_id: String, rows: int, columns: int, items: Dictionary, container_owner: String = "") -> void:
+func register_container(container_id: String, rows: int, columns: int, items: Dictionary, container_owner: String = "", _is_main_container_for_owner: bool = false) -> void:
 	_containers[container_id] = {
 		"container_owner": container_owner,
+		"is_main_container": _is_main_container_for_owner,
 		"slots": _init_slots(rows, columns, items),
 		"rows": rows,
 		"columns": columns
@@ -51,6 +52,13 @@ func get_container_ids_by_owner_id(owner_id: String) -> Array[String]:
 			container_ids.append(container_id);
 	return container_ids;
 
+func get_main_container_with_empty_slot(container_ids: Array[String]) -> String:
+	for container_id in container_ids:
+		if _containers[container_id].is_main_container:
+			return container_id;
+	printerr('no main containers with empty slot');
+	return '';
+
 func find_item_in_containers(container_ids: Array[String], item_id: String) -> Dictionary:
 	var item = container_ids.duplicate().map(
 		func(container_id):
@@ -69,12 +77,7 @@ func add_item(container_ids: Array[String], item_id: String, amount_to_add: int)
 	if not item_data.is_empty():
 		item_data.item.amount += amount_to_add;
 	else:
-		var slot = _get_empty_slot(container_ids);
-		if slot != null:
-			slot = GameItems.get_item(item_id);
-			slot.amount = amount_to_add;
-		else:
-			printerr('no slot empty');
+		_create_in_empty_slot(container_ids, item_id, amount_to_add);
 
 func remove_item(container_ids: Array[String], item_id: String, amount_to_remove: int):
 	var item_data = find_item_in_containers(container_ids, item_id);
@@ -93,15 +96,17 @@ func _erase_item_in_container(container_id: String, item_id: String) -> void:
 				slots[x][y] = {};
 				return;
 
-func _get_empty_slot(container_ids: Array[String]) -> Variant:
+# create an item from scratch in an empty slot
+func _create_in_empty_slot(container_ids: Array[String], item_id: String, amount_to_add: int) -> void:
 	for container_id in container_ids:
 		var slots = get_container_data(container_id);
 		for x in slots:
 			for y in slots[x]:
 				var slot = slots[x][y];
 				if slot.is_empty():
-					return slot;
-	return null;
+					slots[x][y] = GameItems.get_item(item_id);
+					slots[x][y].amount = amount_to_add;
+					return;
 
 func get_container_data(container_id: String) -> Dictionary:
 	return _containers[container_id].slots;

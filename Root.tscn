@@ -312,10 +312,12 @@ material = ExtResource("23_c60d1")
 
 [node name="FakeInventory" type="Node3D" parent="FakeSeller"]
 script = ExtResource("2_niwxe")
-_container_owner = "player1"
+_start_items_json_path = null
+_container_owner = "fake_seller"
 container_id = "fake_inventory"
 rows = 10
 columns = 10
+_is_main_container_for_owner = true
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98, 2.08165e-12, 0.43)
@@ -341,6 +343,7 @@ _container_owner = "player"
 container_id = "player_inventory"
 rows = 4
 columns = 5
+_is_main_container_for_owner = true
 
 [node name="ShortcutBar" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
@@ -349,6 +352,7 @@ _container_owner = "player"
 container_id = "shortcut_bar"
 rows = 1
 columns = 6
+_is_main_container_for_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
