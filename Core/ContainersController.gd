@@ -93,7 +93,7 @@ func _erase_item_in_container(container_id: String, item_id: String) -> void:
 				slots[x][y] = {};
 				return;
 
-func _get_empty_slot(container_ids: Array[String]):
+func _get_empty_slot(container_ids: Array[String]) -> Variant:
 	for container_id in container_ids:
 		var slots = get_container_data(container_id);
 		for x in slots:

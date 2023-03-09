@@ -51,6 +51,7 @@ func _show_tooltip_on_interactive(posable: MapItem) -> void:
 		_nearest_interactive.get_interactive_label_container().remove_child(tooltip);
 		_nearest_interactive = null;
 		stand_transaction.close();
+		stand_setup.close();
 	if posable:
 		_nearest_interactive = posable;
 		_nearest_interactive.get_interactive_label_container().add_child(tooltip);
