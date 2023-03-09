@@ -31,7 +31,10 @@ func _update_amount() -> void:
 	minus_button.disabled = not _item_exist;
 	buy_button.disabled = not _item_exist;
 	if _item_exist:
-		_amount_label.text = str(_amount_to_buy);
+		_amount_to_buy = clampi(_amount_to_buy, 1, item.amount);
+	else:
+		_amount_to_buy = 1;
+	_amount_label.text = str(_amount_to_buy);
 
 func close() -> void:
 	visible = false;

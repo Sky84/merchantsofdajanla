@@ -52,43 +52,56 @@ func get_container_ids_by_owner_id(owner_id: String) -> Array[String]:
 	return container_ids;
 
 func find_item_in_containers(container_ids: Array[String], item_id: String) -> Dictionary:
-	var items = container_ids.duplicate().map(
+	var item = container_ids.duplicate().map(
 		func(container_id):
 			var slots = get_container_data(container_id);
 			for x in slots:
 				for y in slots[x]:
 					var slot = slots[x][y];
 					if 'id' in slot and slot.id == item_id:
-						return slot;
+						return {'container_id': container_id, 'item': slot};
 			return {};
 			)[0];
-	return items;
+	return item;
 
 func add_item(container_ids: Array[String], item_id: String, amount_to_add: int):
-	var item = find_item_in_containers(container_ids, item_id);
-	if item:
-		item.amount += amount_to_add;
+	var item_data = find_item_in_containers(container_ids, item_id);
+	if not item_data.is_empty():
+		item_data.item.amount += amount_to_add;
 	else:
 		var slot = _get_empty_slot(container_ids);
-		slot = item;
+		if slot != null:
+			slot = GameItems.get_item(item_id);
+			slot.amount = amount_to_add;
+		else:
+			printerr('no slot empty');
 
 func remove_item(container_ids: Array[String], item_id: String, amount_to_remove: int):
-	var item = find_item_in_containers(container_ids, item_id);
-	if item:
-		item.amount -= amount_to_remove;
-		if item.amount < 1:
-			item = {};
+	var item_data = find_item_in_containers(container_ids, item_id);
+	if not item_data.is_empty():
+		item_data.item.amount -= amount_to_remove;
+		if item_data.item.amount < 1:
+			_erase_item_in_container(item_data.container_id, item_id);
 
-func _get_empty_slot(container_ids: Array[String]) -> Dictionary:
-	return container_ids.duplicate().map(
-		func(container_id):
-			var slots = get_container_data(container_id);
-			for x in slots:
-				for y in slots[x]:
-					var slot = slots[x][y];
-					if slot.is_empty():
-						return slot;
-			)[0];
+# erase completely the first item who match with item_id in containers
+func _erase_item_in_container(container_id: String, item_id: String) -> void:
+	var slots = get_container_data(container_id);
+	for x in slots:
+		for y in slots[x]:
+			var slot = slots[x][y];
+			if not slot.is_empty() and slot.id == item_id:
+				slots[x][y] = {};
+				return;
+
+func _get_empty_slot(container_ids: Array[String]):
+	for container_id in container_ids:
+		var slots = get_container_data(container_id);
+		for x in slots:
+			for y in slots[x]:
+				var slot = slots[x][y];
+				if slot.is_empty():
+					return slot;
+	return null;
 
 func get_container_data(container_id: String) -> Dictionary:
 	return _containers[container_id].slots;
