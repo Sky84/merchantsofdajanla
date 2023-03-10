@@ -7,6 +7,8 @@ var _map_objects := {};
 
 func _ready():
 	GridMapEvents.place_item_at.connect(_place_item_at);
+	for child in _map_items.get_children():
+		_init_posable(child, child.global_position, "");
 
 # Place an element of type 'Posable' on the map at a given position
 # Add the element to the _map_objects array
@@ -16,12 +18,15 @@ func _place_item_at(item_data: Dictionary, _global_position: Vector3, _owner: St
 		var scene: StaticBody3D = load(item_data.scene_path).instantiate();
 		_map_items.add_child(scene);
 		scene.set_global_position(_global_position);
-		var pos = _global_to_local(_global_position);
-		_map_objects[pos] = scene;
-		scene._init_posable(_owner);
+		_init_posable(scene, _global_position, _owner);
 		GridMapEvents.item_placed.emit();
 		return;
 	# Send event to tell it's not possible to put an item at this given position
+
+func _init_posable(scene: PhysicsBody3D, _global_position: Vector3, _owner: String) -> void:
+	var pos = _global_to_local(_global_position);
+	_map_objects[pos] = scene;
+	scene._init_posable(_owner);
 
 func has_item_at(position: Vector3) -> bool:
 	return _map_objects.has(_global_to_local(position));

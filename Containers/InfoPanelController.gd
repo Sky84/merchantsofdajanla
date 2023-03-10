@@ -7,7 +7,11 @@ extends Panel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hide()
+	hide();
+	name_label.text = "";
+	type_label.text = "";
+	description_label.text = "";
+	icon.texture = null;
 	InventoryEvents.show_info_item.connect(open);
 
 func open(item: Dictionary):

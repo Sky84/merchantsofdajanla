@@ -313,7 +313,6 @@ material = ExtResource("23_c60d1")
 [node name="FakeInventory" type="Node3D" parent="FakeSeller"]
 script = ExtResource("2_niwxe")
 _start_items_json_path = null
-_container_owner = "fake_seller"
 container_id = "fake_inventory"
 rows = 10
 columns = 10
@@ -338,7 +337,6 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
-_start_items_json_path = "PlayerStartItems.json"
 _container_owner = "player"
 container_id = "player_inventory"
 rows = 4
@@ -750,3 +748,5 @@ mesh = SubResource("PlaneMesh_8xbuk")
 [connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]
 [connection signal="button_up" from="CanvasLayer/ConfirmDialog/CancelButton" to="CanvasLayer/ConfirmDialog" method="_on_cancel_button_button_up"]
+
+[editable path="GridMap"]
