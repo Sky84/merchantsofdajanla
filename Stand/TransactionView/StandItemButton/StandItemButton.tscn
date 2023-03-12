@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2bkkurj1uowk"]
+
+[ext_resource type="Theme" uid="uid://dtc0anbhbcv2q" path="res://UI/Theme.tres" id="1_31o8c"]
+[ext_resource type="Script" path="res://Stand/TransactionView/StandItemButton/StandItemButton.gd" id="2_3sk7v"]
+[ext_resource type="Texture2D" uid="uid://d4cjhok5r15me" path="res://Items/bread.png" id="3_kj2yy"]
+
+[node name="StandItemButton" type="Button"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("1_31o8c")
+flat = true
+script = ExtResource("2_3sk7v")
+
+[node name="Texture" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_kj2yy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 12
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
