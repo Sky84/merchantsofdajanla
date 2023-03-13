@@ -59,6 +59,7 @@ func _on_buy_button_pressed():
 	};
 	MarketController.trade(seller.container_id, seller.item_id, seller.amount_to_buy, seller.container_owner,\
 		_current_buyer_id);
+	NotificationEvents.notify.emit(NotificationEvents.NotificationType.SUCCESS, 'MARKET.TRADE_SUCCESS');
 	var items = MarketController.get_items(container_id);
 	_update_items(items);
 

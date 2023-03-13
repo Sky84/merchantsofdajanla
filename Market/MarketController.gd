@@ -17,6 +17,9 @@ func trade(seller_container_id: String, seller_item_id: String, seller_amount_to
 	var buyer_container_ids = ContainersController.get_container_ids_by_owner_id(_current_buyer_id);
 	if !item.is_empty():
 		var main_seller_container_id = ContainersController.get_main_container_with_empty_slot(seller_container_ids);
+		if main_seller_container_id.is_empty():
+			NotificationEvents.notify.emit(NotificationEvents.NotificationType.ERROR, 'MARKET.TRADE_FAIL.INVENTORY_FULL');
+			return;
 		var item_total_price = item.current_price * seller_amount_to_buy;
 		ContainersController.remove_item([seller_container_id], seller_item_id, seller_amount_to_buy);
 		ContainersController.add_item(buyer_container_ids, seller_item_id, seller_amount_to_buy);

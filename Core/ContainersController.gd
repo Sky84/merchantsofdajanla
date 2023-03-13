@@ -56,7 +56,6 @@ func get_main_container_with_empty_slot(container_ids: Array[String]) -> String:
 	for container_id in container_ids:
 		if _containers[container_id].is_main_container:
 			return container_id;
-	printerr('no main containers with empty slot');
 	return '';
 
 func find_item_in_containers(container_ids: Array[String], item_id: String) -> Dictionary:

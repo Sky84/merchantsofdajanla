@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c46cumn6bwrxv"]
+[gd_scene load_steps=59 format=3 uid="uid://cavihud6xrs3l"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_niwxe"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
 [ext_resource type="PackedScene" uid="uid://b2wjdlipuc437" path="res://Stand/TransactionView/StandTransaction/StandTransaction.tscn" id="22_dogdb"]
 [ext_resource type="Material" uid="uid://c2xui8wsgb5ig" path="res://UI/Shaders/PixelMaterial.tres" id="23_c60d1"]
+[ext_resource type="Script" path="res://UI/Notifications/NotificationController.gd" id="23_l4jmb"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -722,6 +723,16 @@ visible = false
 
 [node name="StandTransaction" parent="CanvasLayer" instance=ExtResource("22_dogdb")]
 visible = false
+
+[node name="Notifications" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("23_l4jmb")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 unique_name_in_owner = true

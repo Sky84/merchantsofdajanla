@@ -28,6 +28,7 @@ NodeUtils="*res://Core/NodeUtils.gd"
 PlayerEvents="*res://EventBus/PlayerEvents.gd"
 ContainersController="*res://Core/ContainersController.gd"
 MarketController="*res://Market/MarketController.gd"
+NotificationEvents="*res://EventBus/NotificationEvents.gd"
 
 [display]
 
