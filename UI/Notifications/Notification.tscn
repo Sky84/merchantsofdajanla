@@ -1,15 +1,45 @@
 [gd_scene load_steps=10 format=3 uid="uid://b1iprgopnty87"]
 
 [ext_resource type="Script" path="res://UI/Notifications/Notification.gd" id="1_l46oe"]
-[ext_resource type="Texture2D" uid="uid://dec75nnmcu3s" path="res://UI/Notifications/Sprites/notification_success.png" id="2_r127w"]
-[ext_resource type="Texture2D" uid="uid://fugfdnv1ukeg" path="res://UI/Notifications/Sprites/notification_warn.png" id="3_7orw4"]
-[ext_resource type="FontFile" uid="uid://byi7rguy4mafk" path="res://UI/NFPixels-Regular.ttf" id="3_dxghp"]
-[ext_resource type="Texture2D" uid="uid://c1fhv1cggurq2" path="res://UI/Notifications/Sprites/notification_error.png" id="4_8se2t"]
+[ext_resource type="Texture2D" uid="uid://6nf4c5mpv2hx" path="res://UI/Notifications/Sprites/notification_success.png" id="2_r127w"]
+[ext_resource type="Texture2D" uid="uid://x3h5426edwjp" path="res://UI/Notifications/Sprites/notification_warn.png" id="3_7orw4"]
+[ext_resource type="FontFile" uid="uid://cgtnmxr4q7t4p" path="res://UI/NFPixels-Regular.ttf" id="3_dxghp"]
+[ext_resource type="Texture2D" uid="uid://dk8plt8c7p7f" path="res://UI/Notifications/Sprites/notification_error.png" id="4_8se2t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_egrq7"]
 font = ExtResource("3_dxghp")
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_jxdlx"]
+resource_name = "hide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_hide_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_bqafe"]
 resource_name = "show"
@@ -75,36 +105,6 @@ tracks/4/keys = {
 "values": [Vector2(357, -2), Vector2(-60, -2), Vector2(0, -2)]
 }
 
-[sub_resource type="Animation" id="Animation_jxdlx"]
-resource_name = "hide"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_on_hide_finished"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6iwx"]
 _data = {
 "hide": SubResource("Animation_jxdlx"),
@@ -114,6 +114,7 @@ _data = {
 [node name="Notification" type="Control"]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
+custom_minimum_size = Vector2(287, 82)
 layout_mode = 3
 anchor_left = 0.751
 anchor_right = 1.0

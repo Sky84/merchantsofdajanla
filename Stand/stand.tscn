@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Stand/StandController.gd" id="1_ggsjm"]
 [ext_resource type="Script" path="res://Containers/PosableContainer.gd" id="2_lnpxt"]
 [ext_resource type="PackedScene" uid="uid://bnvjhomy70pu6" path="res://Stand/Model/Stand.gltf" id="3_edxpx"]
-[ext_resource type="Texture2D" uid="uid://bk67kgh1hq3ty" path="res://UI/Sprites/moneycoin.png" id="4_f22sb"]
+[ext_resource type="Texture2D" uid="uid://bgtkbg3nb88q5" path="res://UI/Sprites/moneycoin.png" id="4_f22sb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tt3mk"]
 margin = 2.619
