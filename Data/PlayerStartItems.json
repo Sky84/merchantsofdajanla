@@ -1,8 +1,14 @@
 {
-    "wood": {
-        "amount": 10
-    },
-    "sand": {
-        "amount": 15
-    }
+	"money": {
+		"amount": 500
+	},
+	"bread": {
+		"amount": 10
+	},
+	"apple": {
+		"amount": 15
+	},
+	"stand": {
+		"amount": 10
+	}
 }

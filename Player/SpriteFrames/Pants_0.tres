@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://b8iny7yatylha"]
 
-[ext_resource type="Texture2D" uid="uid://cbxyf058qqxni" path="res://Player/Sprites/fightepants.png" id="1_mojs6"]
-[ext_resource type="Texture2D" uid="uid://cc1i1on3cpstn" path="res://Player/Sprites/pantsidle.png" id="1_v0575"]
-[ext_resource type="Texture2D" uid="uid://c87o01cu200g4" path="res://Player/Sprites/pantswalk.png" id="2_4pgu8"]
-[ext_resource type="Texture2D" uid="uid://smyh00bbt06a" path="res://Player/Sprites/runpants.png" id="2_rd35w"]
+[ext_resource type="Texture2D" uid="uid://dppeq1ulbdemx" path="res://Player/Sprites/fightepants.png" id="1_mojs6"]
+[ext_resource type="Texture2D" uid="uid://fsw2lrrnmlst" path="res://Player/Sprites/pantsidle.png" id="1_v0575"]
+[ext_resource type="Texture2D" uid="uid://bso5ncku3e177" path="res://Player/Sprites/pantswalk.png" id="2_4pgu8"]
+[ext_resource type="Texture2D" uid="uid://fm4v5f4opuem" path="res://Player/Sprites/runpants.png" id="2_rd35w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qdy1s"]
 atlas = ExtResource("1_mojs6")

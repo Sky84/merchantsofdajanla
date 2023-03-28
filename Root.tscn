@@ -1,29 +1,31 @@
-[gd_scene load_steps=58 format=3 uid="uid://t6ajbtrwkora"]
+[gd_scene load_steps=59 format=3 uid="uid://cavihud6xrs3l"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
-[ext_resource type="Script" path="res://Container/InventoryView.gd" id="1_rqpfe"]
-[ext_resource type="PackedScene" uid="uid://b11y7fsa5p2v7" path="res://Container/ItemButton.tscn" id="2_1jyiy"]
-[ext_resource type="Theme" uid="uid://c1mo4tv7c0o16" path="res://Theme.tres" id="3_bkpua"]
-[ext_resource type="PackedScene" uid="uid://b7msndjt5poq4" path="res://Container/SlotItemButton.tscn" id="3_fvd0d"]
+[ext_resource type="Script" path="res://Containers/Container.gd" id="2_niwxe"]
 [ext_resource type="Script" path="res://Player/ClothAnimationsController.gd" id="3_qp1w2"]
 [ext_resource type="SpriteFrames" uid="uid://b116yvdld6l6t" path="res://Player/SpriteFrames/Skins_0.tres" id="4_cvpnb"]
-[ext_resource type="Script" path="res://Container/Container.gd" id="4_nvdet"]
 [ext_resource type="SpriteFrames" uid="uid://eyq6aiiknqur" path="res://Player/SpriteFrames/Weapons_0.tres" id="5_bdeek"]
-[ext_resource type="Script" path="res://Player/HUDController.gd" id="5_jbwpl"]
-[ext_resource type="Texture2D" uid="uid://cd86hslikfwrg" path="res://Container/background_Inventory.png" id="5_xgam2"]
-[ext_resource type="Texture2D" uid="uid://b3xovictnxfkq" path="res://Container/overboxinventaire.png" id="7_2iuyc"]
-[ext_resource type="Texture2D" uid="uid://depuvlnbptfgp" path="res://Dialog/infobox.png" id="8_o04mf"]
+[ext_resource type="Script" path="res://UI/UIController.gd" id="6_wlfhe"]
+[ext_resource type="Script" path="res://Containers/InventoryView.gd" id="7_bhmso"]
+[ext_resource type="PackedScene" uid="uid://c40ngw2hn56t4" path="res://Containers/ItemButton/ItemButton.tscn" id="8_q3116"]
 [ext_resource type="PackedScene" uid="uid://dqrhq147safqm" path="res://PlayerMouseAction/player_mouse_action.tscn" id="9_4eyub"]
-[ext_resource type="Script" path="res://Dialog/ConfirmDialog.gd" id="9_w5px2"]
-[ext_resource type="Texture2D" uid="uid://c5lq1q4j53o5w" path="res://Dialog/buttoninfoOK.png" id="11_u6uvj"]
-[ext_resource type="Texture2D" uid="uid://2qdgjgc5uvi3" path="res://Dialog/buttoninfoNO.png" id="12_cgxjl"]
-[ext_resource type="Texture2D" uid="uid://pvm21erntbth" path="res://icon.svg" id="14_c0as5"]
-[ext_resource type="Script" path="res://Container/InfoPanelController.gd" id="15_b1fgb"]
+[ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="9_fg4y3"]
+[ext_resource type="Texture2D" uid="uid://cpach7qgaggl2" path="res://Containers/Sprites/overboxinventaire.png" id="10_a5fgx"]
+[ext_resource type="Texture2D" uid="uid://nygirwtvql0b" path="res://Containers/Sprites/background_Inventory.png" id="11_3wma5"]
+[ext_resource type="Script" path="res://Dialogs/ConfirmDialog/ConfirmDialog.gd" id="13_inwci"]
+[ext_resource type="Texture2D" uid="uid://dmjkbhu7phsmj" path="res://icon.svg" id="14_c0as5"]
+[ext_resource type="Texture2D" uid="uid://cik5cvgxiu6s5" path="res://Dialogs/Sprites/infobox.png" id="14_v6gi6"]
+[ext_resource type="Texture2D" uid="uid://yap3pllcaabo" path="res://Dialogs/Sprites/buttoninfoOK.png" id="15_ox7wf"]
+[ext_resource type="Texture2D" uid="uid://boao6xqeh3scc" path="res://Dialogs/Sprites/buttoninfoNO.png" id="16_wbqma"]
+[ext_resource type="Script" path="res://Containers/InfoPanelController.gd" id="17_eto80"]
+[ext_resource type="Script" path="res://UI/ShortcutBar.gd" id="19_6dhmn"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
-[ext_resource type="Texture2D" uid="uid://bfinq7yop12ha" path="res://Container/shortcutbar.png" id="20_celon"]
-[ext_resource type="Script" path="res://ShortcutBar.gd" id="20_qqguq"]
-[ext_resource type="Texture2D" uid="uid://chkh5cot03sov" path="res://dirt.png" id="20_w8qi4"]
-[ext_resource type="Material" uid="uid://c2xui8wsgb5ig" path="res://PixelMaterial.tres" id="21_2hbfu"]
+[ext_resource type="Texture2D" uid="uid://c8ijywe1bb3si" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
+[ext_resource type="PackedScene" uid="uid://cb7i0apyk7kif" path="res://Stand/TransactionView/StandSetup/StandSetup.tscn" id="21_samwx"]
+[ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
+[ext_resource type="PackedScene" uid="uid://b2wjdlipuc437" path="res://Stand/TransactionView/StandTransaction/StandTransaction.tscn" id="22_dogdb"]
+[ext_resource type="Material" uid="uid://c2xui8wsgb5ig" path="res://UI/Shaders/PixelMaterial.tres" id="23_c60d1"]
+[ext_resource type="Script" path="res://UI/Notifications/NotificationController.gd" id="23_l4jmb"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -283,6 +285,9 @@ _data = {
 "walk": SubResource("Animation_si24n")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
+radius = 2.56796
+
 [sub_resource type="Gradient" id="Gradient_m7jcj"]
 offsets = PackedFloat32Array(0, 0.0187668)
 colors = PackedColorArray(0, 0, 0, 1, 0.0196078, 0.0196078, 0.0196078, 0.317647)
@@ -299,21 +304,28 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20ljf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3l8u"]
-albedo_texture = ExtResource("20_w8qi4")
-texture_filter = 0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_thy0m"]
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_8xbuk"]
+material = ExtResource("23_c60d1")
 
 [node name="Root" type="Node3D"]
 
+[node name="FakeSeller" type="Node3D" parent="."]
+
+[node name="FakeInventory" type="Node3D" parent="FakeSeller"]
+script = ExtResource("2_niwxe")
+_start_items_json_path = null
+container_id = "fake_inventory"
+rows = 10
+columns = 10
+_is_main_container_for_owner = true
+
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98, 0, 0.43)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98, 2.08165e-12, 0.43)
+up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_diug7")
 speed_walk = 30.0
 camera = NodePath("../Camera3D")
+_owner_id = "player"
 
 [node name="AnimationTree" type="AnimationTree" parent="Player"]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
@@ -325,14 +337,21 @@ parameters/conditions/isRunning = false
 parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="Player"]
-script = ExtResource("4_nvdet")
-_start_items_json_path = "PlayerStartItems.json"
-_items_container_view_path = NodePath("../../CanvasLayer/Inventory")
+script = ExtResource("2_niwxe")
+_container_owner = "player"
+container_id = "player_inventory"
+rows = 4
+columns = 5
+_is_main_container_for_owner = true
 
 [node name="ShortcutBar" type="Node3D" parent="Player"]
-script = ExtResource("4_nvdet")
+script = ExtResource("2_niwxe")
 _start_items_json_path = "PlayerStartItems.json"
-_items_container_view_path = NodePath("../../CanvasLayer/ShortcutBar")
+_container_owner = "player"
+container_id = "shortcut_bar"
+rows = 1
+columns = 6
+_is_main_container_for_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -344,11 +363,11 @@ libraries = {
 }
 
 [node name="ClothAnimations" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.273, 0)
 script = ExtResource("3_qp1w2")
 
 [node name="WeaponsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.561, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22505, 0.00999993)
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -359,7 +378,7 @@ sprite_frames = ExtResource("5_bdeek")
 animation = &"hit"
 
 [node name="HairsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.08165e-12)
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -368,7 +387,6 @@ alpha_cut = 2
 texture_filter = 0
 
 [node name="ShirtsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -377,7 +395,6 @@ alpha_cut = 2
 texture_filter = 0
 
 [node name="PantsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -386,7 +403,6 @@ alpha_cut = 2
 texture_filter = 0
 
 [node name="SkinsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.273018, 0)
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
@@ -396,12 +412,17 @@ texture_filter = 0
 sprite_frames = ExtResource("4_cvpnb")
 animation = &"hit"
 
+[node name="ObjectDetector" type="Area3D" parent="Player"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/ObjectDetector"]
+shape = SubResource("SphereShape3D_deg7w")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-script = ExtResource("5_jbwpl")
+script = ExtResource("6_wlfhe")
 mouse_targets_node_to_exclude = Array[NodePath]([NodePath("PlayerMouseAction")])
 
-[node name="Inventory" type="Panel" parent="CanvasLayer"]
+[node name="Inventory" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("_items_container")]
 visible = false
 texture_filter = 1
 anchors_preset = 8
@@ -417,14 +438,13 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("3_bkpua")
-script = ExtResource("1_rqpfe")
+script = ExtResource("7_bhmso")
 container_id = "player_inventory"
-_item_button_scene = ExtResource("2_1jyiy")
-_item_slot_button_scene = ExtResource("3_fvd0d")
-rows = 4
+_item_button_scene = ExtResource("8_q3116")
+_item_slot_button_scene = ExtResource("9_fg4y3")
 gap_hover_selector = 10
 offset_hover_selector = Vector2(1, 0)
+_items_container = NodePath("MarginContainer/ItemsContainerView")
 metadata/_edit_group_ = true
 
 [node name="HoverTexture" type="TextureRect" parent="CanvasLayer/Inventory"]
@@ -433,7 +453,8 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("7_2iuyc")
+mouse_filter = 2
+texture = ExtResource("10_a5fgx")
 stretch_mode = 3
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Inventory"]
@@ -444,7 +465,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_xgam2")
+texture = ExtResource("11_3wma5")
 patch_margin_left = 12
 patch_margin_top = 12
 patch_margin_right = 12
@@ -457,6 +478,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -465,9 +487,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ItemsContainerView" type="GridContainer" parent="CanvasLayer/Inventory/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 5
 
 [node name="PlayerMouseAction" parent="CanvasLayer" instance=ExtResource("9_4eyub")]
 texture_filter = 1
@@ -488,8 +510,7 @@ offset_bottom = -314.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("3_bkpua")
-script = ExtResource("9_w5px2")
+script = ExtResource("13_inwci")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmDialog"]
@@ -516,7 +537,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-texture = ExtResource("8_o04mf")
+texture = ExtResource("14_v6gi6")
 patch_margin_left = 7
 patch_margin_top = 7
 patch_margin_right = 7
@@ -551,7 +572,7 @@ offset_right = 84.5
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("11_u6uvj")
+texture_normal = ExtResource("15_ox7wf")
 stretch_mode = 5
 
 [node name="CancelButton" type="TextureButton" parent="CanvasLayer/ConfirmDialog"]
@@ -568,7 +589,7 @@ offset_right = -27.5
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("12_cgxjl")
+texture_normal = ExtResource("16_wbqma")
 stretch_mode = 5
 
 [node name="InfoPanel" type="Panel" parent="CanvasLayer"]
@@ -586,9 +607,8 @@ offset_right = -122.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_bkpua")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ggd2w")
-script = ExtResource("15_b1fgb")
+script = ExtResource("17_eto80")
 
 [node name="NameLabel" type="RichTextLabel" parent="CanvasLayer/InfoPanel"]
 layout_mode = 1
@@ -637,7 +657,7 @@ texture = ExtResource("14_c0as5")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ShortcutBar" type="Panel" parent="CanvasLayer"]
+[node name="ShortcutBar" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("_items_container")]
 texture_filter = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -650,13 +670,13 @@ offset_right = 139.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_20ljf")
-script = ExtResource("20_qqguq")
+script = ExtResource("19_6dhmn")
 container_id = "shortcut_bar"
 _show_panel_info = false
-_item_button_scene = ExtResource("2_1jyiy")
-_item_slot_button_scene = ExtResource("3_fvd0d")
-rows = 1
+_item_button_scene = ExtResource("8_q3116")
+_item_slot_button_scene = ExtResource("9_fg4y3")
 gap_hover_selector = 2
+_items_container = NodePath("MarginContainer/ItemsContainerView")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
 use_parent_material = true
@@ -666,7 +686,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("20_celon")
+texture = ExtResource("20_s8l6p")
 
 [node name="HoverTexture" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
 z_index = 2
@@ -677,7 +697,7 @@ offset_left = 36.0
 offset_top = 23.0
 offset_right = 68.0
 offset_bottom = 55.0
-texture = ExtResource("7_2iuyc")
+texture = ExtResource("10_a5fgx")
 stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShortcutBar"]
@@ -698,17 +718,39 @@ theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 10
 columns = 6
 
+[node name="StandSetup" parent="CanvasLayer" instance=ExtResource("21_samwx")]
+visible = false
+
+[node name="StandTransaction" parent="CanvasLayer" instance=ExtResource("22_dogdb")]
+visible = false
+
+[node name="Notifications" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("23_l4jmb")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Notifications"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -182.0
+offset_bottom = 561.0
+grow_horizontal = 0
+
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.731354, 0.681998, 0, -0.681998, 0.731354, 4.5, 12, 10)
 current = true
 script = ExtResource("19_7llnf")
 player = NodePath("../Player")
 camera_speed = 5.0
-
-[node name="Plane" type="MeshInstance3D" parent="."]
-transform = Transform3D(24.8713, 0, 0, 0, 1, 0, 0, 0, 23.8066, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_x3l8u")
-mesh = SubResource("PlaneMesh_thy0m")
+terrain_collision_mask = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.861824, 0.105593, -0.496094, 0.0701163, 0.943896, 0.322714, 0.502338, -0.312907, 0.806068, 0, 1.01327, 1.20783)
@@ -719,7 +761,12 @@ directional_shadow_pancake_size = 0.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -2.49696, 0.99496, 0)
-material_override = ExtResource("21_2hbfu")
 mesh = SubResource("PlaneMesh_8xbuk")
 
+[node name="GridMap" parent="." instance=ExtResource("21_xty35")]
+
+[connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
+[connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]
 [connection signal="button_up" from="CanvasLayer/ConfirmDialog/CancelButton" to="CanvasLayer/ConfirmDialog" method="_on_cancel_button_button_up"]
+
+[editable path="GridMap"]

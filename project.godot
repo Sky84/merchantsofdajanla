@@ -19,8 +19,16 @@ config/icon="res://icon.svg"
 
 JsonResourceLoader="*res://Core/JSONResourceLoader.gd"
 GameItems="*res://Core/GameItems.gd"
+CameraEvents="*res://EventBus/CameraEvents.gd"
+GridMapEvents="*res://EventBus/GridMapEvents.gd"
+InventoryUtils="*res://Core/InventoryUtils.gd"
 InventoryEvents="*res://EventBus/InventoryEvents.gd"
 HudEvents="*res://EventBus/HUDEvents.gd"
+NodeUtils="*res://Core/NodeUtils.gd"
+PlayerEvents="*res://EventBus/PlayerEvents.gd"
+ContainersController="*res://Core/ContainersController.gd"
+MarketController="*res://Market/MarketController.gd"
+NotificationEvents="*res://EventBus/NotificationEvents.gd"
 
 [display]
 
@@ -74,7 +82,12 @@ mouse_scroll_down={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":5,"pressed":false,"double_click":false,"script":null)
 ]
 }
+use={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":69,"physical_keycode":0,"key_label":0,"unicode":101,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Traductions.en.translation", "res://Traductions.fr.translation")
+locale/translations=PackedStringArray("res://Translations/Traductions.en.translation", "res://Translations/Traductions.fr.translation")

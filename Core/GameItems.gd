@@ -16,7 +16,7 @@ func get_start_items(start_items_path: String):
 		start_items[key] = _merge_dictionary(get_item(key), start_items[key]);
 	return start_items;
 
-func get_item(item_id:String):
+func get_item(item_id: String):
 	var item = _items.get(item_id);
 	if item.has('prototype'):
 		item = _merge_dictionary(get_item(item.prototype), item);

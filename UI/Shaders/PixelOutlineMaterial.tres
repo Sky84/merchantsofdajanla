@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://UI/Shaders/PixelOutline.gdshader" id="1_6w8wm"]
+
+[resource]
+shader = ExtResource("1_6w8wm")
+shader_parameter/intensity = 74
+shader_parameter/precision = 0.02
+shader_parameter/flipColors = false
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_color_2 = null
+shader_parameter/use_outline_uv = false
+shader_parameter/useTexture = false

@@ -1,0 +1,2 @@
+extends ItemButton
+class_name StandItemButton
