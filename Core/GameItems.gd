@@ -23,6 +23,9 @@ func get_item(item_id: String):
 	item.id = item_id;
 	return item;
 
+func is_tool_or_weapon(item: Dictionary) -> bool:
+	return item.has('type') and item.type == 'Tool';
+
 func _merge_dictionary(target: Dictionary, source: Dictionary):
 	var __target = target.duplicate(true);
 	for key in source:                           # go via all keys in source

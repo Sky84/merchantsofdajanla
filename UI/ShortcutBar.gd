@@ -31,3 +31,9 @@ func _input(event):
 			check_mouse_outside();
 			_handle_mouse_click(event);
 	_update_selector_position();
+	_update_item_in_hand();
+	
+func _update_item_in_hand():
+	var slots = ContainersController.get_container_data(container_id);
+	var item_selected = slots[index_position_selector][0];
+	PlayerEvents._on_item_in_hand_changed.emit(item_selected);

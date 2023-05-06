@@ -732,6 +732,7 @@ anchor_bottom = 1.0
 offset_top = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("23_l4jmb")
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/Notifications"]

@@ -18,9 +18,12 @@ var _is_inventory_visible = false;
 var _nearest_interactives = {};
 var _nearest_interactive: MapItem = null;
 
+var _item_in_hand: Dictionary = {};
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_tree.active = true;
+	PlayerEvents._on_item_in_hand_changed.connect(_on_item_in_hand_changed);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -62,7 +65,9 @@ func get_state() -> Dictionary:
 		"is_idle": velocity == Vector3.ZERO,
 		"is_walking": velocity != Vector3.ZERO and velocity.length() <= run_animation_gap,
 		"is_running": velocity != Vector3.ZERO and velocity.length() > run_animation_gap,
-		"is_attacking": Input.get_action_strength("attack") and ui_controller.get_current_mouse_target() == null
+		"is_attacking": Input.get_action_strength("attack") \
+			and ui_controller.get_current_mouse_target() == null \
+			and GameItems.is_tool_or_weapon(_item_in_hand)
 	};
 
 #set by animation in AnimationPlayer
@@ -89,6 +94,13 @@ func _update_nearest_interactive() -> void:
 			nearest_interactive_changed = true;
 	if nearest_interactive_changed:
 		PlayerEvents._on_nearest_interactive_changed.emit(_nearest_interactive);
+
+func _on_item_in_hand_changed(item: Dictionary) -> void:
+	if _item_in_hand.has('id') and item.has('id') and _item_in_hand.id == item.id:
+		return;
+	elif _item_in_hand == item: # We know item is obviously null
+		return;
+	_item_in_hand = item;
 
 func _on_object_detector_body_entered(body: Node3D):
 	if body is MapItem and body.is_interactive():
