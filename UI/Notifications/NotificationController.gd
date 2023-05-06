@@ -7,7 +7,7 @@ var _notification_scene: PackedScene = preload("res://UI/Notifications/Notificat
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	NotificationEvents.notify.connect(_on_notify);
-	_on_notify('success', 'test');
+	_on_notify('warn', 'test');
 
 func _on_notify(type: String, message: String) -> void:
 	var notification_instance = _notification_scene.instantiate();

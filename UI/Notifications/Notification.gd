@@ -6,17 +6,17 @@ extends Control
 @onready var _animation_player = $AnimationPlayer
 @onready var _timer = $Timer
 
-const background_suffix = 'TextureRect';
+const background_suffix = 'NinePatchRect';
 
 signal on_hide_finished();
 
 func _ready():
 	for type in NotificationEvents.NotificationType.keys():
-		var background: TextureRect = get_node(type.to_pascal_case()+background_suffix);
+		var background: NinePatchRect = get_node(type.to_pascal_case()+background_suffix);
 		background.hide();
 
 func init_notification(type: String, message: String) -> void:
-	var background: TextureRect = get_node(type.to_pascal_case()+background_suffix);
+	var background: NinePatchRect = get_node(type.to_pascal_case()+background_suffix);
 	background.show();
 	_label.text = message;
 	_animation_player.play("show");
