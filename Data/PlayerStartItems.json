@@ -2,6 +2,9 @@
 	"money": {
 		"amount": 500
 	},
+	"cactus": {
+		"amount": 2
+	},
 	"bread": {
 		"amount": 10
 	},

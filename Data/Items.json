@@ -24,8 +24,7 @@
 		"name": "ITEMS.BREAD",
 		"type": "Consomable",
 		"effects": {
-			"health": 1,
-			"hunger": 10
+			"health": 1
 		},
 		"description": "ITEMS.BREAD.DESCRIPTION",
 		"icon_path": "res://Items/bread.png",
@@ -35,7 +34,6 @@
 		"name": "ITEMS.APPLE",
 		"type": "Consomable",
 		"effects": {
-			"health": 1,
 			"hunger": 10
 		},
 		"description": "ITEMS.APPLE.DESCRIPTION",
@@ -46,8 +44,8 @@
 		"name": "ITEMS.CACTUS",
 		"type": "Consomable",
 		"effects": {
-			"health": 1,
-			"hunger": 10
+			"health": 5,
+			"hunger": 5
 		},
 		"description": "ITEMS.CACTUS.DESCRIPTION",
 		"icon_path": "res://Items/cactus.png",
