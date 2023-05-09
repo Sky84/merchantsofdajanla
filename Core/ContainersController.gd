@@ -69,7 +69,7 @@ func find_item_in_containers(container_ids: Array[String], item_id: String) -> D
 						return {'container_id': container_id, 'item': slot};
 			return {};
 			);
-	items.sort_custom(func(a, b): a.is_empty());
+	items.sort_custom(func(a, b): return !a.is_empty() and b.is_empty());
 	return items[0];
 
 func add_item(container_ids: Array[String], item_id: String, amount_to_add: int):
