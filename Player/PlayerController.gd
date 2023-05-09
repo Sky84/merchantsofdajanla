@@ -1,10 +1,9 @@
-extends CharacterBody3D
+extends Alive
 
 @export var speed_walk: float = 1.0;
 @export var speed_run_factor: float = 2.0;
 @export var run_animation_gap = 3;
 @export var camera: Camera3D;
-@export var _owner_id: String;
 
 @onready var animation_tree = $AnimationTree;
 @onready var cloth_animations = $ClothAnimations;
@@ -41,6 +40,8 @@ func _input(event):
 			_is_inventory_visible = false;
 			if _nearest_interactive != null:
 				_nearest_interactive.interact(_owner_id);
+	if Input.is_action_just_released("interract_with_item_in_hand") and GameItems.is_consomable(_item_in_hand):
+		consume(_item_in_hand);
 
 func _handle_movement():
 	var direction_x = Input.get_action_strength("right") - Input.get_action_strength("left");

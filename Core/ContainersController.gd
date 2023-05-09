@@ -59,7 +59,7 @@ func get_main_container_with_empty_slot(container_ids: Array[String]) -> String:
 	return '';
 
 func find_item_in_containers(container_ids: Array[String], item_id: String) -> Dictionary:
-	var item = container_ids.duplicate().map(
+	var items = container_ids.duplicate().map(
 		func(container_id):
 			var slots = get_container_data(container_id);
 			for x in slots:
@@ -68,8 +68,9 @@ func find_item_in_containers(container_ids: Array[String], item_id: String) -> D
 					if 'id' in slot and slot.id == item_id:
 						return {'container_id': container_id, 'item': slot};
 			return {};
-			)[0];
-	return item;
+			);
+	items.sort_custom(func(a, b): a.is_empty());
+	return items[0];
 
 func add_item(container_ids: Array[String], item_id: String, amount_to_add: int):
 	var item_data = find_item_in_containers(container_ids, item_id);
