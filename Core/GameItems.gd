@@ -23,6 +23,14 @@ func get_item(item_id: String):
 	item.id = item_id;
 	return item;
 
+func get_items_by_subtype(item_subtype: String) -> Array[Dictionary]:
+	var items: Array[Dictionary] = [];
+	for item_id in _items:
+		var complete_item = get_item(item_id);
+		if complete_item.subtype == item_subtype:
+			items.append(complete_item);
+	return items;
+
 func is_tool_or_weapon(item: Dictionary) -> bool:
 	return item.has('type') and item.type == 'Tool';
 
