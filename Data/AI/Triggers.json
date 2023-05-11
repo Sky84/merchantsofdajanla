@@ -1,0 +1,18 @@
+{
+	"hungry": {
+		"conditions": [
+			{
+				"type": "Hunger",
+				"value": 0
+			}
+		],
+		"action": {
+			"id": "Eat",
+			"target": "Food",
+			"fallback": {
+				"id": "Buy",
+				"target": "Food"
+			}
+		}
+	}
+}

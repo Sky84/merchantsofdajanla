@@ -38,15 +38,16 @@ func _process(_delta) -> void:
 	move_and_slide();
 	_update_nearest_interactive();
 
-func consume(_item: Dictionary) -> void:
+func consume(_item: Dictionary, notify: bool = false) -> void:
 	var success = false;
 	for effect_key in _item.effects:
 		if effect_key in _alive_status:
 			var _alive_stat = _alive_status[effect_key];
 			_alive_stat.value = clampi(_item.effects[effect_key], 0, _alive_stat.max);
 			success = true;
-			NotificationEvents.notify\
-				.emit(NotificationEvents.NotificationType.SUCCESS, 'CONSOMABLE.SUCCESS_CONSUME_'+effect_key.to_upper());
+			if notify:
+				NotificationEvents.notify\
+					.emit(NotificationEvents.NotificationType.SUCCESS, 'CONSOMABLE.SUCCESS_CONSUME_'+effect_key.to_upper());
 	if success:
 		var container_ids = ContainersController.get_container_ids_by_owner_id(_owner_id);
 		ContainersController.remove_item(container_ids, _item.id, 1);

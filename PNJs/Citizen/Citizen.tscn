@@ -1,10 +1,13 @@
-[gd_scene load_steps=33 format=3 uid="uid://cqy6hub708thm"]
+[gd_scene load_steps=36 format=3 uid="uid://cqy6hub708thm"]
 
 [ext_resource type="Script" path="res://PNJs/Citizen/CitizenController.gd" id="1_03gek"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_qrufn"]
 [ext_resource type="Script" path="res://Player/ClothAnimationsController.gd" id="3_vvad3"]
 [ext_resource type="SpriteFrames" uid="uid://eyq6aiiknqur" path="res://Player/SpriteFrames/Weapons_0.tres" id="4_rv3wq"]
+[ext_resource type="SpriteFrames" uid="uid://f0jcsvd1dvbj" path="res://Player/SpriteFrames/Hairs_0.tres" id="5_6uunn"]
 [ext_resource type="SpriteFrames" uid="uid://b116yvdld6l6t" path="res://Player/SpriteFrames/Skins_0.tres" id="5_csmat"]
+[ext_resource type="SpriteFrames" uid="uid://dt3tgxtd8u511" path="res://Player/SpriteFrames/Shirts_0.tres" id="6_qp7mt"]
+[ext_resource type="SpriteFrames" uid="uid://b4o5oppunvwye" path="res://Player/SpriteFrames/Pants_1.tres" id="7_ovxtf"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -283,6 +286,7 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("2_qrufn")
+_start_items_json_path = "PlayerStartItems.json"
 _container_owner = "citizen"
 container_id = "citizen_inventory"
 rows = 4
@@ -320,7 +324,8 @@ shaded = true
 double_sided = false
 alpha_cut = 2
 texture_filter = 0
-animation = &""
+sprite_frames = ExtResource("5_6uunn")
+animation = &"hit"
 
 [node name="ShirtsAnimatedSprite3D" type="AnimatedSprite3D" parent="ClothAnimations"]
 cast_shadow = 2
@@ -329,6 +334,8 @@ shaded = true
 double_sided = false
 alpha_cut = 2
 texture_filter = 0
+sprite_frames = ExtResource("6_qp7mt")
+animation = &"hit"
 
 [node name="PantsAnimatedSprite3D" type="AnimatedSprite3D" parent="ClothAnimations"]
 cast_shadow = 2
@@ -337,6 +344,8 @@ shaded = true
 double_sided = false
 alpha_cut = 2
 texture_filter = 0
+sprite_frames = ExtResource("7_ovxtf")
+animation = &"hit"
 
 [node name="SkinsAnimatedSprite3D" type="AnimatedSprite3D" parent="ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.001)
@@ -347,7 +356,8 @@ double_sided = false
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("5_csmat")
-animation = &"hit"
+animation = &"idle"
+frame = 2
 
 [node name="ObjectDetector" type="Area3D" parent="."]
 

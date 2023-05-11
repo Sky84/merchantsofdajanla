@@ -27,7 +27,7 @@ func get_items_by_subtype(item_subtype: String) -> Array[Dictionary]:
 	var items: Array[Dictionary] = [];
 	for item_id in _items:
 		var complete_item = get_item(item_id);
-		if complete_item.subtype == item_subtype:
+		if 'subtype' in complete_item and complete_item.subtype == item_subtype:
 			items.append(complete_item);
 	return items;
 
