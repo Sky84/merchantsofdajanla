@@ -367,7 +367,6 @@ frame = 2
 shape = SubResource("SphereShape3D_deg7w")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 2.0
 target_desired_distance = 2.0
 avoidance_enabled = true
 

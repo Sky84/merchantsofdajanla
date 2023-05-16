@@ -9,6 +9,7 @@ var current_item: Dictionary = {
 
 func register_container(container_id: String, rows: int, columns: int, items: Dictionary, container_owner: String = "", _is_main_container_for_owner: bool = false) -> void:
 	_containers[container_id] = {
+		"container_id": container_id,
 		"container_owner": container_owner,
 		"is_main_container": _is_main_container_for_owner,
 		"slots": _init_slots(rows, columns, items),
@@ -52,13 +53,13 @@ func get_container_ids_by_owner_id(owner_id: String) -> Array[String]:
 			container_ids.append(container_id);
 	return container_ids;
 
-func get_owner_id_by_subtype(subtype: String) -> String:
+func get_container_config_by_subtype(subtype: String) -> Dictionary:
 	var containers_ids: Array = _containers.keys();
 	var item = get_item_by_subtype(containers_ids, subtype);
 	if !item.is_empty():
 		var container_config = get_container_config(item.container_id);
-		return container_config.container_owner;
-	return '';
+		return container_config;
+	return {};
 
 func get_item_by_subtype(container_ids: Array, subtype: String) -> Dictionary:
 	var items_target: Array[Dictionary] = GameItems.get_items_by_subtype(subtype);

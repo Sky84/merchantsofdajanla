@@ -16,4 +16,4 @@ func execute(params: Dictionary) -> void:
 		consume_callback.call(item_to_eat.item);
 	else:
 		fallback_callback.call(fallback);
-	on_action_finished.emit(id);
+	on_action_finished.emit(id, null);

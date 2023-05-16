@@ -5,7 +5,7 @@ var id: String;
 var target: String;
 var fallback: Action;
 
-signal on_action_finished(id: String);
+signal on_action_finished(id: String, next_action: Action);
 
 func _init(_id: String, _target: String, _fallback: Action = null) -> void:
 	id = _id;

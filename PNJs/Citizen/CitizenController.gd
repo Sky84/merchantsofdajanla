@@ -13,13 +13,13 @@ func _ready() -> void:
 func _handle_movement():
 	# Obtenir la prochaine position sur le chemin de navigation
 	var next_position = navigation_agent.get_next_path_position();
-	var direction = next_position - global_transform.origin;
+	var direction = next_position - global_position;
+	var distance_to_target = navigation_agent.distance_to_target();
 	
 	var speed_run = max(1, is_running_int * speed_run_factor);
 	var speed = (speed_walk / _speed_walk_factor) * speed_run;
-	if _is_blocked:
+	if _is_blocked or distance_to_target <= navigation_agent.target_desired_distance:
 		speed = 0;
-	print(velocity)
 	velocity = Vector3(direction.x, 0, direction.z).normalized() * speed;
 
 func _process_actions_queue() -> void:
@@ -45,13 +45,16 @@ func _process_action(action_id: String) -> void:
 		};
 	elif action is BuyAction:
 		params = {
+			'owner_id': _owner_id,
 			'navigation_agent': navigation_agent
 		};
 	if !action.on_action_finished.is_connected(_on_action_finished):
 		action.on_action_finished.connect(_on_action_finished);
 	action.execute(params);
 
-func _on_action_finished(action_id: String):
+func _on_action_finished(action_id: String, next_action: Action):
+	if next_action:
+		actions_queue.push_back(next_action.id);
 	_process_actions_queue();
 
 func _add_fallback_to_action(action: Action) -> void:
