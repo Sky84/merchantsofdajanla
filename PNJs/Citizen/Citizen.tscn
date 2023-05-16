@@ -270,10 +270,13 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
 radius = 2.56796
 
-[node name="Citizen" type="CharacterBody3D"]
+[node name="Citizen" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent")]
 up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_03gek")
+navigation_agent = NodePath("NavigationAgent3D")
 _owner_id = "citizen"
+speed_walk = 30.0
+run_animation_gap = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
@@ -286,7 +289,6 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("2_qrufn")
-_start_items_json_path = "PlayerStartItems.json"
 _container_owner = "citizen"
 container_id = "citizen_inventory"
 rows = 4
@@ -363,6 +365,11 @@ frame = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectDetector"]
 shape = SubResource("SphereShape3D_deg7w")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 2.0
+avoidance_enabled = true
 
 [connection signal="body_entered" from="ObjectDetector" to="." method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="ObjectDetector" to="." method="_on_object_detector_body_exited"]

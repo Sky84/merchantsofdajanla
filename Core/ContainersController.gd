@@ -52,13 +52,28 @@ func get_container_ids_by_owner_id(owner_id: String) -> Array[String]:
 			container_ids.append(container_id);
 	return container_ids;
 
+func get_owner_id_by_subtype(subtype: String) -> String:
+	var containers_ids: Array = _containers.keys();
+	var item = get_item_by_subtype(containers_ids, subtype);
+	if !item.is_empty():
+		var container_config = get_container_config(item.container_id);
+		return container_config.container_owner;
+	return '';
+
+func get_item_by_subtype(container_ids: Array, subtype: String) -> Dictionary:
+	var items_target: Array[Dictionary] = GameItems.get_items_by_subtype(subtype);
+	return items_target.map(
+		func(item: Dictionary):
+			return find_item_in_containers(container_ids, item.id)
+	)[0];
+
 func get_main_container_with_empty_slot(container_ids: Array[String]) -> String:
 	for container_id in container_ids:
 		if _containers[container_id].is_main_container:
 			return container_id;
 	return '';
 
-func find_item_in_containers(container_ids: Array[String], item_id: String) -> Dictionary:
+func find_item_in_containers(container_ids: Array, item_id: String) -> Dictionary:
 	var items = container_ids.duplicate().map(
 		func(container_id):
 			var slots = get_container_data(container_id);

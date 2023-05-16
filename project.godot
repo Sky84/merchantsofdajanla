@@ -23,6 +23,7 @@ CameraEvents="*res://EventBus/CameraEvents.gd"
 GridMapEvents="*res://EventBus/GridMapEvents.gd"
 InventoryUtils="*res://Core/InventoryUtils.gd"
 InventoryEvents="*res://EventBus/InventoryEvents.gd"
+AliveEvents="*res://EventBus/AliveEvents.gd"
 HudEvents="*res://EventBus/HUDEvents.gd"
 NodeUtils="*res://Core/NodeUtils.gd"
 PlayerEvents="*res://EventBus/PlayerEvents.gd"
@@ -30,6 +31,7 @@ ContainersController="*res://Core/ContainersController.gd"
 MarketController="*res://Market/MarketController.gd"
 NotificationEvents="*res://EventBus/NotificationEvents.gd"
 Actions="*res://PNJs/Actions/Actions.gd"
+AlivesController="*res://Core/AlivesController.gd"
 
 [display]
 

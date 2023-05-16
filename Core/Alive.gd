@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Alive
 
+const GROUP_NAME = 'alive';
+
 @export var MAX_HEALTH: int = 100;
 @export var MAX_HUNGER: int = 100;
 
@@ -29,7 +31,9 @@ var _alive_status: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group(GROUP_NAME);
 	animation_tree.active = true;
+	AliveEvents.on_alive_ready.emit(self);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta) -> void:
