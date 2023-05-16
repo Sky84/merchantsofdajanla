@@ -48,6 +48,11 @@ func _process_action(action_id: String) -> void:
 			'owner_id': _owner_id,
 			'navigation_agent': navigation_agent
 		};
+	elif action is WaitAction:
+		params = {
+			'start_position': global_position,
+			'navigation_agent': navigation_agent
+		};
 	if !action.on_action_finished.is_connected(_on_action_finished):
 		action.on_action_finished.connect(_on_action_finished);
 	action.execute(params);

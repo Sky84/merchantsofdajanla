@@ -346,7 +346,6 @@ _is_main_container_for_owner = true
 
 [node name="ShortcutBar" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
-_start_items_json_path = "PlayerStartItems.json"
 _container_owner = "player"
 container_id = "shortcut_bar"
 rows = 1

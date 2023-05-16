@@ -2,7 +2,8 @@ extends Node
 
 # Action Ids
 const EAT: String = 'Eat';
-const MOVE: String = 'Move';
+const BUY: String = 'Buy';
+const WAIT: String = 'Wait';
 
 var _triggers := {};
 var _actions := {};
@@ -18,7 +19,8 @@ func _ready():
 	for id in _triggers:
 		var action: Action = create_action(_triggers[id].action);
 		_actions[action.id] = action;
-		_actions[action.fallback.id] = action.fallback;
+		if action.fallback != null:
+			_actions[action.fallback.id] = action.fallback;
 
 func create_action(action: Dictionary) -> Action:
 	var instance_action_class: GDScript = load(_actions_path+action.id+_actions_path_suffix) as GDScript;

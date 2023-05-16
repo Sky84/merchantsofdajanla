@@ -14,5 +14,17 @@
 				"target": "Food"
 			}
 		}
+	},
+	"wait": {
+		"conditions": [
+			{
+				"type": "Hunger",
+				"value": 100
+			}
+		],
+		"action": {
+			"id": "Wait",
+			"target": "Food"
+		}
 	}
 }
