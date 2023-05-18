@@ -7,8 +7,7 @@ func execute(params: Dictionary) -> void:
 	navigation_agent = params.navigation_agent;
 	
 	_update_target_position(params.start_position);
-	if navigation_agent.is_target_reachable():
-		await navigation_agent.target_reached;
+	await navigation_agent.target_reached;
 	
 	var next_action: Action = null;
 	if target == 'Food':
@@ -16,6 +15,6 @@ func execute(params: Dictionary) -> void:
 	on_action_finished.emit(id, next_action);
 
 func _update_target_position(start_position: Vector3):
-	var target_position: Vector3 = start_position + Vector3(randf_range(1, 2), 0, randf_range(1, 2));
+	var target_position: Vector3 = NodeUtils.get_random_reachable_point(navigation_mesh, navigation_agent);
 	navigation_agent.target_position = target_position;
 

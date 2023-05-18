@@ -12,6 +12,7 @@ var _triggers_json_path = 'AI/Triggers.json';
 var _actions_path = 'res://PNJs/Actions/';
 var _actions_path_suffix = 'Action.gd';
 
+@onready var navigation_region_3d: NavigationRegion3D = get_node('/root/Root/NavigationRegion3D');
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,12 +25,13 @@ func _ready():
 
 func create_action(action: Dictionary) -> Action:
 	var instance_action_class: GDScript = load(_actions_path+action.id+_actions_path_suffix) as GDScript;
+	var nav_mesh_navigation = navigation_region_3d.navigation_mesh; 
 	if "fallback" in action:
 		var instance_action_fallback_class = load(_actions_path+action.fallback.id+_actions_path_suffix);
-		var fallback_action = instance_action_fallback_class.new(action.fallback.id, action.fallback.target);
-		return instance_action_class.new(action.id, action.target, fallback_action);
+		var fallback_action = instance_action_fallback_class.new(action.fallback.id, action.fallback.target, nav_mesh_navigation);
+		return instance_action_class.new(action.id, action.target, nav_mesh_navigation, fallback_action);
 	else:
-		return instance_action_class.new(action.id, action.target);
+		return instance_action_class.new(action.id, action.target, nav_mesh_navigation);
 
 # TODO: Ne passer que l'id du Alive et le get dans la fonction pour ne pas avoir acces qu'a _alive_status
 func get_action_id_by_triggers(_alive_status: Dictionary) -> String:
