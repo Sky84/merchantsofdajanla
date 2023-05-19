@@ -1,6 +1,7 @@
 # This class intends to deal with map items instances
 # It can create / delete objects on the map
 extends GridMap
+class_name GridMapController
 
 @onready var _map_items = $MapItems;
 var _map_objects := {};
@@ -24,13 +25,13 @@ func _place_item_at(item_data: Dictionary, _global_position: Vector3, _owner: St
 	# Send event to tell it's not possible to put an item at this given position
 
 func _init_posable(scene: PhysicsBody3D, _global_position: Vector3, _owner: String) -> void:
-	var pos = _global_to_local(_global_position);
+	var pos = global_to_local(_global_position);
 	_map_objects[pos] = scene;
 	scene._init_posable(_owner);
 
 func has_item_at(position: Vector3) -> bool:
-	return _map_objects.has(_global_to_local(position));
+	return _map_objects.has(global_to_local(position));
 
 # Convert a global position (from map point of view) to the grid map position (index of the tile)
-func _global_to_local(global_position: Vector3) -> Vector3i:
+func global_to_local(global_position: Vector3) -> Vector3i:
 	return (global_position / cell_size).floor();

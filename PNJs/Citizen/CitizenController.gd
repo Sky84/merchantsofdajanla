@@ -2,6 +2,8 @@ extends Alive
 
 @export var navigation_agent: NavigationAgent3D;
 
+@onready var grid_map: GridMapController = $"../NavigationRegion3D/GridMap";
+
 var actions_queue = [];
 var is_running_int = 0;
 
@@ -51,7 +53,8 @@ func _process_action(action_id: String) -> void:
 	elif action is WaitAction:
 		params = {
 			'start_position': global_position,
-			'navigation_agent': navigation_agent
+			'navigation_agent': navigation_agent,
+			'gridmap_controller': grid_map
 		};
 	if !action.on_action_finished.is_connected(_on_action_finished):
 		action.on_action_finished.connect(_on_action_finished);

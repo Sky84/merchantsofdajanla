@@ -423,7 +423,7 @@ animation = &"hit"
 shape = SubResource("SphereShape3D_deg7w")
 
 [node name="Citizen" parent="." instance=ExtResource("6_ui360")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.809, 0, -0.857982)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8204, 9.53674e-07, -3.22156)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
