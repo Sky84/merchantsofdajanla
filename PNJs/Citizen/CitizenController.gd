@@ -9,6 +9,7 @@ extends Alive
 		if not _inactive:
 			_ready();
 
+@export_category("Citizen")
 @export var navigation_agent: NavigationAgent3D;
 
 @onready var grid_map: GridMapController = $"../NavigationRegion3D/GridMap";
@@ -61,7 +62,8 @@ func _process_action(action_id: String) -> void:
 	elif action is BuyAction:
 		params = {
 			'owner_id': _owner_id,
-			'navigation_agent': navigation_agent
+			'navigation_agent': navigation_agent,
+			'grid_map': grid_map
 		};
 	elif action is WaitAction:
 		params = {

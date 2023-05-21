@@ -5,17 +5,24 @@ var navigation_agent: NavigationAgent3D;
 
 func execute(params: Dictionary) -> void:
 	var buyer_owner_id = params.owner_id;
+	var grid_map: GridMapController = params.grid_map;
 	navigation_agent = params.navigation_agent;
+
 	var seller_container_config = ContainersController.get_container_config_by_subtype(target);
 	if seller_container_config.is_empty():
 		var next_action = Actions.get_action_by_id(Actions.WAIT);
 		on_action_finished.emit(id, next_action);
 		return;
 	var item = GameItems.get_items_by_subtype(target)[0];
-	var trader: Alive = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
-	var target_position: Vector3 = trader.global_position;
+
+	#trader can be Alive or Stand
+	var seller = grid_map.get_map_item(seller_container_config.container_id);
+	if not seller:
+		seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner); 
+	var target_position: Vector3 = seller.global_position;
 	navigation_agent.target_position = target_position;
 	await navigation_agent.target_reached;
+
 	MarketController.trade(seller_container_config.container_id, item.id, 1, seller_container_config.container_owner,\
 							buyer_owner_id);
 	InventoryEvents.container_data_changed.emit(seller_container_config.container_id);

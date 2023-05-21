@@ -29,6 +29,13 @@ func _init_posable(scene: PhysicsBody3D, _global_position: Vector3, _owner: Stri
 	_map_objects[pos] = scene;
 	scene._init_posable(_owner);
 
+func get_map_item(id: String) -> MapItem:
+	for key in _map_objects:
+		var map_object = _map_objects[key];
+		if map_object.id == id:
+			return map_object;
+	return null;
+
 func has_item_at(position: Vector3) -> bool:
 	return _map_objects.has(global_to_local(position));
 
