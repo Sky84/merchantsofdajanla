@@ -338,6 +338,7 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
+_start_items_json_path = "PlayerStartItems.json"
 _container_owner = "player"
 container_id = "player_inventory"
 rows = 4
@@ -424,6 +425,7 @@ shape = SubResource("SphereShape3D_deg7w")
 
 [node name="Citizen" parent="." instance=ExtResource("6_ui360")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8204, 9.53674e-07, -3.22156)
+inactive = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

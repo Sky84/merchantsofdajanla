@@ -1,5 +1,14 @@
 extends Alive
 
+@export_category("Debug")
+@export var inactive: bool = false :
+	get:
+		return _inactive;
+	set(value):
+		_inactive = value;
+		if not _inactive:
+			_ready();
+
 @export var navigation_agent: NavigationAgent3D;
 
 @onready var grid_map: GridMapController = $"../NavigationRegion3D/GridMap";
@@ -7,7 +16,11 @@ extends Alive
 var actions_queue = [];
 var is_running_int = 0;
 
+var _inactive: bool = false;
+
 func _ready() -> void:
+	if inactive:
+		return;
 	super();
 	_alive_status.hunger.value = 0;
 	_process_actions_queue();
