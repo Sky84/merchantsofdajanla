@@ -15,7 +15,7 @@ func execute(params: Dictionary) -> void:
 		return;
 	var item = GameItems.get_items_by_subtype(target)[0];
 
-	#trader can be Alive or Stand
+	#seller can be Alive or Stand
 	var seller = grid_map.get_map_item(seller_container_config.container_id);
 	if not seller:
 		seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner); 
