@@ -99,7 +99,7 @@ func _update_nearest_interactive() -> void:
 			_nearest_interactive = interactive;
 			nearest_interactive_changed = true;
 	if nearest_interactive_changed:
-		PlayerEvents._on_nearest_interactive_changed.emit(_nearest_interactive);
+		PlayerEvents.on_nearest_interactive_changed.emit(_nearest_interactive);
 
 func _on_item_in_hand_changed(item: Dictionary) -> void:
 	if _item_in_hand.has('id') and item.has('id') and _item_in_hand.id == item.id:

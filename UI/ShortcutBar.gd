@@ -36,4 +36,4 @@ func _input(event):
 func _update_item_in_hand():
 	var slots = ContainersController.get_container_data(container_id);
 	var item_selected = slots[index_position_selector][0];
-	PlayerEvents._on_item_in_hand_changed.emit(item_selected);
+	PlayerEvents.on_item_in_hand_changed.emit(item_selected);

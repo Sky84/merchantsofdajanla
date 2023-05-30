@@ -11,9 +11,11 @@ extends Alive
 
 @export_category("Citizen")
 @export var navigation_agent: NavigationAgent3D;
+@onready var camera_3d = %Camera3D;
 
 @onready var grid_map: GridMapController = $"../NavigationRegion3D/GridMap";
 
+var pnj_name: String = 'George';
 var actions_queue = [];
 var is_running_int = 0;
 
@@ -63,7 +65,9 @@ func _process_action(action_id: String) -> void:
 		params = {
 			'owner_id': _owner_id,
 			'navigation_agent': navigation_agent,
-			'grid_map': grid_map
+			'grid_map': grid_map,
+			'camera_3d': camera_3d,
+			'pnj_name': pnj_name
 		};
 	elif action is WaitAction:
 		params = {

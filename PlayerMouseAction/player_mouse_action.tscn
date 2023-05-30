@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqrhq147safqm"]
 
 [ext_resource type="Script" path="res://PlayerMouseAction/PlayerMouseAction.gd" id="2_2hjgi"]
-[ext_resource type="Texture2D" uid="uid://kl0iwom47kof" path="res://icon.svg" id="3_st76s"]
+[ext_resource type="Texture2D" uid="uid://2pxe5nl2hfui" path="res://icon.svg" id="3_st76s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_myw4y"]
 font_size = 8

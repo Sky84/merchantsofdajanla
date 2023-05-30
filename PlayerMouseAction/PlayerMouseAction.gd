@@ -100,4 +100,3 @@ func _place_item_on_map(item: Dictionary, container_owner: String) -> void:
 
 func _create_posable_collider() -> void:
 	_posable_collider = Area3D.new();
-	pass;

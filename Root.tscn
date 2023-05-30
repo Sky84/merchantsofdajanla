@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
 [ext_resource type="PackedScene" uid="uid://b2wjdlipuc437" path="res://Stand/TransactionView/StandTransaction/StandTransaction.tscn" id="22_dogdb"]
 [ext_resource type="Script" path="res://UI/Notifications/NotificationController.gd" id="23_l4jmb"]
-[ext_resource type="Texture2D" uid="uid://by38ouiclhmxa" path="res://Map/rock.png" id="30_73or7"]
+[ext_resource type="Texture2D" uid="uid://b115tymrfpka6" path="res://Map/rock.png" id="30_73or7"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="30_ibe7a"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
@@ -316,9 +316,9 @@ cell_height = 0.05
 agent_max_slope = 30.0
 vertices_per_polygon = 3.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ruby4"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_4qies"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2c21"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_524yx"]
 transparency = 4
 albedo_texture = ExtResource("30_73or7")
 texture_filter = 0
@@ -430,6 +430,10 @@ shape = SubResource("SphereShape3D_deg7w")
 
 [node name="Citizen" parent="." instance=ExtResource("6_ui360")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8204, 9.53674e-07, -3.22156)
+inactive = null
+MAX_HEALTH = null
+MAX_HUNGER = null
+speed_run_factor = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -758,6 +762,13 @@ offset_left = -182.0
 offset_bottom = 561.0
 grow_horizontal = 0
 
+[node name="ModalContainer" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player", "_grid_map")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.731354, 0.681998, 0, -0.681998, 0.731354, 4.5, 12, 10)
@@ -783,12 +794,10 @@ bake_navigation = true
 
 [node name="MapMesh" type="MeshInstance3D" parent="NavigationRegion3D/GridMap"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -6.60701, 0.994961, -3.45407)
-mesh = SubResource("PlaneMesh_ruby4")
+mesh = SubResource("PlaneMesh_4qies")
 skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_s2c21")
+surface_material_override/0 = SubResource("StandardMaterial3D_524yx")
 script = ExtResource("30_ibe7a")
-texture = ExtResource("30_73or7")
-texture = ExtResource("30_73or7")
 
 [connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]

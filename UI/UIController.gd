@@ -6,6 +6,7 @@ class_name UIController
 @onready var confirm_dialog: Panel = $ConfirmDialog;
 @onready var stand_setup: StandSetupView = $StandSetup;
 @onready var stand_transaction: StandTransactionView = $StandTransaction;
+@onready var modal_container = $ModalContainer
 
 var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: MapItem = null;
@@ -16,11 +17,24 @@ func _ready():
 	InventoryEvents.dialog_confirm_delete_item.connect(_show_confirm_dialog);
 	HudEvents.open_stand_setup.connect(_show_stand_setup_dialog);
 	HudEvents.open_stand_transaction.connect(_show_stand_transaction_dialog);
-	PlayerEvents._on_nearest_interactive_changed.connect(_show_tooltip_on_interactive);
+	PlayerEvents.on_nearest_interactive_changed.connect(_show_tooltip_on_interactive);
 	for child in get_children():
 		if not mouse_targets_node_to_exclude.has(child.get_path()):
 			child.mouse_entered.connect(_om_mouse_current_target.bind(child, true));
 			child.mouse_exited.connect(_om_mouse_current_target.bind(child, false));
+	HudEvents.open_modal.connect(_on_open_modal);
+	modal_container.hide();
+
+func _on_open_modal(path_node_to_instance: String, params: Dictionary):
+	var instance = load(path_node_to_instance).instantiate();
+	for param in params:
+		instance[param] = params[param];
+	modal_container.add_child(instance);
+	modal_container.show();
+	var result = await instance.close_modal;
+	modal_container.hide();
+	modal_container.remove_child(instance);
+	HudEvents.closed_modal.emit(result);
 
 func _show_stand_setup_dialog(container_id: String, screen_position: Vector2) -> void:
 	stand_setup.open(container_id, screen_position);
