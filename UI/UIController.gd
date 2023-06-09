@@ -6,7 +6,8 @@ class_name UIController
 @onready var confirm_dialog: Panel = $ConfirmDialog;
 @onready var stand_setup: StandSetupView = $StandSetup;
 @onready var stand_transaction: StandTransactionView = $StandTransaction;
-@onready var modal_container = $ModalContainer
+@onready var modal_container = $ModalContainer;
+@onready var game_time_label = $GameTimeCotainer/Label;
 
 var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: MapItem = null;
@@ -23,7 +24,11 @@ func _ready():
 			child.mouse_entered.connect(_om_mouse_current_target.bind(child, true));
 			child.mouse_exited.connect(_om_mouse_current_target.bind(child, false));
 	HudEvents.open_modal.connect(_on_open_modal);
+	GameTimeEvents.on_game_time_changed.connect(_update_game_time_ui);
 	modal_container.hide();
+
+func _update_game_time_ui(formatted_game_time: String):
+	game_time_label.text = formatted_game_time;
 
 func _on_open_modal(path_node_to_instance: String, params: Dictionary):
 	var instance = load(path_node_to_instance).instantiate();
