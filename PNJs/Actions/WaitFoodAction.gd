@@ -1,5 +1,5 @@
 extends Action
-class_name WaitAction
+class_name WaitFoodAction
 
 var navigation_agent: NavigationAgent3D;
 
@@ -11,6 +11,8 @@ func execute(params: Dictionary) -> void:
 	var timer: SceneTreeTimer = params.gridmap_controller.get_tree().create_timer(1);
 	await timer.timeout;
 	var next_action: Action = null;
+	if target == 'Food':
+		next_action = Actions.get_action_by_id(Actions.BUY);
 	on_action_finished.emit(id, next_action);
 
 func _update_target_position(start_position: Vector3, gridmap_controller: GridMapController):

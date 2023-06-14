@@ -24,7 +24,7 @@ func _ready():
 			child.mouse_entered.connect(_om_mouse_current_target.bind(child, true));
 			child.mouse_exited.connect(_om_mouse_current_target.bind(child, false));
 	HudEvents.open_modal.connect(_on_open_modal);
-	GameTimeEvents.on_game_time_changed.connect(_update_game_time_ui);
+	GameTimeEvents.on_formatted_game_time_changed.connect(_update_game_time_ui);
 	modal_container.hide();
 
 func _update_game_time_ui(formatted_game_time: String):

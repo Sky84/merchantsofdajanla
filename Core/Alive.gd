@@ -8,7 +8,7 @@ const GROUP_NAME = 'alive';
 
 @export var _owner_id: String;
 
-@export var speed_walk: float = 1.0;
+@export var speed_walk: float = 30.0;
 @export var speed_run_factor: float = 2.0;
 @export var run_animation_gap = 3;
 

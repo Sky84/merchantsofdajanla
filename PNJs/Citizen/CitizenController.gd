@@ -1,4 +1,5 @@
 extends Alive
+class_name CitizenController
 
 @export_category("Debug")
 @export var inactive: bool = false :
@@ -25,7 +26,7 @@ func _ready() -> void:
 	if inactive:
 		return;
 	super();
-	_alive_status.hunger.value = 0;
+	_alive_status.hunger.value = 100;
 	_process_actions_queue();
 
 func _handle_movement():
@@ -45,36 +46,39 @@ func _process_actions_queue() -> void:
 	if current_action_id:
 		_process_action(current_action_id);
 	else:
-		var action_id = Actions.get_action_id_by_triggers(_alive_status);
+		var action_id = Actions.get_action_id_by_triggers(_owner_id);
 		if !action_id.is_empty():
 			actions_queue.push_back(action_id);
 			_process_actions_queue();
 
-func _process_action(action_id: String) -> void:
-	var action: Action = Actions.get_action_by_id(action_id);
-	actions_queue.pop_back();
-	var params = {};
-	
+func _init_params_action(params_to_modify: Dictionary, action: Action) -> Dictionary:
 	if action is EatAction:
-		params = {
+		params_to_modify = {
 			'_owner_id': _owner_id,
 			'consume_callback': consume,
 			'fallback_callback': _add_fallback_to_action
 		};
 	elif action is BuyAction:
-		params = {
+		params_to_modify = {
 			'owner_id': _owner_id,
 			'navigation_agent': navigation_agent,
 			'grid_map': grid_map,
 			'camera_3d': camera_3d,
 			'pnj_name': pnj_name
 		};
-	elif action is WaitAction:
-		params = {
+	elif action is WaitFoodAction or action is WaitAction:
+		params_to_modify = {
 			'start_position': global_position,
 			'navigation_agent': navigation_agent,
 			'gridmap_controller': grid_map
 		};
+	return params_to_modify;
+
+func _process_action(action_id: String) -> void:
+	var params = {};
+	var action: Action = Actions.get_action_by_id(action_id);
+	actions_queue.pop_back();
+	params = _init_params_action(params, action);
 	if !action.on_action_finished.is_connected(_on_action_finished):
 		action.on_action_finished.connect(_on_action_finished);
 	action.execute(params);

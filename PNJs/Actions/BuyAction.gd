@@ -15,7 +15,7 @@ func execute(params: Dictionary) -> void:
 	pnj_name = params.pnj_name;
 	var seller_container_config = ContainersController.get_container_config_by_subtype(target);
 	if seller_container_config.is_empty():
-		var next_action = Actions.get_action_by_id(Actions.WAIT);
+		var next_action = Actions.get_action_by_id(Actions.WAIT_FOOD);
 		on_action_finished.emit(id, next_action);
 		return;
 

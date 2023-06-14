@@ -15,6 +15,43 @@
 			}
 		}
 	},
+	"trade": {
+		"conditions": [
+			{
+				"type": "isMerchant",
+				"value": true
+			},
+			{
+				"type": "GameTime",
+				"value": {
+					"min":{
+						"hour": 13,
+						"minute": 0
+					},
+					"max":{
+						"hour": 18,
+						"minute": 0
+					}
+				}
+			}
+		],
+		"action": {
+			"id": "Trade",
+			"target": "Food"
+		}
+	},
+	"wait_food": {
+		"conditions": [
+			{
+				"type": "Hunger",
+				"value": 0
+			}
+		],
+		"action": {
+			"id": "WaitFood",
+			"target": "Food"
+		}
+	},
 	"wait": {
 		"conditions": [
 			{
@@ -24,7 +61,7 @@
 		],
 		"action": {
 			"id": "Wait",
-			"target": "Food"
+			"target": ""
 		}
 	}
 }

@@ -7,7 +7,6 @@
 [ext_resource type="SpriteFrames" uid="uid://eyq6aiiknqur" path="res://Player/SpriteFrames/Weapons_0.tres" id="5_bdeek"]
 [ext_resource type="SpriteFrames" uid="uid://f0jcsvd1dvbj" path="res://Player/SpriteFrames/Hairs_0.tres" id="5_ox4ph"]
 [ext_resource type="SpriteFrames" uid="uid://dt3tgxtd8u511" path="res://Player/SpriteFrames/Shirts_0.tres" id="6_1gbdy"]
-[ext_resource type="PackedScene" uid="uid://cqy6hub708thm" path="res://PNJs/Citizen/Citizen.tscn" id="6_ui360"]
 [ext_resource type="Script" path="res://UI/UIController.gd" id="6_wlfhe"]
 [ext_resource type="Script" path="res://Containers/InventoryView.gd" id="7_bhmso"]
 [ext_resource type="SpriteFrames" uid="uid://b4o5oppunvwye" path="res://Player/SpriteFrames/Pants_1.tres" id="7_us1e8"]
@@ -29,9 +28,10 @@
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
 [ext_resource type="PackedScene" uid="uid://b2wjdlipuc437" path="res://Stand/TransactionView/StandTransaction/StandTransaction.tscn" id="22_dogdb"]
 [ext_resource type="Script" path="res://UI/Notifications/NotificationController.gd" id="23_l4jmb"]
-[ext_resource type="Script" path="res://GameTime.gd" id="29_vied1"]
+[ext_resource type="Script" path="res://Core/GameTime.gd" id="28_h5x7e"]
 [ext_resource type="Texture2D" uid="uid://b115tymrfpka6" path="res://Map/rock.png" id="30_73or7"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="30_ibe7a"]
+[ext_resource type="PackedScene" uid="uid://r5o6uljnlvg0" path="res://PNJs/Merchant/Merchant.tscn" id="32_hqkqk"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -331,7 +331,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98, 2.08165e-12, 0.43)
 up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_diug7")
 _owner_id = "player"
-speed_walk = 30.0
 
 [node name="AnimationTree" type="AnimationTree" parent="Player"]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
@@ -428,13 +427,6 @@ animation = &"hit"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/ObjectDetector"]
 shape = SubResource("SphereShape3D_deg7w")
-
-[node name="Citizen" parent="." instance=ExtResource("6_ui360")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8204, 9.53674e-07, -3.22156)
-inactive = null
-MAX_HEALTH = null
-MAX_HUNGER = null
-speed_run_factor = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -795,7 +787,7 @@ shadow_enabled = true
 shadow_opacity = 0.61
 directional_shadow_split_1 = 0.557
 directional_shadow_pancake_size = 0.0
-script = ExtResource("29_vied1")
+script = ExtResource("28_h5x7e")
 _start_hour_game_time = 13
 
 [node name="Timer" type="Timer" parent="GameTime"]
@@ -813,6 +805,10 @@ mesh = SubResource("PlaneMesh_4qies")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_524yx")
 script = ExtResource("30_ibe7a")
+
+[node name="Merchant" parent="." instance=ExtResource("32_hqkqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17164, 0.00500011, -4.21466)
+_owner_id = "merchant"
 
 [connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]
