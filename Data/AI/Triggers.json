@@ -6,14 +6,7 @@
 				"value": 0
 			}
 		],
-		"action": {
-			"id": "Eat",
-			"target": "Food",
-			"fallback": {
-				"id": "Buy",
-				"target": "Food"
-			}
-		}
+		"action_id": "Eat"
 	},
 	"trade": {
 		"conditions": [
@@ -35,10 +28,7 @@
 				}
 			}
 		],
-		"action": {
-			"id": "Trade",
-			"target": "Food"
-		}
+		"action_id": "Trade"
 	},
 	"wait_food": {
 		"conditions": [
@@ -47,10 +37,7 @@
 				"value": 0
 			}
 		],
-		"action": {
-			"id": "WaitFood",
-			"target": "Food"
-		}
+		"action_id": "WaitFood"
 	},
 	"wait": {
 		"conditions": [
@@ -59,9 +46,6 @@
 				"value": 100
 			}
 		],
-		"action": {
-			"id": "Wait",
-			"target": ""
-		}
+		"action_id": "Wait"
 	}
 }

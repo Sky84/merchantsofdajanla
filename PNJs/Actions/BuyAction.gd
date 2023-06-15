@@ -7,7 +7,7 @@ var camera_3d: Camera3D;
 var pnj_name: String;
 
 func execute(params: Dictionary) -> void:
-	var buyer_owner_id = params.owner_id;
+	var buyer_owner_id = params._owner_id;
 	var grid_map: GridMapController = params.grid_map;
 	navigation_agent = params.navigation_agent;
 	scene_tree = navigation_agent.get_tree();
@@ -41,7 +41,9 @@ func _on_target_reached(seller_container_id, seller_container_owner, buyer_owner
 	PlayerEvents.on_player_block.emit(true);
 	var nav_path = navigation_agent.get_current_navigation_path();
 	nav_path.reverse();
-	var nav_position = nav_path[2] if nav_path.size() > 2 else nav_path[0];
+	var nav_position = navigation_agent.target_position;
+	if nav_path.size():
+		nav_position = nav_path[2] if nav_path.size() > 2 else nav_path[0]
 	var gap_modal = Vector2(-170, 0) if nav_position.x - target_position.x < 0\
 		else Vector2(170, 0);
 	var modal_params = {
@@ -53,12 +55,12 @@ func _on_target_reached(seller_container_id, seller_container_owner, buyer_owner
 	HudEvents.open_modal.emit('res://Dialogs/AskBuyDialog/AskBuyDialog.tscn', modal_params);
 	var modal_result = await HudEvents.closed_modal;
 	PlayerEvents.on_player_block.emit(false);
+	var next_action: Action = Actions.get_action_by_id(Actions.WAIT_FOOD);
 	if modal_result:
 		MarketController.trade(seller_container_id, item.id, 1, seller_container_owner,\
 								buyer_owner_id);
 		InventoryEvents.container_data_changed.emit(seller_container_id);
 		NotificationEvents.notify.emit(NotificationEvents.NotificationType.SUCCESS, 'MARKET.TRADE_SUCCESS');
-		var next_action: Action = null;
 		if target == 'Food':
 			next_action = Actions.get_action_by_id(Actions.EAT);
-		on_action_finished.emit(id, next_action);
+	on_action_finished.emit(id, next_action);

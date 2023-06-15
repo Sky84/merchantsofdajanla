@@ -26,7 +26,7 @@ func _ready() -> void:
 	if inactive:
 		return;
 	super();
-	_alive_status.hunger.value = 100;
+	_alive_status.hunger.value = 0;
 	_process_actions_queue();
 
 func _handle_movement():
@@ -52,26 +52,8 @@ func _process_actions_queue() -> void:
 			_process_actions_queue();
 
 func _init_params_action(params_to_modify: Dictionary, action: Action) -> Dictionary:
-	if action is EatAction:
-		params_to_modify = {
-			'_owner_id': _owner_id,
-			'consume_callback': consume,
-			'fallback_callback': _add_fallback_to_action
-		};
-	elif action is BuyAction:
-		params_to_modify = {
-			'owner_id': _owner_id,
-			'navigation_agent': navigation_agent,
-			'grid_map': grid_map,
-			'camera_3d': camera_3d,
-			'pnj_name': pnj_name
-		};
-	elif action is WaitFoodAction or action is WaitAction:
-		params_to_modify = {
-			'start_position': global_position,
-			'navigation_agent': navigation_agent,
-			'gridmap_controller': grid_map
-		};
+	for param_key in action.params:
+		params_to_modify[param_key] = self[param_key];
 	return params_to_modify;
 
 func _process_action(action_id: String) -> void:
@@ -87,6 +69,3 @@ func _on_action_finished(action_id: String, next_action: Action):
 	if next_action:
 		actions_queue.push_back(next_action.id);
 	_process_actions_queue();
-
-func _add_fallback_to_action(action: Action) -> void:
-	actions_queue.push_back(action.id);

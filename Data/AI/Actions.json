@@ -1,0 +1,46 @@
+[
+	{
+		"id": "Eat",
+		"target": "Food",
+		"params": [
+			"_owner_id",
+			"consume"
+		]
+	},
+	{
+		"id": "Buy",
+		"target": "Food",
+		"params": [
+			"_owner_id",
+			"navigation_agent",
+			"grid_map",
+			"camera_3d",
+			"pnj_name"
+		]
+	},
+	{
+		"id": "Trade",
+		"target": "Food",
+		"params": [
+			
+		]
+	},
+	{
+		"id": "WaitFood",
+		"target": "Food",
+		"params": [
+			"global_position",
+			"navigation_agent",
+			"grid_map"
+		]
+	},
+	{
+		"id": "Wait",
+		"target": "",
+		"params": [
+			"global_position",
+			"navigation_agent",
+			"grid_map"
+		]
+	}
+]

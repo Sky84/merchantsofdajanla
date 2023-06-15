@@ -6,9 +6,9 @@ var navigation_agent: NavigationAgent3D;
 func execute(params: Dictionary) -> void:
 	navigation_agent = params.navigation_agent;
 	
-	_update_target_position(params.start_position, params.gridmap_controller);
+	_update_target_position(params.global_position, params.grid_map);
 	await navigation_agent.target_reached;
-	var timer: SceneTreeTimer = params.gridmap_controller.get_tree().create_timer(1);
+	var timer: SceneTreeTimer = params.grid_map.get_tree().create_timer(1);
 	await timer.timeout;
 	var next_action: Action = null;
 	if target == 'Food':

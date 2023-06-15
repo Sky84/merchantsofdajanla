@@ -10,6 +10,7 @@ var _triggers := {};
 var _actions := {};
 
 var _triggers_json_path = 'AI/Triggers.json';
+var _actions_json_path = 'AI/Actions.json';
 var _actions_path = 'res://PNJs/Actions/';
 var _actions_path_suffix = 'Action.gd';
 
@@ -22,28 +23,22 @@ func _ready():
 	GameTimeEvents.on_game_time_changed.connect(func(game_time: Dictionary): last_game_time = game_time);
 	
 	_triggers = JsonResourceLoader.load_json(_triggers_json_path);
-	for id in _triggers:
-		var action: Action = create_action(_triggers[id].action);
+	var actions_from_json = JsonResourceLoader.load_json(_actions_json_path);
+	for action_json in actions_from_json:
+		var action: Action = create_action(action_json);
 		_actions[action.id] = action;
-		if action.fallback != null:
-			_actions[action.fallback.id] = action.fallback;
 
 func create_action(action: Dictionary) -> Action:
 	var instance_action_class: GDScript = load(_actions_path+action.id+_actions_path_suffix) as GDScript;
-	var nav_mesh_navigation = navigation_region_3d.navigation_mesh; 
-	if "fallback" in action:
-		var instance_action_fallback_class = load(_actions_path+action.fallback.id+_actions_path_suffix);
-		var fallback_action = instance_action_fallback_class.new(action.fallback.id, action.fallback.target, nav_mesh_navigation);
-		return instance_action_class.new(action.id, action.target, nav_mesh_navigation, fallback_action);
-	else:
-		return instance_action_class.new(action.id, action.target, nav_mesh_navigation);
+	var nav_mesh_navigation = navigation_region_3d.navigation_mesh;
+	return instance_action_class.new(action.id, action.target, action.params, nav_mesh_navigation);
 
 func get_action_id_by_triggers(owner_id: String) -> String:
 	for id in _triggers:
 		var trigger = _triggers[id];
 		var condition_agreed = _check_conditions(trigger.conditions, owner_id);
 		if condition_agreed:
-			return trigger.action.id;
+			return trigger.action_id;
 	return '';
 
 func _check_conditions(conditions: Array, owner_id: String) -> bool:
