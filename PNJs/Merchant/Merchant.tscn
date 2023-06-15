@@ -273,13 +273,7 @@ radius = 2.56796
 [node name="Merchant" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent")]
 up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_3k4he")
-inactive = null
 navigation_agent = NodePath("NavigationAgent3D")
-MAX_HEALTH = null
-MAX_HUNGER = null
-_owner_id = null
-speed_walk = null
-speed_run_factor = null
 run_animation_gap = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

@@ -47,10 +47,10 @@ func _check_conditions(conditions: Array, owner_id: String) -> bool:
 			if alive._alive_status.hunger.value > condition.value:
 				return false;
 			# Ajouter un if si conditions complémentaire Ex. hunger and at home
-		elif condition.type == "isMerchant":
-			if !(condition.type in alive) or alive[condition.type] != condition.value:
+		if condition.type == "isMerchant":
+			if !("is_merchant" in alive) or alive.is_merchant != condition.value:
 				return false;
-		elif condition.type == "GameTime":
+		if condition.type == "GameTime":
 			if !_is_game_time_between_value(last_game_time, condition.value):
 				return false;
 	return true; # Si toutes les conditions sont satisfaites

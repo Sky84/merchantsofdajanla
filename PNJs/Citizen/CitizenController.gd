@@ -51,7 +51,6 @@ func _check_actions() -> void:
 	_process_actions_queue();
 
 func _process_actions_queue() -> void:
-	print(actions_queue.map(func(action): return action.id))
 	var current_action = actions_queue.pop_front() if !actions_queue.is_empty() else default_action;
 	if !current_action.on_action_finished.is_connected(_on_action_finished):
 		current_action.on_action_finished.connect(_on_action_finished);

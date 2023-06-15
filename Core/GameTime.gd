@@ -10,8 +10,8 @@ extends DirectionalLight3D
 
 func _ready():
 	GameTimeEvents.on_game_time_changed.emit({
-		hour: hour,
-		minute: minute
+		"hour": hour,
+		"minute": minute
 	});
 	GameTimeEvents.on_formatted_game_time_changed.emit(_formatted_game_time());
 
@@ -23,8 +23,8 @@ func _on_timer_timeout():
 		hour = (hour + 1) % 24;
 	GameTimeEvents.on_formatted_game_time_changed.emit(_formatted_game_time());
 	GameTimeEvents.on_game_time_changed.emit({
-		hour: hour,
-		minute: minute
+		"hour": hour,
+		"minute": minute
 	});
 
 func _formatted_game_time():
