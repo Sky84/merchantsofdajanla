@@ -58,13 +58,11 @@ func _on_target_reached(seller_container_id, seller_container_owner, buyer_owner
 	HudEvents.open_modal.emit('res://Dialogs/AskBuyDialog/AskBuyDialog.tscn', modal_params);
 	var modal_result = await HudEvents.closed_modal;
 	PlayerEvents.on_player_block.emit(false);
-	var next_action: Action = Actions.get_action_by_id(Actions.WAIT_FOOD);
+	var next_action: Action = Actions.get_action_by_id(Actions.WAIT);
 	if modal_result:
 		MarketController.trade(seller_container_id, item.id, 1, seller_container_owner,\
 								buyer_owner_id);
 		InventoryEvents.container_data_changed.emit(seller_container_id);
 		NotificationEvents.notify.emit(NotificationEvents.NotificationType.SUCCESS, 'MARKET.TRADE_SUCCESS');
-		if target == 'Food':
-			next_action = Actions.get_action_by_id(Actions.EAT);
 	on_action_finished.emit(id, next_action);
 	is_running = false;

@@ -4,7 +4,6 @@ extends Node
 const EAT: String = 'Eat';
 const BUY: String = 'Buy';
 const WAIT: String = 'Wait';
-const WAIT_FOOD: String = 'WaitFood';
 
 var _triggers := {};
 var _actions := {};

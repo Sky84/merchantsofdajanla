@@ -26,15 +26,6 @@
 		]
 	},
 	{
-		"id": "WaitFood",
-		"target": "Food",
-		"params": [
-			"global_position",
-			"navigation_agent",
-			"grid_map"
-		]
-	},
-	{
 		"id": "Wait",
 		"target": "",
 		"params": [

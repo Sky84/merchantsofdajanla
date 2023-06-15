@@ -45,11 +45,13 @@ func _handle_movement():
 
 func _check_actions() -> void:
 	var action_id = Actions.get_action_id_by_triggers(_owner_id);
-	if action_id:
-		actions_queue.push_back(Actions.get_action_by_id(action_id));
+	var action = Actions.get_action_by_id(action_id);
+	if action_id and not actions_queue.has(action):
+		actions_queue.push_back(action);
 	_process_actions_queue();
 
 func _process_actions_queue() -> void:
+	print(actions_queue.map(func(action): return action.id))
 	var current_action = actions_queue.pop_front() if !actions_queue.is_empty() else default_action;
 	if !current_action.on_action_finished.is_connected(_on_action_finished):
 		current_action.on_action_finished.connect(_on_action_finished);
