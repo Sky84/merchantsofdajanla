@@ -16,6 +16,8 @@ class_name CitizenController
 
 @onready var grid_map: GridMapController = $"../NavigationRegion3D/GridMap";
 
+@onready var default_action: WaitAction = Actions.get_action_by_id(Actions.WAIT);
+
 var pnj_name: String = 'George';
 var actions_queue = [];
 var is_running_int = 0;
@@ -27,7 +29,7 @@ func _ready() -> void:
 		return;
 	super();
 	_alive_status.hunger.value = 0;
-	_process_actions_queue();
+	_check_actions();
 
 func _handle_movement():
 	# Obtenir la prochaine position sur le chemin de navigation
@@ -41,31 +43,25 @@ func _handle_movement():
 		speed = 0;
 	velocity = Vector3(direction.x, 0, direction.z).normalized() * speed;
 
-func _process_actions_queue() -> void:
-	var current_action_id = actions_queue.back() if !actions_queue.is_empty() else null;
-	if current_action_id:
-		_process_action(current_action_id);
-	else:
-		var action_id = Actions.get_action_id_by_triggers(_owner_id);
-		if !action_id.is_empty():
-			actions_queue.push_back(action_id);
-			_process_actions_queue();
+func _check_actions() -> void:
+	var action_id = Actions.get_action_id_by_triggers(_owner_id);
+	if action_id:
+		actions_queue.push_back(Actions.get_action_by_id(action_id));
+	_process_actions_queue();
 
-func _init_params_action(params_to_modify: Dictionary, action: Action) -> Dictionary:
+func _process_actions_queue() -> void:
+	var current_action = actions_queue.pop_front() if !actions_queue.is_empty() else default_action;
+	if !current_action.on_action_finished.is_connected(_on_action_finished):
+		current_action.on_action_finished.connect(_on_action_finished);
+	current_action.execute(_get_action_params(current_action));
+
+func _get_action_params(action: Action) -> Dictionary:
+	var params_to_modify = {};
 	for param_key in action.params:
 		params_to_modify[param_key] = self[param_key];
 	return params_to_modify;
 
-func _process_action(action_id: String) -> void:
-	var params = {};
-	var action: Action = Actions.get_action_by_id(action_id);
-	actions_queue.pop_back();
-	params = _init_params_action(params, action);
-	if !action.on_action_finished.is_connected(_on_action_finished):
-		action.on_action_finished.connect(_on_action_finished);
-	action.execute(params);
-
 func _on_action_finished(action_id: String, next_action: Action):
 	if next_action:
-		actions_queue.push_back(next_action.id);
-	_process_actions_queue();
+		actions_queue.push_front(next_action);
+	_check_actions();

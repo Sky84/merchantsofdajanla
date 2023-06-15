@@ -16,11 +16,8 @@ func get_random_reachable_point(start_position: Vector3, gridmap_controller: Gri
 	var cells = gridmap_controller.get_used_cells();
 	var around_gap = 5;
 	var around_cells = cells.filter(func (cell: Vector3):
-		var is_around_x = abs(start_position.x - cell.x);
-		var is_around_y = abs(start_position.y - cell.y);
-		return is_around_x < around_gap and is_around_y < around_gap;
+		return cell.distance_to(gridmap_controller.global_to_local(start_position)) < around_gap;
 	);
-	
 	var random_point = around_cells[randi_range(0, around_cells.size()-1)];
 	var cell_item = gridmap_controller.get_cell_item(random_point);
 	if cell_item == 0:

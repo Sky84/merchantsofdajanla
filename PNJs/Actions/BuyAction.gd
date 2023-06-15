@@ -5,8 +5,10 @@ var navigation_agent: NavigationAgent3D;
 var scene_tree: SceneTree;
 var camera_3d: Camera3D;
 var pnj_name: String;
+var is_running: bool;
 
 func execute(params: Dictionary) -> void:
+	is_running = true;
 	var buyer_owner_id = params._owner_id;
 	var grid_map: GridMapController = params.grid_map;
 	navigation_agent = params.navigation_agent;
@@ -29,11 +31,12 @@ func execute(params: Dictionary) -> void:
 	await navigation_agent.target_reached;
 	_on_target_reached(seller_container_config.container_id, seller_container_config.container_owner, buyer_owner_id);
 
-func _start_update_alive_target_position(seller: Alive): 
+func _start_update_alive_target_position(seller: Alive):
 	var target_position: Vector3 = seller.global_position;
 	navigation_agent.target_position = target_position;
 	await scene_tree.create_timer(1).timeout;
-	_start_update_alive_target_position(seller);
+	if is_running:
+		_start_update_alive_target_position(seller);
 
 func _on_target_reached(seller_container_id, seller_container_owner, buyer_owner_id):
 	var item = GameItems.get_items_by_subtype(target)[0];
@@ -64,3 +67,4 @@ func _on_target_reached(seller_container_id, seller_container_owner, buyer_owner
 		if target == 'Food':
 			next_action = Actions.get_action_by_id(Actions.EAT);
 	on_action_finished.emit(id, next_action);
+	is_running = false;
