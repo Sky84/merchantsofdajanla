@@ -24,7 +24,7 @@ var _nearest_interactive: MapItem = null;
 
 var _item_in_hand: Dictionary = {};
 
-var _alive_status: Dictionary = {
+var alive_status: Dictionary = {
 	"health": {"value": MAX_HEALTH, "max": MAX_HEALTH},
 	"hunger": {"value": MAX_HUNGER, "max": MAX_HUNGER}
 };
@@ -45,8 +45,8 @@ func _process(_delta) -> void:
 func consume(_item: Dictionary, notify: bool = false) -> void:
 	var success = false;
 	for effect_key in _item.effects:
-		if effect_key in _alive_status:
-			var _alive_stat = _alive_status[effect_key];
+		if effect_key in alive_status:
+			var _alive_stat = alive_status[effect_key];
 			_alive_stat.value = clampi(_item.effects[effect_key], 0, _alive_stat.max);
 			success = true;
 			if notify:

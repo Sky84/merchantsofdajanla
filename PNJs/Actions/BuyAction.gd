@@ -17,8 +17,8 @@ func execute(params: Dictionary) -> void:
 	pnj_name = params.pnj_name;
 	var seller_container_config = ContainersController.get_container_config_by_subtype(target);
 	if seller_container_config.is_empty():
-		var next_action = Actions.get_action_by_id(Actions.WAIT_FOOD);
-		on_action_finished.emit(id, next_action);
+		var next_action = Actions.get_action_by_id(Actions.WAIT);
+		on_action_finished.emit(id, buyer_owner_id, next_action);
 		return;
 
 	#seller can be Alive or Stand
@@ -47,7 +47,7 @@ func _on_target_reached(seller_container_id, seller_container_owner, buyer_owner
 							buyer_owner_id);
 	InventoryEvents.container_data_changed.emit(seller_container_id);
 	var next_action: Action = Actions.get_action_by_id(Actions.WAIT);
-	on_action_finished.emit(id, next_action);
+	on_action_finished.emit(id, buyer_owner_id, next_action);
 	is_running = false;
 
 func _process_target_player(navigation_agent, item):

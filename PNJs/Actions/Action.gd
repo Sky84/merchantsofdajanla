@@ -7,7 +7,7 @@ var params: Array;
 
 var navigation_mesh: NavigationMesh;
 
-signal on_action_finished(id: String, next_action: Action);
+signal on_action_finished(id: String, owner_id: String, next_action: Action);
 
 func _init(_id: String, _target: String, _params: Array, _navigation_mesh: NavigationMesh) -> void:
 	id = _id;

@@ -3,7 +3,14 @@
 		"conditions": [
 			{
 				"type": "Hunger",
-				"value": 0
+				"validator": {
+					"name": "_check_hunger",
+					"params": ["owner_id"],
+					"value": {
+						"min": 0,
+						"max": 50
+					}
+				}
 			}
 		],
 		"action_id": "Eat"
@@ -12,38 +19,44 @@
 		"conditions": [
 			{
 				"type": "isMerchant",
-				"value": true
+				"validator": {
+					"name": "_check_merchant",
+					"params": ["owner_id"],
+					"value": true
+				}
 			},
 			{
 				"type": "GameTime",
-				"value": {
-					"min":{
-						"hour": 13,
-						"minute": 0
-					},
-					"max":{
-						"hour": 18,
-						"minute": 0
+				"validator": {
+					"name": "_check_game_time",
+					"params": [],
+					"value": {
+						"min":{
+							"hour": 13,
+							"minute": 0
+						},
+						"max":{
+							"hour": 18,
+							"minute": 0
+						}
 					}
 				}
 			}
 		],
 		"action_id": "Trade"
 	},
-	"wait_food": {
-		"conditions": [
-			{
-				"type": "Hunger",
-				"value": 0
-			}
-		],
-		"action_id": "WaitFood"
-	},
 	"wait": {
 		"conditions": [
 			{
 				"type": "Hunger",
-				"value": 100
+				"validator": {
+					"name": "_check_hunger",
+					"params": ["owner_id"],
+					"value": {
+						"min": 51,
+						"max": 100
+					}
+				}
 			}
 		],
 		"action_id": "Wait"

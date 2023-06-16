@@ -17,4 +17,4 @@ func execute(params: Dictionary) -> void:
 		consume_callback.call(item_to_eat.item);
 	else:
 		next_action = Actions.get_action_by_id(Actions.BUY);
-	on_action_finished.emit(id, next_action);
+	on_action_finished.emit(id, next_action, _owner_id);

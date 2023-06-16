@@ -41,19 +41,12 @@ func get_action_id_by_triggers(owner_id: String) -> String:
 	return '';
 
 func _check_conditions(conditions: Array, owner_id: String) -> bool:
-	var alive: Alive = AlivesController.get_alive_by_owner_id(owner_id);
+	var validated = true;
 	for condition in conditions:
-		if condition.type == "Hunger":
-			if alive._alive_status.hunger.value > condition.value:
-				return false;
-			# Ajouter un if si conditions complémentaire Ex. hunger and at home
-		elif condition.type == "isMerchant":
-			if !("is_merchant" in alive) or alive.is_merchant != condition.value:
-				return false;
-		elif condition.type == "GameTime":
-			if !_is_game_time_between_value(last_game_time, condition.value):
-				return false;
-	return true; # Si toutes les conditions sont satisfaites
+		validated = self[condition.validator.name].call(condition.validator, owner_id);
+		if !validated:
+			break;
+	return false; # Si toutes les conditions sont satisfaites
 
 func _is_game_time_between_value(game_time: Dictionary, value: Dictionary):
 	var is_between = false;
@@ -73,3 +66,26 @@ func _is_game_time_between_value(game_time: Dictionary, value: Dictionary):
 
 func get_action_by_id(action_id: String) -> Action:
 	return _actions.get(action_id);
+	
+	
+func _check_hunger(validator_data: Dictionary, owner_id: String) -> bool:
+	var alive: Alive = AlivesController.get_alive_by_owner_id(owner_id);
+	return _check_value_between_incl(alive.alive_status.hunger.value, validator_data.value.min, validator_data.value.max);
+	
+func _check_merchant(validator_data: Dictionary, owner_id: String) -> bool:
+	var alive: Alive = AlivesController.get_alive_by_owner_id(owner_id);
+	return _check_has_property(alive, "is_merchant") and _check_value_match(alive.is_merchant, validator_data.value);
+
+
+func _check_game_time(validator_data: Dictionary, owner_id: String) -> bool:
+	return _is_game_time_between_value(last_game_time, validator_data.value);
+
+# Helpers functions to check -> next put this in something like ValidatorUtils files
+func _check_value_between_incl(value: int, min: int, max: int) -> bool:
+	return value >= min and value <= max;
+	
+func _check_value_match(value, expected) -> bool:
+	return value == expected;
+
+func _check_has_property(obj: Object, expected: String) -> bool:
+	return expected in obj;

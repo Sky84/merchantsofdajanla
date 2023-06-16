@@ -28,7 +28,7 @@ func _ready() -> void:
 	if inactive:
 		return;
 	super();
-	_alive_status.hunger.value = 0;
+	alive_status.hunger.value = 0;
 	_check_actions();
 
 func _handle_movement():
@@ -47,6 +47,7 @@ func _check_actions() -> void:
 	var action_id = Actions.get_action_id_by_triggers(_owner_id);
 	var action = Actions.get_action_by_id(action_id);
 	if action_id and not actions_queue.has(action):
+		print('adding ', action_id, ' to ', _owner_id);
 		actions_queue.push_back(action);
 	_process_actions_queue();
 
@@ -62,7 +63,10 @@ func _get_action_params(action: Action) -> Dictionary:
 		params_to_modify[param_key] = self[param_key];
 	return params_to_modify;
 
-func _on_action_finished(action_id: String, next_action: Action):
+func _on_action_finished(action_id: String, owner_id: String, next_action: Action):
+	if owner_id != _owner_id:
+		return;
 	if next_action:
+		print('adding ', action_id, ' to ', owner_id);
 		actions_queue.push_front(next_action);
 	_check_actions();

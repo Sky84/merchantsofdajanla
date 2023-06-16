@@ -22,13 +22,16 @@
 		"id": "Trade",
 		"target": "Food",
 		"params": [
-			
+			"_owner_id",
+			"shop_position",
+			"navigation_agent"
 		]
 	},
 	{
 		"id": "Wait",
 		"target": "",
 		"params": [
+			"_owner_id",
 			"global_position",
 			"navigation_agent",
 			"grid_map"
