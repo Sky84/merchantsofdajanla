@@ -15,7 +15,7 @@ func execute(params: Dictionary) -> void:
 	scene_tree = navigation_agent.get_tree();
 	camera_3d = params.camera_3d;
 	pnj_name = params.pnj_name;
-	var seller_container_config = ContainersController.get_container_config_by_subtype(target);
+	var seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
 	if seller_container_config.is_empty():
 		var next_action = Actions.get_action_by_id(Actions.WAIT);
 		on_action_finished.emit(id, buyer_owner_id, next_action);
@@ -42,7 +42,7 @@ func _on_target_reached(seller_container_id, seller_container_owner, buyer_owner
 	var item = GameItems.get_items_by_subtype(target)[0];
 	if seller_container_owner == "player":
 		await _process_target_player(navigation_agent, item);
-	
+	print(buyer_owner_id, " is buying things of ", seller_container_owner);
 	MarketController.trade(seller_container_id, item.id, 1, seller_container_owner,\
 							buyer_owner_id);
 	InventoryEvents.container_data_changed.emit(seller_container_id);

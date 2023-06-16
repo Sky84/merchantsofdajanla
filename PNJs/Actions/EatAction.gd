@@ -14,6 +14,7 @@ func execute(params: Dictionary) -> void:
 	)[0];
 	var next_action = null;
 	if !item_to_eat.is_empty():
+		print(_owner_id, ' is eating ', item_to_eat.item.name);
 		consume_callback.call(item_to_eat.item);
 	else:
 		next_action = Actions.get_action_by_id(Actions.BUY);

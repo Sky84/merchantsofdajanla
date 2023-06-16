@@ -2,6 +2,10 @@ extends Node
 
 var _containers: Dictionary = {};
 
+var containers: Dictionary:
+	get:
+		return _containers;
+
 var current_item: Dictionary = {
 	"container_id": null,
 	"value": {}

@@ -26,6 +26,20 @@ func trade(seller_container_id: String, seller_item_id: String, seller_amount_to
 		ContainersController.remove_item(buyer_container_ids, MONEY_ITEM_ID, item_total_price);
 		ContainersController.add_item([main_seller_container_id], MONEY_ITEM_ID, item_total_price);
 
+func get_seller_container_config_by_subtype(subtype: String) -> Dictionary:
+	var currently_trading_containers_ids: Array = ContainersController.containers.keys().filter(func(container_id):
+		var container_config = ContainersController.get_container_config(container_id);
+		var owner: Alive = AlivesController.get_alive_by_owner_id(container_config.container_owner);
+		if "is_trading" in owner and owner.is_trading:
+			return container_id;
+	)
+	if !currently_trading_containers_ids.is_empty():
+		var item = ContainersController.get_item_by_subtype(currently_trading_containers_ids, subtype);
+		if !item.is_empty():
+			var container_config = ContainersController.get_container_config(item.container_id);
+			return container_config;
+	return {};
+
 func get_current_price(item: Dictionary):
 	var current_price = item.base_price;
 	if 'current_price' in item:
