@@ -47,7 +47,7 @@ func consume(_item: Dictionary, notify: bool = false) -> void:
 	for effect_key in _item.effects:
 		if effect_key in alive_status:
 			var _alive_stat = alive_status[effect_key];
-			_alive_stat.value = clampi(_item.effects[effect_key], 0, _alive_stat.max);
+			_alive_stat.value = clampi(_alive_stat.value + _item.effects[effect_key], 0, _alive_stat.max);
 			success = true;
 			if notify:
 				NotificationEvents.notify\

@@ -46,7 +46,7 @@ func _check_conditions(conditions: Array, owner_id: String) -> bool:
 		validated = self[condition.validator.name].call(condition.validator, owner_id);
 		if !validated:
 			break;
-	return false; # Si toutes les conditions sont satisfaites
+	return validated; # Si toutes les conditions sont satisfaites
 
 func _is_game_time_between_value(game_time: Dictionary, value: Dictionary):
 	var is_between = false;
