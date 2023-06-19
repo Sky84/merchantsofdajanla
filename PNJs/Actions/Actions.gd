@@ -15,11 +15,11 @@ var _actions_path_suffix = 'Action.gd';
 
 @onready var navigation_region_3d: NavigationRegion3D = get_node('/root/Root/NavigationRegion3D');
 
-var last_game_time: Dictionary = {'hour': 0, 'minute': 0};
+var last_game_time: GameTime = GameTime.new(0, 0);
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameTimeEvents.on_game_time_changed.connect(func(game_time: Dictionary): last_game_time = game_time);
+	GameTimeEvents.on_game_time_changed.connect(func(game_time: GameTime): last_game_time = game_time);
 	
 	_triggers = JsonResourceLoader.load_json(_triggers_json_path);
 	var actions_from_json = JsonResourceLoader.load_json(_actions_json_path);
@@ -48,26 +48,9 @@ func _check_conditions(conditions: Array, owner_id: String) -> bool:
 			break;
 	return validated; # Si toutes les conditions sont satisfaites
 
-func _is_game_time_between_value(game_time: Dictionary, value: Dictionary):
-	var is_between = false;
-	if value.min.hour < value.max.hour:
-		if value.min.hour <= game_time.hour and game_time.hour <= value.max.hour:
-			is_between = true;
-	elif value.min.hour > value.max.hour:
-		if game_time.hour >= value.min.hour or game_time.hour <= value.max.hour:
-			is_between = true;
-	else:
-		if value.min.hour == game_time.hour:
-			if value.min.minute <= game_time.minute:
-				is_between = true;
-		elif value.min.minute <= game_time.minute <= value.max.minute:
-			is_between = true;
-	return is_between;
-
 func get_action_by_id(action_id: String) -> Action:
 	return _actions.get(action_id);
-	
-	
+
 func _check_hunger(validator_data: Dictionary, owner_id: String) -> bool:
 	var alive: Alive = AlivesController.get_alive_by_owner_id(owner_id);
 	return _check_value_between_incl(alive.alive_status.hunger.value, validator_data.value.min, validator_data.value.max);
@@ -78,7 +61,7 @@ func _check_merchant(validator_data: Dictionary, owner_id: String) -> bool:
 
 
 func _check_game_time(validator_data: Dictionary, owner_id: String) -> bool:
-	return _is_game_time_between_value(last_game_time, validator_data.value);
+	return last_game_time.is_between_incl(validator_data.value.min, validator_data.value.max);
 
 # Helpers functions to check -> next put this in something like ValidatorUtils files
 func _check_value_between_incl(value: int, min: int, max: int) -> bool:

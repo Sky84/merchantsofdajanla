@@ -32,12 +32,12 @@
 					"params": [],
 					"value": {
 						"min":{
-							"hour": 13,
+							"hour": 0,
 							"minute": 0
 						},
 						"max":{
-							"hour": 18,
-							"minute": 0
+							"hour": 23,
+							"minute": 55
 						}
 					}
 				}
