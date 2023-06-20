@@ -40,17 +40,19 @@ func _start_update_alive_target_position(seller: Alive):
 
 func _on_target_reached(seller_container_id, seller_container_owner, buyer_owner_id):
 	var item = GameItems.get_items_by_subtype(target)[0];
+	var should_trade: bool = true;
 	if seller_container_owner == "player":
-		await _process_target_player(navigation_agent, item);
-	print(buyer_owner_id, " is buying things of ", seller_container_owner);
-	MarketController.trade(seller_container_id, item.id, 1, seller_container_owner,\
+		should_trade = await _process_target_player(navigation_agent, item);
+	if should_trade:
+		print(buyer_owner_id, " is buying things of ", seller_container_owner);
+		MarketController.trade(seller_container_id, item.id, 1, seller_container_owner,\
 							buyer_owner_id);
-	InventoryEvents.container_data_changed.emit(seller_container_id);
+		InventoryEvents.container_data_changed.emit(seller_container_id);
 	var next_action: Action = Actions.get_action_by_id(Actions.WAIT);
 	on_action_finished.emit(id, buyer_owner_id, next_action);
 	is_running = false;
 
-func _process_target_player(navigation_agent, item):
+func _process_target_player(navigation_agent, item) -> bool:
 	var target_position = navigation_agent.target_position;
 	PlayerEvents.on_player_block.emit(true);
 	var nav_path = navigation_agent.get_current_navigation_path();
@@ -71,3 +73,4 @@ func _process_target_player(navigation_agent, item):
 	PlayerEvents.on_player_block.emit(false);
 	if modal_result:
 		NotificationEvents.notify.emit(NotificationEvents.NotificationType.SUCCESS, 'MARKET.TRADE_SUCCESS');
+	return modal_result;
