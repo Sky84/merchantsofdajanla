@@ -7,6 +7,7 @@ var _is_inventory_visible = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super();
+	_is_player = true;
 	PlayerEvents.on_item_in_hand_changed.connect(_on_item_in_hand_changed);
 	PlayerEvents.on_player_block.connect(func (value: bool): _is_blocked = value);
 

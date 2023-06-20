@@ -16,6 +16,8 @@ const GROUP_NAME = 'alive';
 @onready var cloth_animations = $ClothAnimations;
 @onready var animated_sprite_3d = $ClothAnimations/SkinsAnimatedSprite3D;
 
+var _is_player = false;
+
 var _is_blocked = false;
 var _speed_walk_factor: float = 10.0;
 
