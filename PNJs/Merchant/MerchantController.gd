@@ -13,3 +13,6 @@ var is_trading: bool:
 
 func _ready():
 	super();
+
+func interact(_interract_owner_id: String) -> void:
+	print("_interract_owner_id: "+_interract_owner_id);

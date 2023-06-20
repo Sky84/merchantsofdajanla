@@ -5,7 +5,6 @@ class_name Posable
 
 func _ready():
 	_disable_collider(true);
-	super._ready();
 
 func _init_posable(_owner: String):
 	self._owner = _owner;

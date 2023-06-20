@@ -10,7 +10,7 @@ class_name UIController
 @onready var game_time_label = $GameTimeCotainer/Label;
 
 var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
-var _nearest_interactive: MapItem = null;
+var _nearest_interactive: Node3D = null;
 var _current_mouse_target: Control;
 
 # Called when the node enters the scene tree for the first time.
@@ -65,12 +65,15 @@ func _om_mouse_current_target(target: Control, is_mouse_hover: bool) -> void:
 func get_current_mouse_target() -> Control:
 	return _current_mouse_target;
 
-func _show_tooltip_on_interactive(posable: MapItem) -> void:
+func _show_tooltip_on_interactive(interactive: Node3D) -> void:
 	if _nearest_interactive:
-		_nearest_interactive.get_interactive_label_container().remove_child(tooltip);
+		_get_interact_label_container(_nearest_interactive).remove_child(tooltip);
 		_nearest_interactive = null;
 		stand_transaction.close();
 		stand_setup.close();
-	if posable:
-		_nearest_interactive = posable;
-		_nearest_interactive.get_interactive_label_container().add_child(tooltip);
+	if interactive:
+		_nearest_interactive = interactive;
+		_get_interact_label_container(_nearest_interactive).add_child(tooltip);
+
+func _get_interact_label_container(interactive: Node3D):
+	return interactive.get_node(InteractComponent.SCENE_NAME).interactive_label_container;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://r5o6uljnlvg0"]
+[gd_scene load_steps=37 format=3 uid="uid://r5o6uljnlvg0"]
 
 [ext_resource type="Script" path="res://PNJs/Merchant/MerchantController.gd" id="1_3k4he"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_hlxtw"]
@@ -8,6 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dt3tgxtd8u511" path="res://Player/SpriteFrames/Shirts_0.tres" id="6_dd6ft"]
 [ext_resource type="SpriteFrames" uid="uid://b4o5oppunvwye" path="res://Player/SpriteFrames/Pants_1.tres" id="7_2b336"]
 [ext_resource type="SpriteFrames" uid="uid://b116yvdld6l6t" path="res://Player/SpriteFrames/Skins_0.tres" id="8_wmgpc"]
+[ext_resource type="PackedScene" uid="uid://bt0fs4f7tip0s" path="res://Core/Components/interact_component.tscn" id="9_oe1bg"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -287,7 +288,6 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("2_hlxtw")
-_start_items_json_path = "PlayerStartItems.json"
 _container_owner = "merchant"
 container_id = "merchant_inventory"
 rows = 4
@@ -367,6 +367,9 @@ shape = SubResource("SphereShape3D_deg7w")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 2.0
 avoidance_enabled = true
+
+[node name="InteractComponent" parent="." instance=ExtResource("9_oe1bg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.52794, -0.870181)
 
 [connection signal="body_entered" from="ObjectDetector" to="." method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="ObjectDetector" to="." method="_on_object_detector_body_exited"]

@@ -22,7 +22,7 @@ var _is_blocked = false;
 var _speed_walk_factor: float = 10.0;
 
 var _nearest_interactives = {};
-var _nearest_interactive: MapItem = null;
+var _nearest_interactive: Node3D = null;
 
 var _item_in_hand: Dictionary = {};
 
@@ -111,9 +111,9 @@ func _on_item_in_hand_changed(item: Dictionary) -> void:
 	_item_in_hand = item;
 
 func _on_object_detector_body_entered(body: Node3D) -> void:
-	if body is MapItem and body.is_interactive():
+	if body.get_node_or_null(InteractComponent.SCENE_NAME):
 		_nearest_interactives[body.name] = body;
 
 func _on_object_detector_body_exited(body: Node3D) -> void:
-	if body is MapItem and body.is_interactive() and _nearest_interactives.has(body.name):
+	if body.get_node_or_null(InteractComponent.SCENE_NAME) and _nearest_interactives.has(body.name):
 		_nearest_interactives.erase(body.name);
