@@ -16,5 +16,8 @@
 	},
 	"sword": {
 		"amount": 1
+	},
+	"stand": {
+		"amount": 1
 	}
 }

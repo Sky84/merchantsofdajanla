@@ -8,7 +8,7 @@ func _ready():
 	AliveEvents.on_alive_ready.connect(_register_alive);
 
 func get_alive_by_owner_id(owner_id: String) -> Alive:
-	return _alives[owner_id];
+	return _alives[owner_id] if owner_id in _alives else null;
 
 func _register_alive(alive: Alive) -> void:
 	_alives[alive._owner_id] = alive;
