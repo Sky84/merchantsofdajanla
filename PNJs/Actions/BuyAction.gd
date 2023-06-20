@@ -6,48 +6,64 @@ var scene_tree: SceneTree;
 var camera_3d: Camera3D;
 var pnj_name: String;
 var is_running: bool;
+var grid_map: GridMapController;
+var buyer_owner_id: String;
+var seller_container_config: Dictionary;
 
 func execute(params: Dictionary) -> void:
 	is_running = true;
-	var buyer_owner_id = params._owner_id;
-	var grid_map: GridMapController = params.grid_map;
+	buyer_owner_id = params._owner_id;
+	grid_map = params.grid_map;
 	navigation_agent = params.navigation_agent;
 	scene_tree = navigation_agent.get_tree();
 	camera_3d = params.camera_3d;
 	pnj_name = params.pnj_name;
-	var seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
+	seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
 	if seller_container_config.is_empty():
-		var next_action = Actions.get_action_by_id(Actions.WAIT);
-		on_action_finished.emit(id, buyer_owner_id, next_action);
+		_end_action();
 		return;
 
 	#seller can be Alive or Stand
 	var seller = grid_map.get_map_item(seller_container_config.container_id);
 	if not seller:
 		seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
-		_start_update_alive_target_position(seller);
+	_start_update_alive_target_position(seller);
 	var target_position: Vector3 = seller.global_position;
 	navigation_agent.target_position = target_position;
 	await navigation_agent.target_reached;
-	_on_target_reached(seller_container_config.container_id, seller_container_config.container_owner, buyer_owner_id);
+	_on_target_reached();
 
-func _start_update_alive_target_position(seller: Alive):
+func _start_update_alive_target_position(seller: Node3D):
 	var target_position: Vector3 = seller.global_position;
 	navigation_agent.target_position = target_position;
 	await scene_tree.create_timer(1).timeout;
 	if is_running:
-		_start_update_alive_target_position(seller);
+		seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
+		if seller_container_config.is_empty():
+			_end_action();
+			return;
+		var new_seller = grid_map.get_map_item(seller_container_config.container_id);
+		if not new_seller:
+			new_seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
+		_start_update_alive_target_position(new_seller);
 
-func _on_target_reached(seller_container_id, seller_container_owner, buyer_owner_id):
+func _end_action():
+	var next_action = Actions.get_action_by_id(Actions.WAIT);
+	is_running = false;
+	on_action_finished.emit(id, buyer_owner_id, next_action);
+
+func _on_target_reached():
+	if not is_running:
+		return;
 	var item = GameItems.get_items_by_subtype(target)[0];
 	var should_trade: bool = true;
-	if seller_container_owner == "player":
+	if seller_container_config.container_owner == "player":
 		should_trade = await _process_target_player(navigation_agent, item);
 	if should_trade:
-		print(buyer_owner_id, " is buying things of ", seller_container_owner);
-		MarketController.trade(seller_container_id, item.id, 1, seller_container_owner,\
+		print(buyer_owner_id, " is buying things of ",seller_container_config.container_owner);
+		MarketController.trade(seller_container_config.container_id, item.id, 1, seller_container_config.container_owner,\
 							buyer_owner_id);
-		InventoryEvents.container_data_changed.emit(seller_container_id);
+		InventoryEvents.container_data_changed.emit(seller_container_config.container_id);
 	var next_action: Action = Actions.get_action_by_id(Actions.WAIT);
 	on_action_finished.emit(id, buyer_owner_id, next_action);
 	is_running = false;
