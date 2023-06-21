@@ -13,23 +13,23 @@
 [ext_resource type="PackedScene" uid="uid://c40ngw2hn56t4" path="res://Containers/ItemButton/ItemButton.tscn" id="8_q3116"]
 [ext_resource type="PackedScene" uid="uid://dqrhq147safqm" path="res://PlayerMouseAction/player_mouse_action.tscn" id="9_4eyub"]
 [ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="9_fg4y3"]
-[ext_resource type="Texture2D" uid="uid://ds5nf4u5ud0a3" path="res://Containers/Sprites/overboxinventaire.png" id="10_a5fgx"]
-[ext_resource type="Texture2D" uid="uid://b5icsonwkyf1w" path="res://Containers/Sprites/background_Inventory.png" id="11_3wma5"]
+[ext_resource type="Texture2D" uid="uid://y2d5gs7ua10o" path="res://Containers/Sprites/overboxinventaire.png" id="10_a5fgx"]
+[ext_resource type="Texture2D" uid="uid://c2fjidhjhl6u4" path="res://Containers/Sprites/background_Inventory.png" id="11_3wma5"]
 [ext_resource type="Script" path="res://Dialogs/ConfirmDialog/ConfirmDialog.gd" id="13_inwci"]
-[ext_resource type="Texture2D" uid="uid://bag0do53fruea" path="res://icon.svg" id="14_c0as5"]
-[ext_resource type="Texture2D" uid="uid://b47lh63tky1wo" path="res://Dialogs/Sprites/infobox.png" id="14_v6gi6"]
-[ext_resource type="Texture2D" uid="uid://bm4enr2w888jx" path="res://Dialogs/Sprites/buttoninfoOK.png" id="15_ox7wf"]
-[ext_resource type="Texture2D" uid="uid://18die6ovk8ko" path="res://Dialogs/Sprites/buttoninfoNO.png" id="16_wbqma"]
+[ext_resource type="Texture2D" uid="uid://2pxe5nl2hfui" path="res://icon.svg" id="14_c0as5"]
+[ext_resource type="Texture2D" uid="uid://cuk5h84fjjyg7" path="res://Dialogs/Sprites/infobox.png" id="14_v6gi6"]
+[ext_resource type="Texture2D" uid="uid://dcw5gsqqa33m5" path="res://Dialogs/Sprites/buttoninfoOK.png" id="15_ox7wf"]
+[ext_resource type="Texture2D" uid="uid://ckd7217i3af0n" path="res://Dialogs/Sprites/buttoninfoNO.png" id="16_wbqma"]
 [ext_resource type="Script" path="res://Containers/InfoPanelController.gd" id="17_eto80"]
 [ext_resource type="Script" path="res://UI/ShortcutBar.gd" id="19_6dhmn"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
-[ext_resource type="Texture2D" uid="uid://b04judj4agbxa" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
+[ext_resource type="Texture2D" uid="uid://cr8dllugmppr0" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
 [ext_resource type="PackedScene" uid="uid://cb7i0apyk7kif" path="res://Stand/TransactionView/StandSetup/StandSetup.tscn" id="21_samwx"]
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
 [ext_resource type="PackedScene" uid="uid://b2wjdlipuc437" path="res://Stand/TransactionView/StandTransaction/StandTransaction.tscn" id="22_dogdb"]
 [ext_resource type="Script" path="res://UI/Notifications/NotificationController.gd" id="23_l4jmb"]
 [ext_resource type="Script" path="res://Core/GameTimeController.gd" id="28_hkrjo"]
-[ext_resource type="Texture2D" uid="uid://ms4ac00q5cr6" path="res://Map/rock.png" id="30_73or7"]
+[ext_resource type="Texture2D" uid="uid://b115tymrfpka6" path="res://Map/rock.png" id="30_73or7"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="30_ibe7a"]
 [ext_resource type="PackedScene" uid="uid://r5o6uljnlvg0" path="res://PNJs/Merchant/Merchant.tscn" id="32_hqkqk"]
 
@@ -807,7 +807,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_524yx")
 script = ExtResource("30_ibe7a")
 
 [node name="Merchant" parent="." instance=ExtResource("32_hqkqk")]
-_owner_id = "merchant"
+run_animation_gap = 4
 
 [connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]

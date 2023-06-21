@@ -16,4 +16,4 @@ func _init(_id: String, _target: String, _params: Array, _navigation_mesh: Navig
 	navigation_mesh = _navigation_mesh;
 
 func execute(params: Dictionary) -> void:
-	printerr("Need implement execute function for Action and emit on_action_finished"+ id);
+	printerr("Need implement execute function for Action and emit on_action_finished. action id is: "+ id);

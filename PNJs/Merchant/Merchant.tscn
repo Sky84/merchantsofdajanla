@@ -275,6 +275,7 @@ radius = 2.56796
 up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_3k4he")
 navigation_agent = NodePath("NavigationAgent3D")
+_owner_id = "merchant"
 run_animation_gap = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

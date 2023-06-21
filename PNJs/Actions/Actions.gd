@@ -49,7 +49,8 @@ func _check_conditions(conditions: Array, owner_id: String) -> bool:
 	return validated; # Si toutes les conditions sont satisfaites
 
 func get_action_by_id(action_id: String) -> Action:
-	return _actions.get(action_id);
+	var action: Action = _actions.get(action_id);
+	return create_action({"id": action.id, "target": action.target, "params": action.params});
 
 func _check_hunger(validator_data: Dictionary, owner_id: String) -> bool:
 	var alive: Alive = AlivesController.get_alive_by_owner_id(owner_id);

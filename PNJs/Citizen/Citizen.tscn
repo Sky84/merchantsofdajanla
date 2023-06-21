@@ -274,8 +274,6 @@ radius = 2.56796
 up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_03gek")
 navigation_agent = NodePath("NavigationAgent3D")
-_owner_id = "citizen"
-run_animation_gap = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")

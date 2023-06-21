@@ -64,9 +64,7 @@ func _on_target_reached():
 		MarketController.trade(seller_container_config.container_id, item.id, 1, seller_container_config.container_owner,\
 							buyer_owner_id);
 		InventoryEvents.container_data_changed.emit(seller_container_config.container_id);
-	var next_action: Action = Actions.get_action_by_id(Actions.WAIT);
-	on_action_finished.emit(id, buyer_owner_id, next_action);
-	is_running = false;
+	_end_action();
 
 func _process_target_player(navigation_agent, item) -> bool:
 	var target_position = navigation_agent.target_position;

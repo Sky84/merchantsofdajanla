@@ -16,7 +16,7 @@ class_name CitizenController
 
 @onready var grid_map: GridMapController = $"../NavigationRegion3D/GridMap";
 
-@onready var default_action: WaitAction = Actions.get_action_by_id(Actions.WAIT);
+@onready var default_action: Action = Actions.get_action_by_id(Actions.WAIT);
 
 var pnj_name: String = 'George';
 var actions_queue = [];
@@ -46,7 +46,7 @@ func _handle_movement():
 func _check_actions() -> void:
 	var action_id = Actions.get_action_id_by_triggers(_owner_id);
 	var action = Actions.get_action_by_id(action_id);
-	if action_id and not actions_queue.has(action):
+	if action_id and not actions_queue.has(func(action_from_queue): action_from_queue.id == action.id):
 		actions_queue.push_back(action);
 	_process_actions_queue();
 
@@ -66,5 +66,6 @@ func _on_action_finished(action_id: String, owner_id: String, next_action: Actio
 	if owner_id != _owner_id:
 		return;
 	if next_action:
+		actions_queue.pop_front();
 		actions_queue.push_front(next_action);
 	_check_actions();
