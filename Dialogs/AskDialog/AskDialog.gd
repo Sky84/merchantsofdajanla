@@ -1,22 +1,32 @@
 extends Control
-class_name AskBuyDialog
+class_name AskDialog
 
 @onready var _indicator_left: TextureRect = $AskContainer/IndicatorLeft;
 @onready var _indicator_right: TextureRect = $AskContainer/IndicatorRight;
 @onready var _ask_label: Label = $AskContainer/AskLabel;
-@onready var _name_label: Label = $AskContainer/NameContainer/NameLabel
+@onready var _name_label: Label = $AskContainer/NameContainer/NameLabel;
+@onready var _answers_container = $AnswersContainer;
+
+var _answer_scene: PackedScene = preload("res://Dialogs/AskDialog/answer.tscn");
 
 signal close_modal(result: bool);
 
 var modal_on_left: bool = false;
 var ask_translation: String;
 var name_translation: String;
+var answers: Array;
 
 func _ready():
 	_indicator_left.visible = modal_on_left;
 	_indicator_right.visible = !modal_on_left;
 	_ask_label.text = ask_translation;
 	_name_label.text = name_translation;
+	for answer in answers:
+		var answer_instance: ModalAnswer = _answer_scene.instantiate();
+		answer_instance._ask_dialog = self;
+		answer_instance._is_accept_button = answer.is_accept_answer;
+		answer_instance.text = answer.text;
+		_answers_container.add_child(answer_instance);
 
 func close_parent_modal(result: bool):
 	close_modal.emit(result);

@@ -80,9 +80,13 @@ func _process_target_player(navigation_agent, item) -> bool:
 		'global_position':  camera_3d.unproject_position(target_position) + gap_modal,
 		'modal_on_left': gap_modal.x < 0,
 		'ask_translation': tr('MARKET.ASK_BUY') + " 1 " + tr(item.name),
-		'name_translation': pnj_name
+		'name_translation': pnj_name,
+		'answers': [
+			{'text':tr('MARKET.ACCEPT'), 'is_accept_answer': true},
+			{'text':tr('MARKET.DECLINE'), 'is_accept_answer': false}
+		]
 	};
-	HudEvents.open_modal.emit('res://Dialogs/AskBuyDialog/AskBuyDialog.tscn', modal_params);
+	HudEvents.open_modal.emit('res://Dialogs/AskDialog/AskDialog.tscn', modal_params);
 	var modal_result = await HudEvents.closed_modal;
 	PlayerEvents.on_player_block.emit(false);
 	if modal_result:
