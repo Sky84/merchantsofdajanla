@@ -344,7 +344,6 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
-_start_items_json_path = "PlayerStartItems.json"
 _container_owner = "player"
 container_id = "player_inventory"
 rows = 4
@@ -789,7 +788,8 @@ shadow_opacity = 0.61
 directional_shadow_split_1 = 0.557
 directional_shadow_pancake_size = 0.0
 script = ExtResource("28_hkrjo")
-_start_minute_game_time = 50
+_start_hour_game_time = 12
+_start_minute_game_time = 55
 
 [node name="Timer" type="Timer" parent="GameTime"]
 autostart = true
@@ -810,7 +810,8 @@ script = ExtResource("30_ibe7a")
 [node name="Merchant" parent="." instance=ExtResource("32_hqkqk")]
 
 [node name="Citizen" parent="." instance=ExtResource("33_yeocl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.53914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.95469, 0.00500011, 0.551221)
+pnj_name = "Citoyen"
 
 [connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]

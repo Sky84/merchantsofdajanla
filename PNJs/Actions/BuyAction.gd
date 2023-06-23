@@ -9,6 +9,7 @@ var is_running: bool;
 var grid_map: GridMapController;
 var buyer_owner_id: String;
 var seller_container_config: Dictionary;
+var seller_alive: Alive;
 
 func execute(params: Dictionary) -> void:
 	is_running = true;
@@ -25,13 +26,17 @@ func execute(params: Dictionary) -> void:
 
 	#seller can be Alive or Stand
 	var seller = grid_map.get_map_item(seller_container_config.container_id);
+	seller_alive = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
 	if not seller:
-		seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
+		seller = seller_alive;
 	_start_update_alive_target_position(seller);
 	var target_position: Vector3 = seller.global_position;
 	navigation_agent.target_position = target_position;
 	await navigation_agent.target_reached;
-	_on_target_reached();
+	if seller_alive.is_busy:
+		_end_action(false);
+	else:
+		_on_target_reached();
 
 func _start_update_alive_target_position(seller: Node3D):
 	var target_position: Vector3 = seller.global_position;
@@ -47,32 +52,36 @@ func _start_update_alive_target_position(seller: Node3D):
 			new_seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
 		_start_update_alive_target_position(new_seller);
 
-func _end_action():
+func _end_action(unlock_player: bool = true):
 	var next_action = Actions.get_action_by_id(Actions.WAIT);
 	is_running = false;
 	on_action_finished.emit(id, buyer_owner_id, next_action);
-	PlayerEvents.on_player_block.emit(false);
+	if unlock_player:
+		PlayerEvents.on_player_block.emit(false);
 
 func _on_target_reached():
 	if not is_running:
 		return;
 	var item = GameItems.get_items_by_subtype(target)[0];
 	var should_trade: bool = true;
+	seller_alive.is_busy = true;
 	if seller_container_config.container_owner == "player":
 		_process_target_player(navigation_agent, item);
 	else:
-		_end_action();
+		_on_accept(item);
 
-func _on_accept(item: Dictionary) -> void:
-	NotificationEvents.notify.emit(NotificationEvents.NotificationType.SUCCESS, 'MARKET.TRADE_SUCCESS');
+func _on_accept(item: Dictionary, notify: bool = false) -> void:
+	if notify:
+		NotificationEvents.notify.emit(NotificationEvents.NotificationType.SUCCESS, 'MARKET.TRADE_SUCCESS');
 	print(buyer_owner_id, " is buying things of ",seller_container_config.container_owner);
 	MarketController.trade(seller_container_config.container_id, item.id, 1, seller_container_config.container_owner,\
 							buyer_owner_id);
 	InventoryEvents.container_data_changed.emit(seller_container_config.container_id);
+	seller_alive.is_busy = false;
 	_end_action();
 
 func _on_decline() -> void:
-	print('decline');
+	seller_alive.is_busy = false;
 	_end_action();
 
 func _process_target_player(navigation_agent, item) -> void:
@@ -91,7 +100,7 @@ func _process_target_player(navigation_agent, item) -> void:
 		'ask_translation': tr('MARKET.ASK_BUY') + " 1 " + tr(item.name),
 		'name_translation': pnj_name,
 		'answers': [
-			{'text':tr('MARKET.ACCEPT'), 'callback': _on_accept.bind(item)},
+			{'text':tr('MARKET.ACCEPT'), 'callback': _on_accept.bind(item, true)},
 			{'text':tr('MARKET.DECLINE'), 'callback': _on_decline}
 		]
 	};

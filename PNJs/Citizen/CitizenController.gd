@@ -12,13 +12,13 @@ class_name CitizenController
 
 @export_category("Citizen")
 @export var navigation_agent: NavigationAgent3D;
+@export var pnj_name: String = 'George';
 @onready var camera_3d = %Camera3D;
 
 @onready var grid_map: GridMapController = $"../NavigationRegion3D/GridMap";
 
 @onready var default_action: Action = Actions.get_action_by_id(Actions.WAIT);
 
-var pnj_name: String = 'George';
 var actions_queue = [];
 var is_running_int = 0;
 

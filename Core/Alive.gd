@@ -19,6 +19,7 @@ const GROUP_NAME = 'alive';
 var _is_player = false;
 
 var _is_blocked = false;
+
 var _speed_walk_factor: float = 10.0;
 
 var _nearest_interactives = {};
@@ -26,6 +27,7 @@ var _nearest_interactive: Node3D = null;
 
 var _item_in_hand: Dictionary = {};
 
+var is_busy = false;
 var alive_status: Dictionary = {
 	"health": {"value": MAX_HEALTH, "max": MAX_HEALTH},
 	"hunger": {"value": MAX_HUNGER, "max": MAX_HUNGER}
