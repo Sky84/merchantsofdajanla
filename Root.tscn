@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=68 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_niwxe"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://b115tymrfpka6" path="res://Map/rock.png" id="30_73or7"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="30_ibe7a"]
 [ext_resource type="PackedScene" uid="uid://r5o6uljnlvg0" path="res://PNJs/Merchant/Merchant.tscn" id="32_hqkqk"]
+[ext_resource type="PackedScene" uid="uid://cqy6hub708thm" path="res://PNJs/Citizen/Citizen.tscn" id="33_yeocl"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -807,6 +808,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_524yx")
 script = ExtResource("30_ibe7a")
 
 [node name="Merchant" parent="." instance=ExtResource("32_hqkqk")]
+
+[node name="Citizen" parent="." instance=ExtResource("33_yeocl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.53914)
 
 [connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]

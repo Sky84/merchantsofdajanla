@@ -51,6 +51,7 @@ func _end_action():
 	var next_action = Actions.get_action_by_id(Actions.WAIT);
 	is_running = false;
 	on_action_finished.emit(id, buyer_owner_id, next_action);
+	PlayerEvents.on_player_block.emit(false);
 
 func _on_target_reached():
 	if not is_running:
@@ -58,15 +59,23 @@ func _on_target_reached():
 	var item = GameItems.get_items_by_subtype(target)[0];
 	var should_trade: bool = true;
 	if seller_container_config.container_owner == "player":
-		should_trade = await _process_target_player(navigation_agent, item);
-	if should_trade:
-		print(buyer_owner_id, " is buying things of ",seller_container_config.container_owner);
-		MarketController.trade(seller_container_config.container_id, item.id, 1, seller_container_config.container_owner,\
+		_process_target_player(navigation_agent, item);
+	else:
+		_end_action();
+
+func _on_accept(item: Dictionary) -> void:
+	NotificationEvents.notify.emit(NotificationEvents.NotificationType.SUCCESS, 'MARKET.TRADE_SUCCESS');
+	print(buyer_owner_id, " is buying things of ",seller_container_config.container_owner);
+	MarketController.trade(seller_container_config.container_id, item.id, 1, seller_container_config.container_owner,\
 							buyer_owner_id);
-		InventoryEvents.container_data_changed.emit(seller_container_config.container_id);
+	InventoryEvents.container_data_changed.emit(seller_container_config.container_id);
 	_end_action();
 
-func _process_target_player(navigation_agent, item) -> bool:
+func _on_decline() -> void:
+	print('decline');
+	_end_action();
+
+func _process_target_player(navigation_agent, item) -> void:
 	var target_position = navigation_agent.target_position;
 	PlayerEvents.on_player_block.emit(true);
 	var nav_path = navigation_agent.get_current_navigation_path();
@@ -82,13 +91,8 @@ func _process_target_player(navigation_agent, item) -> bool:
 		'ask_translation': tr('MARKET.ASK_BUY') + " 1 " + tr(item.name),
 		'name_translation': pnj_name,
 		'answers': [
-			{'text':tr('MARKET.ACCEPT'), 'is_accept_answer': true},
-			{'text':tr('MARKET.DECLINE'), 'is_accept_answer': false}
+			{'text':tr('MARKET.ACCEPT'), 'callback': _on_accept.bind(item)},
+			{'text':tr('MARKET.DECLINE'), 'callback': _on_decline}
 		]
 	};
 	HudEvents.open_modal.emit('res://Dialogs/AskDialog/AskDialog.tscn', modal_params);
-	var modal_result = await HudEvents.closed_modal;
-	PlayerEvents.on_player_block.emit(false);
-	if modal_result:
-		NotificationEvents.notify.emit(NotificationEvents.NotificationType.SUCCESS, 'MARKET.TRADE_SUCCESS');
-	return modal_result;

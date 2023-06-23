@@ -9,7 +9,7 @@ class_name AskDialog
 
 var _answer_scene: PackedScene = preload("res://Dialogs/AskDialog/answer.tscn");
 
-signal close_modal(result: bool);
+signal close_modal();
 
 var modal_on_left: bool = false;
 var ask_translation: String;
@@ -24,10 +24,10 @@ func _ready():
 	for answer in answers:
 		var answer_instance: ModalAnswer = _answer_scene.instantiate();
 		answer_instance._ask_dialog = self;
-		answer_instance._is_accept_button = answer.is_accept_answer;
+		answer_instance._callback = answer.callback;
 		answer_instance.text = answer.text;
 		_answers_container.add_child(answer_instance);
 
-func close_parent_modal(result: bool):
-	close_modal.emit(result);
+func close_parent_modal():
+	close_modal.emit();
 

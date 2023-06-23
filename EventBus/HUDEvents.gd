@@ -9,7 +9,3 @@ signal open_stand_transaction(container_id: String, _interract_owner_id: String,
 signal price_item_changed(item: Dictionary);
 
 signal open_modal(path_node_to_instance: String, params: Dictionary);
-
-signal closed_modal(result: Dictionary);
-
-signal close_modal(result: Dictionary);

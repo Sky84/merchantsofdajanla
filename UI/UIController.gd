@@ -39,7 +39,6 @@ func _on_open_modal(path_node_to_instance: String, params: Dictionary):
 	var result = await instance.close_modal;
 	modal_container.hide();
 	modal_container.remove_child(instance);
-	HudEvents.closed_modal.emit(result);
 
 func _show_stand_setup_dialog(container_id: String, screen_position: Vector2) -> void:
 	stand_setup.open(container_id, screen_position);
