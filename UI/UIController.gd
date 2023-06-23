@@ -5,6 +5,7 @@ class_name UIController
 
 @onready var confirm_dialog: Panel = $ConfirmDialog;
 @onready var stand_setup: StandSetupView = $StandSetup;
+@onready var trade_view = $TradeView;
 @onready var stand_transaction: StandTransactionView = $StandTransaction;
 @onready var modal_container = $ModalContainer;
 @onready var game_time_label = $GameTimeCotainer/Label;
@@ -18,6 +19,7 @@ func _ready():
 	InventoryEvents.dialog_confirm_delete_item.connect(_show_confirm_dialog);
 	HudEvents.open_stand_setup.connect(_show_stand_setup_dialog);
 	HudEvents.open_stand_transaction.connect(_show_stand_transaction_dialog);
+	HudEvents.open_trade_view.connect(_show_trade_view_dialog);
 	PlayerEvents.on_nearest_interactive_changed.connect(_show_tooltip_on_interactive);
 	for child in get_children():
 		if not mouse_targets_node_to_exclude.has(child.get_path()):
@@ -42,6 +44,9 @@ func _on_open_modal(path_node_to_instance: String, params: Dictionary):
 
 func _show_stand_setup_dialog(container_id: String, screen_position: Vector2) -> void:
 	stand_setup.open(container_id, screen_position);
+
+func _show_trade_view_dialog(merchant_container_id: String) -> void:
+	trade_view.open(merchant_container_id);
 
 func _show_stand_transaction_dialog(container_id: String, _interract_owner_id: String, screen_position: Vector2) -> void:
 	stand_transaction.open(container_id, _interract_owner_id, screen_position);

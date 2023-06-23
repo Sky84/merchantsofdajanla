@@ -35,10 +35,11 @@ func interact(_interract_owner_id: String) -> void:
 	HudEvents.open_modal.emit('res://Dialogs/AskDialog/AskDialog.tscn', modal_params);
 
 func _on_trade(trader: Alive) -> void:
-	print(trader)
 	_is_blocked = false;
 	is_busy = false;
 	PlayerEvents.on_player_block.emit(false);
+	var container_id: String = ContainersController.get_container_ids_by_owner_id(_owner_id)[0];
+	HudEvents.open_trade_view.emit(container_id);
 
 func _on_goodbye() -> void:
 	print('tradergoodbye')

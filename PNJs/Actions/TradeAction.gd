@@ -4,7 +4,6 @@ class_name TradeAction
 var navigation_agent: NavigationAgent3D;
 
 func execute(params: Dictionary) -> void:
-	print("trading ", params)
 	var navigation_agent = params.navigation_agent;
 	var _owner_id = params._owner_id;
 	var seller = AlivesController.get_alive_by_owner_id(_owner_id);
