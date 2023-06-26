@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=80 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_niwxe"]
@@ -34,9 +34,15 @@
 [ext_resource type="Script" path="res://Core/GameTimeController.gd" id="28_hkrjo"]
 [ext_resource type="Script" path="res://PlayerContainerView.gd" id="29_78g50"]
 [ext_resource type="Texture2D" uid="uid://bwjkbflaun5l8" path="res://Map/rock.png" id="30_73or7"]
+[ext_resource type="Texture2D" uid="uid://c0bmtjn7dcsjr" path="res://Items/bread.png" id="30_bmr0a"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="30_ibe7a"]
+[ext_resource type="Texture2D" uid="uid://qo07y3vds2u7" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="30_ikgnf"]
+[ext_resource type="Texture2D" uid="uid://dc5w1kyeo61ew" path="res://Stand/TransactionView/Assets/minus.png" id="31_x07f7"]
 [ext_resource type="PackedScene" uid="uid://r5o6uljnlvg0" path="res://PNJs/Merchant/Merchant.tscn" id="32_hqkqk"]
+[ext_resource type="Texture2D" uid="uid://bt28pqec8cmyl" path="res://Stand/TransactionView/Assets/price.png" id="32_snby5"]
+[ext_resource type="Texture2D" uid="uid://botoy6wgjeytd" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="33_nins7"]
 [ext_resource type="PackedScene" uid="uid://cqy6hub708thm" path="res://PNJs/Citizen/Citizen.tscn" id="33_yeocl"]
+[ext_resource type="Texture2D" uid="uid://77bljncj6jnd" path="res://Stand/TransactionView/Assets/plus.png" id="34_tvvwq"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -316,6 +322,10 @@ corner_radius_bottom_left = 3
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20ljf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h76o6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j7dto"]
+line_spacing = 2.08165e-12
+font_size = 10
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qt4bp"]
 vertices = PackedVector3Array(31.5, 0.1, -8.5, 31.5, 0.1, -9.5, 29.5, 0.1, -9.75, 27.75, 0.1, -8.5, 31.5, 0.1, -8.5, 29.5, 0.1, -9.75, 25.75, 0.1, -6.5, 27.5, 0.1, -6.5, 27.75, 0.1, -8.5, 20.5, 0.1, -15.75, 18.5, 0.1, -15.5, 18.5, 0.1, -13.75, 29.75, 0.1, -15.5, 29.5, 0.1, -17.5, 27.5, 0.1, -17.75, 31.5, 0.1, -12.5, 31.5, 0.1, -15.5, 29.75, 0.1, -15.5, 29.5, 0.1, -12.25, 31.5, 0.1, -12.5, 29.75, 0.1, -15.5, 27.5, 0.1, -17.75, 27.5, 0.1, -19.5, 24.5, 0.1, -19.5, 27.5, 0.1, -17.75, 24.5, 0.1, -19.5, 24.25, 0.1, -17.5, 27.75, 0.1, -8.5, 29.5, 0.1, -9.75, 29.5, 0.1, -12.25, 24.25, 0.1, -17.5, 20.5, 0.1, -17.5, 20.5, 0.1, -15.75, 29.5, 0.1, -12.25, 29.75, 0.1, -15.5, 27.5, 0.1, -17.75, 25.75, 0.1, -6.5, 27.75, 0.1, -8.5, 29.5, 0.1, -12.25, 24.25, 0.1, -17.5, 20.5, 0.1, -15.75, 18.5, 0.1, -13.75, 29.5, 0.1, -12.25, 27.5, 0.1, -17.75, 24.25, 0.1, -17.5, 18, 0.1, -13.5, 25.5, 0.1, -6, 25.75, 0.1, -6.5, 18.5, 0.1, -13.75, 18, 0.1, -13.5, 25.75, 0.1, -6.5, 25.75, 0.1, -6.5, 29.5, 0.1, -12.25, 24.25, 0.1, -17.5, 25.75, 0.1, -6.5, 24.25, 0.1, -17.5, 18.5, 0.1, -13.75, -5, 0.1, -4.25, -5, 0.1, -2.75, -2.5, 0.1, -2.25, 7.5, 0.1, -16.25, 11.5, 0.1, -16.5, 11.5, 0.1, -17.5, 2.25, 0.1, -15.5, -1.5, 0.1, -15.5, -1.75, 0.1, -13.5, 7.5, 0.1, -16.25, 11.5, 0.1, -17.5, 2.5, 0.1, -17.5, 7.5, 0.1, -16.25, 2.5, 0.1, -17.5, 2.25, 0.1, -15.5, -5, 0.1, -4.25, -2.5, 0.1, -2.25, 0.25, 0.1, -2.5, 7.5, 0.1, -13.75, 7.5, 0.1, -16.25, 2.25, 0.1, -15.5, 8, 0.1, -13.5, 7.5, 0.1, -13.75, 2.25, 0.1, -15.5, -6.5, 0.1, -13.5, -6.5, 0.1, -4.5, -5, 0.1, -4.25, 8, 0.1, -13.5, 2.25, 0.1, -15.5, -1.75, 0.1, -13.5, -1.75, 0.1, -13.5, -6.5, 0.1, -13.5, -5, 0.1, -4.25, -1.75, 0.1, -13.5, -5, 0.1, -4.25, 0.25, 0.1, -2.5, 0.5, 0.1, -2, 8, 0.1, -13.5, -1.75, 0.1, -13.5, 0.25, 0.1, -2.5, 0.5, 0.1, -2, -1.75, 0.1, -13.5, -17.5, 0.1, -7.5, -17.5, 0.1, -6.5, -15.75, 0.1, -6.5, -15.5, 0.1, -7.75, -17.5, 0.1, -7.5, -15.75, 0.1, -6.5, -15.5, 0.1, -11.75, -17.5, 0.1, -11.5, -17.5, 0.1, -10.5, -15.5, 0.1, -11.75, -17.5, 0.1, -10.5, -15.5, 0.1, -10.25, -15.75, 0.1, -6.5, -15.5, 0.1, -4.5, -13.75, 0.1, -4.5, -15.5, 0.1, -7.75, -15.75, 0.1, -6.5, -13.75, 0.1, -4.5, -10.25, 0.1, -13.5, -10.5, 0.1, -15.5, -15.5, 0.1, -15.5, -10.25, 0.1, -13.5, -15.5, 0.1, -15.5, -15.5, 0.1, -11.75, -13.5, 0.1, -3.25, -8.25, 0.1, -3.25, -8, 0.1, -4.5, -13.75, 0.1, -4.5, -13.5, 0.1, -3.25, -8, 0.1, -4.5, -15.5, 0.1, -10.25, -15.5, 0.1, -7.75, -13.75, 0.1, -4.5, -10.25, 0.1, -13.5, -15.5, 0.1, -11.75, -15.5, 0.1, -10.25, -8, 0.1, -4.5, -6.5, 0.1, -4.5, -6.5, 0.1, -13.5, -8, 0.1, -4.5, -6.5, 0.1, -13.5, -10.25, 0.1, -13.5, -8, 0.1, -4.5, -10.25, 0.1, -13.5, -15.5, 0.1, -10.25, -8, 0.1, -4.5, -15.5, 0.1, -10.25, -13.75, 0.1, -4.5, 11.5, 0.1, 9.75, 13.5, 0.1, 9.5, 13.5, 0.1, 7.75, 13.5, 0.1, 7.75, 15.5, 0.1, 7.5, 15.75, 0.1, 5.5, 21.75, 0.1, 3.5, 25.5, 0.1, 3.5, 25.5, 0.1, 1.75, 25.5, 0.1, 1.75, 27.5, 0.1, 1.5, 27.5, 0.1, -3.5, 25.5, 0.1, 1.75, 27.5, 0.1, -3.5, 25.5, 0.1, -3.75, 15.75, 0.1, 5.5, 21.5, 0.1, 5.5, 21.75, 0.1, 3.5, 4.5, 0.1, 11.5, 11.5, 0.1, 11.5, 11.5, 0.1, 9.75, 4.25, 0.1, 9.5, 4.5, 0.1, 11.5, 11.5, 0.1, 9.75, 21.75, 0.1, 3.5, 25.5, 0.1, 1.75, 25.5, 0.1, -3.75, 0.5, 0.1, 0.25, -1, 0.1, 0.5, -1, 0.1, 9.5, 4.25, 0.1, 9.5, 11.5, 0.1, 9.75, 13.5, 0.1, 7.75, 0.5, 0.1, 0.25, -1, 0.1, 9.5, 4.25, 0.1, 9.5, 21.75, 0.1, 3.5, 25.5, 0.1, -3.75, 25.5, 0.1, -6, 0.5, 0.1, -2, 0.5, 0.1, 0.25, 4.25, 0.1, 9.5, 4.25, 0.1, 9.5, 13.5, 0.1, 7.75, 15.75, 0.1, 5.5, 15.75, 0.1, 5.5, 21.75, 0.1, 3.5, 25.5, 0.1, -6, 0.5, 0.1, -2, 4.25, 0.1, 9.5, 15.75, 0.1, 5.5, 25.5, 0.1, -6, 18, 0.1, -13.5, 8, 0.1, -13.5, 15.75, 0.1, 5.5, 25.5, 0.1, -6, 8, 0.1, -13.5, 0.5, 0.1, -2, 15.75, 0.1, 5.5, 8, 0.1, -13.5, 32.5, 0.1, -11.5, 32.5, 0.1, -10.5, 33.5, 0.1, -10.5, 32.5, 0.1, -11.5, 33.5, 0.1, -10.5, 33.5, 0.1, -11.5, -2.5, 0.1, -2.25, -5, 0.1, -2.75, -5.25, 0.1, -2.25, -9.75, 0.1, 5.5, -9.5, 0.1, 7.5, -7.5, 0.1, 7.75, -2.5, 0.1, 0.25, -2.5, 0.1, -2.25, -5.25, 0.1, -2.25, -11.5, 0.1, 1.75, -11.5, 0.1, 5.5, -9.75, 0.1, 5.5, -13.5, 0.1, -3.25, -13.5, 0.1, 1.5, -11.5, 0.1, 1.75, -8, 0.1, -2.25, -8.25, 0.1, -3.25, -13.5, 0.1, -3.25, -8, 0.1, -2.25, -13.5, 0.1, -3.25, -11.5, 0.1, 1.75, -2.5, 0.1, 0.25, -5.25, 0.1, -2.25, -8, 0.1, -2.25, -7.5, 0.1, 7.75, -7.5, 0.1, 9.5, -1, 0.1, 9.5, -11.5, 0.1, 1.75, -9.75, 0.1, 5.5, -7.5, 0.1, 7.75, -2.5, 0.1, 0.25, -8, 0.1, -2.25, -11.5, 0.1, 1.75, -2.5, 0.1, 0.25, -11.5, 0.1, 1.75, -7.5, 0.1, 7.75, -1, 0.1, 9.5, -1, 0.1, 0.5, -2.5, 0.1, 0.25, -1, 0.1, 9.5, -2.5, 0.1, 0.25, -7.5, 0.1, 7.75)
@@ -776,6 +786,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="TradeView" type="Panel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -885,6 +896,106 @@ mouse_filter = 2
 [node name="TradeItemsContainerView2" type="GridContainer" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeContainer"]
 layout_mode = 2
 mouse_filter = 2
+columns = 5
+
+[node name="TradeItemContainer" type="Control" parent="CanvasLayer/TradeView/HBox/TradeContainerView"]
+layout_mode = 2
+anchors_preset = 0
+offset_top = 79.0
+offset_right = 177.0
+offset_bottom = 129.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer"]
+layout_mode = 2
+offset_left = 26.0
+offset_right = 58.0
+offset_bottom = 50.0
+texture = ExtResource("30_bmr0a")
+stretch_mode = 5
+
+[node name="DesiredPriceVBoxContainer" type="HBoxContainer" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer"]
+layout_mode = 2
+offset_left = 91.0
+offset_top = 10.0
+offset_right = 139.0
+offset_bottom = 19.0
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_constants/separation = 15
+
+[node name="MinusButton" type="TextureButton" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/DesiredPriceVBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("30_ikgnf")
+texture_hover = ExtResource("31_x07f7")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/DesiredPriceVBoxContainer"]
+layout_mode = 2
+texture = ExtResource("32_snby5")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="Value" type="Label" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/DesiredPriceVBoxContainer/TextureRect"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.521
+anchor_right = 0.5
+anchor_bottom = 0.521
+offset_left = -24.0
+offset_top = -8.504
+offset_right = 24.0
+offset_bottom = 8.496
+text = "100"
+label_settings = SubResource("LabelSettings_j7dto")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlusButton" type="TextureButton" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/DesiredPriceVBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("33_nins7")
+texture_hover = ExtResource("34_tvvwq")
+
+[node name="AmountVBoxContainer2" type="HBoxContainer" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer"]
+layout_mode = 2
+offset_left = 91.0
+offset_top = 28.0
+offset_right = 139.0
+offset_bottom = 37.0
+size_flags_horizontal = 6
+size_flags_vertical = 8
+theme_override_constants/separation = 15
+
+[node name="MinusButton" type="TextureButton" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/AmountVBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("30_ikgnf")
+texture_hover = ExtResource("31_x07f7")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/AmountVBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("32_snby5")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="Value" type="Label" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/AmountVBoxContainer2/TextureRect"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.521
+anchor_right = 0.5
+anchor_bottom = 0.521
+offset_left = -24.0
+offset_top = -8.504
+offset_right = 24.0
+offset_bottom = 8.496
+text = "100"
+label_settings = SubResource("LabelSettings_j7dto")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlusButton" type="TextureButton" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/AmountVBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("33_nins7")
+texture_hover = ExtResource("34_tvvwq")
 
 [node name="MerchantContainerView" type="Panel" parent="CanvasLayer/TradeView/HBox" node_paths=PackedStringArray("_items_container")]
 custom_minimum_size = Vector2(180, 0)
@@ -957,6 +1068,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_524yx")
 script = ExtResource("30_ibe7a")
 
 [node name="Merchant" parent="." instance=ExtResource("32_hqkqk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2858, 0, 4.65512)
 
 [node name="Citizen" parent="." instance=ExtResource("33_yeocl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.95469, 0.00500011, 0.551221)
