@@ -110,7 +110,7 @@ func check_mouse_outside() -> void:
 		InventoryEvents.mouse_outside.emit(true);
 	else:
 		var mouse_position = get_global_mouse_position();
-		var is_outside = !get_rect().has_point(mouse_position);
+		var is_outside = !get_global_rect().has_point(mouse_position);
 		if mouse_outside != is_outside:
 			mouse_outside = is_outside;
 		InventoryEvents.mouse_outside.emit(mouse_outside);
@@ -120,14 +120,16 @@ func _input(event):
 		check_mouse_outside();
 		if event is InputEventMouseMotion:
 			if !mouse_outside:
-				var local_mouse_position = Vector2(_items_container.get_local_mouse_position() / item_with_gap).floor();
-				local_mouse_position.x = clamp(local_mouse_position.x, 0, _items_container.columns-1);
-				local_mouse_position.y = clamp(local_mouse_position.y, 0, _rows-1);
-				var hover_texture_position = (local_mouse_position * item_with_gap) - Vector2(1,0);
-				hover_texture.position = _items_container.position + hover_texture_position;
+				hover_texture.position = _get_hover_texture_position();
 		if event is InputEventMouseButton and ContainersController.current_item.value \
 			and ui_controller.get_current_mouse_target() == null:
 			_handle_mouse_click(event);
+
+func _get_hover_texture_position() -> Vector2:
+	var local_mouse_position = Vector2(_items_container.get_local_mouse_position() / item_with_gap).floor();
+	local_mouse_position.x = clamp(local_mouse_position.x, 0, _items_container.columns-1);
+	local_mouse_position.y = clamp(local_mouse_position.y, 0, _rows-1);
+	return _items_container.position + (local_mouse_position * item_with_gap) - Vector2(1,0);
 
 func _handle_mouse_click(event: InputEventMouseButton) -> void:
 	var mouse_left_released = !event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT;
