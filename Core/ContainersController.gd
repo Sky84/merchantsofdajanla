@@ -122,10 +122,11 @@ func _create_in_empty_slot(container_ids: Array[String], item_id: String, amount
 		var slots = get_container_data(container_id);
 		for x in slots:
 			for y in slots[x]:
-				var slot = slots[x][y];
-				if slot.is_empty():
-					slots[x][y] = GameItems.get_item(item_id);
-					slots[x][y].amount = amount_to_add;
+				if slots[x][y].is_empty():
+					var slot = {};
+					slot = GameItems.get_item(item_id);
+					slot.amount = amount_to_add;
+					slots[x][y] = slot;
 					return;
 
 func get_container_data(container_id: String) -> Dictionary:
