@@ -26,6 +26,12 @@ func trade(seller_container_id: String, seller_item_id: String, seller_amount_to
 		ContainersController.remove_item(buyer_container_ids, MONEY_ITEM_ID, item_total_price);
 		ContainersController.add_item([main_seller_container_id], MONEY_ITEM_ID, item_total_price);
 
+func have_enough(container_id: String, item_id: String, amount_to_have: int):
+	var item_data = ContainersController.find_item_in_containers([container_id], item_id);
+	if not item_data.is_empty():
+		return item_data.item.amount >= amount_to_have;
+	return false; 
+
 func get_seller_container_config_by_subtype(subtype: String) -> Dictionary:
 	var currently_trading_containers_ids: Array = ContainersController.containers.keys().filter(func(container_id):
 		var container_config = ContainersController.get_container_config(container_id);

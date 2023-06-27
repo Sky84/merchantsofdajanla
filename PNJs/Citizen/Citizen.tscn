@@ -288,6 +288,7 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("2_qrufn")
+_have_start_items = true
 _container_owner = "citizen"
 container_id = "citizen_inventory"
 rows = 4

@@ -9,6 +9,7 @@ extends Panel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	visible = false;
 	player_container_view.update_containers_views.connect(_on_update_views);
 	trade_container_view.update_containers_views.connect(_on_update_views);
 	merchant_container_view.update_containers_views.connect(_on_update_views);
@@ -24,8 +25,8 @@ func _on_update_views() -> void:
 func open(merchant_container_id: String) -> void:
 	ContainersController.register_container(_trade_container_id,\
 		2, trade_container_view._items_container.columns, {}, "dynamic");
-	trade_container_view._init_container(_trade_container_id);
-	merchant_container_view._init_container(merchant_container_id, _trade_container_id);
 	player_container_view._init_container();
+	merchant_container_view._init_container(merchant_container_id, _trade_container_id, player_container_view.container_id);
+	trade_container_view._init_container(_trade_container_id, merchant_container_id, player_container_view.container_id);
 	info_panel.global_position = global_position - Vector2(info_panel.size.x + 30, 0);
 	visible = true;

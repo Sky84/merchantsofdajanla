@@ -359,6 +359,7 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="Player"]
 script = ExtResource("2_niwxe")
+_have_start_items = true
 _container_owner = "player"
 container_id = "player_inventory"
 rows = 4
@@ -786,7 +787,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="TradeView" type="Panel" parent="CanvasLayer"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -913,6 +913,7 @@ offset_left = 26.0
 offset_right = 58.0
 offset_bottom = 50.0
 texture = ExtResource("30_bmr0a")
+expand_mode = 3
 stretch_mode = 5
 
 [node name="DesiredPriceVBoxContainer" type="HBoxContainer" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer"]
@@ -957,6 +958,7 @@ texture_normal = ExtResource("33_nins7")
 texture_hover = ExtResource("34_tvvwq")
 
 [node name="AmountVBoxContainer2" type="HBoxContainer" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer"]
+visible = false
 layout_mode = 2
 offset_left = 91.0
 offset_top = 28.0
@@ -996,6 +998,40 @@ vertical_alignment = 1
 layout_mode = 2
 texture_normal = ExtResource("33_nins7")
 texture_hover = ExtResource("34_tvvwq")
+
+[node name="ValidateTrade" type="TextureButton" parent="CanvasLayer/TradeView/HBox/TradeContainerView"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -39.0
+offset_top = -39.0
+offset_right = -7.0
+offset_bottom = -7.00002
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("15_ox7wf")
+texture_hover = ExtResource("15_ox7wf")
+stretch_mode = 5
+
+[node name="TotalLabel" type="Label" parent="CanvasLayer/TradeView/HBox/TradeContainerView"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -35.0
+offset_right = -41.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0"
+horizontal_alignment = 3
+vertical_alignment = 3
 
 [node name="MerchantContainerView" type="Panel" parent="CanvasLayer/TradeView/HBox" node_paths=PackedStringArray("_items_container")]
 custom_minimum_size = Vector2(180, 0)
@@ -1077,8 +1113,9 @@ pnj_name = "Citoyen"
 [connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]
 [connection signal="button_up" from="CanvasLayer/ConfirmDialog/CancelButton" to="CanvasLayer/ConfirmDialog" method="_on_cancel_button_button_up"]
-[connection signal="pressed" from="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/AmountVBoxContainer2/MinusButton" to="CanvasLayer/TradeView/HBox/TradeContainerView" method="_on_minus_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/AmountVBoxContainer2/PlusButton" to="CanvasLayer/TradeView/HBox/TradeContainerView" method="_on_plus_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/DesiredPriceVBoxContainer/MinusButton" to="CanvasLayer/TradeView/HBox/TradeContainerView" method="_on_minus_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TradeView/HBox/TradeContainerView/TradeItemContainer/DesiredPriceVBoxContainer/PlusButton" to="CanvasLayer/TradeView/HBox/TradeContainerView" method="_on_plus_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TradeView/HBox/TradeContainerView/ValidateTrade" to="CanvasLayer/TradeView/HBox/TradeContainerView" method="_on_validate_trade_pressed"]
 [connection signal="timeout" from="GameTime/Timer" to="GameTime" method="_on_timer_timeout"]
 
 [editable path="NavigationRegion3D/GridMap"]
