@@ -9,7 +9,7 @@ signal update_containers_views;
 func _ready():
 	pass
 
-func _init_container(merchant_container_id: String, trade_container_id: String, player_container_id: String):
+func _init_container(trade_container_id: String, merchant_container_id: String, player_container_id: String):
 	container_id = merchant_container_id;
 	_player_container_id = player_container_id;
 	_trade_container_id = trade_container_id;

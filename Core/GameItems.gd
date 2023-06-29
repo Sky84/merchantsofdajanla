@@ -21,7 +21,7 @@ func get_item(item_id: String):
 	if item.has('prototype'):
 		item = _merge_dictionary(get_item(item.prototype), item);
 	item.id = item_id;
-	return item;
+	return item.duplicate(true);
 
 func get_items_by_subtype(item_subtype: String) -> Array[Dictionary]:
 	var items: Array[Dictionary] = [];

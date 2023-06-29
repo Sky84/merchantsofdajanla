@@ -40,6 +40,7 @@ func _update_items(slots: Dictionary):
 		var item_data = ContainersController.find_item_in_containers([container_id], _current_item_id);
 		if not item_data.is_empty():
 			amount_value.text = str(item_data.item.amount);
+	trade_item_container.visible = not _current_item_id.is_empty();
 
 func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: int):
 	_current_item_id = '';
@@ -63,7 +64,6 @@ func _on_plus_button_pressed():
 func _compute_total():
 	total_price = 0;
 	var slots = ContainersController.get_container_data(container_id);
-	var seller_container_id: String = _merchant_container_id;
 	for x in slots:
 		for y in slots[x]:
 			var item = slots[x][y];
@@ -85,24 +85,22 @@ func _on_validate_trade_pressed():
 		ContainersController.add_item([_merchant_container_id], MarketController.MONEY_ITEM_ID, total_price);
 	else:
 		NotificationEvents.notify.emit(NotificationEvents.NotificationType.ERROR, 'MARKET.NOT_ENOUGH');
+	_current_item_id = '';
 	update_containers_views.emit();
-	trade_item_container.visible = false;
 
 func _on_remove_button_pressed():
 	var item_data = ContainersController.find_item_in_containers([container_id], _current_item_id).duplicate(true);
-	if not item_data.is_empty():
-		ContainersController.remove_item([container_id], item_data.item.id, item_data.item.amount);
-		ContainersController.add_item([_merchant_container_id], item_data.item.id, item_data.item.amount);
+	ContainersController.remove_item([container_id], item_data.item.id, item_data.item.amount);
+	ContainersController.add_item([_merchant_container_id], item_data.item.id, item_data.item.amount);
+	_current_item_id = '';
 	update_containers_views.emit();
-	trade_item_container.visible = false;
 
 func _on_amount_minus_button_pressed():
 	var item_data = ContainersController.find_item_in_containers([container_id], _current_item_id).duplicate(true);
-	if not item_data.is_empty():
-		ContainersController.remove_item([container_id], item_data.item.id, 1);
-		ContainersController.add_item([_merchant_container_id], item_data.item.id, 1);
-		if item_data.item.amount == 1:
-			trade_item_container.visible = false;
+	ContainersController.remove_item([container_id], item_data.item.id, 1);
+	ContainersController.add_item([_merchant_container_id], item_data.item.id, 1);
+	if item_data.item.amount == 1:
+		_current_item_id = '';
 	update_containers_views.emit();
 
 func _on_amount_plus_button_pressed():
