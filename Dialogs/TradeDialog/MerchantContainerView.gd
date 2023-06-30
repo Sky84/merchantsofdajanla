@@ -26,3 +26,6 @@ func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: 
 		ContainersController.add_item([_trade_container_id], slot.id, 1);
 		ContainersController.remove_item([container_id], slot.id, 1);
 	update_containers_views.emit();
+
+func on_close():
+	pass

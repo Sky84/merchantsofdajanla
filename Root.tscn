@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=83 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_niwxe"]
@@ -39,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://crxoey3gwql0l" path="res://Items/bread.png" id="32_5u0n8"]
 [ext_resource type="PackedScene" uid="uid://r5o6uljnlvg0" path="res://PNJs/Merchant/Merchant.tscn" id="32_hqkqk"]
 [ext_resource type="Texture2D" uid="uid://dv47swldtn085" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="33_1nmis"]
+[ext_resource type="Script" path="res://TradeItemController.gd" id="33_l8wny"]
 [ext_resource type="PackedScene" uid="uid://cqy6hub708thm" path="res://PNJs/Citizen/Citizen.tscn" id="33_yeocl"]
 [ext_resource type="Texture2D" uid="uid://lk0yarsfqnoa" path="res://Stand/TransactionView/Assets/minus.png" id="34_c56du"]
 [ext_resource type="Texture2D" uid="uid://ci5ryrrjudfju" path="res://Stand/TransactionView/Assets/price.png" id="35_ofmne"]
@@ -882,57 +883,12 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TradeContainerView" type="Panel" parent="CanvasLayer/TradeView/HBox" node_paths=PackedStringArray("item_texture_rect", "desired_price_value", "amount_value", "trade_item_container", "total_label", "remove_button", "_items_container")]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_h76o6")
-script = ExtResource("31_837e7")
-item_texture_rect = NodePath("../../TradeItemContainer/TextureRect")
-desired_price_value = NodePath("../../TradeItemContainer/DesiredPriceVBoxContainer/TextureRect/Value")
-amount_value = NodePath("../../TradeItemContainer/AmountVBoxContainer2/TextureRect/Value")
-trade_item_container = NodePath("../../TradeItemContainer")
-total_label = NodePath("../../TotalLabel")
-remove_button = NodePath("../../TradeItemContainer/RemoveButton")
-_item_button_scene = ExtResource("8_q3116")
-_item_slot_button_scene = ExtResource("9_fg4y3")
-gap_hover_selector = 4
-_items_container = NodePath("TradeContainer/TradeItemsContainerView2")
-
-[node name="HoverTexture" type="TextureRect" parent="CanvasLayer/TradeView/HBox/TradeContainerView"]
-z_index = 2
-texture_filter = 1
-layout_mode = 1
-offset_right = 32.0
-offset_bottom = 32.0
-mouse_filter = 2
-texture = ExtResource("10_a5fgx")
-stretch_mode = 3
-
-[node name="TradeContainer" type="MarginContainer" parent="CanvasLayer/TradeView/HBox/TradeContainerView"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TradeItemsContainerView2" type="GridContainer" parent="CanvasLayer/TradeView/HBox/TradeContainerView/TradeContainer"]
-layout_mode = 2
-mouse_filter = 2
-columns = 3
-
-[node name="TradePlayerContainerView" type="Panel" parent="CanvasLayer/TradeView/HBox" node_paths=PackedStringArray("item_texture_rect", "desired_price_value", "amount_value", "trade_item_container", "total_label", "remove_button", "_items_container")]
+[node name="TradePlayerContainerView" type="Panel" parent="CanvasLayer/TradeView/HBox" node_paths=PackedStringArray("trade_item_container", "_items_container")]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h76o6")
 script = ExtResource("31_837e7")
-item_texture_rect = NodePath("../../TradeItemContainer/TextureRect")
-desired_price_value = NodePath("../../TradeItemContainer/DesiredPriceVBoxContainer/TextureRect/Value")
-amount_value = NodePath("../../TradeItemContainer/AmountVBoxContainer2/TextureRect/Value")
 trade_item_container = NodePath("../../TradeItemContainer")
-total_label = NodePath("../../TotalLabel")
-remove_button = NodePath("../../TradeItemContainer/RemoveButton")
 _item_button_scene = ExtResource("8_q3116")
 _item_slot_button_scene = ExtResource("9_fg4y3")
 gap_hover_selector = 4
@@ -958,6 +914,41 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="TradeItemsContainerView2" type="GridContainer" parent="CanvasLayer/TradeView/HBox/TradePlayerContainerView/TradeContainer"]
+layout_mode = 2
+mouse_filter = 2
+columns = 3
+
+[node name="TradeMerchantContainerView" type="Panel" parent="CanvasLayer/TradeView/HBox" node_paths=PackedStringArray("trade_item_container", "_items_container")]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h76o6")
+script = ExtResource("31_837e7")
+trade_item_container = NodePath("../../TradeItemContainer")
+_item_button_scene = ExtResource("8_q3116")
+_item_slot_button_scene = ExtResource("9_fg4y3")
+gap_hover_selector = 4
+_items_container = NodePath("TradeContainer/TradeItemsContainerView2")
+
+[node name="HoverTexture" type="TextureRect" parent="CanvasLayer/TradeView/HBox/TradeMerchantContainerView"]
+z_index = 2
+texture_filter = 1
+layout_mode = 1
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = ExtResource("10_a5fgx")
+stretch_mode = 3
+
+[node name="TradeContainer" type="MarginContainer" parent="CanvasLayer/TradeView/HBox/TradeMerchantContainerView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TradeItemsContainerView2" type="GridContainer" parent="CanvasLayer/TradeView/HBox/TradeMerchantContainerView/TradeContainer"]
 layout_mode = 2
 mouse_filter = 2
 columns = 3
@@ -1039,6 +1030,7 @@ offset_right = 330.0
 offset_bottom = 151.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
+script = ExtResource("33_l8wny")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/TradeView/TradeItemContainer"]
 layout_mode = 2
@@ -1189,12 +1181,8 @@ pnj_name = "Citoyen"
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]
 [connection signal="button_up" from="CanvasLayer/ConfirmDialog/CancelButton" to="CanvasLayer/ConfirmDialog" method="_on_cancel_button_button_up"]
 [connection signal="pressed" from="CanvasLayer/TradeView/NinePatchRect/CloseButton" to="CanvasLayer/TradeView" method="_on_close_button_pressed" flags=18]
-[connection signal="pressed" from="CanvasLayer/TradeView/ValidateTrade" to="CanvasLayer/TradeView/HBox/TradePlayerContainerView" method="_on_validate_trade_pressed" flags=18]
-[connection signal="pressed" from="CanvasLayer/TradeView/TradeItemContainer/DesiredPriceVBoxContainer/MinusButton" to="CanvasLayer/TradeView/HBox/TradePlayerContainerView" method="_on_minus_button_pressed" flags=18]
-[connection signal="pressed" from="CanvasLayer/TradeView/TradeItemContainer/DesiredPriceVBoxContainer/PlusButton" to="CanvasLayer/TradeView/HBox/TradePlayerContainerView" method="_on_plus_button_pressed" flags=18]
-[connection signal="pressed" from="CanvasLayer/TradeView/TradeItemContainer/AmountVBoxContainer2/MinusButton" to="CanvasLayer/TradeView/HBox/TradePlayerContainerView" method="_on_amount_minus_button_pressed" flags=18]
-[connection signal="pressed" from="CanvasLayer/TradeView/TradeItemContainer/AmountVBoxContainer2/PlusButton" to="CanvasLayer/TradeView/HBox/TradePlayerContainerView" method="_on_amount_plus_button_pressed" flags=18]
-[connection signal="pressed" from="CanvasLayer/TradeView/TradeItemContainer/RemoveButton" to="CanvasLayer/TradeView/HBox/TradePlayerContainerView" method="_on_remove_button_pressed" flags=18]
+[connection signal="pressed" from="CanvasLayer/TradeView/ValidateTrade" to="CanvasLayer/TradeView/HBox/TradePlayerContainerView" method="_on_validate_trade_pressed"]
+[connection signal="pressed" from="CanvasLayer/TradeView/ValidateTrade" to="CanvasLayer/TradeView/HBox/TradeMerchantContainerView" method="_on_validate_trade_pressed"]
 [connection signal="timeout" from="GameTime/Timer" to="GameTime" method="_on_timer_timeout"]
 
 [editable path="NavigationRegion3D/GridMap"]
