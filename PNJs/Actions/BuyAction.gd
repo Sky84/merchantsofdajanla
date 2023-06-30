@@ -104,4 +104,4 @@ func _process_target_player(navigation_agent, item) -> void:
 			{'text':tr('MARKET.DECLINE'), 'callback': _on_decline}
 		]
 	};
-	HudEvents.open_modal.emit('res://Dialogs/AskDialog/AskDialog.tscn', modal_params);
+	HudEvents.open_modal.emit('res://UI/Modals/AskDialog/AskDialog.tscn', modal_params);

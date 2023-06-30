@@ -1,0 +1,26 @@
+{
+	"1": {
+		"value": "Rien desole",
+		"next_nodes": [],
+		"callback": "_on_trade",
+		"params": ["trader"]
+	},
+	"2": {
+		"value": "Marchander",
+		"next_nodes": [],
+		"callback": "_on_trade",
+		"params": ["trader"]
+	},
+	"3": {
+		"value": "Comment-allez vous ?",
+		"next_nodes": ["2"],
+		"callback": "_on_trade",
+		"params": ["trader"]
+	},
+	"4": {
+		"value": "Au revoir.",
+		"next_nodes": [],
+		"callback": "_on_trade",
+		"params": ["trader"]
+	}
+}

@@ -22,9 +22,11 @@ func interact(_interract_owner_id: String) -> void:
 	var trader = AlivesController.get_alive_by_owner_id(_interract_owner_id);
 	var gap_modal = Vector2(-170, 0) if global_position.x - trader.global_position.x < 0\
 		else Vector2(170, 0);
+	var dialog_state = DialogsController.load_dialog("merchant");
 	var answers = [{'text':tr('MARKET.SELLER.BYE'), 'callback': _on_goodbye}];
 	if _is_trading:
-		answers.push_front({'text':tr('MARKET.SELLER.TRADE'), 'callback': _on_trade.bind(trader)});
+		for answer in dialog_state.current.next_nodes:
+			answers.push_front({'text': answer.value, 'callback': self[answer.callback].bind(answer.params)});
 	var modal_params = {
 		'global_position':  camera_3d.unproject_position(global_position) + gap_modal,
 		'modal_on_left': gap_modal.x < 0,
@@ -32,7 +34,7 @@ func interact(_interract_owner_id: String) -> void:
 		'name_translation': pnj_name,
 		'answers': answers
 	};
-	HudEvents.open_modal.emit('res://Dialogs/AskDialog/AskDialog.tscn', modal_params);
+	HudEvents.open_modal.emit('res://UI/Modals/AskDialog/AskDialog.tscn', modal_params);
 
 func _on_trade(trader: Alive) -> void:
 	_is_blocked = false;

@@ -15,28 +15,29 @@
 [ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="9_fg4y3"]
 [ext_resource type="Texture2D" uid="uid://y2d5gs7ua10o" path="res://Containers/Sprites/overboxinventaire.png" id="10_a5fgx"]
 [ext_resource type="Texture2D" uid="uid://c2fjidhjhl6u4" path="res://Containers/Sprites/background_Inventory.png" id="11_3wma5"]
-[ext_resource type="Script" path="res://Dialogs/ConfirmDialog/ConfirmDialog.gd" id="13_inwci"]
 [ext_resource type="Texture2D" uid="uid://2pxe5nl2hfui" path="res://icon.svg" id="14_c0as5"]
-[ext_resource type="Texture2D" uid="uid://cuk5h84fjjyg7" path="res://Dialogs/Sprites/infobox.png" id="14_v6gi6"]
-[ext_resource type="Texture2D" uid="uid://dcw5gsqqa33m5" path="res://Dialogs/Sprites/buttoninfoOK.png" id="15_ox7wf"]
-[ext_resource type="Texture2D" uid="uid://ckd7217i3af0n" path="res://Dialogs/Sprites/buttoninfoNO.png" id="16_wbqma"]
+[ext_resource type="Script" path="res://UI/Modals/ConfirmDialog/ConfirmDialog.gd" id="16_u12v4"]
 [ext_resource type="Script" path="res://Containers/InfoPanelController.gd" id="17_eto80"]
+[ext_resource type="Texture2D" uid="uid://cuk5h84fjjyg7" path="res://UI/Modals/Sprites/infobox.png" id="17_w7ruc"]
+[ext_resource type="Texture2D" uid="uid://dcw5gsqqa33m5" path="res://UI/Modals/Sprites/buttoninfoOK.png" id="18_1egyq"]
 [ext_resource type="Script" path="res://UI/ShortcutBar.gd" id="19_6dhmn"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
+[ext_resource type="Texture2D" uid="uid://ckd7217i3af0n" path="res://UI/Modals/Sprites/buttoninfoNO.png" id="19_yhs6a"]
 [ext_resource type="Texture2D" uid="uid://cr8dllugmppr0" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
 [ext_resource type="PackedScene" uid="uid://cb7i0apyk7kif" path="res://Stand/TransactionView/StandSetup/StandSetup.tscn" id="21_samwx"]
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
 [ext_resource type="PackedScene" uid="uid://b2wjdlipuc437" path="res://Stand/TransactionView/StandTransaction/StandTransaction.tscn" id="22_dogdb"]
 [ext_resource type="Script" path="res://UI/Notifications/NotificationController.gd" id="23_l4jmb"]
-[ext_resource type="Script" path="res://Dialogs/TradeDialog/TradeView.gd" id="27_hvav1"]
+[ext_resource type="Script" path="res://UI/Modals/TradeDialog/TradeView.gd" id="27_hx7p8"]
 [ext_resource type="Script" path="res://Core/GameTimeController.gd" id="28_hkrjo"]
 [ext_resource type="Texture2D" uid="uid://bblyti7jckf0l" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="28_lnivp"]
 [ext_resource type="Texture2D" uid="uid://bbchlthmq8p3s" path="res://Stand/TransactionView/Assets/cross1.png" id="29_i2nue"]
 [ext_resource type="Texture2D" uid="uid://b115tymrfpka6" path="res://Map/rock.png" id="30_73or7"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="30_ibe7a"]
-[ext_resource type="Script" path="res://Dialogs/TradeDialog/PlayerContainerView.gd" id="30_m21q2"]
-[ext_resource type="Script" path="res://Dialogs/TradeDialog/TradeContainerView.gd" id="31_837e7"]
+[ext_resource type="Script" path="res://UI/Modals/TradeDialog/PlayerContainerView.gd" id="30_u3okt"]
+[ext_resource type="Script" path="res://UI/Modals/TradeDialog/TradeContainerView.gd" id="31_ssk1x"]
 [ext_resource type="Texture2D" uid="uid://crxoey3gwql0l" path="res://Items/bread.png" id="32_5u0n8"]
+[ext_resource type="Script" path="res://UI/Modals/TradeDialog/MerchantContainerView.gd" id="32_a505a"]
 [ext_resource type="PackedScene" uid="uid://r5o6uljnlvg0" path="res://PNJs/Merchant/Merchant.tscn" id="32_hqkqk"]
 [ext_resource type="Texture2D" uid="uid://dv47swldtn085" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="33_1nmis"]
 [ext_resource type="Script" path="res://TradeItemController.gd" id="33_l8wny"]
@@ -45,7 +46,6 @@
 [ext_resource type="Texture2D" uid="uid://ci5ryrrjudfju" path="res://Stand/TransactionView/Assets/price.png" id="35_ofmne"]
 [ext_resource type="Texture2D" uid="uid://06q57ijnvoed" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="36_cihgl"]
 [ext_resource type="Texture2D" uid="uid://ckp8kowjeqvyu" path="res://Stand/TransactionView/Assets/plus.png" id="37_6b6wm"]
-[ext_resource type="Script" path="res://Dialogs/TradeDialog/MerchantContainerView.gd" id="38_r1bhx"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -539,7 +539,7 @@ offset_bottom = -314.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("13_inwci")
+script = ExtResource("16_u12v4")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmDialog"]
@@ -566,7 +566,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-texture = ExtResource("14_v6gi6")
+texture = ExtResource("17_w7ruc")
 patch_margin_left = 7
 patch_margin_top = 7
 patch_margin_right = 7
@@ -601,7 +601,7 @@ offset_right = 84.5
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("15_ox7wf")
+texture_normal = ExtResource("18_1egyq")
 stretch_mode = 5
 
 [node name="CancelButton" type="TextureButton" parent="CanvasLayer/ConfirmDialog"]
@@ -618,7 +618,7 @@ offset_right = -27.5
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("16_wbqma")
+texture_normal = ExtResource("19_yhs6a")
 stretch_mode = 5
 
 [node name="InfoPanel" type="Panel" parent="CanvasLayer"]
@@ -803,7 +803,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 mouse_filter = 1
-script = ExtResource("27_hvav1")
+script = ExtResource("27_hx7p8")
 info_panel = NodePath("../InfoPanel")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/TradeView"]
@@ -854,7 +854,7 @@ alignment = 1
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h76o6")
-script = ExtResource("30_m21q2")
+script = ExtResource("30_u3okt")
 _item_button_scene = ExtResource("8_q3116")
 _item_slot_button_scene = ExtResource("9_fg4y3")
 gap_hover_selector = 4
@@ -887,7 +887,7 @@ mouse_filter = 2
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h76o6")
-script = ExtResource("31_837e7")
+script = ExtResource("31_ssk1x")
 trade_item_container = NodePath("../../TradeItemContainer")
 _item_button_scene = ExtResource("8_q3116")
 _item_slot_button_scene = ExtResource("9_fg4y3")
@@ -922,7 +922,7 @@ columns = 3
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h76o6")
-script = ExtResource("31_837e7")
+script = ExtResource("31_ssk1x")
 trade_item_container = NodePath("../../TradeItemContainer")
 _item_button_scene = ExtResource("8_q3116")
 _item_slot_button_scene = ExtResource("9_fg4y3")
@@ -958,7 +958,7 @@ custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h76o6")
-script = ExtResource("38_r1bhx")
+script = ExtResource("32_a505a")
 _item_button_scene = ExtResource("8_q3116")
 _item_slot_button_scene = ExtResource("9_fg4y3")
 gap_hover_selector = 4
@@ -1000,8 +1000,8 @@ offset_right = -274.0
 offset_bottom = -7.00012
 grow_horizontal = 0
 grow_vertical = 0
-texture_normal = ExtResource("15_ox7wf")
-texture_hover = ExtResource("15_ox7wf")
+texture_normal = ExtResource("18_1egyq")
+texture_hover = ExtResource("18_1egyq")
 stretch_mode = 5
 
 [node name="TotalLabel" type="Label" parent="CanvasLayer/TradeView"]
@@ -1129,8 +1129,8 @@ offset_left = 83.0
 offset_top = 25.0
 offset_right = 94.0
 offset_bottom = 40.0
-texture_normal = ExtResource("16_wbqma")
-texture_hover = ExtResource("16_wbqma")
+texture_normal = ExtResource("19_yhs6a")
+texture_hover = ExtResource("19_yhs6a")
 ignore_texture_size = true
 stretch_mode = 5
 

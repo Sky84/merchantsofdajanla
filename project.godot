@@ -33,6 +33,7 @@ NotificationEvents="*res://EventBus/NotificationEvents.gd"
 Actions="*res://PNJs/Actions/Actions.gd"
 AlivesController="*res://Core/AlivesController.gd"
 GameTimeEvents="*res://EventBus/GameTimeEvents.gd"
+DialogsController="*res://Dialogs/DialogsController.gd"
 
 [display]
 
