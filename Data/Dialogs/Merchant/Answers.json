@@ -2,25 +2,25 @@
 	"1": {
 		"value": "Rien desole",
 		"next_nodes": [],
-		"callback": "_on_trade",
-		"params": ["trader"]
+		"callback": "_on_goodbye",
+		"params": []
 	},
 	"2": {
 		"value": "Marchander",
 		"next_nodes": [],
 		"callback": "_on_trade",
-		"params": ["trader"]
+		"params": []
 	},
 	"3": {
 		"value": "Comment-allez vous ?",
 		"next_nodes": ["2"],
-		"callback": "_on_trade",
-		"params": ["trader"]
+		"callback": "",
+		"params": []
 	},
 	"4": {
-		"value": "Au revoir.",
+		"value": "Au revoir",
 		"next_nodes": [],
-		"callback": "_on_trade",
-		"params": ["trader"]
+		"callback": "_on_goodbye",
+		"params": []
 	}
 }
