@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=83 format=3 uid="uid://y5ue713h25ke"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_niwxe"]
@@ -13,39 +13,39 @@
 [ext_resource type="PackedScene" uid="uid://c40ngw2hn56t4" path="res://Containers/ItemButton/ItemButton.tscn" id="8_q3116"]
 [ext_resource type="PackedScene" uid="uid://dqrhq147safqm" path="res://PlayerMouseAction/player_mouse_action.tscn" id="9_4eyub"]
 [ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="9_fg4y3"]
-[ext_resource type="Texture2D" uid="uid://y2d5gs7ua10o" path="res://Containers/Sprites/overboxinventaire.png" id="10_a5fgx"]
-[ext_resource type="Texture2D" uid="uid://c2fjidhjhl6u4" path="res://Containers/Sprites/background_Inventory.png" id="11_3wma5"]
-[ext_resource type="Texture2D" uid="uid://2pxe5nl2hfui" path="res://icon.svg" id="14_c0as5"]
-[ext_resource type="Script" path="res://UI/Modals/ConfirmDialog/ConfirmDialog.gd" id="16_u12v4"]
+[ext_resource type="Texture2D" uid="uid://ds5nf4u5ud0a3" path="res://Containers/Sprites/overboxinventaire.png" id="10_a5fgx"]
+[ext_resource type="Texture2D" uid="uid://b5icsonwkyf1w" path="res://Containers/Sprites/background_Inventory.png" id="11_3wma5"]
+[ext_resource type="Texture2D" uid="uid://bag0do53fruea" path="res://icon.svg" id="14_c0as5"]
+[ext_resource type="Script" path="res://UI/Modals/ConfirmModal/ConfirmModal.gd" id="16_r1oog"]
 [ext_resource type="Script" path="res://Containers/InfoPanelController.gd" id="17_eto80"]
-[ext_resource type="Texture2D" uid="uid://cuk5h84fjjyg7" path="res://UI/Modals/Sprites/infobox.png" id="17_w7ruc"]
-[ext_resource type="Texture2D" uid="uid://dcw5gsqqa33m5" path="res://UI/Modals/Sprites/buttoninfoOK.png" id="18_1egyq"]
+[ext_resource type="Texture2D" uid="uid://doffx8aqngj7g" path="res://UI/Modals/Sprites/infobox.png" id="17_w7ruc"]
+[ext_resource type="Texture2D" uid="uid://cirm8tovi76bq" path="res://UI/Modals/Sprites/buttoninfoOK.png" id="18_1egyq"]
 [ext_resource type="Script" path="res://UI/ShortcutBar.gd" id="19_6dhmn"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
-[ext_resource type="Texture2D" uid="uid://ckd7217i3af0n" path="res://UI/Modals/Sprites/buttoninfoNO.png" id="19_yhs6a"]
-[ext_resource type="Texture2D" uid="uid://cr8dllugmppr0" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
+[ext_resource type="Texture2D" uid="uid://dq1an72t6tp2x" path="res://UI/Modals/Sprites/buttoninfoNO.png" id="19_yhs6a"]
+[ext_resource type="Texture2D" uid="uid://b04judj4agbxa" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
 [ext_resource type="PackedScene" uid="uid://cb7i0apyk7kif" path="res://Stand/TransactionView/StandSetup/StandSetup.tscn" id="21_samwx"]
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
 [ext_resource type="PackedScene" uid="uid://b2wjdlipuc437" path="res://Stand/TransactionView/StandTransaction/StandTransaction.tscn" id="22_dogdb"]
 [ext_resource type="Script" path="res://UI/Notifications/NotificationController.gd" id="23_l4jmb"]
 [ext_resource type="Script" path="res://UI/Modals/TradeDialog/TradeView.gd" id="27_hx7p8"]
 [ext_resource type="Script" path="res://Core/GameTimeController.gd" id="28_hkrjo"]
-[ext_resource type="Texture2D" uid="uid://bblyti7jckf0l" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="28_lnivp"]
-[ext_resource type="Texture2D" uid="uid://bbchlthmq8p3s" path="res://Stand/TransactionView/Assets/cross1.png" id="29_i2nue"]
-[ext_resource type="Texture2D" uid="uid://b115tymrfpka6" path="res://Map/rock.png" id="30_73or7"]
+[ext_resource type="Texture2D" uid="uid://bhplgtewblhs0" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="28_lnivp"]
+[ext_resource type="Texture2D" uid="uid://v8wrediy8m64" path="res://Stand/TransactionView/Assets/cross1.png" id="29_i2nue"]
+[ext_resource type="Texture2D" uid="uid://ms4ac00q5cr6" path="res://Map/rock.png" id="30_73or7"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="30_ibe7a"]
 [ext_resource type="Script" path="res://UI/Modals/TradeDialog/PlayerContainerView.gd" id="30_u3okt"]
 [ext_resource type="Script" path="res://UI/Modals/TradeDialog/TradeContainerView.gd" id="31_ssk1x"]
-[ext_resource type="Texture2D" uid="uid://crxoey3gwql0l" path="res://Items/bread.png" id="32_5u0n8"]
+[ext_resource type="Texture2D" uid="uid://vxgp5x78xg8t" path="res://Items/bread.png" id="32_5u0n8"]
 [ext_resource type="Script" path="res://UI/Modals/TradeDialog/MerchantContainerView.gd" id="32_a505a"]
 [ext_resource type="PackedScene" uid="uid://r5o6uljnlvg0" path="res://PNJs/Merchant/Merchant.tscn" id="32_hqkqk"]
-[ext_resource type="Texture2D" uid="uid://dv47swldtn085" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="33_1nmis"]
+[ext_resource type="Texture2D" uid="uid://bs3qckg3ula15" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="33_1nmis"]
 [ext_resource type="Script" path="res://TradeItemController.gd" id="33_l8wny"]
 [ext_resource type="PackedScene" uid="uid://cqy6hub708thm" path="res://PNJs/Citizen/Citizen.tscn" id="33_yeocl"]
-[ext_resource type="Texture2D" uid="uid://lk0yarsfqnoa" path="res://Stand/TransactionView/Assets/minus.png" id="34_c56du"]
-[ext_resource type="Texture2D" uid="uid://ci5ryrrjudfju" path="res://Stand/TransactionView/Assets/price.png" id="35_ofmne"]
-[ext_resource type="Texture2D" uid="uid://06q57ijnvoed" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="36_cihgl"]
-[ext_resource type="Texture2D" uid="uid://ckp8kowjeqvyu" path="res://Stand/TransactionView/Assets/plus.png" id="37_6b6wm"]
+[ext_resource type="Texture2D" uid="uid://bm2wp3coqo6h6" path="res://Stand/TransactionView/Assets/minus.png" id="34_c56du"]
+[ext_resource type="Texture2D" uid="uid://das0rlol8ylwl" path="res://Stand/TransactionView/Assets/price.png" id="35_ofmne"]
+[ext_resource type="Texture2D" uid="uid://btbq8mx7g1fyb" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="36_cihgl"]
+[ext_resource type="Texture2D" uid="uid://bebfn82u888q2" path="res://Stand/TransactionView/Assets/plus.png" id="37_6b6wm"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -350,6 +350,7 @@ texture_filter = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98, 2.08165e-12, 0.43)
 up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_diug7")
+_owner_id = "player"
 
 [node name="AnimationTree" type="AnimationTree" parent="Player"]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
@@ -525,7 +526,7 @@ texture_filter = 1
 offset_left = -207.0
 offset_right = -167.0
 
-[node name="ConfirmDialog" type="Panel" parent="CanvasLayer"]
+[node name="ConfirmModal" type="Panel" parent="CanvasLayer"]
 visible = false
 z_index = 3
 texture_filter = 1
@@ -539,10 +540,10 @@ offset_bottom = -314.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("16_u12v4")
+script = ExtResource("16_r1oog")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmDialog"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmModal"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -1.677
@@ -557,7 +558,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_4qsxi")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/ConfirmDialog"]
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/ConfirmModal"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -572,7 +573,7 @@ patch_margin_top = 7
 patch_margin_right = 7
 patch_margin_bottom = 7
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ConfirmDialog"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ConfirmModal"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -587,7 +588,7 @@ mouse_filter = 1
 bbcode_enabled = true
 text = "[center]Drop and delete ?[/center]"
 
-[node name="ConfirmButton" type="TextureButton" parent="CanvasLayer/ConfirmDialog"]
+[node name="ConfirmButton" type="TextureButton" parent="CanvasLayer/ConfirmModal"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 7
@@ -604,7 +605,7 @@ grow_vertical = 0
 texture_normal = ExtResource("18_1egyq")
 stretch_mode = 5
 
-[node name="CancelButton" type="TextureButton" parent="CanvasLayer/ConfirmDialog"]
+[node name="CancelButton" type="TextureButton" parent="CanvasLayer/ConfirmModal"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 7
@@ -1179,7 +1180,7 @@ pnj_name = "Citoyen"
 
 [connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]
-[connection signal="button_up" from="CanvasLayer/ConfirmDialog/CancelButton" to="CanvasLayer/ConfirmDialog" method="_on_cancel_button_button_up"]
+[connection signal="button_up" from="CanvasLayer/ConfirmModal/CancelButton" to="CanvasLayer/ConfirmModal" method="_on_cancel_button_button_up"]
 [connection signal="pressed" from="CanvasLayer/TradeView/NinePatchRect/CloseButton" to="CanvasLayer/TradeView" method="_on_close_button_pressed" flags=18]
 [connection signal="pressed" from="CanvasLayer/TradeView/ValidateTrade" to="CanvasLayer/TradeView/HBox/TradePlayerContainerView" method="_on_validate_trade_pressed"]
 [connection signal="pressed" from="CanvasLayer/TradeView/ValidateTrade" to="CanvasLayer/TradeView/HBox/TradeMerchantContainerView" method="_on_validate_trade_pressed"]
