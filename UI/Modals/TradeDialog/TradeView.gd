@@ -1,4 +1,4 @@
-extends Panel
+extends BaseModal
 
 @export var _trade_player_container_id: String = "player_dynamic_trade";
 @export var _trade_container_id: String = "dynamic_trade";

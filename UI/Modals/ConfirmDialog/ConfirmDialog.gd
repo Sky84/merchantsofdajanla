@@ -1,4 +1,4 @@
-extends Panel
+extends BaseModal
 
 @onready var rich_text_label = $RichTextLabel
 @onready var confirm_button = $ConfirmButton
