@@ -1,0 +1,8 @@
+{
+	"1": {
+		"value": "Au revoire",
+		"next_nodes": [],
+		"callback": "_on_goodbye",
+		"params": []
+	}
+}
