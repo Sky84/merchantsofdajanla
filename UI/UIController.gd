@@ -3,7 +3,7 @@ class_name UIController
 
 @export var mouse_targets_node_to_exclude: Array[NodePath];
 
-@onready var confirm_dialog: Panel = $ConfirmDialog;
+@onready var confirm_modal: Panel = $ConfirmModal;
 @onready var stand_setup: StandSetupView = $StandSetup;
 @onready var trade_view = $TradeView;
 @onready var stand_transaction: StandTransactionView = $StandTransaction;
@@ -53,7 +53,7 @@ func _show_stand_transaction_dialog(container_id: String, _interract_owner_id: S
 
 func _show_confirm_dialog(item):
 	var message = tr("DIALOG.CONFIRM_DELETE")+" "+str(item.amount)+" "+tr(item.name)+"(s) ?";
-	confirm_dialog.open(message, _on_delete_item.bind(item));
+	confirm_modal.open(message, _on_delete_item.bind(item));
 
 func _on_delete_item(_item):
 	InventoryEvents.reset_current_item.emit();
