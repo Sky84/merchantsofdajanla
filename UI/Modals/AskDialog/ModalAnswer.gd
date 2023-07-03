@@ -5,6 +5,7 @@ class_name ModalAnswer
 @export var _hover_texture: Texture;
 @export var _ask_dialog: AskDialog;
 var _callback: Callable;
+var dialog_node_id := '';
 
 @onready var label = $Label;
 
@@ -22,8 +23,9 @@ func _ready():
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
-		_callback.call();
-		_ask_dialog.close_parent_modal();
+		if _callback:
+			_callback.call();
+		_ask_dialog.close_parent_modal(dialog_node_id);
 
 func _on_mouse_entered():
 	texture = _hover_texture;
