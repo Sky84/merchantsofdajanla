@@ -46,7 +46,7 @@ func interact(_interract_owner_id: String) -> void:
 			'name_translation': pnj_name,
 			'answers': answers
 		};
-		HudEvents.open_modal.emit('res://UI/Modals/AskDialog/AskDialog.tscn', modal_params);
+		HudEvents.open_modal.emit('res://UI/Modals/DialogModal/DialogModal.tscn', modal_params);
 		var result = await HudEvents.close_modal;
 		if result[0] == DIALOG_TITLE:
 			DialogsController.next(result[1]);
