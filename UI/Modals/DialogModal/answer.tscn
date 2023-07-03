@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3pe1ir8ojwom"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Texture2D" uid="uid://dofqluclsa31o" path="res://UI/Buttons/button_inactive.png" id="1_plj2s"]
-[ext_resource type="Script" path="res://UI/Modals/AskDialog/ModalAnswer.gd" id="2_phja0"]
-[ext_resource type="Texture2D" uid="uid://br6c854rps0ya" path="res://UI/Buttons/button_active.png" id="3_ftwrx"]
+[ext_resource type="Texture2D" uid="uid://cxlaq2j6nk7ud" path="res://UI/Buttons/button_inactive.png" id="1_plj2s"]
+[ext_resource type="Script" path="res://UI/Modals/DialogModal/ModalAnswer.gd" id="2_phja0"]
+[ext_resource type="Texture2D" uid="uid://b1cxfy3a8ubf" path="res://UI/Buttons/button_active.png" id="3_ftwrx"]
 
 [node name="Answer" type="NinePatchRect"]
 custom_minimum_size = Vector2(223, 40)

@@ -7,7 +7,7 @@ class_name AskDialog
 @onready var _name_label: Label = $AskContainer/NameContainer/NameLabel;
 @onready var _answers_container = $AnswersContainer;
 
-var _answer_scene: PackedScene = preload("res://UI/Modals/AskDialog/answer.tscn");
+var _answer_scene: PackedScene = preload("res://UI/Modals/DialogModal/answer.tscn");
 
 signal close_modal();
 
