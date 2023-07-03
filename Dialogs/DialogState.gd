@@ -21,8 +21,8 @@ func _load_current(id: String) -> void:
 	var current_answers = [];
 	for answer_id in current_question.next_nodes:
 		var current_answer = _answers[answer_id];
-		current_answers.push_back(DialogNode.new(answer_id, current_answer.value, "answer", current_answer.callback, current_answer.params, current_answer.next_nodes));
-	_current = DialogNode.new(id, current_question.value, "question", "", [], current_answers);
+		current_answers.push_back(DialogNode.new(answer_id, current_answer.value, current_answer.callback, current_answer.params, current_answer.next_nodes));
+	_current = DialogNode.new(id, current_question.value, "", [], current_answers);
 
 func get_next_node(selected_answer_id: String) -> DialogNode:
 	_load_current(selected_answer_id);

@@ -1,7 +1,6 @@
 class_name DialogNode
 
 var _id: String;
-var _type: String;
 var _next_nodes: Array;
 var value: String;
 var callback_name: String;
@@ -15,10 +14,9 @@ var id: String:
 	get:
 		return _id;
 
-func _init(id: String, val: String, type: String, cb_name: String = '', cb_params: Array = [], next_nodes: Array = []):
+func _init(id: String, val: String, cb_name: String = '', cb_params: Array = [], next_nodes: Array = []):
 	_id = id;
 	value = val;
-	_type = type;
 	_next_nodes = next_nodes;
 	callback_name = cb_name;
 	callback_params = cb_params;
