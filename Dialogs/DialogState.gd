@@ -8,6 +8,10 @@ var current: DialogNode:
 	get:
 		return _current;
 
+var next_nodes: Array:
+	get:
+		return _current.next_nodes;
+
 func _init(questions: Dictionary, answers: Dictionary):
 	_questions = questions;
 	_answers = answers;
