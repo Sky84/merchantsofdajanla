@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://y5ue713h25ke"]
+[gd_scene load_steps=82 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_diug7"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_niwxe"]
@@ -18,11 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://bag0do53fruea" path="res://icon.svg" id="14_c0as5"]
 [ext_resource type="Script" path="res://UI/Modals/ConfirmModal/ConfirmModal.gd" id="16_r1oog"]
 [ext_resource type="Script" path="res://Containers/InfoPanelController.gd" id="17_eto80"]
-[ext_resource type="Texture2D" path="res://UI/Modals/Sprites/infobox.png" id="17_w7ruc"]
-[ext_resource type="Texture2D" path="res://UI/Modals/Sprites/buttoninfoOK.png" id="18_1egyq"]
+[ext_resource type="Texture2D" uid="uid://doffx8aqngj7g" path="res://UI/Modals/Sprites/infobox.png" id="17_w7ruc"]
+[ext_resource type="Texture2D" uid="uid://cirm8tovi76bq" path="res://UI/Modals/Sprites/buttoninfoOK.png" id="18_1egyq"]
 [ext_resource type="Script" path="res://UI/ShortcutBar.gd" id="19_6dhmn"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="19_7llnf"]
-[ext_resource type="Texture2D" path="res://UI/Modals/Sprites/buttoninfoNO.png" id="19_yhs6a"]
+[ext_resource type="Texture2D" uid="uid://dq1an72t6tp2x" path="res://UI/Modals/Sprites/buttoninfoNO.png" id="19_yhs6a"]
 [ext_resource type="Texture2D" uid="uid://b04judj4agbxa" path="res://Containers/Sprites/shortcutbar.png" id="20_s8l6p"]
 [ext_resource type="PackedScene" uid="uid://cb7i0apyk7kif" path="res://Stand/TransactionView/StandSetup/StandSetup.tscn" id="21_samwx"]
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="21_xty35"]
@@ -125,8 +125,6 @@ states/walk/node = SubResource("AnimationNodeAnimation_j647b")
 states/walk/position = Vector2(579, 84)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_b5pm3"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_vm8ug"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_jqkw0"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_pp7fy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f620p"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_6ne8y"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_v212b"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_ko48a"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_alvd4"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_idgsq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_r00va")]
 graph_offset = Vector2(-50, 15)
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_q05ni"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pn48d"]
 radius = 0.548919
@@ -355,7 +353,6 @@ _owner_id = "player"
 [node name="AnimationTree" type="AnimationTree" parent="Player"]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_q05ni")
 parameters/conditions/isAttacking = false
 parameters/conditions/isIdle = false
 parameters/conditions/isRunning = false
@@ -791,6 +788,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="TradeView" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("info_panel")]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1171,12 +1169,11 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_524yx")
 script = ExtResource("30_ibe7a")
 
-[node name="Merchant" parent="." instance=ExtResource("32_hqkqk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2858, 0, 4.65512)
-
 [node name="Citizen" parent="." instance=ExtResource("33_yeocl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.95469, 0.00500011, 0.551221)
-pnj_name = "Citoyen"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.51223, 0, 0)
+
+[node name="Merchant" parent="." instance=ExtResource("32_hqkqk")]
+_owner_id = "merchant"
 
 [connection signal="body_entered" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="Player/ObjectDetector" to="Player" method="_on_object_detector_body_exited"]
