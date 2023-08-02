@@ -10,6 +10,7 @@ var grid_map: GridMapController;
 var buyer_owner_id: String;
 var seller_container_config: Dictionary;
 var seller_alive: Alive;
+const DIALOG_TITLE := 'buy-action-modal';
 
 func execute(params: Dictionary) -> void:
 	is_running = true;
@@ -95,6 +96,7 @@ func _process_target_player(navigation_agent, item) -> void:
 	var gap_modal = Vector2(-170, 0) if nav_position.x - target_position.x < 0\
 		else Vector2(170, 0);
 	var modal_params = {
+		'id': DIALOG_TITLE,
 		'global_position':  camera_3d.unproject_position(target_position) + gap_modal,
 		'modal_on_left': gap_modal.x < 0,
 		'ask_translation': tr('MARKET.ASK_BUY') + " 1 " + tr(item.name),
@@ -104,4 +106,4 @@ func _process_target_player(navigation_agent, item) -> void:
 			{'text':tr('MARKET.DECLINE'), 'callback': _on_decline}
 		]
 	};
-	HudEvents.open_modal.emit('res://Dialogs/AskDialog/AskDialog.tscn', modal_params);
+	HudEvents.open_modal.emit('res://UI/Modals/DialogModal/DialogModal.tscn', modal_params);

@@ -3,12 +3,13 @@ class_name UIController
 
 @export var mouse_targets_node_to_exclude: Array[NodePath];
 
-@onready var confirm_dialog: Panel = $ConfirmDialog;
+@onready var confirm_modal: Panel = $ConfirmModal;
 @onready var stand_setup: StandSetupView = $StandSetup;
 @onready var trade_view = $TradeView;
 @onready var stand_transaction: StandTransactionView = $StandTransaction;
 @onready var modal_container = $ModalContainer;
 @onready var game_time_label = $GameTimeCotainer/Label;
+@onready var _modal_controller = ModalController.new(modal_container);
 
 var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: Node3D = null;
@@ -23,24 +24,16 @@ func _ready():
 	PlayerEvents.on_nearest_interactive_changed.connect(_show_tooltip_on_interactive);
 	for child in get_children():
 		if not mouse_targets_node_to_exclude.has(child.get_path()):
-			child.mouse_entered.connect(_om_mouse_current_target.bind(child, true));
-			child.mouse_exited.connect(_om_mouse_current_target.bind(child, false));
+			child.mouse_entered.connect(_on_mouse_current_target.bind(child, true));
+			child.mouse_exited.connect(_on_mouse_current_target.bind(child, false));
 	HudEvents.open_modal.connect(_on_open_modal);
 	GameTimeEvents.on_formatted_game_time_changed.connect(_update_game_time_ui);
-	modal_container.hide();
 
 func _update_game_time_ui(formatted_game_time: String):
 	game_time_label.text = formatted_game_time;
 
 func _on_open_modal(path_node_to_instance: String, params: Dictionary):
-	var instance = load(path_node_to_instance).instantiate();
-	for param in params:
-		instance[param] = params[param];
-	modal_container.add_child(instance);
-	modal_container.show();
-	var result = await instance.close_modal;
-	modal_container.hide();
-	modal_container.remove_child(instance);
+	_modal_controller.register_modal(path_node_to_instance, params);
 
 func _show_stand_setup_dialog(container_id: String, screen_position: Vector2) -> void:
 	stand_setup.open(container_id, screen_position);
@@ -53,12 +46,12 @@ func _show_stand_transaction_dialog(container_id: String, _interract_owner_id: S
 
 func _show_confirm_dialog(item):
 	var message = tr("DIALOG.CONFIRM_DELETE")+" "+str(item.amount)+" "+tr(item.name)+"(s) ?";
-	confirm_dialog.open(message, _on_delete_item.bind(item));
+	confirm_modal.open(message, _on_delete_item.bind(item));
 
 func _on_delete_item(_item):
 	InventoryEvents.reset_current_item.emit();
 
-func _om_mouse_current_target(target: Control, is_mouse_hover: bool) -> void:
+func _on_mouse_current_target(target: Control, is_mouse_hover: bool) -> void:
 	var mouse_position = target.get_local_mouse_position();
 	var stay_in_child = Rect2(Vector2(), target.size).has_point(mouse_position);
 	if not is_mouse_hover and stay_in_child:

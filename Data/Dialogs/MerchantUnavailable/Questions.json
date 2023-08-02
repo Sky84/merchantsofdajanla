@@ -1,0 +1,6 @@
+{
+	"1": {
+		"value": "Je ne suis pas disponible pour le moment ! Repassez aux heures d'ouverture, merci.",
+		"next_nodes": ["1"]
+	}
+}

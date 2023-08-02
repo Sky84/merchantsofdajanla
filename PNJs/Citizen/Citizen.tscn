@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cqy6hub708thm"]
+[gd_scene load_steps=35 format=3 uid="uid://cqy6hub708thm"]
 
 [ext_resource type="Script" path="res://PNJs/Citizen/CitizenController.gd" id="1_03gek"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_qrufn"]
@@ -87,8 +87,6 @@ states/walk/node = SubResource("AnimationNodeAnimation_j647b")
 states/walk/position = Vector2(579, 84)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_b5pm3"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_vm8ug"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_jqkw0"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_pp7fy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f620p"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_6ne8y"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_v212b"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_ko48a"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_alvd4"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_idgsq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_r00va")]
 graph_offset = Vector2(-50, 15)
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ljfds"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pn48d"]
 radius = 0.548919
@@ -280,7 +278,6 @@ run_animation_gap = 4
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_ljfds")
 parameters/conditions/isAttacking = false
 parameters/conditions/isIdle = false
 parameters/conditions/isRunning = false
