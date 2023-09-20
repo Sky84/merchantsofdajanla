@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://f0jcsvd1dvbj"]
 
-[ext_resource type="Texture2D" uid="uid://cvfmus64t3df0" path="res://Player/Sprites/fighthair3.png" id="1_er5hq"]
-[ext_resource type="Texture2D" uid="uid://xm6pb33knrpt" path="res://Player/Sprites/hair3idle.png" id="1_ha7ad"]
-[ext_resource type="Texture2D" uid="uid://chomymbvu3vt" path="res://Player/Sprites/hair3walk.png" id="2_pghco"]
-[ext_resource type="Texture2D" uid="uid://wlf3ngpjro71" path="res://Player/Sprites/runhair3.png" id="2_txsbf"]
+[ext_resource type="Texture2D" uid="uid://cmvnre736jfd5" path="res://Player/Sprites/fighthair3.png" id="1_er5hq"]
+[ext_resource type="Texture2D" uid="uid://dadtj0kepg8og" path="res://Player/Sprites/hair3idle.png" id="1_ha7ad"]
+[ext_resource type="Texture2D" uid="uid://b574krhdcbm20" path="res://Player/Sprites/hair3walk.png" id="2_pghco"]
+[ext_resource type="Texture2D" uid="uid://nqnh7ahm07as" path="res://Player/Sprites/runhair3.png" id="2_txsbf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wj38e"]
 atlas = ExtResource("1_er5hq")
