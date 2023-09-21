@@ -1,0 +1,76 @@
+[gd_scene load_steps=13 format=3 uid="uid://bf5kowwqr03ey"]
+
+[ext_resource type="Texture2D" uid="uid://b11jth0s51bt6" path="res://Map/dirt.png" id="1_x01i8"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_c2q6o"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/sol2.png" id="3_xoekg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wvxyd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h08q2"]
+transparency = 4
+albedo_texture = ExtResource("1_x01i8")
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s43h1"]
+size = Vector3(1.99975, 0.01, 1.98669)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q3fyu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_246n1"]
+transparency = 4
+albedo_texture = ExtResource("3_xoekg")
+uv1_scale = Vector3(0.2, 0.07, 1)
+uv1_offset = Vector3(0, 0.37093, 0)
+texture_filter = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0otd"]
+atlas = ExtResource("3_xoekg")
+region = Rect2(0, 319, 64, 64)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yd15f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kd7cj"]
+transparency = 4
+albedo_texture = ExtResource("3_xoekg")
+uv1_scale = Vector3(0.2, 0.07, 1)
+uv1_offset = Vector3(0.596215, 0.222093, 0)
+texture_filter = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20vre"]
+atlas = ExtResource("3_xoekg")
+region = Rect2(189, 191, 64, 64)
+
+[node name="Tile" type="Node3D"]
+
+[node name="Dirt" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_wvxyd")
+surface_material_override/0 = SubResource("StandardMaterial3D_h08q2")
+script = ExtResource("2_c2q6o")
+texture = ExtResource("1_x01i8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Dirt"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dirt/StaticBody3D"]
+shape = SubResource("BoxShape3D_s43h1")
+
+[node name="Sand" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_q3fyu")
+surface_material_override/0 = SubResource("StandardMaterial3D_246n1")
+script = ExtResource("2_c2q6o")
+texture = SubResource("AtlasTexture_f0otd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sand"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sand/StaticBody3D"]
+shape = SubResource("BoxShape3D_s43h1")
+
+[node name="Grass" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_yd15f")
+surface_material_override/0 = SubResource("StandardMaterial3D_kd7cj")
+script = ExtResource("2_c2q6o")
+texture = SubResource("AtlasTexture_20vre")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Grass"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/StaticBody3D"]
+shape = SubResource("BoxShape3D_s43h1")

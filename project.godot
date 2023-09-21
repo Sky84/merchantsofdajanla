@@ -37,6 +37,8 @@ DialogsController="*res://Dialogs/DialogsController.gd"
 
 [display]
 
+window/size/mode=3
+window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
@@ -101,3 +103,8 @@ interract_with_item_in_hand={
 [internationalization]
 
 locale/translations=PackedStringArray("res://Translations/Traductions.en.translation", "res://Translations/Traductions.fr.translation")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+anti_aliasing/quality/screen_space_aa=1
