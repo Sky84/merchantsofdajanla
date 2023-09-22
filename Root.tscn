@@ -337,7 +337,7 @@ gradient = SubResource("Gradient_r6lrv")
 
 [sub_resource type="Curve" id="Curve_7oqs6"]
 min_value = 0.1
-_data = [Vector2(0, 0.1), 0.0, 0.0, 0, 0, Vector2(0.218045, 0.147368), 0.72, 0.72, 0, 0, Vector2(0.377698, 1), 0.0, 0.0, 0, 0, Vector2(0.694245, 1), 0.0, 0.0, 0, 0, Vector2(0.984962, 0.1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.1), 0.0, 0.0, 0, 0, Vector2(0.31295, 0.128421), 1.90942, 25.6785, 0, 0, Vector2(0.413669, 1), 0.0, 0.0, 0, 0, Vector2(0.694245, 1), 0.0, 0.0, 0, 0, Vector2(0.984962, 0.1), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qt4bp"]
@@ -1171,7 +1171,7 @@ sun_density = SubResource("Curve_7oqs6")
 world_environment = NodePath("../WorldEnvironment")
 
 [node name="Timer" type="Timer" parent="GameTime"]
-wait_time = 0.05
+wait_time = 0.02
 autostart = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]

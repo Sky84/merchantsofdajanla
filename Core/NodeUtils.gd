@@ -20,5 +20,6 @@ func get_random_reachable_point(start_position: Vector3, gridmap_controller: Gri
 	);
 	var random_point = around_cells[randi_range(0, around_cells.size()-1)];
 	var cell_item = gridmap_controller.get_cell_item(random_point);
-	if cell_item == 0:
+	var grounds_cell: Array = [0, 1, 2];
+	if grounds_cell.has(cell_item):
 		return random_point;
