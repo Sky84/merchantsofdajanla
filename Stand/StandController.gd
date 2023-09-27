@@ -4,7 +4,7 @@ extends Posable
 @onready var _sprite_item_3d: Sprite3D = $Sprite3D;
 @onready var _animation_player = $AnimationPlayer;
 @onready var _price_label_3d = $PriceLabel3D;
-@onready var _camera = get_node("/root/Root/Camera3D");
+@onready var _camera = get_node("/root/Root/Game/Camera3D");
 
 func _ready():
 	super._ready();

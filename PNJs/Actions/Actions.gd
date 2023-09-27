@@ -17,18 +17,23 @@ var _navigation_region_3d: NavigationRegion3D;
 
 var last_game_time: GameTime = GameTime.new(0, 0);
 
+signal actions_ready;
+signal triggers_ready;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	NavigationEvents.on_game_scene_ready.connect(_init_actions);
 
 func _init_actions():
 	GameTimeEvents.on_game_time_changed.connect(func(game_time: GameTime): last_game_time = game_time);
-	_navigation_region_3d = get_node('/root/Root/NavigationRegion3D');
+	_navigation_region_3d = get_node('/root/Root/Game/NavigationRegion3D');
 	_triggers = JsonResourceLoader.load_json(_triggers_json_path);
 	var actions_from_json = JsonResourceLoader.load_json(_actions_json_path);
 	for action_json in actions_from_json:
 		var action: Action = create_action(action_json);
 		_actions[action.id] = action;
+	actions_ready.emit();
+	triggers_ready.emit();
 
 func create_action(action: Dictionary) -> Action:
 	var instance_action_class: GDScript = load(_actions_path+action.id+_actions_path_suffix) as GDScript;
@@ -36,6 +41,8 @@ func create_action(action: Dictionary) -> Action:
 	return instance_action_class.new(action.id, action.target, action.params, nav_mesh_navigation);
 
 func get_action_id_by_triggers(owner_id: String) -> String:
+	if _triggers.is_empty():
+		await triggers_ready;
 	for id in _triggers:
 		var trigger = _triggers[id];
 		var condition_agreed = _check_conditions(trigger.conditions, owner_id);
@@ -52,6 +59,8 @@ func _check_conditions(conditions: Array, owner_id: String) -> bool:
 	return validated; # Si toutes les conditions sont satisfaites
 
 func get_action_by_id(action_id: String) -> Action:
+	if _actions.is_empty():
+		await actions_ready;
 	var action: Action = _actions.get(action_id);
 	return create_action({"id": action.id, "target": action.target, "params": action.params});
 

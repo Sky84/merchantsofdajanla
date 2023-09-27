@@ -54,7 +54,7 @@ func _start_update_alive_target_position(seller: Node3D):
 		_start_update_alive_target_position(new_seller);
 
 func _end_action(unlock_player: bool = true):
-	var next_action = Actions.get_action_by_id(Actions.WAIT);
+	var next_action = await Actions.get_action_by_id(Actions.WAIT);
 	is_running = false;
 	on_action_finished.emit(id, buyer_owner_id, next_action);
 	if unlock_player:

@@ -17,5 +17,5 @@ func execute(params: Dictionary) -> void:
 		print(_owner_id, ' is eating ', item_to_eat.item.name);
 		consume_callback.call(item_to_eat.item);
 	else:
-		next_action = Actions.get_action_by_id(Actions.BUY);
+		next_action = await Actions.get_action_by_id(Actions.BUY);
 	on_action_finished.emit(id, _owner_id, next_action);

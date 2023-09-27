@@ -17,7 +17,7 @@ class_name CitizenController
 
 @onready var grid_map: GridMapController = $"../NavigationRegion3D/GridMap";
 
-@onready var default_action: Action = Actions.get_action_by_id(Actions.WAIT);
+@onready var default_action_id: String = Actions.WAIT;
 
 var actions_queue = [];
 var is_running_int = 0;
@@ -44,13 +44,14 @@ func _handle_movement():
 	velocity = Vector3(direction.x, 0, direction.z).normalized() * speed;
 
 func _check_actions() -> void:
-	var action_id = Actions.get_action_id_by_triggers(_owner_id);
-	var action = Actions.get_action_by_id(action_id);
+	var action_id = await Actions.get_action_id_by_triggers(_owner_id);
+	var action = await Actions.get_action_by_id(action_id);
 	if action_id and actions_queue.all(func(action_from_queue): return action_from_queue.id!=action.id):
 		actions_queue.push_back(action);
 	_process_actions_queue();
 
 func _process_actions_queue() -> void:
+	var default_action = await Actions.get_action_by_id(default_action_id);
 	var current_action = actions_queue.pop_front() if !actions_queue.is_empty() else default_action;
 	if !current_action.on_action_finished.is_connected(_on_action_finished):
 		current_action.on_action_finished.connect(_on_action_finished);
