@@ -35,5 +35,5 @@ func _update_for_atlas():
 		new_material.uv1_offset.x = _texture.region.position.x / _texture.atlas.get_width();
 		new_material.uv1_offset.y = _texture.region.position.y / _texture.atlas.get_height();
 		new_material.uv1_scale.x = 0.2;
-		new_material.uv1_scale.y = 0.07;
+		new_material.uv1_scale.y = 0.05;
 		set_surface_override_material(0, new_material);
