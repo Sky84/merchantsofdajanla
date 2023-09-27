@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4qy8sarhyjqk"]
+[gd_scene load_steps=7 format=3 uid="uid://b4qy8sarhyjqk"]
 
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_8ju7g"]
 [ext_resource type="Texture2D" uid="uid://cnemtk4sciade" path="res://fake_bg.png" id="1_bouc1"]
 [ext_resource type="Shader" path="res://Blur.gdshader" id="1_wtoec"]
 
@@ -7,9 +8,42 @@
 shader = ExtResource("1_wtoec")
 shader_parameter/blur = 1.774
 
+[sub_resource type="Animation" id="Animation_uum8k"]
+resource_name = "menu_change"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dikd6"]
+_data = {
+"menu_change": SubResource("Animation_uum8k")
+}
+
 [node name="Root" type="Node"]
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
+script = ExtResource("1_8ju7g")
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu"]
 material = SubResource("ShaderMaterial_fwx4j")
@@ -72,3 +106,10 @@ flat = true
 layout_mode = 2
 text = "MAIN_MENU.QUIT"
 flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/Panel"]
+libraries = {
+"": SubResource("AnimationLibrary_dikd6")
+}
+
+[connection signal="pressed" from="MainMenu/Panel/VBoxContainer/ButtonStart" to="MainMenu" method="_on_button_start_pressed"]

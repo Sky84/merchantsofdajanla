@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+NavigationEvents="*res://EventBus/NavigationEvents.gd"
 JsonResourceLoader="*res://Core/JSONResourceLoader.gd"
 GameItems="*res://Core/GameItems.gd"
 CameraEvents="*res://EventBus/CameraEvents.gd"
