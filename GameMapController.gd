@@ -4,7 +4,11 @@ extends NavigationRegion3D
 @export var _chunk_map: PackedScene;
 @export var _player: Player;
 
+@export var _savage_chunk_noise: FastNoiseLite;
+
 @export var _world_map: GridMap;
+
+@onready var _tile_count = _world_map.mesh_library.get_item_list().size();
 
 const chunk_city_cell_types = {
 	'CITY_1': {
@@ -17,6 +21,8 @@ const chunk_city_cell_types = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize();
+	_savage_chunk_noise.seed = randf_range(0, 1000);
 	var tile_chunk_map: TileMap = _chunk_map.instantiate();
 	var player_chunk_position: Vector3i = _player.global_position.floor() / float(chunk_tile_size);
 	var chunks_xy_to_instantiate = [-2, -1, 0, 1, 2];
@@ -55,7 +61,9 @@ func _generate_savage_chunk_at(chunk_position: Vector3):
 			var local_tile_position = Vector3(tile_x, 0, tile_z);
 			var tile_position = Vector3(chunk_position.x + local_tile_position.x, 0,\
 					chunk_position.z + local_tile_position.z);
-			_world_map.set_cell_item(tile_position, 0);
+			var tile_noise = _savage_chunk_noise.get_noise_2d(tile_position.x* chunk_tile_size, tile_position.z* chunk_tile_size);
+			var tile_to_place = (tile_noise + 1.0) * 0.5 * _tile_count;
+			_world_map.set_cell_item(tile_position, tile_to_place);
 
 func _get_chunk_cell_type(chunk_id: Vector2i):
 	for chunk_cell_type in chunk_city_cell_types:
