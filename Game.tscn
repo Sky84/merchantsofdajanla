@@ -12,40 +12,40 @@
 [ext_resource type="Script" path="res://Containers/InventoryView.gd" id="10_cmnf7"]
 [ext_resource type="PackedScene" uid="uid://c40ngw2hn56t4" path="res://Containers/ItemButton/ItemButton.tscn" id="11_n5lck"]
 [ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="12_g0mqy"]
-[ext_resource type="Texture2D" uid="uid://cpach7qgaggl2" path="res://Containers/Sprites/overboxinventaire.png" id="13_s8mev"]
-[ext_resource type="Texture2D" uid="uid://nygirwtvql0b" path="res://Containers/Sprites/background_Inventory.png" id="14_5e0r2"]
+[ext_resource type="Texture2D" uid="uid://y2d5gs7ua10o" path="res://Containers/Sprites/overboxinventaire.png" id="13_s8mev"]
+[ext_resource type="Texture2D" uid="uid://c2fjidhjhl6u4" path="res://Containers/Sprites/background_Inventory.png" id="14_5e0r2"]
 [ext_resource type="PackedScene" uid="uid://dqrhq147safqm" path="res://PlayerMouseAction/player_mouse_action.tscn" id="15_32206"]
 [ext_resource type="Script" path="res://UI/Modals/ConfirmModal/ConfirmModal.gd" id="16_xosbu"]
-[ext_resource type="Texture2D" uid="uid://c07k7uhoh55qt" path="res://UI/Modals/Sprites/infobox.png" id="17_w0jxs"]
-[ext_resource type="Texture2D" uid="uid://jm26ymrr6ov0" path="res://UI/Modals/Sprites/buttoninfoOK.png" id="18_y2k0e"]
-[ext_resource type="Texture2D" uid="uid://bges3ufbtuk11" path="res://UI/Modals/Sprites/buttoninfoNO.png" id="19_5crx0"]
+[ext_resource type="Texture2D" uid="uid://cuk5h84fjjyg7" path="res://UI/Modals/Sprites/infobox.png" id="17_w0jxs"]
+[ext_resource type="Texture2D" uid="uid://dcw5gsqqa33m5" path="res://UI/Modals/Sprites/buttoninfoOK.png" id="18_y2k0e"]
+[ext_resource type="Texture2D" uid="uid://ckd7217i3af0n" path="res://UI/Modals/Sprites/buttoninfoNO.png" id="19_5crx0"]
 [ext_resource type="Script" path="res://Containers/InfoPanelController.gd" id="20_lfos2"]
-[ext_resource type="Texture2D" uid="uid://bbakxbnj1w2ni" path="res://icon.svg" id="21_3sblc"]
+[ext_resource type="Texture2D" uid="uid://2pxe5nl2hfui" path="res://icon.svg" id="21_3sblc"]
 [ext_resource type="Script" path="res://UI/ShortcutBar.gd" id="22_2bnub"]
-[ext_resource type="Texture2D" uid="uid://c8ijywe1bb3si" path="res://Containers/Sprites/shortcutbar.png" id="23_a1p4a"]
+[ext_resource type="Texture2D" uid="uid://cr8dllugmppr0" path="res://Containers/Sprites/shortcutbar.png" id="23_a1p4a"]
 [ext_resource type="PackedScene" uid="uid://cb7i0apyk7kif" path="res://Stand/TransactionView/StandSetup/StandSetup.tscn" id="24_hak0k"]
 [ext_resource type="PackedScene" uid="uid://b2wjdlipuc437" path="res://Stand/TransactionView/StandTransaction/StandTransaction.tscn" id="25_q45n7"]
 [ext_resource type="Script" path="res://UI/Notifications/NotificationController.gd" id="26_ntiym"]
 [ext_resource type="Script" path="res://UI/Modals/TradeDialog/TradeView.gd" id="27_3xr5o"]
-[ext_resource type="Texture2D" uid="uid://dodnq6whgouk5" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="28_8t6dn"]
-[ext_resource type="Texture2D" uid="uid://ds876bi8u3cke" path="res://Stand/TransactionView/Assets/cross1.png" id="29_g7qwd"]
+[ext_resource type="Texture2D" uid="uid://bblyti7jckf0l" path="res://Stand/TransactionView/Assets/crossoverlay1.png" id="28_8t6dn"]
+[ext_resource type="Texture2D" uid="uid://bbchlthmq8p3s" path="res://Stand/TransactionView/Assets/cross1.png" id="29_g7qwd"]
 [ext_resource type="Script" path="res://UI/Modals/TradeDialog/PlayerContainerView.gd" id="30_7qihq"]
 [ext_resource type="Script" path="res://UI/Modals/TradeDialog/TradeContainerView.gd" id="31_ct5vh"]
 [ext_resource type="Script" path="res://UI/Modals/TradeDialog/MerchantContainerView.gd" id="32_8nbch"]
 [ext_resource type="Script" path="res://TradeItemController.gd" id="33_5xufu"]
-[ext_resource type="Texture2D" uid="uid://c0bmtjn7dcsjr" path="res://Items/bread.png" id="34_ijaa3"]
-[ext_resource type="Texture2D" uid="uid://qo07y3vds2u7" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="35_ig4m0"]
-[ext_resource type="Texture2D" uid="uid://dc5w1kyeo61ew" path="res://Stand/TransactionView/Assets/minus.png" id="36_u6jen"]
-[ext_resource type="Texture2D" uid="uid://bt28pqec8cmyl" path="res://Stand/TransactionView/Assets/price.png" id="37_opeqh"]
-[ext_resource type="Texture2D" uid="uid://botoy6wgjeytd" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="38_x8y3m"]
-[ext_resource type="Texture2D" uid="uid://77bljncj6jnd" path="res://Stand/TransactionView/Assets/plus.png" id="39_5qb0s"]
+[ext_resource type="Texture2D" uid="uid://crxoey3gwql0l" path="res://Items/bread.png" id="34_ijaa3"]
+[ext_resource type="Texture2D" uid="uid://dv47swldtn085" path="res://Stand/TransactionView/Assets/minusoverlay.png" id="35_ig4m0"]
+[ext_resource type="Texture2D" uid="uid://lk0yarsfqnoa" path="res://Stand/TransactionView/Assets/minus.png" id="36_u6jen"]
+[ext_resource type="Texture2D" uid="uid://ci5ryrrjudfju" path="res://Stand/TransactionView/Assets/price.png" id="37_opeqh"]
+[ext_resource type="Texture2D" uid="uid://06q57ijnvoed" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="38_x8y3m"]
+[ext_resource type="Texture2D" uid="uid://ckp8kowjeqvyu" path="res://Stand/TransactionView/Assets/plus.png" id="39_5qb0s"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="40_6ljay"]
 [ext_resource type="Script" path="res://Core/GameTimeController.gd" id="41_xf8c6"]
+[ext_resource type="Script" path="res://GameMapController.gd" id="42_akwyf"]
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="42_vwagt"]
-[ext_resource type="Texture2D" uid="uid://bwjkbflaun5l8" path="res://Map/rock.png" id="43_hj3qo"]
+[ext_resource type="Texture2D" uid="uid://b115tymrfpka6" path="res://Map/rock.png" id="43_hj3qo"]
+[ext_resource type="PackedScene" uid="uid://cqqncupius4n0" path="res://Map/ChunkMap.tscn" id="43_huvp4"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="44_mj10s"]
-[ext_resource type="PackedScene" uid="uid://cqy6hub708thm" path="res://PNJs/Citizen/Citizen.tscn" id="45_oim4o"]
-[ext_resource type="PackedScene" uid="uid://r5o6uljnlvg0" path="res://PNJs/Merchant/Merchant.tscn" id="46_ehs0c"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -1173,13 +1173,18 @@ world_environment = NodePath("../WorldEnvironment")
 [node name="Timer" type="Timer" parent="GameTime"]
 autostart = true
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." node_paths=PackedStringArray("_player", "_world_map")]
 navigation_mesh = SubResource("NavigationMesh_qt4bp")
+script = ExtResource("42_akwyf")
+chunk_tile_size = 32
+_chunk_map = ExtResource("43_huvp4")
+_player = NodePath("../Player")
+_world_map = NodePath("GridMap")
 
 [node name="GridMap" parent="NavigationRegion3D" instance=ExtResource("42_vwagt")]
 bake_navigation = true
 data = {
-"cells": PackedInt32Array(65532, 65533, 0, 65532, 65532, 0, 65532, 65534, 0, 65532, 65535, 0, 65533, 65535, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 2, 0, 0, 2, 65535, 0, 1, 65534, 0, 0, 65534, 0, 65534, 65535, 0, 65533, 1, 0, 65533, 2, 0, 65534, 2, 0, 65534, 3, 0, 65535, 3, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 2, 2, 0, 3, 2, 0, 3, 1, 0, 4, 1, 0, 4, 0, 0, 4, 65535, 0, 4, 65534, 0, 4, 65533, 0, 4, 65532, 0, 3, 65532, 0, 2, 65532, 0, 1, 65532, 0, 0, 65532, 0, 65535, 65532, 0, 65534, 65533, 0, 65534, 65534, 0, 65533, 65534, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 1, 0, 3, 0, 0, 3, 65535, 0, 2, 65534, 0, 2, 65533, 0, 1, 65533, 0, 0, 65533, 0, 65532, 0, 0, 65532, 1, 0, 1, 65531, 0, 0, 65531, 0, 65534, 65532, 0, 65533, 65533, 0, 65534, 1, 0, 1, 65535, 0, 0, 65535, 0, 3, 65533, 0, 0, 0, 0, 5, 65535, 0, 5, 65534, 0, 3, 65534, 0, 6, 65535, 0, 7, 65535, 0, 8, 65535, 0, 9, 65535, 0, 6, 65533, 0, 8, 65533, 0, 10, 65532, 0, 12, 65532, 0, 14, 65531, 0, 15, 65531, 0, 16, 65530, 0, 15, 65529, 0, 13, 65529, 0, 11, 65530, 0, 8, 65530, 0, 6, 65530, 0, 4, 65530, 0, 2, 65530, 0, 0, 65530, 0, 65534, 65530, 0, 65533, 65530, 0, 65532, 65530, 0, 65531, 65530, 0, 65531, 65531, 0, 65532, 65531, 0, 65534, 65531, 0, 65535, 65531, 0, 1, 65530, 0, 7, 65529, 0, 8, 65529, 0, 10, 65529, 0, 11, 65529, 0, 9, 65530, 0, 4, 65531, 0, 3, 65531, 0, 65531, 65534, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 5, 2, 0, 6, 2, 0, 4, 2, 0, 6, 1, 0, 7, 1, 0, 6, 0, 0, 5, 0, 0, 5, 1, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 10, 65535, 0, 8, 65534, 0, 7, 65534, 0, 6, 65534, 0, 9, 65534, 0, 9, 65533, 0, 10, 65533, 0, 11, 65533, 0, 11, 65532, 0, 9, 65532, 0, 8, 65532, 0, 7, 65532, 0, 6, 65532, 0, 5, 65533, 0, 7, 65533, 0, 8, 65531, 0, 7, 65530, 0, 6, 65529, 0, 5, 65529, 0, 4, 65529, 0, 3, 65529, 0, 3, 65530, 0, 2, 65531, 0, 65533, 65531, 0, 65533, 65532, 0, 65535, 65530, 0, 5, 65531, 0, 6, 65531, 0, 7, 65531, 0, 5, 65530, 0, 5, 65532, 0, 65531, 65533, 0, 65530, 65534, 0, 65530, 65533, 0, 65531, 65532, 0, 65531, 65535, 0, 65531, 0, 0, 65531, 1, 0, 65532, 2, 0, 65533, 3, 0, 65532, 3, 0, 65533, 4, 0, 65534, 4, 0, 65535, 65533, 0, 65535, 65534, 0, 0, 4, 0, 1, 4, 0, 65535, 4, 0, 2, 5, 0, 3, 5, 655362, 4, 5, 655362, 5, 5, 655362, 6, 4, 655362, 5, 4, 655362, 4, 4, 0, 3, 4, 655362, 2, 4, 0, 6, 3, 655362, 7, 3, 655362, 7, 2, 655362, 8, 2, 655362, 9, 1, 0, 8, 1, 0, 9, 2, 655362, 10, 2, 655362, 11, 1, 0, 12, 0, 0, 11, 0, 0, 10, 1, 0, 12, 1, 655362, 13, 0, 0, 12, 65535, 0, 11, 65535, 0, 13, 65535, 0, 13, 65534, 0, 12, 65534, 0, 10, 65534, 0, 11, 65534, 0, 12, 65533, 0, 13, 65532, 0, 13, 65531, 0, 12, 65531, 0, 11, 65531, 0, 10, 65530, 0, 9, 65531, 0, 14, 65530, 0, 14, 65529, 0, 15, 65528, 0, 14, 65527, 0, 13, 65526, 0, 12, 65526, 0, 11, 65527, 0, 10, 65527, 0, 10, 65528, 0, 9, 65528, 0, 9, 65529, 0, 12, 65530, 0, 13, 65530, 0, 10, 65531, 0, 12, 65529, 0, 13, 65528, 0, 14, 65528, 0, 13, 65527, 0, 12, 65527, 0, 11, 65528, 0, 12, 65528, 0, 1, 65529, 0, 0, 65529, 0, 65535, 65529, 0, 2, 65529, 0, 65534, 65529, 0, 65533, 65529, 0, 65532, 65529, 0, 65531, 65529, 0, 0, 65528, 0, 1, 65528, 0, 2, 65528, 0, 3, 65528, 0, 4, 65527, 0, 5, 65527, 0, 3, 65527, 0, 2, 65527, 0, 1, 65527, 0, 65535, 65528, 0, 65530, 65532, 0, 65529, 65532, 0, 65529, 65533, 0, 65528, 65533, 0, 65530, 65531, 0, 65530, 65530, 0, 65529, 65530, 0, 65528, 65530, 0, 65527, 65530, 0, 65529, 65529, 0, 65530, 65529, 0, 65530, 65528, 0, 65529, 65528, 0, 65528, 65528, 0, 65528, 65529, 0, 65529, 65531, 0, 65528, 65532, 0, 65528, 65531, 0, 65527, 65532, 0, 65529, 65534, 0, 65529, 65535, 0, 65530, 65535, 0, 65529, 0, 0, 65530, 0, 0, 65530, 1, 0, 65531, 2, 0, 65530, 2, 0, 65531, 3, 655362, 65532, 4, 655362, 65535, 65535, 0, 13, 65533, 0, 14, 65533, 655362, 14, 65532, 655362, 15, 65532, 655362, 15, 65530, 0, 16, 65529, 0, 16, 65528, 0, 15, 65527, 0, 15, 65526, 0, 15, 65525, 0, 14, 65525, 0, 13, 65525, 0, 11, 65526, 0, 10, 65526, 0, 14, 65526, 0, 9, 65527, 0, 8, 65527, 0, 7, 65527, 0, 6, 65527, 0, 6, 65528, 0, 5, 65528, 0, 4, 65528, 0, 7, 65528, 0, 8, 65528, 0, 0, 65527, 0, 65535, 65527, 0, 65534, 65527, 0, 65533, 65527, 0, 65532, 65527, 0, 65534, 65528, 0, 65531, 65527, 0, 65530, 65527, 0, 65529, 65527, 0, 65528, 65527, 0, 65527, 65527, 0, 65527, 65528, 0, 65526, 65528, 0, 65526, 65527, 0, 65527, 65529, 0, 65527, 65531, 0, 65528, 65534, 0, 65527, 65533, 0, 65527, 65534, 0, 65527, 65535, 0, 65528, 65535, 0, 65528, 0, 0, 65528, 1, 655362, 65529, 1, 655362, 65533, 5, 0, 65532, 5, 655362, 65532, 6, 655362, 65533, 6, 0, 65533, 7, 655362, 65532, 7, 655362, 65532, 8, 655362, 65533, 8, 655362, 65533, 9, 655362, 65534, 9, 655362, 65532, 9, 655362, 65533, 10, 0, 65534, 10, 655362, 65535, 10, 655362, 0, 10, 655362, 1, 10, 655362, 1, 11, 655362, 2, 10, 655362, 3, 10, 655362, 4, 10, 655362, 4, 9, 655362, 3, 9, 655361, 5, 10, 0, 6, 10, 0, 7, 10, 0, 7, 9, 0, 6, 9, 0, 5, 9, 655362, 5, 8, 655362, 6, 8, 0, 6, 7, 655362, 5, 7, 655362, 7, 8, 0, 7, 7, 655362, 6, 6, 655362, 5, 6, 655362, 4, 6, 655362, 4, 7, 655361, 6, 5, 655362, 65527, 0, 0, 65526, 0, 0, 65525, 0, 0, 65524, 0, 0, 65523, 65535, 0, 65523, 0, 0, 65522, 0, 0, 65522, 65535, 0, 65521, 65535, 0, 65521, 0, 0, 65520, 0, 0, 65520, 1, 0, 65520, 2, 0, 65521, 2, 655362, 65521, 3, 0, 65521, 4, 0, 65522, 4, 0, 65522, 5, 0, 65522, 6, 0, 65522, 7, 0, 65523, 7, 0, 65523, 8, 0, 65523, 9, 0, 65523, 10, 0, 65524, 10, 0, 65525, 10, 0, 65526, 10, 0, 65527, 10, 0, 65528, 10, 0, 65529, 10, 0, 65530, 10, 0, 65531, 10, 0, 65532, 10, 0, 14, 65535, 655362, 15, 65535, 655362, 16, 65535, 655362, 17, 65535, 655362, 18, 65535, 655362, 19, 65535, 655362, 20, 65534, 655362, 20, 65535, 655362, 21, 65534, 655362, 22, 65534, 655362, 23, 65534, 655362, 24, 65534, 655362, 25, 65534, 655362, 26, 65533, 655362, 26, 65534, 655362, 65535, 5, 0, 65534, 5, 0, 65534, 6, 0, 65534, 7, 0, 65535, 7, 0, 65535, 8, 655361, 0, 8, 655361, 0, 7, 0, 0, 6, 0, 65535, 6, 0, 65534, 8, 655361, 65535, 9, 655361, 0, 9, 655361, 1, 9, 655361, 1, 8, 655361, 2, 9, 655361, 2, 8, 655361, 3, 8, 655361, 3, 7, 655361, 4, 8, 655361, 3, 6, 655361, 2, 6, 0, 2, 7, 655361, 1, 6, 0, 1, 7, 655361, 1, 5, 0, 0, 5, 0, 65522, 2, 655362, 65523, 2, 655362, 65523, 1, 655362, 65522, 1, 655362, 65521, 1, 655362, 65522, 3, 655362, 65523, 4, 655362, 65523, 5, 655362, 65524, 5, 655362, 65524, 6, 655362, 65525, 6, 655362, 65525, 7, 655362, 65526, 7, 655362, 65527, 7, 655362, 65527, 6, 655362, 65526, 6, 655362, 65526, 8, 655362, 65524, 7, 655362, 65526, 9, 655362, 65527, 8, 655362, 65523, 6, 655362, 65524, 8, 655362, 65524, 9, 655362, 65525, 9, 655362, 65525, 8, 655362, 65527, 9, 655362, 65528, 9, 655362, 65529, 9, 655362, 65529, 8, 655362, 65528, 8, 655362, 65530, 9, 655362, 65530, 8, 655362, 65531, 9, 655362, 65531, 8, 655362, 65530, 7, 655362, 65529, 7, 655362, 65531, 7, 655362, 65531, 6, 655362, 65530, 6, 655362, 65530, 5, 655362, 65530, 4, 655362, 65529, 4, 655362, 65529, 3, 655362, 65528, 4, 655362, 65528, 5, 655362, 65529, 5, 655362, 65529, 6, 655362, 65531, 5, 655362, 65528, 6, 655362, 65528, 7, 655362, 65527, 5, 655362, 65528, 2, 655362, 65528, 3, 655362, 65527, 3, 655362, 65527, 4, 655362, 65531, 4, 655362, 65530, 3, 655362, 65529, 2, 655362, 65527, 1, 655362, 65526, 1, 655362, 65526, 2, 655362, 65526, 3, 655362, 65526, 4, 655362, 65527, 2, 655362, 65525, 2, 655362, 65525, 3, 655362, 65525, 4, 655362, 65525, 5, 655362, 65525, 1, 655362, 65524, 2, 655362, 65524, 3, 655362, 65524, 4, 655362, 65524, 1, 655362, 65523, 3, 655362, 65526, 5, 655362, 65533, 65528, 655362, 65532, 65528, 655362, 65531, 65528, 655362, 13, 3, 655362, 12, 3, 655362, 11, 3, 655362, 10, 4, 655362, 9, 4, 655362, 9, 5, 655362, 8, 5, 655362, 8, 6, 655362, 8, 7, 655362, 9, 7, 655362, 10, 7, 655362, 10, 6, 655362, 10, 5, 655362, 9, 3, 655362, 8, 3, 655362, 7, 5, 655362, 8, 4, 655362, 7, 4, 655362, 7, 6, 655362, 9, 6, 655362, 11, 5, 655362, 11, 4, 655362, 12, 4, 655362, 12, 2, 655362, 11, 2, 655362, 10, 3, 655362, 13, 1, 655362, 14, 1, 655362, 14, 0, 655362, 15, 0, 655362, 16, 65534, 655362, 15, 65534, 655362, 13, 2, 655362, 2, 11, 655362, 3, 11, 655362, 4, 11, 655362, 0, 11, 655362, 65535, 11, 655362, 65534, 11, 655362, 65533, 11, 655362, 65532, 11, 655362, 65531, 11, 655362, 5, 11, 655362, 6, 11, 655362, 7, 11, 655362, 8, 11, 655362, 21, 65535, 655362, 22, 65533, 655362, 23, 65533, 655362, 24, 65533, 655362, 25, 65533, 655362, 27, 65532, 655362, 28, 65532, 655362, 27, 65533, 655362, 23, 65535, 655362, 24, 65535, 655362, 25, 65535, 655362, 21, 65533, 655362, 20, 65533, 655362, 19, 65533, 655362, 18, 65533, 655362, 18, 65534, 655362, 17, 65534, 655362, 21, 0, 655362, 22, 65535, 655362, 19, 65534, 655362, 17, 65533, 655362, 20, 65532, 655362, 21, 65532, 655362, 19, 65532, 655362, 18, 65532, 655362, 17, 65532, 655362, 19, 65531, 655362, 18, 65531, 655362, 18, 65530, 655362, 17, 65530, 655362, 17, 65531, 655362, 16, 65531, 655362, 16, 65532, 655362, 14, 65534, 655362, 16, 65533, 655362, 15, 65533, 655362, 20, 0, 655362, 19, 0, 655362, 18, 0, 655362, 18, 1, 655362, 19, 1, 655362, 16, 0, 655362, 17, 0, 655362, 15, 1, 655362, 16, 1, 655362, 17, 1, 655362)
+"cells": PackedInt32Array()
 }
 
 [node name="MapMesh" type="MeshInstance3D" parent="NavigationRegion3D/GridMap"]
@@ -1188,12 +1193,6 @@ mesh = SubResource("PlaneMesh_4qies")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_524yx")
 script = ExtResource("44_mj10s")
-
-[node name="Citizen" parent="." instance=ExtResource("45_oim4o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.51223, 0, 0)
-
-[node name="Merchant" parent="." instance=ExtResource("46_ehs0c")]
-_owner_id = "merchant"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r4v6y")

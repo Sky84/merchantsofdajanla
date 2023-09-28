@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://bf5kowwqr03ey"]
 
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_c2q6o"]
-[ext_resource type="Texture2D" uid="uid://dhgav3txgnebe" path="res://Map/sol2.png" id="3_xoekg"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/sol2.png" id="3_xoekg"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_b4mvb"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_72vco"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i30qm"]
 transparency = 4
@@ -19,7 +19,7 @@ region = Rect2(32, 256, 64, 64)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s43h1"]
 size = Vector3(1.99975, 0.01, 1.98669)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_xi6ql"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_7q3hp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_205vc"]
 transparency = 4
@@ -32,7 +32,7 @@ texture_filter = 0
 atlas = ExtResource("3_xoekg")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_k48qk"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_lcce1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gnciu"]
 transparency = 4
@@ -48,7 +48,7 @@ region = Rect2(192, 192, 64, 64)
 [node name="Tile" type="Node3D"]
 
 [node name="Dirt" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_b4mvb")
+mesh = SubResource("PlaneMesh_72vco")
 surface_material_override/0 = SubResource("StandardMaterial3D_i30qm")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_weakx")
@@ -59,7 +59,7 @@ texture = SubResource("AtlasTexture_weakx")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Sand" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_xi6ql")
+mesh = SubResource("PlaneMesh_7q3hp")
 surface_material_override/0 = SubResource("StandardMaterial3D_205vc")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_6sh5i")
@@ -70,7 +70,7 @@ texture = SubResource("AtlasTexture_6sh5i")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Grass" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_k48qk")
+mesh = SubResource("PlaneMesh_lcce1")
 surface_material_override/0 = SubResource("StandardMaterial3D_gnciu")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_20vre")

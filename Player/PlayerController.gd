@@ -1,5 +1,5 @@
 extends Alive
-
+class_name Player
 @onready var ui_controller: UIController = %CanvasLayer;
 
 var _is_inventory_visible = false;
