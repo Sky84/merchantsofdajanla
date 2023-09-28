@@ -37,14 +37,13 @@ func _load_city_at(chunk_position: Vector3, chunk_cell_id: Vector2i):
 	var chunk_cell_type = _get_chunk_cell_type(chunk_cell_id);
 	var city_instance: GridMap = chunk_cell_type.scene.instantiate();
 	var used_cells = city_instance.get_used_cells();
-	var city_tile_size = used_cells.max().x;
-	var gap_center = city_tile_size * 0.5;
-	for tile_x in range(-city_tile_size, city_tile_size):
-		for tile_z in range(-city_tile_size, city_tile_size):
+	var half_chunk_size = chunk_tile_size * 0.5;
+	for tile_x in range(-half_chunk_size, half_chunk_size):
+		for tile_z in range(-half_chunk_size, half_chunk_size):
 			var local_tile_position =  Vector3i(tile_x, 0, tile_z);
 			var cell_item = 0;
-			var tile_position = Vector3(chunk_position.x + (gap_center + local_tile_position.x), 0,\
-					chunk_position.z + (gap_center + local_tile_position.z));
+			var tile_position = Vector3(chunk_position.x + (half_chunk_size + local_tile_position.x), 0,\
+					chunk_position.z + (half_chunk_size + local_tile_position.z));
 			if city_instance.get_used_cells().has(local_tile_position):
 				cell_item = city_instance.get_cell_item(local_tile_position);
 			_world_map.set_cell_item(tile_position, cell_item);
