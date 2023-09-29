@@ -7,6 +7,8 @@ func _ready():
 	_disable_collider(true);
 
 func _init_posable(_owner: String):
+	if !is_node_ready():
+		await ready;
 	self._owner = _owner;
 	_disable_collider(false);
 	_update_id();

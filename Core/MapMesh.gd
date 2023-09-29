@@ -8,6 +8,12 @@ extends MeshInstance3D
 	set(value):
 		_update_for_atlas();
 
+@export var rotate_60: bool:
+	get:
+		return false;
+	set(value):
+		rotation_degrees.x = 0 if rotation_degrees.x == 60 else 60;
+
 var _texture: Texture;
 
 @export var texture: Texture:
@@ -18,6 +24,9 @@ var _texture: Texture;
 		_on_texture_changed(value);
 
 var _material: StandardMaterial3D = preload("res://UI/Shaders/PixelMaterial.tres");
+
+func _ready():
+	_update_for_atlas();
 
 func _on_texture_changed(new_texture: Texture):
 	mesh = PlaneMesh.new();

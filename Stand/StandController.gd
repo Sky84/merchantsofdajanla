@@ -11,7 +11,7 @@ func _ready():
 	_price_label_3d.visible = false;
 
 func _init_posable(_owner: String):
-	super._init_posable(_owner);
+	await super._init_posable(_owner);
 	_container.register_container(id, _owner);
 	InventoryEvents.item_in_container_selected.connect(_on_item_container_changed);
 	HudEvents.price_item_changed.connect(_on_item_container_changed);

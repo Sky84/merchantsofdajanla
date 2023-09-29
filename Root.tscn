@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b4qy8sarhyjqk"]
 
-[ext_resource type="Script" path="res://MainMenu.gd" id="1_8ju7g"]
-[ext_resource type="Texture2D" uid="uid://cnemtk4sciade" path="res://fake_bg.png" id="1_bouc1"]
-[ext_resource type="Shader" path="res://Blur.gdshader" id="1_wtoec"]
+[ext_resource type="Script" path="res://UI/MainMenu/MainMenu.gd" id="1_8ju7g"]
+[ext_resource type="Texture2D" uid="uid://cnemtk4sciade" path="res://UI/MainMenu/fake_bg.png" id="1_bouc1"]
+[ext_resource type="Shader" path="res://UI/MainMenu/Blur.gdshader" id="1_wtoec"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fwx4j"]
 shader = ExtResource("1_wtoec")
