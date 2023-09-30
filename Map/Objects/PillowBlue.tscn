@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwa5ciausibvh"]
+
+[ext_resource type="PackedScene" uid="uid://dy35oetveif62" path="res://Map/Objects/PillowRed.tscn" id="1_jbi8j"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_dliqd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dbypg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pftk2"]
+transparency = 4
+albedo_texture = ExtResource("2_dliqd")
+uv1_scale = Vector3(0.1, 0.025, 1)
+uv1_offset = Vector3(0.9, 0.025, 0)
+texture_filter = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p174"]
+atlas = ExtResource("2_dliqd")
+region = Rect2(288, 32, 32, 32)
+
+[node name="PillowBlue" instance=ExtResource("1_jbi8j")]
+mesh = SubResource("PlaneMesh_dbypg")
+surface_material_override/0 = SubResource("StandardMaterial3D_pftk2")
+texture = SubResource("AtlasTexture_5p174")

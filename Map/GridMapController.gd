@@ -21,7 +21,6 @@ func _place_item_at(item_data: Dictionary, _global_position: Vector3, _owner: St
 		_init_posable(scene, _global_position, _owner);
 		GridMapEvents.item_placed.emit();
 		return;
-	# Send event to tell it's not possible to put an item at this given position
 
 func _init_posable(scene: PhysicsBody3D, _global_position: Vector3, _owner: String) -> void:
 	var pos = global_to_local(_global_position);

@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://csr6yw78n2fxe"]
+
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="1_47oip"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_vsyds"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gx7qw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwnn0"]
+transparency = 4
+albedo_texture = ExtResource("1_47oip")
+uv1_scale = Vector3(0.2, 0.075, 1)
+uv1_offset = Vector3(0.5, 0.3, 0)
+texture_filter = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f00s"]
+atlas = ExtResource("1_47oip")
+region = Rect2(160, 384, 64, 96)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q32in"]
+size = Vector3(1.99975, 0.01, 1.98669)
+
+[node name="Tree" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 22.3205, 2.56174, 19.6461)
+mesh = SubResource("PlaneMesh_gx7qw")
+surface_material_override/0 = SubResource("StandardMaterial3D_iwnn0")
+script = ExtResource("2_vsyds")
+tile_atlas_size = 16.0
+texture = SubResource("AtlasTexture_4f00s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_q32in")

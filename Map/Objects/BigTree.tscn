@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb5d8n5plndqv"]
+
+[ext_resource type="PackedScene" uid="uid://csr6yw78n2fxe" path="res://Map/Objects/Tree.tscn" id="1_unydj"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_1l2au"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e7nqr"]
+size = Vector2(4, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jwte"]
+transparency = 4
+albedo_texture = ExtResource("2_1l2au")
+uv1_scale = Vector3(0.2, 0.1, 1)
+uv1_offset = Vector3(0, 0.575, 0)
+texture_filter = 0
+
+[node name="BigTree" instance=ExtResource("1_unydj")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 3.3141, 0)
+mesh = SubResource("PlaneMesh_e7nqr")
+surface_material_override/0 = SubResource("StandardMaterial3D_0jwte")

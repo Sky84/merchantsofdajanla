@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://b16df5413g5io"]
+
+[ext_resource type="PackedScene" uid="uid://c5q0d1fliv5ax" path="res://Map/Objects/RedGrass.tscn" id="1_vmkh2"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_cxesf"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tu6wd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swxf2"]
+transparency = 4
+albedo_texture = ExtResource("2_cxesf")
+uv1_scale = Vector3(0.1, 0.025, 1)
+uv1_offset = Vector3(0.2, 0.35, 0)
+texture_filter = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umpcc"]
+atlas = ExtResource("2_cxesf")
+region = Rect2(64, 448, 32, 32)
+
+[node name="SmallCactus" instance=ExtResource("1_vmkh2")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_tu6wd")
+surface_material_override/0 = SubResource("StandardMaterial3D_swxf2")
+texture = SubResource("AtlasTexture_umpcc")

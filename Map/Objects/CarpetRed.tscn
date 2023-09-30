@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dirjajftxxsno"]
+
+[ext_resource type="PackedScene" uid="uid://b16df5413g5io" path="res://Map/Objects/SmallCactus.tscn" id="1_fls45"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_3bl74"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wlx5n"]
+size = Vector2(6, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jho7"]
+transparency = 4
+albedo_texture = ExtResource("2_3bl74")
+uv1_scale = Vector3(0.3, 0.075, 1)
+uv1_offset = Vector3(0.7, 0.575, 0)
+texture_filter = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45u4f"]
+atlas = ExtResource("2_3bl74")
+region = Rect2(224, 736, 96, 96)
+
+[node name="CarpetRed" instance=ExtResource("1_fls45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_wlx5n")
+surface_material_override/0 = SubResource("StandardMaterial3D_2jho7")
+texture = SubResource("AtlasTexture_45u4f")

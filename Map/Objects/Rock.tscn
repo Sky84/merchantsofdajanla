@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkcpfbmoxh5d7"]
+
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="1_oskgw"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_8nk8b"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tj1bi"]
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6d5uw"]
+transparency = 4
+albedo_texture = ExtResource("1_oskgw")
+uv1_scale = Vector3(0.1, 0.025, 1)
+uv1_offset = Vector3(0.2, 0.1, 0)
+texture_filter = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awkoc"]
+atlas = ExtResource("1_oskgw")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q32in"]
+size = Vector3(1.99975, 0.01, 1.98669)
+
+[node name="Rock" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_tj1bi")
+surface_material_override/0 = SubResource("StandardMaterial3D_6d5uw")
+script = ExtResource("2_8nk8b")
+texture = SubResource("AtlasTexture_awkoc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_q32in")

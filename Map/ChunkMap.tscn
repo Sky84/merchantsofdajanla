@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqqncupius4n0"]
 
-[ext_resource type="Texture2D" uid="uid://cm6hhdqv0diqw" path="res://Map/chunks_map_tiles.png" id="1_yydqt"]
+[ext_resource type="Texture2D" uid="uid://cm6hhdqv0diqw" path="res://Map/Sprites/chunks_map_tiles.png" id="1_krym7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fip32"]
 resource_name = "chunks"
-texture = ExtResource("1_yydqt")
+texture = ExtResource("1_krym7")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0

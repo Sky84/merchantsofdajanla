@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://biqmi4y6ea5ct"]
+
+[ext_resource type="PackedScene" uid="uid://brd66fmdcoont" path="res://Map/Models/bed.gltf" id="1_epplk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2gi7t"]
+size = Vector3(3.93891, 2.54626, 2.35276)
+
+[node name="BedPoor" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4664, 9.53674e-07, 9.92427)
+
+[node name="bed" parent="." instance=ExtResource("1_epplk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.155471, 0, 0.0926552)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.170618, 0, 0)
+shape = SubResource("BoxShape3D_2gi7t")
