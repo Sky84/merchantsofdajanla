@@ -1180,6 +1180,7 @@ _savage_chunk_noise = SubResource("FastNoiseLite_33ooo")
 _world_map = NodePath("GridMap")
 
 [node name="GridMap" parent="NavigationRegion3D" instance=ExtResource("44_uvnk4")]
+cell_scale = 1.01
 bake_navigation = true
 data = {
 "cells": PackedInt32Array()

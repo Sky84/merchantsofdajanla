@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_c2q6o"]
 [ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/sol2.png" id="3_xoekg"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_dyi8p"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_27vn8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i30qm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4b0me"]
 transparency = 4
 albedo_texture = ExtResource("3_xoekg")
 uv1_scale = Vector3(0.2, 0.05, 1)
@@ -19,9 +19,9 @@ region = Rect2(32, 256, 64, 64)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s43h1"]
 size = Vector3(1.99975, 0.01, 1.98669)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_olfbf"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ljmrn"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rto5w"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jb2bk"]
 transparency = 4
 albedo_texture = ExtResource("3_xoekg")
 uv1_scale = Vector3(0.2, 0.05, 1)
@@ -32,9 +32,9 @@ texture_filter = 0
 atlas = ExtResource("3_xoekg")
 region = Rect2(64, 320, 64, 64)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_uy567"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_edcs1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nieox"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_761t3"]
 transparency = 4
 albedo_texture = ExtResource("3_xoekg")
 uv1_scale = Vector3(0.2, 0.05, 1)
@@ -45,9 +45,9 @@ texture_filter = 0
 atlas = ExtResource("3_xoekg")
 region = Rect2(128, 192, 64, 64)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_58l3n"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ga7rb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3dy0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oap1i"]
 transparency = 4
 albedo_texture = ExtResource("3_xoekg")
 uv1_scale = Vector3(0.1, 0.025, 1)
@@ -61,8 +61,8 @@ region = Rect2(96, 0, 32, 32)
 [node name="Tile" type="Node3D"]
 
 [node name="Dirt" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_dyi8p")
-surface_material_override/0 = SubResource("StandardMaterial3D_i30qm")
+mesh = SubResource("PlaneMesh_27vn8")
+surface_material_override/0 = SubResource("StandardMaterial3D_4b0me")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_weakx")
 
@@ -72,8 +72,8 @@ texture = SubResource("AtlasTexture_weakx")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Sand" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_olfbf")
-surface_material_override/0 = SubResource("StandardMaterial3D_rto5w")
+mesh = SubResource("PlaneMesh_ljmrn")
+surface_material_override/0 = SubResource("StandardMaterial3D_jb2bk")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_cb6w2")
 
@@ -83,8 +83,8 @@ texture = SubResource("AtlasTexture_cb6w2")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Grass" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_uy567")
-surface_material_override/0 = SubResource("StandardMaterial3D_nieox")
+mesh = SubResource("PlaneMesh_edcs1")
+surface_material_override/0 = SubResource("StandardMaterial3D_761t3")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_djrx0")
 
@@ -94,8 +94,8 @@ texture = SubResource("AtlasTexture_djrx0")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Water" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_58l3n")
-surface_material_override/0 = SubResource("StandardMaterial3D_q3dy0")
+mesh = SubResource("PlaneMesh_ga7rb")
+surface_material_override/0 = SubResource("StandardMaterial3D_oap1i")
 script = ExtResource("2_c2q6o")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_evgcm")
