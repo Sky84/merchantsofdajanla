@@ -60,29 +60,19 @@ func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i):
 					cell_item = 0;
 				
 				_world_map.set_cell_item(tile_position, cell_item);
-				
-	load_map_items(chunk_global_position, city_instance);
-	load_map_decorations(chunk_global_position, city_instance);
+	
+	_load_items_by_parent('MapItems', chunk_global_position, city_instance);
+	_load_items_by_parent('MapDecorations', chunk_global_position, city_instance);
+	_load_items_by_parent('PNJs', chunk_global_position, city_instance);
 
-func load_map_items(chunk_global_position: Vector3, city_instance: GridMap):
-	var city_map_items = city_instance.get_node('MapItems');
-	var world_map_items = _world_map.get_node('MapItems');
+func _load_items_by_parent(parent_name: String, chunk_global_position: Vector3, city_instance: GridMap):
+	var city_map_items = city_instance.get_node(parent_name);
+	var world_map_decorations = _world_map.get_node(parent_name);
 	var half_chunk_size = (chunk_tile_size * 0.5);
 	var city_center = chunk_global_position + Vector3(half_chunk_size,0,half_chunk_size);
 	var global_city_center = _world_map.map_to_local(city_center);
 	for item in city_map_items.get_children():
 		city_map_items.remove_child(item);
-		world_map_items.add_child(item);
-		item.global_position = global_city_center + item.position - Vector3(1,0,1);
-
-func load_map_decorations(chunk_global_position: Vector3, city_instance: GridMap):
-	var city_map_decorations = city_instance.get_node('MapDecorations');
-	var world_map_decorations = _world_map.get_node('MapDecorations');
-	var half_chunk_size = (chunk_tile_size * 0.5);
-	var city_center = chunk_global_position + Vector3(half_chunk_size,0,half_chunk_size);
-	var global_city_center = _world_map.map_to_local(city_center);
-	for item in city_map_decorations.get_children():
-		city_map_decorations.remove_child(item);
 		world_map_decorations.add_child(item);
 		item.global_position = global_city_center + item.position - Vector3(1,0,1);
 

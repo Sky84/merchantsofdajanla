@@ -3,16 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="1_u2c5d"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_jvkrv"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ycchi"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_xssq3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rk3l"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kamuc"]
 transparency = 4
 albedo_texture = ExtResource("1_u2c5d")
 uv1_scale = Vector3(0.1, 0.025, 1)
 uv1_offset = Vector3(0.1, 0.325, 0)
 texture_filter = 0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x725t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqmti"]
 atlas = ExtResource("1_u2c5d")
 region = Rect2(32, 416, 32, 32)
 
@@ -20,12 +20,12 @@ region = Rect2(32, 416, 32, 32)
 size = Vector3(1.99975, 0.01, 1.98669)
 
 [node name="RedGrass" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -9.03383, 0.393954, 1.69678)
-mesh = SubResource("PlaneMesh_ycchi")
-surface_material_override/0 = SubResource("StandardMaterial3D_5rk3l")
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_xssq3")
+surface_material_override/0 = SubResource("StandardMaterial3D_kamuc")
 script = ExtResource("2_jvkrv")
 tile_atlas_size = 16.0
-texture = SubResource("AtlasTexture_x725t")
+texture = SubResource("AtlasTexture_nqmti")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

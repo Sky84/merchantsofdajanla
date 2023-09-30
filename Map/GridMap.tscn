@@ -15,3 +15,5 @@ script = ExtResource("1_8unb5")
 [node name="MapItems" type="Node3D" parent="."]
 
 [node name="MapDecorations" type="Node3D" parent="."]
+
+[node name="PNJs" type="Node3D" parent="."]

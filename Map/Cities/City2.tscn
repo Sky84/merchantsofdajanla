@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="3_p01ai"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="4_vp53y"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_2jquh"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_748pg"]
 size = Vector2(1, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7sdfm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbuf7"]
 transparency = 4
 albedo_texture = ExtResource("3_p01ai")
 uv1_scale = Vector3(0.1, 0.025, 1)
@@ -22,10 +22,10 @@ region = Rect2(64, 128, 32, 32)
 [sub_resource type="BoxShape3D" id="BoxShape3D_6cxku"]
 size = Vector3(1.99975, 0.01, 1.98669)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_vmmb5"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_oguwg"]
 size = Vector2(2, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ej5cx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mck8"]
 transparency = 4
 albedo_texture = ExtResource("3_p01ai")
 uv1_scale = Vector3(0.2, 0.075, 1)
@@ -36,10 +36,10 @@ texture_filter = 0
 atlas = ExtResource("3_p01ai")
 region = Rect2(160, 384, 64, 96)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_x6jt1"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_trrq5"]
 size = Vector2(2, 4)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emi10"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31sxh"]
 transparency = 4
 albedo_texture = ExtResource("3_p01ai")
 uv1_scale = Vector3(0.1, 0.05, 1)
@@ -66,8 +66,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9516, 0.00500011, 4.9247)
 
 [node name="Rock" type="MeshInstance3D" parent="MapDecorations"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 2.40891, 0.443889, -1.90261)
-mesh = SubResource("PlaneMesh_2jquh")
-surface_material_override/0 = SubResource("StandardMaterial3D_7sdfm")
+mesh = SubResource("PlaneMesh_748pg")
+surface_material_override/0 = SubResource("StandardMaterial3D_wbuf7")
 script = ExtResource("4_vp53y")
 texture = SubResource("AtlasTexture_nsysv")
 
@@ -78,8 +78,8 @@ shape = SubResource("BoxShape3D_6cxku")
 
 [node name="Tree" type="MeshInstance3D" parent="MapDecorations"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -4.3995, 1.31098, -0.0308075)
-mesh = SubResource("PlaneMesh_vmmb5")
-surface_material_override/0 = SubResource("StandardMaterial3D_ej5cx")
+mesh = SubResource("PlaneMesh_oguwg")
+surface_material_override/0 = SubResource("StandardMaterial3D_8mck8")
 script = ExtResource("4_vp53y")
 texture = SubResource("AtlasTexture_iarxd")
 
@@ -90,8 +90,8 @@ shape = SubResource("BoxShape3D_6cxku")
 
 [node name="Cactus" type="MeshInstance3D" parent="MapDecorations"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 6.37397, 1.71687, -1.57939)
-mesh = SubResource("PlaneMesh_x6jt1")
-surface_material_override/0 = SubResource("StandardMaterial3D_emi10")
+mesh = SubResource("PlaneMesh_trrq5")
+surface_material_override/0 = SubResource("StandardMaterial3D_31sxh")
 script = ExtResource("4_vp53y")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_3isqi")
@@ -100,3 +100,5 @@ texture = SubResource("AtlasTexture_3isqi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapDecorations/Cactus/StaticBody3D"]
 shape = SubResource("BoxShape3D_6cxku")
+
+[node name="PNJs" type="Node3D" parent="."]
