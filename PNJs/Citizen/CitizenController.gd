@@ -13,10 +13,9 @@ class_name CitizenController
 @export_category("Citizen")
 @export var navigation_agent: NavigationAgent3D;
 @export var pnj_name: String = 'George';
-@onready var camera_3d = %Camera3D;
 
-@onready var grid_map: GridMapController = $"../NavigationRegion3D/GridMap";
-
+@onready var camera_3d = get_node('/root/Root/Game/Camera3D');
+@onready var grid_map: GridMapController = get_node('/root/Root/Game/NavigationRegion3D/GridMap');
 @onready var default_action_id: String = Actions.WAIT;
 
 var actions_queue = [];

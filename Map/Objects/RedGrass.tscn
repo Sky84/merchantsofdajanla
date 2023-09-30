@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="1_u2c5d"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_jvkrv"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_xssq3"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_70teg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kamuc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ejwfi"]
 transparency = 4
 albedo_texture = ExtResource("1_u2c5d")
 uv1_scale = Vector3(0.1, 0.025, 1)
@@ -21,8 +21,8 @@ size = Vector3(1.99975, 0.01, 1.98669)
 
 [node name="RedGrass" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
-mesh = SubResource("PlaneMesh_xssq3")
-surface_material_override/0 = SubResource("StandardMaterial3D_kamuc")
+mesh = SubResource("PlaneMesh_70teg")
+surface_material_override/0 = SubResource("StandardMaterial3D_ejwfi")
 script = ExtResource("2_jvkrv")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_nqmti")
