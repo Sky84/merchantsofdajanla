@@ -38,6 +38,7 @@ func _ready():
 				_load_city_at(chunk_global_position, chunk_cell_id);
 			else:
 				_generate_savage_chunk_at(chunk_global_position);
+	bake_navigation_mesh();
 
 func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i):
 	var chunk_cell_type = _get_chunk_cell_type(chunk_cell_id);
