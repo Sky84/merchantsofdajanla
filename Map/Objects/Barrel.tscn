@@ -7,9 +7,12 @@ height = 5.06641
 radius = 1.26749
 
 [node name="Barrel" type="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5893, -4.76837e-07, 7.58724)
-
-[node name="barrel" parent="." instance=ExtResource("1_2l0e5")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_htp4x")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05062, 0)
+
+[node name="barrel" parent="NavigationObstacle3D" instance=ExtResource("1_2l0e5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05062, 0)
