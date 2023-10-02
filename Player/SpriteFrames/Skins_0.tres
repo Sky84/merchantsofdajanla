@@ -1,10 +1,10 @@
 [gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://b116yvdld6l6t"]
 
-[ext_resource type="Texture2D" uid="uid://dsbbnk53t5j8v" path="res://Player/Sprites/fightcycle.png" id="1_bcxnv"]
-[ext_resource type="Texture2D" uid="uid://co3urvmsfe6al" path="res://Player/Sprites/body5-Sheet.png" id="1_me4eb"]
-[ext_resource type="Texture2D" uid="uid://dve2a3muf513f" path="res://Player/Sprites/runplaceholder.png" id="2_c4nfd"]
-[ext_resource type="Texture2D" uid="uid://lynpw6l2kclv" path="res://Player/Sprites/sitcycle.png" id="3_b7p0y"]
-[ext_resource type="Texture2D" uid="uid://tdn3atjkxrgl" path="res://Player/Sprites/walkcycle.png" id="4_7itak"]
+[ext_resource type="Texture2D" uid="uid://cd4yo48nsfhc4" path="res://Player/Sprites/fightcycle.png" id="1_bcxnv"]
+[ext_resource type="Texture2D" uid="uid://beg4e34qcnr14" path="res://Player/Sprites/body5-Sheet.png" id="1_me4eb"]
+[ext_resource type="Texture2D" uid="uid://bfkci67wt1wsu" path="res://Player/Sprites/runplaceholder.png" id="2_c4nfd"]
+[ext_resource type="Texture2D" uid="uid://dcslw0474u0ok" path="res://Player/Sprites/sitcycle.png" id="3_b7p0y"]
+[ext_resource type="Texture2D" uid="uid://dxcs3aliu05lw" path="res://Player/Sprites/walkcycle.png" id="4_7itak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_schmb"]
 atlas = ExtResource("1_bcxnv")
