@@ -4,11 +4,13 @@ extends GridMap
 class_name GridMapController
 
 @onready var _map_items = $MapItems;
+@onready var _map_decorations = $MapDecorations;
 var _map_objects := {};
 
 func _ready():
 	GridMapEvents.place_item_at.connect(_place_item_at);
 	_map_items.child_entered_tree.connect(func(child): _init_posable(child, child.global_position, ""));
+	_map_decorations.child_entered_tree.connect(func(child): _init_decorations(child,));
 
 # Place an element of type 'Posable' on the map at a given position
 # Add the element to the _map_objects array
@@ -21,6 +23,13 @@ func _place_item_at(item_data: Dictionary, _global_position: Vector3, _owner: St
 		_init_posable(scene, _global_position, _owner);
 		GridMapEvents.item_placed.emit();
 		return;
+
+func _init_decorations(scene: Node3D) -> void:
+	var animation_player: AnimationPlayer = scene.get_node_or_null('AnimationPlayer');
+	if scene is AnimatedSprite3D:
+		scene.play();
+	if scene.get_node_or_null('AnimationPlayer'):
+		animation_player.play('default');
 
 func _init_posable(scene: PhysicsBody3D, _global_position: Vector3, _owner: String) -> void:
 	var pos = global_to_local(_global_position);

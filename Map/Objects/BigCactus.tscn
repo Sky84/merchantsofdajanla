@@ -3,9 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="1_2j30t"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_1mlmq"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_wuym7"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_rgavw"]
+size = Vector2(2, 4)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or4wi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gs7w3"]
 transparency = 4
 albedo_texture = ExtResource("1_2j30t")
 uv1_scale = Vector3(0.1, 0.05, 1)
@@ -17,12 +18,12 @@ atlas = ExtResource("1_2j30t")
 region = Rect2(224, 416, 32, 64)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q32in"]
-size = Vector3(1.99975, 0.01, 1.98669)
+size = Vector3(1.65849, 0.01, 3.85261)
 
 [node name="Cactus" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -25.9845, 1.69609, 23.6584)
-mesh = SubResource("PlaneMesh_wuym7")
-surface_material_override/0 = SubResource("StandardMaterial3D_or4wi")
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 1.696, 0)
+mesh = SubResource("PlaneMesh_rgavw")
+surface_material_override/0 = SubResource("StandardMaterial3D_gs7w3")
 script = ExtResource("2_1mlmq")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_vd4vj")

@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwtc8wk15ov3p"]
+[gd_scene load_steps=7 format=3 uid="uid://bwtc8wk15ov3p"]
 
-[ext_resource type="PackedScene" uid="uid://b16df5413g5io" path="res://Map/Objects/SmallCactus.tscn" id="1_qsf3c"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_ew55k"]
 [ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_unuo0"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_t2340"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_v8mlc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmclb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kk1v4"]
 transparency = 4
 albedo_texture = ExtResource("2_unuo0")
 uv1_scale = Vector3(0.1, 0.025, 1)
@@ -16,7 +16,19 @@ texture_filter = 0
 atlas = ExtResource("2_unuo0")
 region = Rect2(64, 384, 32, 32)
 
-[node name="BonesHead" instance=ExtResource("1_qsf3c")]
-mesh = SubResource("PlaneMesh_t2340")
-surface_material_override/0 = SubResource("StandardMaterial3D_jmclb")
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2iph"]
+size = Vector3(1.15939, 0.01, 0.621337)
+
+[node name="BonesHead" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_v8mlc")
+surface_material_override/0 = SubResource("StandardMaterial3D_kk1v4")
+script = ExtResource("2_ew55k")
+tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_l5mt4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0803406, 0.0142427, 0.592845)
+shape = SubResource("BoxShape3D_l2iph")

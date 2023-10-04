@@ -23,7 +23,7 @@ var _texture: Texture;
 		_texture = value;
 		_on_texture_changed(value);
 
-var _material: StandardMaterial3D = preload("res://UI/Shaders/PixelMaterial.tres");
+var _shader: Shader = preload("res://MapMeshShader.tres");
 
 func _ready():
 	_update_for_atlas();
@@ -34,21 +34,27 @@ func _on_texture_changed(new_texture: Texture):
 	
 	if _texture is AtlasTexture:
 		return;
-	var new_material: StandardMaterial3D = _material.duplicate(true);
-	new_material.albedo_texture = _texture;
-	set_surface_override_material(0, new_material);
+	var _material: ShaderMaterial = ShaderMaterial.new();
+	_material.shader = _shader;
+	_material.albedo_texture = _texture;
+	set_surface_override_material(0, _material);
 
 func _update_for_atlas():
 	if _texture is AtlasTexture:
-		var new_material: StandardMaterial3D = _material.duplicate(true);
-		new_material.albedo_texture = _texture.atlas;
-		new_material.uv1_offset.x = _texture.region.position.x / _texture.atlas.get_width();
-		new_material.uv1_offset.y = _texture.region.position.y / _texture.atlas.get_height();
-		new_material.uv1_scale.x = 0.2;
+		var _material: ShaderMaterial = ShaderMaterial.new();
+		_material.shader = _shader;
 		var tile_number_width = _texture.region.size.x / tile_atlas_size;
 		var tile_number_height = _texture.region.size.y / tile_atlas_size;
-		new_material.uv1_scale.x = (tile_atlas_size * tile_number_width) /  _texture.atlas.get_width();
-		new_material.uv1_scale.y = (tile_atlas_size * tile_number_height) /  _texture.atlas.get_height();
-		set_surface_override_material(0, new_material);
+		var uv1_scale = Vector2(
+			(tile_atlas_size * tile_number_width) /  _texture.atlas.get_width(),
+			(tile_atlas_size * tile_number_height) /  _texture.atlas.get_height()
+		);
+		var uv1_offset = Vector2(
+			_texture.region.position.x / _texture.atlas.get_width(),
+			_texture.region.position.y / _texture.atlas.get_height()
+		);
+		_material.set_shader_parameter('texture_albedo', _texture.atlas);
+		_material.set_shader_parameter('uv1_offset', uv1_offset);
+		_material.set_shader_parameter('uv1_scale', uv1_scale);
 		mesh.size.x = tile_number_width;
 		mesh.size.y = tile_number_height;

@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1s81gkwolrb2"]
+
+[ext_resource type="PackedScene" uid="uid://dkcpfbmoxh5d7" path="res://Map/Objects/BigTorch.tscn" id="1_i12b8"]
+[ext_resource type="Texture2D" uid="uid://drbwm7g3byjol" path="res://Map/Sprites/torch2.png" id="2_d6yjx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyvan"]
+atlas = ExtResource("2_d6yjx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd3ro"]
+atlas = ExtResource("2_d6yjx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8wbo"]
+atlas = ExtResource("2_d6yjx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xlch"]
+atlas = ExtResource("2_d6yjx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6wnv"]
+atlas = ExtResource("2_d6yjx")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8brey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyvan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nd3ro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8wbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xlch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6wnv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TorchWall" instance=ExtResource("1_i12b8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.773736, 0)
+sprite_frames = SubResource("SpriteFrames_8brey")
+frame_progress = 0.342026
+
+[node name="SpotLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.10067, 0.0795465)
+light_color = Color(1, 0.733006, 0.0490392, 1)
+
+[node name="GPUParticles3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0899222, 0.0464998)
+cast_shadow = 0

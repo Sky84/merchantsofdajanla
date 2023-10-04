@@ -1,16 +1,35 @@
-[gd_scene load_steps=16 format=3 uid="uid://bf5kowwqr03ey"]
+[gd_scene load_steps=20 format=3 uid="uid://bf5kowwqr03ey"]
 
-[ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="1_8g08u"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="1_8g08u"]
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_spdvp"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_c2q6o"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_u4svk"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_p5ln8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04v3s"]
-transparency = 4
-albedo_texture = ExtResource("1_8g08u")
-uv1_scale = Vector3(0.2, 0.05, 1)
-uv1_offset = Vector3(0.1, 0.2, 0)
-texture_filter = 0
+[sub_resource type="Gradient" id="Gradient_47m66"]
+offsets = PackedFloat32Array(0.80292, 0.948905, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.423529, 0.423529, 0.423529, 0.615686, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1x8u3"]
+gradient = SubResource("Gradient_47m66")
+width = 32
+height = 32
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 4
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0y4e6"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oth75"]
+render_priority = 0
+shader = ExtResource("1_spdvp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_0y4e6")
+shader_parameter/mask_texture = SubResource("GradientTexture2D_1x8u3")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_weakx"]
 atlas = ExtResource("1_8g08u")
@@ -19,40 +38,43 @@ region = Rect2(32, 256, 64, 64)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s43h1"]
 size = Vector3(1.99975, 0.01, 1.98669)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_t27is"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_wv4dd"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r146y"]
-transparency = 4
-albedo_texture = ExtResource("1_8g08u")
-uv1_scale = Vector3(0.2, 0.05, 1)
-uv1_offset = Vector3(0.2, 0.25, 0)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4tau"]
+render_priority = 0
+shader = ExtResource("1_spdvp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.2, 0.25)
+shader_parameter/texture_albedo = ExtResource("1_8g08u")
+shader_parameter/mask_texture = SubResource("GradientTexture2D_1x8u3")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb6w2"]
 atlas = ExtResource("1_8g08u")
 region = Rect2(64, 320, 64, 64)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ddt5w"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_bff0g"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78wiv"]
-transparency = 4
-albedo_texture = ExtResource("1_8g08u")
-uv1_scale = Vector3(0.2, 0.05, 1)
-uv1_offset = Vector3(0.4, 0.15, 0)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubv6k"]
+render_priority = 0
+shader = ExtResource("1_spdvp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.4, 0.15)
+shader_parameter/texture_albedo = ExtResource("1_8g08u")
+shader_parameter/mask_texture = SubResource("GradientTexture2D_1x8u3")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djrx0"]
 atlas = ExtResource("1_8g08u")
 region = Rect2(128, 192, 64, 64)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_lrupp"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_7vuhh"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxjih"]
-transparency = 4
-albedo_texture = ExtResource("1_8g08u")
-uv1_scale = Vector3(0.1, 0.025, 1)
-uv1_offset = Vector3(0.3, 0, 0)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gib7"]
+render_priority = 0
+shader = ExtResource("1_spdvp")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.3, 0)
+shader_parameter/texture_albedo = ExtResource("1_8g08u")
+shader_parameter/mask_texture = SubResource("GradientTexture2D_1x8u3")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_evgcm"]
 atlas = ExtResource("1_8g08u")
@@ -61,8 +83,8 @@ region = Rect2(96, 0, 32, 32)
 [node name="Tile" type="Node3D"]
 
 [node name="Dirt" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_u4svk")
-surface_material_override/0 = SubResource("StandardMaterial3D_04v3s")
+mesh = SubResource("PlaneMesh_p5ln8")
+surface_material_override/0 = SubResource("ShaderMaterial_oth75")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_weakx")
 
@@ -72,8 +94,9 @@ texture = SubResource("AtlasTexture_weakx")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Sand" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_t27is")
-surface_material_override/0 = SubResource("StandardMaterial3D_r146y")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0157109, 0)
+mesh = SubResource("PlaneMesh_wv4dd")
+surface_material_override/0 = SubResource("ShaderMaterial_v4tau")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_cb6w2")
 
@@ -83,8 +106,9 @@ texture = SubResource("AtlasTexture_cb6w2")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Grass" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_ddt5w")
-surface_material_override/0 = SubResource("StandardMaterial3D_78wiv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.017, 0)
+mesh = SubResource("PlaneMesh_bff0g")
+surface_material_override/0 = SubResource("ShaderMaterial_ubv6k")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_djrx0")
 
@@ -94,8 +118,8 @@ texture = SubResource("AtlasTexture_djrx0")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Water" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_lrupp")
-surface_material_override/0 = SubResource("StandardMaterial3D_cxjih")
+mesh = SubResource("PlaneMesh_7vuhh")
+surface_material_override/0 = SubResource("ShaderMaterial_7gib7")
 script = ExtResource("2_c2q6o")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_evgcm")
