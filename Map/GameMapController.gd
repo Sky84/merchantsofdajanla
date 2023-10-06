@@ -53,7 +53,7 @@ func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i):
 	_load_items_by_parent('MapDecorations', chunk_global_position, city_instance);
 	_load_items_by_parent('PNJs', chunk_global_position, city_instance);
 
-func _add_to_world_grid_map_by_grid_map(chunk_global_position: Vector3, grid_map: GridMap):
+func _add_to_world_grid_map_by_grid_map(chunk_global_position: Vector3, grid_map: GridMap, fill: bool = true):
 	var used_cells = grid_map.get_used_cells();
 	var half_chunk_size = chunk_tile_size * 0.5;
 	for tile_x in range(-half_chunk_size, half_chunk_size):
@@ -68,7 +68,7 @@ func _add_to_world_grid_map_by_grid_map(chunk_global_position: Vector3, grid_map
 					);
 				if used_cells.has(local_tile_position):
 					cell_item = grid_map.get_cell_item(local_tile_position);
-				elif tile_y == 0:
+				elif fill and tile_y == 0:
 					cell_item = 0;
 				
 				_world_map.set_cell_item(tile_position, cell_item);
@@ -97,9 +97,10 @@ func _generate_savage_chunk_at(chunk_global_position: Vector3):
 func add_interior_house(house_id: String, interior_scene: PackedScene) -> GridMap:
 	var interior_instance = interior_scene.instantiate();
 	_world_map.get_node('Interiors').add_child(interior_instance);
+	interior_instance.position.y = 1000 * spawned_interior_houses.values().size();
 	spawned_interior_houses[house_id] = {'node_path': interior_instance.get_path()};
 	var interior_position: Vector3 = interior_instance.global_position.floor();
-	_add_to_world_grid_map_by_grid_map(interior_position, interior_instance);
+	_add_to_world_grid_map_by_grid_map(interior_position, interior_instance, false);
 	return interior_instance;
 
 func _get_chunk_cell_type(chunk_id: Vector2i):
