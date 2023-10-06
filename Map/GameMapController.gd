@@ -1,4 +1,5 @@
 extends NavigationRegion3D
+class_name GameMapController
 
 @export var chunk_tile_size: int;
 @export var _chunk_map: PackedScene;
@@ -8,7 +9,10 @@ extends NavigationRegion3D
 
 @export var _world_map: GridMap;
 
-@onready var _tile_count = _world_map.mesh_library.get_item_list().size();
+@export var _tile_ids_ground_placeable: Array[int];
+@onready var _tile_count = _tile_ids_ground_placeable.size();
+
+@onready var spawned_interior_houses: Dictionary= {};
 
 const chunk_city_cell_types = {
 	'CITY_1': {
@@ -43,7 +47,14 @@ func _ready():
 func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i):
 	var chunk_cell_type = _get_chunk_cell_type(chunk_cell_id);
 	var city_instance: GridMap = chunk_cell_type.scene.instantiate();
-	var used_cells = city_instance.get_used_cells();
+	_add_to_world_grid_map_by_grid_map(chunk_global_position, city_instance);
+	
+	_load_items_by_parent('MapItems', chunk_global_position, city_instance);
+	_load_items_by_parent('MapDecorations', chunk_global_position, city_instance);
+	_load_items_by_parent('PNJs', chunk_global_position, city_instance);
+
+func _add_to_world_grid_map_by_grid_map(chunk_global_position: Vector3, grid_map: GridMap):
+	var used_cells = grid_map.get_used_cells();
 	var half_chunk_size = chunk_tile_size * 0.5;
 	for tile_x in range(-half_chunk_size, half_chunk_size):
 		for tile_y in range(-half_chunk_size, half_chunk_size):
@@ -56,15 +67,11 @@ func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i):
 						chunk_global_position.z + (half_chunk_size + local_tile_position.z)
 					);
 				if used_cells.has(local_tile_position):
-					cell_item = city_instance.get_cell_item(local_tile_position);
+					cell_item = grid_map.get_cell_item(local_tile_position);
 				elif tile_y == 0:
 					cell_item = 0;
 				
 				_world_map.set_cell_item(tile_position, cell_item);
-	
-	_load_items_by_parent('MapItems', chunk_global_position, city_instance);
-	_load_items_by_parent('MapDecorations', chunk_global_position, city_instance);
-	_load_items_by_parent('PNJs', chunk_global_position, city_instance);
 
 func _load_items_by_parent(parent_name: String, chunk_global_position: Vector3, city_instance: GridMap):
 	var city_map_items = city_instance.get_node(parent_name);
@@ -86,6 +93,14 @@ func _generate_savage_chunk_at(chunk_global_position: Vector3):
 			var tile_noise = _savage_chunk_noise.get_noise_2d(tile_position.x* chunk_tile_size, tile_position.z* chunk_tile_size);
 			var tile_to_place = (tile_noise + 1.0) * 0.5 * _tile_count;
 			_world_map.set_cell_item(tile_position, tile_to_place);
+
+func add_interior_house(house_id: String, interior_scene: PackedScene) -> GridMap:
+	var interior_instance = interior_scene.instantiate();
+	_world_map.get_node('Interiors').add_child(interior_instance);
+	spawned_interior_houses[house_id] = {'node_path': interior_instance.get_path()};
+	var interior_position: Vector3 = interior_instance.global_position.floor();
+	_add_to_world_grid_map_by_grid_map(interior_position, interior_instance);
+	return interior_instance;
 
 func _get_chunk_cell_type(chunk_id: Vector2i):
 	for chunk_cell_type in chunk_city_cell_types:

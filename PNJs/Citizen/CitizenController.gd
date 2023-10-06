@@ -15,7 +15,7 @@ class_name CitizenController
 @export var pnj_name: String = 'George';
 
 @onready var camera_3d = get_node('/root/Root/Game/Camera3D');
-@onready var grid_map: GridMapController = get_node('/root/Root/Game/NavigationRegion3D/GridMap');
+@onready var grid_map: GridMapController = get_node('/root/Root/Game/GameMapController/GridMap');
 @onready var default_action_id: String = Actions.WAIT;
 
 var actions_queue = [];

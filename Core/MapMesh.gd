@@ -53,8 +53,9 @@ func _update_for_atlas():
 			_texture.region.position.x / _texture.atlas.get_width(),
 			_texture.region.position.y / _texture.atlas.get_height()
 		);
-		_material.set_shader_parameter('texture_albedo', _texture.atlas);
+		_material.set_shader_parameter('texture_atlas', _texture.atlas);
 		_material.set_shader_parameter('uv1_offset', uv1_offset);
 		_material.set_shader_parameter('uv1_scale', uv1_scale);
 		mesh.size.x = tile_number_width;
 		mesh.size.y = tile_number_height;
+		set_surface_override_material(0, _material);

@@ -26,7 +26,7 @@ func _ready():
 
 func _init_actions():
 	GameTimeEvents.on_game_time_changed.connect(func(game_time: GameTime): last_game_time = game_time);
-	_navigation_region_3d = get_node('/root/Root/Game/NavigationRegion3D');
+	_navigation_region_3d = get_node('/root/Root/Game/GameMapController');
 	_triggers = JsonResourceLoader.load_json(_triggers_json_path);
 	var actions_from_json = JsonResourceLoader.load_json(_actions_json_path);
 	for action_json in actions_from_json:
