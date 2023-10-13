@@ -12,7 +12,7 @@ class_name GameMapController
 @export var _tile_ids_ground_placeable: Array[int];
 @onready var _tile_count = _tile_ids_ground_placeable.size();
 
-@onready var spawned_interior_houses: Dictionary= {};
+@onready var spawned_interior_houses: Dictionary = {};
 
 const chunk_city_cell_types = {
 	'CITY_1': {

@@ -1,12 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://bf5kowwqr03ey"]
+[gd_scene load_steps=25 format=3 uid="uid://bf5kowwqr03ey"]
 
 [ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="1_8g08u"]
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_spdvp"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_c2q6o"]
+[ext_resource type="ArrayMesh" uid="uid://d3pipbse000yt" path="res://Map/Models/interior_corner_wall.obj" id="5_el81c"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ejow3"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_t3euh"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6f8hv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmr7n"]
 render_priority = 0
 shader = ExtResource("1_spdvp")
 shader_parameter/uv1_scale = Vector2(0.2, 0.05)
@@ -20,9 +21,9 @@ region = Rect2(32, 256, 64, 64)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s43h1"]
 size = Vector3(1.99975, 0.01, 1.98669)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_yj5as"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_yk0iu"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcu6g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y8oho"]
 render_priority = 0
 shader = ExtResource("1_spdvp")
 shader_parameter/uv1_scale = Vector2(0.2, 0.05)
@@ -33,9 +34,9 @@ shader_parameter/texture_atlas = ExtResource("1_8g08u")
 atlas = ExtResource("1_8g08u")
 region = Rect2(64, 320, 64, 64)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_j0phd"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_7t2lh"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_newft"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yn5g2"]
 render_priority = 0
 shader = ExtResource("1_spdvp")
 shader_parameter/uv1_scale = Vector2(0.2, 0.05)
@@ -46,12 +47,12 @@ shader_parameter/texture_atlas = ExtResource("1_8g08u")
 atlas = ExtResource("1_8g08u")
 region = Rect2(128, 192, 64, 64)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_5xifm"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_8e6ga"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5p73f"]
 load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8leuw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cntli"]
 render_priority = 0
 shader = ExtResource("1_spdvp")
 shader_parameter/uv1_scale = Vector2(0.1, 0.025)
@@ -62,9 +63,9 @@ shader_parameter/texture_atlas = SubResource("CompressedTexture2D_5p73f")
 atlas = SubResource("CompressedTexture2D_5p73f")
 region = Rect2(32, 64, 32, 32)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ee3uo"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_4v8u1"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0imd4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d8mdm"]
 render_priority = 0
 shader = ExtResource("1_spdvp")
 shader_parameter/uv1_scale = Vector2(0.1, 0.025)
@@ -75,11 +76,20 @@ shader_parameter/texture_atlas = ExtResource("1_8g08u")
 atlas = ExtResource("1_8g08u")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_yfscu"]
+size = Vector2(2, 8)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ga7va"]
+data = PackedVector3Array(1, 0, 4, -1, 0, 4, 1, 0, -4, -1, 0, 4, -1, 0, -4, 1, 0, -4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_31d8j"]
+data = PackedVector3Array(1, 8, -1, -1, 0, -1, 1, 0, -1, -1, 8, -1, -1, 0, -1, 1, 8, -1, -1, 8, 1, -1, 0, -1, -1, 8, -1, -1, 0, 1, -1, 0, -1, -1, 8, 1)
+
 [node name="Tile" type="Node3D"]
 
 [node name="Dirt" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_ejow3")
-surface_material_override/0 = SubResource("ShaderMaterial_6f8hv")
+mesh = SubResource("PlaneMesh_t3euh")
+surface_material_override/0 = SubResource("ShaderMaterial_bmr7n")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_weakx")
 
@@ -89,8 +99,8 @@ texture = SubResource("AtlasTexture_weakx")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Sand" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_yj5as")
-surface_material_override/0 = SubResource("ShaderMaterial_lcu6g")
+mesh = SubResource("PlaneMesh_yk0iu")
+surface_material_override/0 = SubResource("ShaderMaterial_y8oho")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_cb6w2")
 
@@ -100,8 +110,8 @@ texture = SubResource("AtlasTexture_cb6w2")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Grass" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_j0phd")
-surface_material_override/0 = SubResource("ShaderMaterial_newft")
+mesh = SubResource("PlaneMesh_7t2lh")
+surface_material_override/0 = SubResource("ShaderMaterial_yn5g2")
 script = ExtResource("2_c2q6o")
 texture = SubResource("AtlasTexture_caayn")
 
@@ -111,8 +121,8 @@ texture = SubResource("AtlasTexture_caayn")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="WoodInterrior" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_5xifm")
-surface_material_override/0 = SubResource("ShaderMaterial_8leuw")
+mesh = SubResource("PlaneMesh_8e6ga")
+surface_material_override/0 = SubResource("ShaderMaterial_cntli")
 script = ExtResource("2_c2q6o")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_pl6fc")
@@ -123,8 +133,26 @@ texture = SubResource("AtlasTexture_pl6fc")
 shape = SubResource("BoxShape3D_s43h1")
 
 [node name="Water" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_ee3uo")
-surface_material_override/0 = SubResource("ShaderMaterial_0imd4")
+mesh = SubResource("PlaneMesh_4v8u1")
+surface_material_override/0 = SubResource("ShaderMaterial_d8mdm")
 script = ExtResource("2_c2q6o")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_evgcm")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4, 1)
+visibility_range_fade_mode = 1
+mesh = SubResource("PlaneMesh_yfscu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ga7va")
+
+[node name="InteriorCornerWall" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_el81c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="InteriorCornerWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteriorCornerWall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_31d8j")

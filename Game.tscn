@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=85 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -302,6 +302,15 @@ _data = {
 "walk": SubResource("Animation_si24n")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atj4q"]
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbmak"]
+next_pass = SubResource("StandardMaterial3D_atj4q")
+transparency = 1
+albedo_color = Color(0.478431, 0.478431, 0.478431, 1)
+texture_filter = 0
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
 radius = 2.56796
 
@@ -398,10 +407,12 @@ script = ExtResource("3_ielx8")
 
 [node name="WeaponsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22505, 0.00999993)
+material_override = SubResource("StandardMaterial3D_mbmak")
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
+no_depth_test = true
 alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("4_klj0y")
