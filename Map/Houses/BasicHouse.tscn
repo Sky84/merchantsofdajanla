@@ -1,20 +1,722 @@
-[gd_scene load_steps=6 format=3 uid="uid://beuodqf5hsuuv"]
+[gd_scene load_steps=166 format=3 uid="uid://beuodqf5hsuuv"]
 
-[ext_resource type="MeshLibrary" uid="uid://crxew437c4xq1" path="res://Map/MeshLibrary.tres" id="1_ojy4r"]
+[ext_resource type="Script" path="res://Core/GridMapController.gd" id="1_yx7eu"]
 [ext_resource type="PackedScene" uid="uid://cx6pam6nfg3sk" path="res://Map/Objects/Barrel.tscn" id="2_lyq33"]
 [ext_resource type="PackedScene" uid="uid://biqmi4y6ea5ct" path="res://Map/Objects/BedPoor.tscn" id="3_fsclk"]
+[ext_resource type="PackedScene" uid="uid://7v47o5mwh55q" path="res://Map/Objects/Ground/dirt.tscn" id="3_gfmn0"]
 [ext_resource type="PackedScene" uid="uid://dkcpfbmoxh5d7" path="res://Map/Objects/BigTorch.tscn" id="4_op8ws"]
+[ext_resource type="PackedScene" uid="uid://b15fxlepqgi7m" path="res://Map/Objects/Ground/interior_corner_wall.tscn" id="5_ju6lk"]
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="12_x42rp"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="13_6w1b6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qevpe"]
 size = Vector3(4.1933, 3.28081, 1.22412)
 
-[node name="BasicHouse" type="GridMap"]
-mesh_library = ExtResource("1_ojy4r")
-cell_center_y = false
-collision_layer = 3
-data = {
-"cells": PackedInt32Array(65535, 65535, 3, 0, 65535, 3, 65535, 0, 3, 0, 0, 3, 0, 65534, 3, 65535, 65534, 3, 65534, 65534, 3, 65533, 65534, 3, 65532, 65534, 3, 65532, 65533, 3, 65532, 65532, 3, 65532, 65530, 3, 65533, 65530, 3, 65534, 65530, 3, 65535, 65530, 3, 0, 65530, 3, 1, 65530, 3, 2, 65530, 3, 3, 65530, 3, 4, 65530, 3, 4, 65531, 3, 4, 65532, 3, 4, 65533, 3, 3, 65533, 3, 2, 65533, 3, 1, 65533, 3, 0, 65533, 3, 1, 65534, 3, 2, 65534, 3, 3, 65534, 3, 4, 65534, 655363, 3, 65532, 3, 3, 65531, 3, 2, 65531, 3, 1, 65531, 3, 0, 65531, 3, 65535, 65531, 3, 65533, 65532, 3, 65533, 65533, 3, 65534, 65533, 3, 65535, 65533, 3, 65534, 65532, 3, 65535, 65532, 3, 0, 65532, 3, 1, 65532, 3, 2, 65532, 3, 65531, 65534, 3, 65531, 65533, 3, 65531, 65532, 3, 65531, 65530, 3, 65531, 65531, 3, 4, 65529, 5, 3, 65529, 5, 0, 65529, 5, 1, 65529, 5, 2, 65529, 5, 65535, 65529, 5, 65534, 65529, 5, 65533, 65529, 5, 65532, 65529, 5, 65531, 65529, 5, 65530, 65533, 1048581, 65530, 65532, 1048581, 65530, 65531, 1048581, 65530, 65534, 1048581, 65531, 65535, 655365, 65532, 65535, 655365, 65533, 65535, 655365, 65534, 65535, 1441798, 65534, 0, 1048581, 65535, 1, 655365, 0, 1, 655365, 1, 0, 1441797, 1, 65535, 6, 2, 65535, 655365, 3, 65535, 655365, 4, 65535, 655365, 5, 65533, 1441797, 5, 65532, 1441797, 5, 65531, 1441797, 65530, 65530, 1048581, 65532, 65531, 3, 65533, 65531, 3, 65534, 65531, 3, 5, 65530, 1441797, 5, 65534, 1441797)
-}
+[sub_resource type="PlaneMesh" id="PlaneMesh_ftgia"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sjaek"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_seuum"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w67s3"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r66j5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhpv1"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oh2h3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_srtrw"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_atphc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_seyno"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s4aoe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_34cyb"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_temp4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shcg6"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ashfs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lrr45"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iqc3u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twbon"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4y422"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pa16s"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_frlb6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_osw43"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_su576"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwf5m"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wma0l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8gdob"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1p5h2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7h7j"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4wisa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_82n73"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_53coh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lng4i"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aivlu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkd10"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_15cin"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxq6c"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mykim"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjapj"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8egeo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0y2k5"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fa00l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_720f8"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cdlqh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b76os"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xodxk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p51bj"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ctqus"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ejjr1"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w6uex"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_acms6"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m542y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qdmf"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c2c3j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_to7ed"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hx5p5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufyky"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_358iy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sess1"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ue526"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0tko6"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ds5fq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijxmw"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ftsvc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6uyh"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eujg8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_quevu"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sjee2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eah3w"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n0jih"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgb15"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nacdc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsonb"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x6qhd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7nmo"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vvo6s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8wmf6"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v52ar"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0obq"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1dwq8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5x3xl"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fdm1i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcucr"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fll4l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wx3ln"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l23e0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkjve"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_md8fq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dda2"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b1ltj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxrt1"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yxnj5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svsj7"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eqxns"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kp6aj"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qf4q7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fosl6"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fdho0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b21dq"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nfce3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbsdx"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rs53h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_weh0t"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_65bjg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tsc4c"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5574h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nk2gl"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q44ng"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4mfr"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t08b6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20hlm"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4qlvn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xmff2"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v0fb2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a4j5g"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lhfdn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyax3"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yromy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lk5qi"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xm6fa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6etw"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uwv4t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1wrk5"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dhdue"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qf4dl"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_62wr8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aefxi"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nl1gu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxu6f"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_68yd6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j00qh"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r3130"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0j5b8"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ldgh4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cdjm5"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_no83a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s05yr"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_js2qd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_orpy7"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dttl7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hel3"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xuf83"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4f7h"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8pxdj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tm7gy"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eb8jg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rg8a4"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x5oev"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g8ifn"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_equny"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y2j8k"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tkty4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqkat"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_37s4t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j8rhe"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tbjrr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gsv3"]
+render_priority = 0
+shader = ExtResource("12_x42rp")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.1, 0.2)
+shader_parameter/texture_atlas = ExtResource("13_6w1b6")
+
+[node name="BasicHouse" type="Node3D" node_paths=PackedStringArray("_grounds")]
+script = ExtResource("1_yx7eu")
+_grounds = NodePath("Grounds")
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="MapItems" type="Node3D" parent="."]
@@ -45,8 +747,486 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -9.42683, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.079, 0, -0.291695)
 
 [node name="ExitArea3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.271471, 0.509447, 1.8825)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.271471, 0.509447, 2.8825)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExitArea3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275786, 1.19546, -0.59098)
 shape = SubResource("BoxShape3D_qevpe")
+
+[node name="Grounds" type="Node3D" parent="."]
+
+[node name="Dirt" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -8)
+mesh = SubResource("PlaneMesh_ftgia")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_sjaek")
+
+[node name="Dirt32" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
+mesh = SubResource("PlaneMesh_seuum")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_w67s3")
+
+[node name="Dirt2" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6)
+mesh = SubResource("PlaneMesh_r66j5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_xhpv1")
+
+[node name="Dirt3" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
+mesh = SubResource("PlaneMesh_oh2h3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_srtrw")
+
+[node name="Dirt4" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -8)
+mesh = SubResource("PlaneMesh_atphc")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_seyno")
+
+[node name="Dirt5" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6)
+mesh = SubResource("PlaneMesh_s4aoe")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_34cyb")
+
+[node name="Dirt6" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4)
+mesh = SubResource("PlaneMesh_temp4")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_shcg6")
+
+[node name="Dirt7" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -8)
+mesh = SubResource("PlaneMesh_ashfs")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_lrr45")
+
+[node name="Dirt8" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -6)
+mesh = SubResource("PlaneMesh_iqc3u")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_twbon")
+
+[node name="Dirt9" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4)
+mesh = SubResource("PlaneMesh_4y422")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_pa16s")
+
+[node name="Dirt10" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -8)
+mesh = SubResource("PlaneMesh_frlb6")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_osw43")
+
+[node name="Dirt11" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -6)
+mesh = SubResource("PlaneMesh_su576")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_fwf5m")
+
+[node name="Dirt12" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)
+mesh = SubResource("PlaneMesh_wma0l")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_8gdob")
+
+[node name="Dirt13" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -8)
+mesh = SubResource("PlaneMesh_1p5h2")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_b7h7j")
+
+[node name="Dirt14" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -6)
+mesh = SubResource("PlaneMesh_4wisa")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_82n73")
+
+[node name="Dirt15" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -4)
+mesh = SubResource("PlaneMesh_53coh")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_lng4i")
+
+[node name="Dirt25" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -2)
+mesh = SubResource("PlaneMesh_aivlu")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_kkd10")
+
+[node name="Dirt26" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -2)
+mesh = SubResource("PlaneMesh_15cin")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_sxq6c")
+
+[node name="Dirt27" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -2)
+mesh = SubResource("PlaneMesh_mykim")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_kjapj")
+
+[node name="Dirt16" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -8)
+mesh = SubResource("PlaneMesh_8egeo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_0y2k5")
+
+[node name="Dirt28" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+mesh = SubResource("PlaneMesh_fa00l")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_720f8")
+
+[node name="Dirt29" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+mesh = SubResource("PlaneMesh_cdlqh")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_b76os")
+
+[node name="Dirt75" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+mesh = SubResource("PlaneMesh_xodxk")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_p51bj")
+
+[node name="Dirt76" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+mesh = SubResource("PlaneMesh_ctqus")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ejjr1")
+
+[node name="Dirt30" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+mesh = SubResource("PlaneMesh_w6uex")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_acms6")
+
+[node name="Dirt73" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("PlaneMesh_m542y")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_1qdmf")
+
+[node name="Dirt74" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("PlaneMesh_c2c3j")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_to7ed")
+
+[node name="Dirt31" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
+mesh = SubResource("PlaneMesh_hx5p5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ufyky")
+
+[node name="Dirt33" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -8)
+mesh = SubResource("PlaneMesh_358iy")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_sess1")
+
+[node name="Dirt34" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -6)
+mesh = SubResource("PlaneMesh_ue526")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_0tko6")
+
+[node name="Dirt35" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -8)
+mesh = SubResource("PlaneMesh_ds5fq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_ijxmw")
+
+[node name="Dirt36" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -6)
+mesh = SubResource("PlaneMesh_ftsvc")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_g6uyh")
+
+[node name="Dirt37" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -6)
+mesh = SubResource("PlaneMesh_eujg8")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_quevu")
+
+[node name="Dirt38" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
+mesh = SubResource("PlaneMesh_sjee2")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_eah3w")
+
+[node name="Dirt39" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
+mesh = SubResource("PlaneMesh_n0jih")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_mgb15")
+
+[node name="Dirt40" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
+mesh = SubResource("PlaneMesh_nacdc")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_bsonb")
+
+[node name="Dirt41" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -4)
+mesh = SubResource("PlaneMesh_x6qhd")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_g7nmo")
+
+[node name="Dirt42" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -2)
+mesh = SubResource("PlaneMesh_vvo6s")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_8wmf6")
+
+[node name="Dirt43" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -8)
+mesh = SubResource("PlaneMesh_v52ar")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_v0obq")
+
+[node name="Dirt44" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -6)
+mesh = SubResource("PlaneMesh_1dwq8")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_5x3xl")
+
+[node name="Dirt45" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -8)
+mesh = SubResource("PlaneMesh_fdm1i")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_vcucr")
+
+[node name="Dirt49" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
+mesh = SubResource("PlaneMesh_fll4l")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_wx3ln")
+
+[node name="Dirt50" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -10)
+mesh = SubResource("PlaneMesh_l23e0")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_jkjve")
+
+[node name="Dirt51" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -10)
+mesh = SubResource("PlaneMesh_md8fq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_1dda2")
+
+[node name="Dirt52" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -12)
+mesh = SubResource("PlaneMesh_b1ltj")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_fxrt1")
+
+[node name="Dirt53" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -12)
+mesh = SubResource("PlaneMesh_yxnj5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_svsj7")
+
+[node name="Dirt54" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -12)
+mesh = SubResource("PlaneMesh_eqxns")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_kp6aj")
+
+[node name="Dirt55" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -10)
+mesh = SubResource("PlaneMesh_qf4q7")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_fosl6")
+
+[node name="Dirt56" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -10)
+mesh = SubResource("PlaneMesh_fdho0")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_b21dq")
+
+[node name="Dirt57" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -10)
+mesh = SubResource("PlaneMesh_nfce3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_rbsdx")
+
+[node name="Dirt58" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -12)
+mesh = SubResource("PlaneMesh_rs53h")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_weh0t")
+
+[node name="Dirt59" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -12)
+mesh = SubResource("PlaneMesh_65bjg")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_tsc4c")
+
+[node name="Dirt60" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -12)
+mesh = SubResource("PlaneMesh_5574h")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_nk2gl")
+
+[node name="Dirt61" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -12)
+mesh = SubResource("PlaneMesh_q44ng")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_d4mfr")
+
+[node name="Dirt62" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -12)
+mesh = SubResource("PlaneMesh_t08b6")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_20hlm")
+
+[node name="Dirt63" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -12)
+mesh = SubResource("PlaneMesh_4qlvn")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_xmff2")
+
+[node name="Dirt64" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -12)
+mesh = SubResource("PlaneMesh_v0fb2")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_a4j5g")
+
+[node name="Dirt65" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -12)
+mesh = SubResource("PlaneMesh_lhfdn")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_jyax3")
+
+[node name="Dirt66" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -12)
+mesh = SubResource("PlaneMesh_yromy")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_lk5qi")
+
+[node name="Dirt67" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -10)
+mesh = SubResource("PlaneMesh_xm6fa")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_e6etw")
+
+[node name="Dirt68" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -10)
+mesh = SubResource("PlaneMesh_uwv4t")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_1wrk5")
+
+[node name="Dirt69" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -10)
+mesh = SubResource("PlaneMesh_dhdue")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_qf4dl")
+
+[node name="Dirt70" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -10)
+mesh = SubResource("PlaneMesh_62wr8")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_aefxi")
+
+[node name="Dirt71" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -10)
+mesh = SubResource("PlaneMesh_nl1gu")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_pxu6f")
+
+[node name="Dirt72" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -10)
+mesh = SubResource("PlaneMesh_68yd6")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_j00qh")
+
+[node name="Dirt46" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -6)
+mesh = SubResource("PlaneMesh_r3130")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_0j5b8")
+
+[node name="Dirt47" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -4)
+mesh = SubResource("PlaneMesh_ldgh4")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_cdjm5")
+
+[node name="Dirt48" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -2)
+mesh = SubResource("PlaneMesh_no83a")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_s05yr")
+
+[node name="Dirt17" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -6)
+mesh = SubResource("PlaneMesh_js2qd")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_orpy7")
+
+[node name="Dirt18" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -4)
+mesh = SubResource("PlaneMesh_dttl7")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_7hel3")
+
+[node name="Dirt19" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -8)
+mesh = SubResource("PlaneMesh_xuf83")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_s4f7h")
+
+[node name="Dirt20" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -6)
+mesh = SubResource("PlaneMesh_8pxdj")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_tm7gy")
+
+[node name="Dirt21" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -4)
+mesh = SubResource("PlaneMesh_eb8jg")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_rg8a4")
+
+[node name="Dirt77" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -2)
+mesh = SubResource("PlaneMesh_x5oev")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_g8ifn")
+
+[node name="Dirt78" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -2)
+mesh = SubResource("PlaneMesh_equny")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_y2j8k")
+
+[node name="Dirt22" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -8)
+mesh = SubResource("PlaneMesh_tkty4")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_nqkat")
+
+[node name="Dirt23" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -6)
+mesh = SubResource("PlaneMesh_37s4t")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_j8rhe")
+
+[node name="Dirt24" parent="Grounds" instance=ExtResource("3_gfmn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -4)
+mesh = SubResource("PlaneMesh_tbjrr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_2gsv3")
+
+[node name="InteriorCornerWall" parent="Grounds" instance=ExtResource("5_ju6lk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 0, 0)
+skeleton = NodePath("../..")
+
+[node name="InteriorCornerWall2" parent="Grounds" instance=ExtResource("5_ju6lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+skeleton = NodePath("../..")

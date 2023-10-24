@@ -6,13 +6,18 @@ class_name GameMapController
 @export var _player: Player;
 
 @export var _savage_chunk_noise: FastNoiseLite;
+@onready var _noise_texture = ImageTexture.create_from_image(
+		_savage_chunk_noise.get_image(chunk_tile_size * chunk_tile_size, chunk_tile_size * chunk_tile_size)
+	);
 
-@export var _world_map: GridMap;
+@export var _world_map: GridMapController;
 
-@export var _tile_ids_ground_placeable: Array[int];
-@onready var _tile_count = _tile_ids_ground_placeable.size();
+@export var _tile_scene_ground_placeable: Array[Texture2D];
+@onready var _tile_count = _tile_scene_ground_placeable.size();
 
 @onready var spawned_interior_houses: Dictionary = {};
+
+var _tile_size: int = 32;
 
 const chunk_city_cell_types = {
 	'CITY_1': {
@@ -23,13 +28,15 @@ const chunk_city_cell_types = {
 		'id': Vector2i(9, 0)}
 }
 
+var _chunk_shader: Shader = preload("res://MapChunkShader.tres");
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize();
 	_savage_chunk_noise.seed = randf_range(0, 1000);
 	var tile_chunk_map: TileMap = _chunk_map.instantiate();
 	var player_chunk_position: Vector3i = _player.global_position.floor() / float(chunk_tile_size);
-	var chunks_xy_to_instantiate = [-2, -1, 0, 1, 2];
+	var chunks_xy_to_instantiate = [-1, 0, 1];
 	
 	for chunk_x in chunks_xy_to_instantiate:
 		var start_chunk_x = player_chunk_position.x + (chunk_x * chunk_tile_size);
@@ -42,38 +49,31 @@ func _ready():
 				_load_city_at(chunk_global_position, chunk_cell_id);
 			else:
 				_generate_savage_chunk_at(chunk_global_position);
-	bake_navigation_mesh();
+#	bake_navigation_mesh();
 
 func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i):
 	var chunk_cell_type = _get_chunk_cell_type(chunk_cell_id);
-	var city_instance: GridMap = chunk_cell_type.scene.instantiate();
-	_add_to_world_grid_map_by_grid_map(chunk_global_position, city_instance);
-	
-	_load_items_by_parent('MapItems', chunk_global_position, city_instance);
-	_load_items_by_parent('MapDecorations', chunk_global_position, city_instance);
-	_load_items_by_parent('PNJs', chunk_global_position, city_instance);
+#	var city_instance: GridMapController = chunk_cell_type.scene.instantiate();
+#	city_instance.init_grounds();
+#	_add_to_world_grid_map_by_grid_map(chunk_global_position, city_instance);
+#
+#	_load_items_by_parent('MapItems', chunk_global_position, city_instance);
+#	_load_items_by_parent('MapDecorations', chunk_global_position, city_instance);
+#	_load_items_by_parent('PNJs', chunk_global_position, city_instance);
 
-func _add_to_world_grid_map_by_grid_map(chunk_global_position: Vector3, grid_map: GridMap, fill: bool = true):
-	var used_cells = grid_map.get_used_cells();
+func _add_to_world_grid_map_by_grid_map(chunk_global_position: Vector3, grid_map: GridMapController, fill: bool = true):
 	var half_chunk_size = chunk_tile_size * 0.5;
 	for tile_x in range(-half_chunk_size, half_chunk_size):
-		for tile_y in range(-half_chunk_size, half_chunk_size):
-			for tile_z in range(-half_chunk_size, half_chunk_size):
-				var local_tile_position = Vector3i(tile_x, tile_y, tile_z);
-				var cell_item = -1;
-				var tile_position = Vector3(
-						chunk_global_position.x + (half_chunk_size + local_tile_position.x),
-						chunk_global_position.y + (local_tile_position.y),
-						chunk_global_position.z + (half_chunk_size + local_tile_position.z)
-					);
-				if used_cells.has(local_tile_position):
-					cell_item = grid_map.get_cell_item(local_tile_position);
-				elif fill and tile_y == 0:
-					cell_item = 0;
-				
-				_world_map.set_cell_item(tile_position, cell_item);
+		for tile_z in range(-half_chunk_size, half_chunk_size):
+			var local_tile_position = Vector3i(tile_x + half_chunk_size, 0, tile_z + half_chunk_size);
+			var tile_position = _get_global_tile_position(chunk_global_position, local_tile_position);
+			var cell_item = grid_map.get_cell_item(local_tile_position);
+#			if cell_item == null and fill:
+#				cell_item = _tile_scene_ground_placeable[0].instantiate();
+			
+#			_world_map.set_cell_item(tile_position, cell_item);
 
-func _load_items_by_parent(parent_name: String, chunk_global_position: Vector3, city_instance: GridMap):
+func _load_items_by_parent(parent_name: String, chunk_global_position: Vector3, city_instance: GridMapController):
 	var city_map_items = city_instance.get_node(parent_name);
 	var world_map_decorations = _world_map.get_node(parent_name);
 	var half_chunk_size = (chunk_tile_size * 0.5);
@@ -85,16 +85,23 @@ func _load_items_by_parent(parent_name: String, chunk_global_position: Vector3, 
 		item.global_position = global_city_center + item.position - Vector3(1,0,1);
 
 func _generate_savage_chunk_at(chunk_global_position: Vector3):
-	for tile_x in chunk_tile_size:
-		for tile_z in chunk_tile_size:
-			var local_tile_position = Vector3(tile_x, 0, tile_z);
-			var tile_position = Vector3(chunk_global_position.x + local_tile_position.x, 0,\
-					chunk_global_position.z + local_tile_position.z);
-			var tile_noise = _savage_chunk_noise.get_noise_2d(tile_position.x* chunk_tile_size, tile_position.z* chunk_tile_size);
-			var tile_to_place = (tile_noise + 1.0) * 0.5 * _tile_count;
-			_world_map.set_cell_item(tile_position, tile_to_place);
+	var mesh_instance = MeshInstance3D.new();
+	mesh_instance.mesh = PlaneMesh.new();
+	var material = ShaderMaterial.new();
+	material.shader = _chunk_shader;
+	var texture_tiles = Texture2DArray.new();
+	texture_tiles.create_from_images(
+		_tile_scene_ground_placeable.map(NodeUtils.get_image_from_texture)
+	);
+	material.set_shader_parameter('chunk_position', chunk_global_position);
+	material.set_shader_parameter('noise_texture', _noise_texture);
+	material.set_shader_parameter('textures_tiles', texture_tiles);
+	mesh_instance.set_surface_override_material(0, material);
+	_world_map.add_child(mesh_instance);
+	mesh_instance.mesh.size = Vector2(chunk_tile_size, chunk_tile_size);
+	mesh_instance.global_position = chunk_global_position;
 
-func add_interior_house(house_id: String, interior_scene: PackedScene) -> GridMap:
+func add_interior_house(house_id: String, interior_scene: PackedScene) -> GridMapController:
 	var interior_instance = interior_scene.instantiate();
 	_world_map.get_node('Interiors').add_child(interior_instance);
 	interior_instance.position.y = 1000 * spawned_interior_houses.values().size();
@@ -111,3 +118,17 @@ func _get_chunk_cell_type(chunk_id: Vector2i):
 			
 func _is_a_city(chunk_cell_id: Vector2i):
 	return _get_chunk_cell_type(chunk_cell_id) != null;
+
+func _get_global_tile_position(chunk_global_position: Vector3, local_tile_position: Vector3) -> Vector3:
+	return Vector3(chunk_global_position.x + local_tile_position.x,\
+			0,\
+			chunk_global_position.z + local_tile_position.z);
+
+func get_image_from_texture(_texture: Texture) -> Image:
+	var image_pixels: Image = _texture.get_image();
+	if _texture is AtlasTexture:
+		var image_from_texture: Image;
+		image_from_texture = image_pixels.get_region(_texture.region);
+		return image_from_texture;
+	else:
+		return image_pixels;

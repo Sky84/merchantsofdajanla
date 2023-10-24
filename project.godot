@@ -107,6 +107,11 @@ interract_with_item_in_hand={
 
 locale/translations=PackedStringArray("res://Translations/Traductions.en.translation", "res://Translations/Traductions.fr.translation")
 
+[physics]
+
+common/physics_ticks_per_second=30
+
 [rendering]
 
 anti_aliasing/quality/screen_space_aa=1
+occlusion_culling/use_occlusion_culling=true

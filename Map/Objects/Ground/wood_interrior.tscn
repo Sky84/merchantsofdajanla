@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://cuu07smmpa84n"]
+
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_soveq"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_wfqli"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vkx0i"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5p73f"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qk5kf"]
+render_priority = 0
+shader = ExtResource("1_soveq")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.1, 0.05)
+shader_parameter/texture_atlas = SubResource("CompressedTexture2D_5p73f")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl6fc"]
+atlas = SubResource("CompressedTexture2D_5p73f")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s43h1"]
+size = Vector3(1.99975, 0.01, 1.98669)
+
+[node name="WoodInterrior" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_vkx0i")
+surface_material_override/0 = SubResource("ShaderMaterial_qk5kf")
+script = ExtResource("2_wfqli")
+tile_atlas_size = 16.0
+texture = SubResource("AtlasTexture_pl6fc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_s43h1")

@@ -83,7 +83,7 @@ func _mouse_outside(status:bool) -> void:
 	elif _selected_item_node != null:
 		_destroy_posable_preview();
 
-func _preview_item_on_map(position: Vector3, grid_map: GridMap) -> void:
+func _preview_item_on_map(position: Vector3, grid_map: GridMapController) -> void:
 	if _selected_item_node != null:
 		_selected_item_node.set_position(position);
 		var mesh_instance: MeshInstance3D = NodeUtils.get_mesh_in_child(_selected_item_node);

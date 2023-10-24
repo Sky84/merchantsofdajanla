@@ -3,7 +3,7 @@ extends Camera3D;
 @export var player: CharacterBody3D;
 @export var camera_speed: float;
 @export var terrain_collision_mask: int;
-@export var _grid_map: GridMap;
+@export var _grid_map: GridMapController;
 var _offset: Vector3;
 var _camera_factor_speed: float = 10.0;
 

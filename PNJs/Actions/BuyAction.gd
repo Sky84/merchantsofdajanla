@@ -6,7 +6,7 @@ var scene_tree: SceneTree;
 var camera_3d: Camera3D;
 var pnj_name: String;
 var is_running: bool;
-var grid_map: GridMapController;
+var grid_map: GameGridMapController;
 var buyer_owner_id: String;
 var seller_container_config: Dictionary;
 var seller_alive: Alive;

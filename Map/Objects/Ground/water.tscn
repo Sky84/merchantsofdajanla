@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqjlu4di5br3u"]
+
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_71dri"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_0db0l"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="3_ry2co"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1efs6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vyqve"]
+render_priority = 0
+shader = ExtResource("1_71dri")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.3, 0)
+shader_parameter/texture_atlas = ExtResource("2_0db0l")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evgcm"]
+atlas = ExtResource("2_0db0l")
+region = Rect2(96, 0, 32, 32)
+
+[node name="Water" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_1efs6")
+surface_material_override/0 = SubResource("ShaderMaterial_vyqve")
+script = ExtResource("3_ry2co")
+tile_atlas_size = 16.0
+texture = SubResource("AtlasTexture_evgcm")

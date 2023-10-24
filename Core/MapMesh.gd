@@ -1,5 +1,6 @@
 @tool
 extends MeshInstance3D
+class_name MapMesh
 
 @export var tile_atlas_size: float = 32;
 @export var init_atlas: bool:
@@ -10,9 +11,12 @@ extends MeshInstance3D
 
 @export var rotate_60: bool:
 	get:
-		return false;
+		return floor(rotation_degrees.x) == 60;
 	set(value):
-		rotation_degrees.x = 0 if rotation_degrees.x == 60 else 60;
+		if !value:
+			rotation_degrees.x = 0;
+			return;
+		rotation_degrees.x = 0 if floor(rotation_degrees.x) == 60 else 60;
 
 var _texture: Texture;
 
@@ -45,14 +49,8 @@ func _update_for_atlas():
 		_material.shader = _shader;
 		var tile_number_width = _texture.region.size.x / tile_atlas_size;
 		var tile_number_height = _texture.region.size.y / tile_atlas_size;
-		var uv1_scale = Vector2(
-			(tile_atlas_size * tile_number_width) /  _texture.atlas.get_width(),
-			(tile_atlas_size * tile_number_height) /  _texture.atlas.get_height()
-		);
-		var uv1_offset = Vector2(
-			_texture.region.position.x / _texture.atlas.get_width(),
-			_texture.region.position.y / _texture.atlas.get_height()
-		);
+		var uv1_scale = NodeUtils.get_atlas_tile_scale_uv1(_texture, tile_atlas_size);
+		var uv1_offset = NodeUtils.get_atlas_tile_offset_uv1(_texture, tile_atlas_size);
 		_material.set_shader_parameter('texture_atlas', _texture.atlas);
 		_material.set_shader_parameter('uv1_offset', uv1_offset);
 		_material.set_shader_parameter('uv1_scale', uv1_scale);

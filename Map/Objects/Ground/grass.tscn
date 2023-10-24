@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6lflfd04h7tp"]
+
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_hyup1"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_e3uyx"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="3_2ce4m"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pfulh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4l7jc"]
+render_priority = 0
+shader = ExtResource("1_hyup1")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.4, 0.15)
+shader_parameter/texture_atlas = ExtResource("2_e3uyx")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caayn"]
+atlas = ExtResource("2_e3uyx")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s43h1"]
+size = Vector3(1.99975, 0.01, 1.98669)
+
+[node name="Grass" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_pfulh")
+surface_material_override/0 = SubResource("ShaderMaterial_4l7jc")
+script = ExtResource("3_2ce4m")
+texture = SubResource("AtlasTexture_caayn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_s43h1")

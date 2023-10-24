@@ -12,7 +12,7 @@ func execute(params: Dictionary) -> void:
 	await timer.timeout;
 	on_action_finished.emit(id, _owner_id, null);
 
-func _update_target_position(start_position: Vector3, gridmap_controller: GridMapController):
+func _update_target_position(start_position: Vector3, gridmap_controller: GameGridMapController):
 	var target_position: Vector3 = NodeUtils.get_random_reachable_point(start_position, gridmap_controller);
 	navigation_agent.target_position = target_position;
 

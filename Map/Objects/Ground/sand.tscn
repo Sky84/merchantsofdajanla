@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbiea7x1vebk3"]
+
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_jh2as"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_l5v5x"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="3_qogvi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yibbn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pc7wi"]
+render_priority = 0
+shader = ExtResource("1_jh2as")
+shader_parameter/uv1_scale = Vector2(0.2, 0.05)
+shader_parameter/uv1_offset = Vector2(0.2, 0.25)
+shader_parameter/texture_atlas = ExtResource("2_l5v5x")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb6w2"]
+atlas = ExtResource("2_l5v5x")
+region = Rect2(64, 320, 64, 64)
+
+[node name="Sand" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_yibbn")
+surface_material_override/0 = SubResource("ShaderMaterial_pc7wi")
+script = ExtResource("3_qogvi")
+texture = SubResource("AtlasTexture_cb6w2")

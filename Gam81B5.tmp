@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=85 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -314,9 +314,6 @@ texture_filter = 0
 [sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
 radius = 2.56796
 
-[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_7ji7o"]
-size = Vector3(180, 20, 150)
-
 [sub_resource type="Gradient" id="Gradient_m7jcj"]
 offsets = PackedFloat32Array(0, 0.0187668)
 colors = PackedColorArray(0, 0, 0, 1, 0.0196078, 0.0196078, 0.0196078, 0.317647)
@@ -357,45 +354,9 @@ vertices_per_polygon = 3.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_33ooo"]
 noise_type = 3
-frequency = 0.0381
+frequency = 0.001
 fractal_octaves = 1
-fractal_weighted_strength = 1.0
-fractal_ping_pong_strength = 1.0
-cellular_jitter = 0.235
-cellular_return_type = 0
-domain_warp_amplitude = -219.53
-domain_warp_frequency = 0.005
-domain_warp_fractal_lacunarity = 0.0
-domain_warp_fractal_gain = 0.0
 metadata/_preview_in_3d_space_ = true
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7ehpe"]
-load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ocj3"]
-atlas = SubResource("CompressedTexture2D_7ehpe")
-region = Rect2(32, 256, 32, 32)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0s77r"]
-load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1pdl"]
-atlas = SubResource("CompressedTexture2D_0s77r")
-region = Rect2(32, 320, 32, 32)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lrlds"]
-load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m763q"]
-atlas = SubResource("CompressedTexture2D_lrlds")
-region = Rect2(32, 192, 32, 32)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3q8ky"]
-load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x8slp"]
-atlas = SubResource("CompressedTexture2D_3q8ky")
-region = Rect2(96, 0, 32, 32)
 
 [node name="Game" type="Node3D"]
 
@@ -502,10 +463,6 @@ animation = &"hit"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/ObjectDetector"]
 shape = SubResource("SphereShape3D_deg7w")
-
-[node name="OccluderInstance3D" type="OccluderInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49085, 2.11176, -64.736)
-occluder = SubResource("BoxOccluder3D_7ji7o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -1213,7 +1170,6 @@ shadow_enabled = true
 directional_shadow_split_1 = 0.557
 directional_shadow_pancake_size = 0.0
 script = ExtResource("41_tyyav")
-_start_hour_game_time = 8
 _start_minute_game_time = 55
 gradient_day_night = SubResource("GradientTexture1D_r280y")
 sun_density = SubResource("Curve_7oqs6")
@@ -1225,21 +1181,18 @@ autostart = true
 [node name="GameMapController" type="NavigationRegion3D" parent="." node_paths=PackedStringArray("_player", "_world_map")]
 navigation_mesh = SubResource("NavigationMesh_qt4bp")
 script = ExtResource("42_h5fgp")
-chunk_tile_size = 64
+chunk_tile_size = 32
 _chunk_map = ExtResource("43_refum")
 _player = NodePath("../Player")
 _savage_chunk_noise = SubResource("FastNoiseLite_33ooo")
 _world_map = NodePath("GridMap")
-_tile_scene_ground_placeable = Array[Texture2D]([SubResource("AtlasTexture_6ocj3"), SubResource("AtlasTexture_e1pdl"), SubResource("AtlasTexture_e1pdl"), SubResource("AtlasTexture_m763q"), SubResource("AtlasTexture_x8slp")])
+_tile_ids_ground_placeable = Array[int]([0, 1, 2])
 
-[node name="GridMap" parent="GameMapController" node_paths=PackedStringArray("_grounds") instance=ExtResource("44_uvnk4")]
-_grounds = NodePath("Grounds")
+[node name="GridMap" parent="GameMapController" instance=ExtResource("44_uvnk4")]
 metadata/_editor_floor_ = Vector3(0, 1000, 0)
 
 [node name="Interiors" type="Node3D" parent="GameMapController/GridMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
-
-[node name="Grounds" type="Node3D" parent="GameMapController/GridMap"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("40_1rdb0")

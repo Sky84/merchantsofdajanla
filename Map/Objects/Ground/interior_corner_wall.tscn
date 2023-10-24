@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b15fxlepqgi7m"]
+
+[ext_resource type="ArrayMesh" uid="uid://d3pipbse000yt" path="res://Map/Models/interior_corner_wall.obj" id="1_rg1lt"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_31d8j"]
+data = PackedVector3Array(1, 8, -1, -1, 0, -1, 1, 0, -1, -1, 8, -1, -1, 0, -1, 1, 8, -1, -1, 8, 1, -1, 0, -1, -1, 8, -1, -1, 0, 1, -1, 0, -1, -1, 8, 1)
+
+[node name="InteriorCornerWall" type="MeshInstance3D"]
+mesh = ExtResource("1_rg1lt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_31d8j")
