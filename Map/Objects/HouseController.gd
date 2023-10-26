@@ -17,7 +17,7 @@ func _process(delta):
 
 func _on_enter_area_3d_body_entered(body: Node3D):
 	if body is Alive:
-		var interior_instance: GridMap;
+		var interior_instance: Node3D;
 		if house_id in game_map_controller.spawned_interior_houses:
 			interior_instance = get_node(game_map_controller.spawned_interior_houses[house_id].node_path);
 		else:
@@ -28,6 +28,6 @@ func _on_enter_area_3d_body_entered(body: Node3D):
 
 func _on_exit_area_3d_body_entered(body: Node3D):
 	var interior_instance = get_node(game_map_controller.spawned_interior_houses[house_id].node_path);
-	interior_instance.get_node('ExitArea3D').body_entered.disconnect(_on_exit_area_3d_body_entered);
 	if body is Alive:
+		interior_instance.get_node('ExitArea3D').body_entered.disconnect(_on_exit_area_3d_body_entered);
 		body.global_position = get_node("ExitSpawn").global_position;
