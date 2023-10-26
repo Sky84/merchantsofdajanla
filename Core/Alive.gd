@@ -16,6 +16,8 @@ const GROUP_NAME = 'alive';
 @onready var cloth_animations = $ClothAnimations;
 @onready var animated_sprite_3d = $ClothAnimations/SkinsAnimatedSprite3D;
 
+signal on_set_owner_id;
+
 var _is_player = false;
 
 var _is_blocked = false;
@@ -37,7 +39,12 @@ var alive_status: Dictionary = {
 func _ready() -> void:
 	add_to_group(GROUP_NAME);
 	animation_tree.active = true;
+	_update_owner_id();
 	AliveEvents.on_alive_ready.emit(self);
+
+func _update_owner_id():
+	_owner_id = name+str(global_position.floor());
+	on_set_owner_id.emit();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta) -> void:

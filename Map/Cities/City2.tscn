@@ -1,165 +1,268 @@
-[gd_scene load_steps=25 format=3 uid="uid://cwcpvvanswtik"]
+[gd_scene load_steps=44 format=3 uid="uid://xe2ri388xino"]
 
-[ext_resource type="Script" path="res://Core/GridMapController.gd" id="1_f6v8j"]
+[ext_resource type="PackedScene" uid="uid://cx6pam6nfg3sk" path="res://Map/Objects/Barrel.tscn" id="2_tj0p3"]
 [ext_resource type="PackedScene" uid="uid://c8okcsfchdnel" path="res://Stand/stand.tscn" id="2_w5lh0"]
 [ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="3_p01ai"]
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="3_qioeq"]
-[ext_resource type="Script" path="res://Core/MapMesh.gd" id="4_vp53y"]
-[ext_resource type="PackedScene" uid="uid://b6lflfd04h7tp" path="res://Map/Objects/Ground/grass.tscn" id="6_800es"]
+[ext_resource type="PackedScene" uid="uid://y0g0vlqo8yo2" path="res://Map/Objects/Porch.tscn" id="4_mugos"]
+[ext_resource type="PackedScene" uid="uid://c5q0d1fliv5ax" path="res://Map/Objects/RedGrass.tscn" id="6_wpob8"]
+[ext_resource type="PackedScene" uid="uid://5vb47peeyaco" path="res://Map/Objects/BigCactus.tscn" id="9_5yogl"]
+[ext_resource type="PackedScene" uid="uid://bb5d8n5plndqv" path="res://Map/Objects/BigTree.tscn" id="10_6kwq8"]
+[ext_resource type="PackedScene" uid="uid://bpcn6vipe2yx3" path="res://Map/Objects/GrassDry.tscn" id="11_gtoej"]
+[ext_resource type="PackedScene" uid="uid://dirjajftxxsno" path="res://Map/Objects/CarpetRed.tscn" id="12_64522"]
+[ext_resource type="PackedScene" uid="uid://bwa5ciausibvh" path="res://Map/Objects/PillowBlue.tscn" id="13_rc3w4"]
+[ext_resource type="PackedScene" uid="uid://dy35oetveif62" path="res://Map/Objects/PillowRed.tscn" id="14_ulsq2"]
+[ext_resource type="PackedScene" uid="uid://csr6yw78n2fxe" path="res://Map/Objects/Tree.tscn" id="15_ps1oa"]
+[ext_resource type="PackedScene" uid="uid://b16df5413g5io" path="res://Map/Objects/SmallCactus.tscn" id="16_gwgcf"]
+[ext_resource type="PackedScene" uid="uid://bwtc8wk15ov3p" path="res://Map/Objects/BonesHead.tscn" id="17_iw8u8"]
+[ext_resource type="PackedScene" uid="uid://dkcpfbmoxh5d7" path="res://Map/Objects/BigTorch.tscn" id="18_wnim4"]
+[ext_resource type="PackedScene" uid="uid://r5o6uljnlvg0" path="res://PNJs/Merchant/Merchant.tscn" id="21_qrvgo"]
+[ext_resource type="MeshLibrary" uid="uid://crxew437c4xq1" path="res://Map/MeshLibrary.tres" id="22_53rg6"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_wov1y"]
-size = Vector2(1, 1)
+[sub_resource type="PlaneMesh" id="PlaneMesh_rt3w2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8nt7a"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tvy4e"]
 render_priority = 0
 shader = ExtResource("3_qioeq")
 shader_parameter/uv1_scale = Vector2(0.1, 0.025)
-shader_parameter/uv1_offset = Vector2(0.2, 0.1)
+shader_parameter/uv1_offset = Vector2(0.1, 0.325)
 shader_parameter/texture_atlas = ExtResource("3_p01ai")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nsysv"]
-atlas = ExtResource("3_p01ai")
-region = Rect2(64, 128, 32, 32)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6cxku"]
-size = Vector3(1.99975, 0.01, 1.98669)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_g1kex"]
-size = Vector2(2, 3)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttxdm"]
-render_priority = 0
-shader = ExtResource("3_qioeq")
-shader_parameter/uv1_scale = Vector2(0.2, 0.075)
-shader_parameter/uv1_offset = Vector2(0.5, 0.3)
-shader_parameter/texture_atlas = ExtResource("3_p01ai")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iarxd"]
-atlas = ExtResource("3_p01ai")
-region = Rect2(160, 384, 64, 96)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_p815a"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_tii7q"]
 size = Vector2(2, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nny8d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cy2pq"]
 render_priority = 0
 shader = ExtResource("3_qioeq")
 shader_parameter/uv1_scale = Vector2(0.1, 0.05)
 shader_parameter/uv1_offset = Vector2(0.7, 0.325)
 shader_parameter/texture_atlas = ExtResource("3_p01ai")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3isqi"]
-atlas = ExtResource("3_p01ai")
-region = Rect2(224, 416, 32, 64)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_s548b"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_21vc1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dv2e8"]
 render_priority = 0
 shader = ExtResource("3_qioeq")
-shader_parameter/uv1_scale = Vector2(0.2, 0.05)
-shader_parameter/uv1_offset = Vector2(0.4, 0.15)
+shader_parameter/uv1_scale = Vector2(0.2, 0.075)
+shader_parameter/uv1_offset = Vector2(0.5, 0.3)
 shader_parameter/texture_atlas = ExtResource("3_p01ai")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_8foam"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_jk6y5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i80hw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7g4wn"]
 render_priority = 0
 shader = ExtResource("3_qioeq")
-shader_parameter/uv1_scale = Vector2(0.2, 0.05)
-shader_parameter/uv1_offset = Vector2(0.4, 0.15)
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0, 0.1)
 shader_parameter/texture_atlas = ExtResource("3_p01ai")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_fxj51"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_vtkj4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_duoaf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqilj"]
 render_priority = 0
 shader = ExtResource("3_qioeq")
-shader_parameter/uv1_scale = Vector2(0.2, 0.05)
-shader_parameter/uv1_offset = Vector2(0.4, 0.15)
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0, 0.1)
 shader_parameter/texture_atlas = ExtResource("3_p01ai")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_shkqs"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_smjxj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_32jg6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqopy"]
 render_priority = 0
 shader = ExtResource("3_qioeq")
-shader_parameter/uv1_scale = Vector2(0.2, 0.05)
-shader_parameter/uv1_offset = Vector2(0.4, 0.15)
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0, 0.1)
 shader_parameter/texture_atlas = ExtResource("3_p01ai")
 
-[node name="City2" type="Node3D" node_paths=PackedStringArray("_grounds")]
-script = ExtResource("1_f6v8j")
-_grounds = NodePath("Grounds")
+[sub_resource type="PlaneMesh" id="PlaneMesh_oovsd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_miycy"]
+render_priority = 0
+shader = ExtResource("3_qioeq")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0, 0.1)
+shader_parameter/texture_atlas = ExtResource("3_p01ai")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qe6jk"]
+size = Vector2(6, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvi76"]
+render_priority = 0
+shader = ExtResource("3_qioeq")
+shader_parameter/uv1_scale = Vector2(0.3, 0.075)
+shader_parameter/uv1_offset = Vector2(0.7, 0.575)
+shader_parameter/texture_atlas = ExtResource("3_p01ai")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ys6y3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chaqw"]
+render_priority = 0
+shader = ExtResource("3_qioeq")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.9, 0.025)
+shader_parameter/texture_atlas = ExtResource("3_p01ai")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0i8qk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jxc2v"]
+render_priority = 0
+shader = ExtResource("3_qioeq")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.8, 0.025)
+shader_parameter/texture_atlas = ExtResource("3_p01ai")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_07pml"]
+size = Vector2(4, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnect"]
+render_priority = 0
+shader = ExtResource("3_qioeq")
+shader_parameter/uv1_scale = Vector2(0.2, 0.075)
+shader_parameter/uv1_offset = Vector2(0.5, 0.3)
+shader_parameter/texture_atlas = ExtResource("3_p01ai")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6du2w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iyi0s"]
+render_priority = 0
+shader = ExtResource("3_qioeq")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.2, 0.35)
+shader_parameter/texture_atlas = ExtResource("3_p01ai")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n4of0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpy8h"]
+render_priority = 0
+shader = ExtResource("3_qioeq")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.2, 0.3)
+shader_parameter/texture_atlas = ExtResource("3_p01ai")
+
+[node name="City2" type="Node3D"]
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="MapItems" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
 
-[node name="Stand" parent="MapItems" instance=ExtResource("2_w5lh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9516, 0.00500011, 4.9247)
+[node name="Stand4" parent="MapItems" instance=ExtResource("2_w5lh0")]
+transform = Transform3D(0.999349, 0, 0.0360681, 0, 1, 0, -0.0360681, 0, 0.999349, 10.2115, 0, 7.0514)
 
 [node name="MapDecorations" type="Node3D" parent="."]
 
-[node name="Rock" type="MeshInstance3D" parent="MapDecorations"]
-transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 2.40891, 0.443889, -1.90261)
-mesh = SubResource("PlaneMesh_wov1y")
-surface_material_override/0 = SubResource("ShaderMaterial_8nt7a")
-script = ExtResource("4_vp53y")
-texture = SubResource("AtlasTexture_nsysv")
+[node name="Barrel" parent="MapDecorations" instance=ExtResource("2_tj0p3")]
+transform = Transform3D(-5.25156e-08, -1, 2.70361e-08, 0.820232, -5.96046e-08, -0.572031, 0.572031, 2.7951e-08, 0.820232, 13.6714, 0.999999, 17.5401)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MapDecorations/Rock"]
+[node name="Barrel3" parent="MapDecorations" instance=ExtResource("2_tj0p3")]
+transform = Transform3D(0.99992, 0, -0.0126359, 0, 1, 0, 0.0126359, 0, 0.99992, 12.338, -4.76837e-07, 4.23821)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MapDecorations/Rock/StaticBody3D"]
-shape = SubResource("BoxShape3D_6cxku")
+[node name="Barrel4" parent="MapDecorations" instance=ExtResource("2_tj0p3")]
+transform = Transform3D(0.947272, 0, 0.320431, 0, 1, 0, -0.320431, 0, 0.947272, 0.3098, 0.0918398, 8.27095)
 
-[node name="Tree" type="MeshInstance3D" parent="MapDecorations"]
-transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -4.3995, 1.31098, -0.0308075)
-mesh = SubResource("PlaneMesh_g1kex")
-surface_material_override/0 = SubResource("ShaderMaterial_ttxdm")
-script = ExtResource("4_vp53y")
-texture = SubResource("AtlasTexture_iarxd")
+[node name="Porch" parent="MapDecorations" instance=ExtResource("4_mugos")]
+transform = Transform3D(-0.986432, 0, -0.164169, 0, 1, 0, 0.164169, 0, -0.986432, 16.845, 0, 8.05933)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MapDecorations/Tree"]
+[node name="Barrel2" parent="MapDecorations" instance=ExtResource("2_tj0p3")]
+transform = Transform3D(0.499199, 0, 0.866488, 0, 1, 0, -0.866488, 0, 0.499199, 9.64425, -4.76837e-07, 1.29008)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MapDecorations/Tree/StaticBody3D"]
-shape = SubResource("BoxShape3D_6cxku")
+[node name="Porch2" parent="MapDecorations" instance=ExtResource("4_mugos")]
+transform = Transform3D(0.248588, 0, -0.968609, 0, 1, 0, 0.968609, 0, 0.248588, 4.40678, 0, -0.523887)
 
-[node name="Cactus" type="MeshInstance3D" parent="MapDecorations"]
-transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 6.37397, 1.71687, -1.57939)
-mesh = SubResource("PlaneMesh_p815a")
-surface_material_override/0 = SubResource("ShaderMaterial_nny8d")
-script = ExtResource("4_vp53y")
-tile_atlas_size = 16.0
-texture = SubResource("AtlasTexture_3isqi")
+[node name="RedGrass" parent="MapDecorations" instance=ExtResource("6_wpob8")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -5.01751, 0.814889, 5.15194)
+mesh = SubResource("PlaneMesh_rt3w2")
+surface_material_override/0 = SubResource("ShaderMaterial_tvy4e")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MapDecorations/Cactus"]
+[node name="Cactus" parent="MapDecorations" instance=ExtResource("9_5yogl")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -25.0131, 1.696, 23.0239)
+mesh = SubResource("PlaneMesh_tii7q")
+surface_material_override/0 = SubResource("ShaderMaterial_cy2pq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MapDecorations/Cactus/StaticBody3D"]
-shape = SubResource("BoxShape3D_6cxku")
+[node name="BigTree" parent="MapDecorations" instance=ExtResource("10_6kwq8")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 8.8049, 2.59107, 15.8127)
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_dv2e8")
+
+[node name="GrassDry" parent="MapDecorations" instance=ExtResource("11_gtoej")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 12.8934, 0.522582, 19.5044)
+mesh = SubResource("PlaneMesh_jk6y5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_7g4wn")
+
+[node name="GrassDry2" parent="MapDecorations" instance=ExtResource("11_gtoej")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 8.147, 0.522582, 17.4902)
+mesh = SubResource("PlaneMesh_vtkj4")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_oqilj")
+
+[node name="GrassDry3" parent="MapDecorations" instance=ExtResource("11_gtoej")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 24.4237, 0.522582, 22.062)
+mesh = SubResource("PlaneMesh_smjxj")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_cqopy")
+
+[node name="GrassDry4" parent="MapDecorations" instance=ExtResource("11_gtoej")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0.0365517, 0.832629, -3.87882)
+mesh = SubResource("PlaneMesh_oovsd")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_miycy")
+
+[node name="Porch3" parent="MapDecorations" instance=ExtResource("4_mugos")]
+transform = Transform3D(0.994482, 0, -0.104911, 0, 1, 0, 0.104911, 0, 0.994482, -5.8853, -0.121421, 6.09222)
+
+[node name="CarpetRed" parent="MapDecorations" instance=ExtResource("12_64522")]
+transform = Transform3D(0.981942, 0, -0.189181, 0, 1, 0, 0.189181, 0, 0.981942, 4.13443, 0.0325725, -0.583577)
+mesh = SubResource("PlaneMesh_qe6jk")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_rvi76")
+
+[node name="PillowBlue" parent="MapDecorations" instance=ExtResource("13_rc3w4")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 5.83356, 0.880776, -2.41409)
+mesh = SubResource("PlaneMesh_ys6y3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_chaqw")
+
+[node name="PillowRed" parent="MapDecorations" instance=ExtResource("14_ulsq2")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 2.93438, 0.851961, -3.10792)
+mesh = SubResource("PlaneMesh_0i8qk")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_jxc2v")
+
+[node name="Tree" parent="MapDecorations" instance=ExtResource("15_ps1oa")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 12.9106, 2.54513, 18.2786)
+mesh = SubResource("PlaneMesh_07pml")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_xnect")
+
+[node name="SmallCactus" parent="MapDecorations" instance=ExtResource("16_gwgcf")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -19.5079, 0.862427, 28.1445)
+mesh = SubResource("PlaneMesh_6du2w")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_iyi0s")
+
+[node name="BonesHead" parent="MapDecorations" instance=ExtResource("17_iw8u8")]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -21.5569, 0.854979, 25.6578)
+mesh = SubResource("PlaneMesh_n4of0")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_lpy8h")
+
+[node name="BigTorch" parent="MapDecorations" instance=ExtResource("18_wnim4")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0.447737, 1.34297, 2.26716)
+frame = 1
+frame_progress = 0.0
+
+[node name="BigTorch2" parent="MapDecorations" instance=ExtResource("18_wnim4")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -2.466, 1.34297, 8.94345)
+frame = 1
+frame_progress = 0.0
 
 [node name="PNJs" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
 
-[node name="Grounds" type="Node3D" parent="."]
+[node name="Merchant" parent="PNJs" instance=ExtResource("21_qrvgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 
-[node name="Grass" parent="Grounds" instance=ExtResource("6_800es")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 31)
-mesh = SubResource("PlaneMesh_s548b")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_21vc1")
-
-[node name="Grass2" parent="Grounds" instance=ExtResource("6_800es")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, -1)
-mesh = SubResource("PlaneMesh_8foam")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_i80hw")
-
-[node name="Grass3" parent="Grounds" instance=ExtResource("6_800es")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, -1)
-mesh = SubResource("PlaneMesh_fxj51")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_duoaf")
-
-[node name="Grass4" parent="Grounds" instance=ExtResource("6_800es")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -31)
-mesh = SubResource("PlaneMesh_shkqs")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_32jg6")
+[node name="Grounds" type="GridMap" parent="."]
+mesh_library = ExtResource("22_53rg6")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65535, 5, 655361, 65534, 5, 655361, 65533, 5, 655361, 65532, 5, 655361, 65531, 5, 655361, 65530, 5, 655361, 65529, 5, 655361, 65528, 5, 655361, 65527, 5, 655361, 65526, 5, 655361, 65525, 5, 655361, 65524, 5, 655361, 65523, 5, 655361, 65522, 5, 655361, 65521, 5, 655361, 65520, 5, 655361, 65533, 0, 655360, 65533, 1, 655360, 65533, 2, 655360, 65533, 3, 655360, 65533, 4, 655361, 65533, 6, 655361, 65533, 7, 655361, 65533, 8, 655361, 65533, 9, 655361, 65533, 10, 655361, 65533, 11, 655361, 65533, 12, 655361, 65533, 13, 655361, 65533, 14, 655361, 65533, 15, 655361, 65531, 13, 655361, 65531, 12, 655361, 65528, 11, 655361, 65527, 11, 655361, 65526, 11, 655361, 65525, 11, 655361, 65525, 12, 655361, 65525, 13, 655361, 65526, 13, 655361, 65526, 12, 655361, 65527, 12, 655361, 65528, 12, 655361, 65529, 11, 655361, 65528, 10, 655361, 65525, 8, 655361, 65529, 9, 655361, 65529, 10, 655361, 65530, 10, 655361, 65531, 9, 655361, 65527, 8, 655361, 65525, 7, 655361, 65522, 8, 655361, 65523, 8, 655361, 65523, 9, 655361, 65524, 9, 655361, 65525, 9, 655361, 65526, 9, 655361, 65527, 9, 655361, 65526, 8, 655361, 65524, 7, 655361, 65524, 8, 655361, 65525, 10, 655361, 65526, 10, 655361, 65527, 10, 655361, 65521, 7, 655361, 65521, 8, 655361, 65523, 7, 655361, 65522, 7, 655361, 65522, 6, 655361, 65521, 6, 655361, 65520, 6, 655361, 65520, 7, 655361, 65520, 8, 655361, 65520, 9, 655361, 65521, 9, 655361, 65521, 10, 655361, 65521, 11, 655361, 65521, 12, 655361, 65520, 11, 655361, 65520, 10, 655361, 65520, 12, 655361, 65520, 13, 655361, 65520, 14, 655361, 65520, 15, 655361, 65521, 15, 655361, 65522, 15, 655361, 65523, 15, 655361, 65524, 15, 655361, 65525, 15, 655361, 65526, 15, 655361, 65527, 15, 655361, 65528, 15, 655361, 65529, 15, 655361, 65530, 15, 655361, 65531, 15, 655361, 65532, 15, 655361, 65532, 14, 655361, 65532, 13, 655361, 65530, 13, 655361, 65530, 14, 655361, 65529, 14, 655361, 65528, 14, 655361, 65527, 14, 655361, 65526, 14, 655361, 65525, 14, 655361, 65524, 13, 655361, 65523, 13, 655361, 65522, 13, 655361, 65521, 13, 655361, 65521, 14, 655361, 65522, 14, 655361, 65523, 14, 655361, 65524, 14, 655361, 65531, 14, 655361, 65529, 13, 655361, 65528, 13, 655361, 65527, 13, 655361, 65524, 12, 655361, 65523, 12, 655361, 65522, 12, 655361, 65523, 11, 655361, 65523, 10, 655361, 65522, 9, 655361, 65522, 10, 655361, 65522, 11, 655361, 65524, 11, 655361, 65524, 10, 655361, 65532, 12, 655361, 65532, 11, 655361, 65531, 10, 655361, 65531, 8, 655361, 65532, 8, 655361, 65532, 7, 655361, 65532, 6, 655361, 65528, 6, 655361, 65527, 6, 655361, 65526, 6, 655361, 65525, 6, 655361, 65524, 6, 655361, 65523, 6, 655361, 65529, 6, 655361, 65530, 6, 655361, 65531, 6, 655361, 65531, 7, 655361, 65530, 7, 655361, 65529, 7, 655361, 65528, 7, 655361, 65528, 8, 655361, 65526, 7, 655361, 65530, 8, 655361, 65529, 8, 655361, 65527, 7, 655361, 65530, 9, 655361, 65528, 9, 655361, 65532, 9, 655361, 65532, 10, 655361, 0, 5, 655361, 1, 5, 655360, 2, 5, 655361, 3, 5, 655361, 4, 5, 655361, 5, 5, 655361, 6, 5, 655361, 7, 5, 655361, 8, 5, 655361, 9, 5, 655361, 10, 5, 655361, 11, 5, 655361, 12, 5, 655361, 13, 5, 655361, 14, 5, 655361, 14, 6, 655361, 13, 6, 655361, 13, 7, 655361, 13, 8, 655361, 13, 9, 655361, 14, 9, 655361, 14, 8, 655361, 14, 7, 655361, 14, 10, 655361, 13, 10, 655361, 13, 11, 655361, 13, 12, 655361, 13, 13, 655361, 14, 12, 655361, 14, 11, 655361, 14, 13, 655361, 14, 14, 655361, 14, 15, 655361, 13, 15, 655361, 12, 15, 655361, 11, 15, 655361, 10, 15, 655361, 9, 15, 655361, 8, 15, 655361, 7, 15, 655361, 6, 15, 655361, 5, 15, 655361, 4, 15, 655361, 3, 15, 655361, 2, 15, 655361, 1, 15, 655361, 0, 15, 655361, 65535, 15, 655361, 65534, 15, 655361, 13, 14, 655361, 12, 14, 655361, 12, 13, 655361, 12, 12, 655361, 14, 4, 655361, 14, 3, 655361, 14, 2, 655361, 14, 1, 655361, 14, 0, 655361, 14, 65535, 655361, 14, 65534, 655361, 14, 65533, 655361, 14, 65532, 655361, 14, 65531, 655361, 14, 65530, 655361, 14, 65529, 655361, 14, 65528, 655361, 14, 65527, 655361, 14, 65526, 655361, 14, 65525, 655361, 14, 65524, 655361, 14, 65523, 655361, 14, 65522, 655361, 65520, 65534, 655361, 65520, 65535, 655361, 65520, 0, 655361, 65520, 1, 655361, 65520, 2, 655361, 65520, 3, 655361, 65520, 4, 655361, 65521, 65534, 655361, 65521, 65535, 655361, 65521, 0, 655361, 65521, 1, 655361, 65521, 2, 655361, 65521, 3, 655361, 65521, 4, 655361, 65522, 65534, 655361, 65522, 65535, 655361, 65522, 0, 655361, 65522, 1, 655361, 65522, 2, 655361, 65522, 3, 655361, 65522, 4, 655361, 65523, 65534, 655361, 65523, 65535, 655361, 65523, 0, 655361, 65523, 1, 655361, 65523, 2, 655361, 65523, 3, 655361, 65523, 4, 655361, 65524, 65534, 655361, 65524, 65535, 655361, 65524, 0, 655361, 65524, 1, 655361, 65524, 2, 655361, 65524, 3, 655361, 65524, 4, 655361, 65525, 65534, 655361, 65525, 65535, 655361, 65525, 0, 655360, 65525, 1, 655360, 65525, 2, 655361, 65525, 3, 655361, 65525, 4, 655361, 65526, 65534, 655361, 65526, 65535, 655361, 65526, 0, 655360, 65526, 1, 655360, 65526, 2, 655361, 65526, 3, 655361, 65526, 4, 655361, 65527, 65534, 655360, 65527, 65535, 655360, 65527, 0, 655360, 65527, 1, 655360, 65527, 2, 655361, 65527, 3, 655361, 65527, 4, 655361, 65528, 65534, 655361, 65528, 65535, 655360, 65528, 0, 655360, 65528, 1, 655360, 65528, 2, 655361, 65528, 3, 655361, 65528, 4, 655361, 65529, 65534, 655361, 65529, 65535, 655361, 65529, 0, 655361, 65529, 1, 655360, 65529, 2, 655360, 65529, 3, 655361, 65529, 4, 655361, 65530, 65534, 655361, 65530, 65535, 655361, 65530, 0, 655361, 65530, 1, 655361, 65530, 2, 655360, 65530, 3, 655360, 65530, 4, 655361, 65523, 65531, 655361, 65523, 65532, 655361, 65523, 65533, 655361, 65524, 65531, 655361, 65524, 65532, 655361, 65524, 65533, 655361, 65525, 65531, 655361, 65525, 65532, 655361, 65525, 65533, 655361, 65526, 65531, 655360, 65526, 65532, 655360, 65526, 65533, 655360, 65527, 65531, 655361, 65527, 65532, 655360, 65527, 65533, 655360, 65528, 65531, 655361, 65528, 65532, 655361, 65528, 65533, 655361, 65529, 65531, 655361, 65529, 65532, 655361, 65529, 65533, 655361, 65530, 65531, 655361, 65530, 65532, 655361, 65530, 65533, 655361, 65531, 65531, 655361, 65531, 65532, 655361, 65531, 65533, 655361, 65531, 65534, 655361, 65531, 65535, 655361, 65531, 0, 655361, 65531, 1, 655361, 65531, 2, 655360, 65532, 65531, 655361, 65532, 65532, 655361, 65532, 65533, 655361, 65532, 65534, 655361, 65532, 65535, 655361, 65532, 0, 655361, 65532, 1, 655360, 65532, 2, 655360, 65533, 65531, 655361, 65533, 65532, 655361, 65533, 65533, 655361, 65533, 65534, 655360, 65533, 65535, 655360, 65520, 65528, 655361, 65520, 65529, 655361, 65520, 65530, 655361, 65520, 65531, 655361, 65520, 65532, 655361, 65520, 65533, 655361, 65521, 65528, 655361, 65521, 65529, 655361, 65521, 65530, 655361, 65521, 65531, 655361, 65521, 65532, 655361, 65521, 65533, 655361, 65522, 65528, 655361, 65522, 65529, 655361, 65522, 65530, 655361, 65522, 65531, 655361, 65522, 65532, 655361, 65522, 65533, 655361, 65523, 65528, 655361, 65523, 65529, 655361, 65523, 65530, 655361, 65524, 65528, 655361, 65524, 65529, 655361, 65524, 65530, 655361, 65525, 65528, 655361, 65525, 65529, 655361, 65525, 65530, 655361, 65526, 65528, 655361, 65526, 65529, 655361, 65526, 65530, 655360, 65527, 65528, 655361, 65527, 65529, 655361, 65527, 65530, 655361, 65528, 65528, 655361, 65528, 65529, 655361, 65528, 65530, 655361, 65529, 65528, 655361, 65529, 65529, 655361, 65529, 65530, 655361, 65530, 65528, 655361, 65530, 65529, 655361, 65530, 65530, 655361, 65534, 65531, 655360, 65534, 65532, 655360, 65534, 65533, 655360, 65534, 65534, 655360, 65534, 65535, 655360, 65534, 0, 655360, 65534, 1, 655361, 65534, 2, 655361, 65535, 65531, 655360, 65535, 65532, 655360, 65535, 65533, 655360, 65535, 65534, 655360, 65535, 65535, 655361, 65535, 0, 655361, 65535, 1, 655361, 65535, 2, 655361, 0, 65531, 655361, 0, 65532, 655361, 0, 65533, 655361, 0, 65534, 655361, 0, 65535, 655361, 0, 0, 655361, 0, 1, 655361, 0, 2, 655361, 1, 65531, 655361, 1, 65532, 655361, 1, 65533, 655361, 1, 65534, 655361, 1, 65535, 655361, 1, 0, 655361, 1, 1, 655361, 1, 2, 655361, 2, 65531, 655361, 2, 65532, 655361, 2, 65533, 655361, 2, 65534, 655361, 2, 65535, 655361, 2, 0, 655361, 2, 1, 655361, 2, 2, 655360, 3, 65531, 655361, 3, 65532, 655361, 3, 65533, 655361, 3, 65534, 655361, 3, 65535, 655361, 3, 0, 655361, 3, 1, 655360, 3, 2, 655360, 4, 65531, 655361, 4, 65532, 655361, 4, 65533, 655361, 4, 65534, 655361, 4, 65535, 655361, 4, 0, 655360, 4, 1, 655360, 4, 2, 655360, 5, 65531, 655361, 5, 65532, 655361, 5, 65533, 655361, 5, 65534, 655360, 5, 65535, 655360, 5, 0, 655360, 5, 1, 655361, 5, 2, 655361, 6, 65531, 655360, 6, 65532, 655360, 6, 65533, 655360, 6, 65534, 655360, 6, 65535, 655360, 6, 0, 655360, 6, 1, 655361, 6, 2, 655361, 7, 65531, 655360, 7, 65532, 655360, 7, 65533, 655360, 7, 65534, 655360, 7, 65535, 655361, 7, 0, 655361, 7, 1, 655361, 7, 2, 655361, 8, 65531, 655360, 8, 65532, 655361, 8, 65533, 655361, 8, 65534, 655361, 8, 65535, 655361, 8, 0, 655361, 8, 1, 655361, 8, 2, 655361, 65534, 6, 655361, 65534, 7, 655361, 65534, 8, 655361, 65534, 9, 655361, 65534, 10, 655361, 65534, 11, 655361, 65534, 12, 655361, 65534, 13, 655361, 65535, 6, 655361, 65535, 7, 655361, 65535, 8, 655361, 65535, 9, 655361, 65535, 10, 655361, 65535, 11, 655361, 65535, 12, 655361, 65535, 13, 655361, 0, 6, 655361, 0, 7, 655361, 0, 8, 655361, 0, 9, 655361, 0, 10, 655361, 0, 11, 655361, 0, 12, 655361, 0, 13, 655361, 1, 6, 655361, 1, 7, 655361, 1, 8, 655361, 1, 9, 655361, 1, 10, 655361, 1, 11, 655361, 1, 12, 655361, 1, 13, 655361, 2, 6, 655361, 2, 7, 655361, 2, 8, 655361, 2, 9, 655361, 2, 10, 655361, 2, 11, 655361, 2, 12, 655361, 2, 13, 655361, 3, 6, 655361, 3, 7, 655361, 3, 8, 655361, 3, 9, 655361, 3, 10, 655361, 3, 11, 655361, 3, 12, 655361, 3, 13, 655361, 4, 6, 655361, 4, 7, 655361, 4, 8, 655361, 4, 9, 655361, 4, 10, 655361, 4, 11, 655361, 4, 12, 655361, 4, 13, 655361, 5, 6, 655361, 5, 7, 655361, 5, 8, 655361, 5, 9, 655361, 5, 10, 655361, 5, 11, 655361, 5, 12, 655361, 5, 13, 655361, 6, 6, 655361, 6, 7, 655361, 6, 8, 655361, 6, 9, 655361, 6, 10, 655361, 6, 11, 655361, 6, 12, 655361, 6, 13, 655361, 7, 6, 655361, 7, 7, 655361, 7, 8, 655361, 7, 9, 655361, 7, 10, 655361, 7, 11, 655361, 7, 12, 655361, 7, 13, 655361, 8, 6, 655361, 8, 7, 655361, 8, 8, 655361, 8, 9, 655361, 8, 10, 655361, 8, 11, 655361, 8, 12, 655361, 8, 13, 655361, 9, 6, 655361, 9, 7, 655361, 9, 8, 655361, 9, 9, 655361, 9, 10, 655361, 9, 11, 655361, 9, 12, 655361, 9, 13, 655361, 10, 6, 655361, 10, 7, 655361, 10, 8, 655361, 10, 9, 655361, 10, 10, 655361, 10, 11, 655361, 10, 12, 655361, 10, 13, 655361, 11, 6, 655361, 11, 7, 655361, 11, 8, 655361, 11, 9, 655361, 11, 10, 655361, 11, 11, 655361, 11, 12, 655361, 11, 13, 655361, 12, 6, 655361, 12, 7, 655361, 12, 8, 655361, 12, 9, 655361, 12, 10, 655361, 12, 11, 655361, 65534, 14, 655361, 65535, 14, 655361, 0, 14, 655361, 1, 14, 655361, 2, 14, 655361, 3, 14, 655361, 4, 14, 655361, 5, 14, 655361, 6, 14, 655361, 7, 14, 655361, 8, 14, 655361, 9, 14, 655361, 10, 14, 655361, 11, 14, 655361, 2, 3, 655360, 2, 4, 655360, 3, 3, 655360, 3, 4, 655361, 4, 3, 655361, 4, 4, 655361, 5, 3, 655361, 5, 4, 655361, 6, 3, 655361, 6, 4, 655361, 7, 3, 655361, 7, 4, 655361, 8, 3, 655361, 8, 4, 655361, 9, 65534, 655361, 9, 65535, 655361, 9, 0, 655361, 9, 1, 655361, 9, 2, 655361, 9, 3, 655361, 9, 4, 655361, 10, 65534, 655361, 10, 65535, 655361, 10, 0, 655361, 10, 1, 655361, 10, 2, 655361, 10, 3, 655361, 10, 4, 655361, 11, 65534, 655361, 11, 65535, 655361, 11, 0, 655361, 11, 1, 655361, 11, 2, 655361, 11, 3, 655361, 11, 4, 655361, 12, 65534, 655361, 12, 65535, 655361, 12, 0, 655361, 12, 1, 655361, 12, 2, 655361, 12, 3, 655361, 12, 4, 655361, 65531, 3, 655360, 65531, 4, 655361, 65532, 3, 655360, 65532, 4, 655361, 65534, 3, 655360, 65534, 4, 655360, 65535, 3, 655360, 65535, 4, 655360, 0, 3, 655360, 0, 4, 655360, 1, 3, 655360, 1, 4, 655360, 9, 65532, 655361, 9, 65533, 655361, 10, 65532, 655361, 10, 65533, 655361, 11, 65532, 655361, 11, 65533, 655361, 12, 65532, 655361, 12, 65533, 655361, 13, 65532, 655361, 13, 65533, 655361, 13, 65534, 655361, 13, 65535, 655361, 13, 0, 655361, 13, 1, 655361, 13, 2, 655361, 13, 3, 655361, 13, 4, 655361, 2, 65526, 655361, 2, 65527, 655361, 2, 65528, 655361, 2, 65529, 655361, 2, 65530, 655361, 3, 65526, 655361, 3, 65527, 655361, 3, 65528, 655361, 3, 65529, 655361, 3, 65530, 655361, 4, 65526, 655361, 4, 65527, 655361, 4, 65528, 655361, 4, 65529, 655361, 4, 65530, 655361, 5, 65526, 655361, 5, 65527, 655361, 5, 65528, 655361, 5, 65529, 655361, 5, 65530, 655361, 6, 65526, 655361, 6, 65527, 655361, 6, 65528, 655361, 6, 65529, 655360, 6, 65530, 655360, 7, 65526, 655361, 7, 65527, 655361, 7, 65528, 655361, 7, 65529, 655360, 7, 65530, 655360, 8, 65526, 655361, 8, 65527, 655361, 8, 65528, 655361, 8, 65529, 655360, 8, 65530, 655360, 9, 65526, 655361, 9, 65527, 655361, 9, 65528, 655361, 9, 65529, 655361, 9, 65530, 655361, 9, 65531, 655361, 10, 65526, 655361, 10, 65527, 655361, 10, 65528, 655361, 10, 65529, 655361, 10, 65530, 655361, 10, 65531, 655361, 11, 65526, 655361, 11, 65527, 655361, 11, 65528, 655361, 11, 65529, 655361, 11, 65530, 655361, 11, 65531, 655361, 12, 65526, 655361, 12, 65527, 655361, 12, 65528, 655361, 12, 65529, 655361, 12, 65530, 655361, 12, 65531, 655361, 3, 65522, 655361, 3, 65523, 655361, 3, 65524, 655361, 3, 65525, 655361, 4, 65522, 655361, 4, 65523, 655361, 4, 65524, 655361, 4, 65525, 655361, 5, 65522, 655361, 5, 65523, 655361, 5, 65524, 655361, 5, 65525, 655361, 6, 65522, 655361, 6, 65523, 655361, 6, 65524, 655361, 6, 65525, 655361, 7, 65522, 655361, 7, 65523, 655361, 7, 65524, 655361, 7, 65525, 655361, 8, 65522, 655361, 8, 65523, 655361, 8, 65524, 655361, 8, 65525, 655361, 9, 65522, 655361, 9, 65523, 655361, 9, 65524, 655361, 9, 65525, 655361, 10, 65522, 655361, 10, 65523, 655361, 10, 65524, 655361, 10, 65525, 655361, 11, 65522, 655361, 11, 65523, 655361, 11, 65524, 655361, 11, 65525, 655361, 12, 65522, 655361, 12, 65523, 655361, 12, 65524, 655361, 12, 65525, 655361, 13, 65522, 655361, 13, 65523, 655361, 13, 65524, 655361, 13, 65525, 655361, 13, 65526, 655361, 13, 65527, 655361, 13, 65528, 655361, 13, 65529, 655361, 13, 65530, 655361, 13, 65531, 655361, 65531, 65522, 655361, 65531, 65523, 655361, 65531, 65524, 655361, 65531, 65525, 655361, 65531, 65526, 655361, 65531, 65527, 655361, 65531, 65528, 655361, 65531, 65529, 655361, 65532, 65522, 655361, 65532, 65523, 655361, 65532, 65524, 655361, 65532, 65525, 655361, 65532, 65526, 655361, 65532, 65527, 655361, 65532, 65528, 655361, 65532, 65529, 655361, 65533, 65522, 655361, 65533, 65523, 655361, 65533, 65524, 655361, 65533, 65525, 655361, 65533, 65526, 655361, 65533, 65527, 655361, 65533, 65528, 655361, 65533, 65529, 655361, 65534, 65522, 655361, 65534, 65523, 655361, 65534, 65524, 655361, 65534, 65525, 655361, 65534, 65526, 655361, 65534, 65527, 655361, 65534, 65528, 655361, 65534, 65529, 655360, 65535, 65522, 655361, 65535, 65523, 655361, 65535, 65524, 655361, 65535, 65525, 655361, 65535, 65526, 655361, 65535, 65527, 655361, 65535, 65528, 655361, 65535, 65529, 655360, 0, 65522, 655361, 0, 65523, 655361, 0, 65524, 655361, 0, 65525, 655361, 0, 65526, 655361, 0, 65527, 655361, 0, 65528, 655361, 0, 65529, 655361, 1, 65522, 655361, 1, 65523, 655361, 1, 65524, 655361, 1, 65525, 655361, 1, 65526, 655361, 1, 65527, 655361, 1, 65528, 655361, 1, 65529, 655361, 2, 65522, 655361, 2, 65523, 655361, 2, 65524, 655361, 2, 65525, 655361, 65526, 65524, 655361, 65526, 65525, 655361, 65526, 65526, 655361, 65526, 65527, 655361, 65527, 65524, 655361, 65527, 65525, 655361, 65527, 65526, 655361, 65527, 65527, 655361, 65528, 65524, 655361, 65528, 65525, 655361, 65528, 65526, 655361, 65528, 65527, 655361, 65529, 65524, 655361, 65529, 65525, 655361, 65529, 65526, 655361, 65529, 65527, 655361, 65530, 65524, 655361, 65530, 65525, 655361, 65530, 65526, 655361, 65530, 65527, 655361, 65531, 65530, 655361, 65532, 65530, 655361, 65533, 65530, 655361, 65534, 65530, 655360, 65535, 65530, 655360, 0, 65530, 655361, 1, 65530, 655361, 65523, 65522, 655361, 65523, 65523, 655361, 65523, 65524, 655361, 65523, 65525, 655361, 65523, 65526, 655361, 65523, 65527, 655361, 65524, 65522, 655361, 65524, 65523, 655361, 65524, 65524, 655361, 65524, 65525, 655361, 65524, 65526, 655361, 65524, 65527, 655361, 65525, 65522, 655361, 65525, 65523, 655361, 65525, 65524, 655361, 65525, 65525, 655361, 65525, 65526, 655361, 65525, 65527, 655361, 65526, 65522, 655361, 65526, 65523, 655361, 65527, 65522, 655361, 65527, 65523, 655361, 65528, 65522, 655361, 65528, 65523, 655361, 65529, 65522, 655361, 65529, 65523, 655361, 65530, 65522, 655361, 65530, 65523, 655361, 65520, 65522, 655361, 65520, 65523, 655361, 65520, 65524, 655361, 65520, 65525, 655361, 65520, 65526, 655361, 65520, 65527, 655361, 65521, 65522, 655361, 65521, 65523, 655361, 65521, 65524, 655361, 65521, 65525, 655361, 65521, 65526, 655361, 65521, 65527, 655361, 65522, 65522, 655361, 65522, 65523, 655361, 65522, 65524, 655361, 65522, 65525, 655361, 65522, 65526, 655361, 65522, 65527, 655361, 15, 65522, 655361, 15, 65523, 655361, 15, 65524, 655361, 15, 65525, 655361, 15, 65526, 655361, 15, 65527, 655361, 15, 65528, 655361, 15, 65529, 655361, 15, 65530, 655361, 15, 65531, 655361, 15, 65532, 655361, 15, 65533, 655361, 15, 65534, 655361, 15, 65535, 655361, 15, 2, 655361, 15, 3, 655361, 15, 4, 655361, 15, 5, 655361, 15, 6, 655361, 15, 15, 655361, 15, 14, 655361, 15, 13, 655361, 15, 12, 655361, 15, 11, 655361, 15, 10, 655361, 15, 9, 655361, 15, 8, 655361, 15, 7, 655361, 15, 1, 655361, 15, 0, 655361, 65520, 65521, 655361, 65520, 65520, 655361, 65521, 65520, 655361, 65522, 65520, 655361, 65522, 65521, 655361, 65521, 65521, 655361, 65523, 65520, 655361, 65524, 65520, 655361, 65524, 65521, 655361, 65523, 65521, 655361, 65525, 65521, 655361, 65526, 65521, 655361, 65526, 65520, 655361, 65525, 65520, 655361, 65527, 65520, 655361, 65528, 65520, 655361, 65528, 65521, 655361, 65527, 65521, 655361, 65529, 65521, 655361, 65530, 65521, 655361, 65531, 65521, 655361, 65532, 65521, 655361, 65533, 65521, 655361, 65534, 65521, 655361, 65534, 65520, 655361, 65533, 65520, 655361, 65532, 65520, 655361, 65531, 65520, 655361, 65530, 65520, 655361, 65529, 65520, 655361, 65535, 65520, 655361, 0, 65520, 655361, 1, 65520, 655361, 2, 65520, 655361, 2, 65521, 655361, 3, 65521, 655361, 3, 65520, 655361, 4, 65521, 655361, 5, 65521, 655361, 6, 65521, 655361, 7, 65521, 655361, 1, 65521, 655361, 0, 65521, 655361, 65535, 65521, 655361, 4, 65520, 655361, 5, 65520, 655361, 6, 65520, 655361, 7, 65520, 655361, 8, 65520, 655361, 9, 65520, 655361, 10, 65520, 655361, 11, 65520, 655361, 11, 65521, 655361, 12, 65521, 655361, 10, 65521, 655361, 9, 65521, 655361, 8, 65521, 655361, 12, 65520, 655361, 13, 65520, 655361, 14, 65520, 655361, 15, 65520, 655361, 15, 65521, 655361, 14, 65521, 655361, 13, 65521, 655361, 65530, 11, 655361, 65531, 11, 655361, 65530, 12, 655361, 65529, 12, 655361)
+}

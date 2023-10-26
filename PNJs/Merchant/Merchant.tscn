@@ -285,7 +285,6 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("2_hlxtw")
-_container_owner = "merchant"
 container_id = "merchant_inventory"
 rows = 4
 columns = 5

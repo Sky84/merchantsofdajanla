@@ -11,6 +11,8 @@ var current_item: Dictionary = {
 	"value": {}
 };
 
+signal on_registered_container(container_id: String);
+
 func register_container(container_id: String, rows: int, columns: int, items: Dictionary, container_owner: String = "", _is_main_container_for_owner: bool = false) -> void:
 	_containers[container_id] = {
 		"container_id": container_id,
@@ -20,6 +22,7 @@ func register_container(container_id: String, rows: int, columns: int, items: Di
 		"rows": rows,
 		"columns": columns
 	};
+	on_registered_container.emit(container_id);
 
 func _init_slots(rows: int, columns: int, _items: Dictionary) -> Dictionary:
 	var items_to_place = _items.duplicate(true);

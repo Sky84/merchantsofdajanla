@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=92 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -390,13 +390,6 @@ load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.cte
 atlas = SubResource("CompressedTexture2D_lrlds")
 region = Rect2(32, 192, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3q8ky"]
-load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x8slp"]
-atlas = SubResource("CompressedTexture2D_3q8ky")
-region = Rect2(96, 0, 32, 32)
-
 [node name="Game" type="Node3D"]
 
 [node name="Player" type="CharacterBody3D" parent="."]
@@ -512,7 +505,7 @@ unique_name_in_owner = true
 script = ExtResource("9_pdga0")
 mouse_targets_node_to_exclude = Array[NodePath]([NodePath("PlayerMouseAction")])
 
-[node name="Inventory" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("_items_container")]
+[node name="Inventory" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("items_container", "_items_container")]
 visible = false
 texture_filter = 1
 anchors_preset = 8
@@ -529,7 +522,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("10_5jpwh")
-container_id = "player_inventory"
+items_container = NodePath("../../Player/Inventory")
 _item_button_scene = ExtResource("11_gbh0b")
 _item_slot_button_scene = ExtResource("12_5wqja")
 gap_hover_selector = 10
@@ -746,7 +739,7 @@ texture = ExtResource("21_c2lee")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ShortcutBar" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("_items_container")]
+[node name="ShortcutBar" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("items_container", "_items_container")]
 texture_filter = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -760,6 +753,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_20ljf")
 script = ExtResource("22_q2by1")
+items_container = NodePath("../../Player/ShortcutBar")
 container_id = "shortcut_bar"
 _show_panel_info = false
 _item_button_scene = ExtResource("11_gbh0b")
@@ -1195,7 +1189,7 @@ texture_hover = ExtResource("19_ktoqh")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player", "_grid_map") groups=["camera"]]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player") groups=["camera"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.731354, 0.681998, 0, -0.681998, 0.731354, 4.5, 12, 10)
 environment = ExtResource("40_1rdb0")
@@ -1204,7 +1198,6 @@ script = ExtResource("40_j6fae")
 player = NodePath("../Player")
 camera_speed = 5.0
 terrain_collision_mask = 2
-_grid_map = NodePath("../GameMapController/GridMap")
 
 [node name="GameTime" type="DirectionalLight3D" parent="." node_paths=PackedStringArray("world_environment")]
 transform = Transform3D(-0.264011, 0.863541, 0.429644, 0.125616, -0.410871, 0.902998, 0.956305, 0.292372, -4.83318e-08, -8.03432, 10.006, 1.20783)
@@ -1230,16 +1223,13 @@ _chunk_map = ExtResource("43_refum")
 _player = NodePath("../Player")
 _savage_chunk_noise = SubResource("FastNoiseLite_33ooo")
 _world_map = NodePath("GridMap")
-_tile_scene_ground_placeable = Array[Texture2D]([SubResource("AtlasTexture_6ocj3"), SubResource("AtlasTexture_e1pdl"), SubResource("AtlasTexture_e1pdl"), SubResource("AtlasTexture_m763q"), SubResource("AtlasTexture_x8slp")])
+_tile_scene_ground_placeable = Array[Texture2D]([SubResource("AtlasTexture_6ocj3"), SubResource("AtlasTexture_e1pdl"), SubResource("AtlasTexture_e1pdl"), SubResource("AtlasTexture_m763q")])
 
-[node name="GridMap" parent="GameMapController" node_paths=PackedStringArray("_grounds") instance=ExtResource("44_uvnk4")]
-_grounds = NodePath("Grounds")
+[node name="GridMap" parent="GameMapController" instance=ExtResource("44_uvnk4")]
 metadata/_editor_floor_ = Vector3(0, 1000, 0)
 
 [node name="Interiors" type="Node3D" parent="GameMapController/GridMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
-
-[node name="Grounds" type="Node3D" parent="GameMapController/GridMap"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("40_1rdb0")

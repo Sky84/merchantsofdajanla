@@ -83,12 +83,12 @@ func _mouse_outside(status:bool) -> void:
 	elif _selected_item_node != null:
 		_destroy_posable_preview();
 
-func _preview_item_on_map(position: Vector3, grid_map: GridMapController) -> void:
+func _preview_item_on_map(position: Vector3, _plane_map: GameGridMapController) -> void:
 	if _selected_item_node != null:
 		_selected_item_node.set_position(position);
 		var mesh_instance: MeshInstance3D = NodeUtils.get_mesh_in_child(_selected_item_node);
 		var _material: StandardMaterial3D = mesh_instance.mesh.surface_get_material(0).duplicate(true);
-		_material.albedo_color = Color(1, 0, 0) if grid_map.has_item_at(position) else Color(1,1,1);
+		_material.albedo_color = Color(1, 0, 0) if _plane_map.has_item_at(position) else Color(1,1,1);
 		mesh_instance.set_surface_override_material(0, _material);
 
 func _input(event):

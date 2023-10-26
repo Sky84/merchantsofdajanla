@@ -66,7 +66,7 @@ func _on_target_reached():
 	var item = GameItems.get_items_by_subtype(target)[0];
 	var should_trade: bool = true;
 	seller_alive.is_busy = true;
-	if seller_container_config.container_owner == "player":
+	if "player" in seller_container_config.container_owner.to_lower():
 		_process_target_player(navigation_agent, item);
 	else:
 		_on_accept(item);

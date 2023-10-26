@@ -6,8 +6,12 @@ signal update_containers_views;
 var _trade_container_id: String;
 
 func _ready():
-	container_id = 'player_inventory';
-	_load_container_config();
+	ContainersController.on_registered_container.connect(on_registered_container);
+
+func on_registered_container(registered_container_id: String) -> void:
+	if registered_container_id == container_id:
+		_load_container_config();
+		ContainersController.on_registered_container.disconnect(on_registered_container);
 	
 func _init_container(trade_container_id: String):
 	_trade_container_id = trade_container_id;

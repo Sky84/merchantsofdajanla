@@ -1,7 +1,9 @@
 # This class intends to deal with map items instances
 # It can create / delete objects on the map
-extends GridMapController
+extends Node3D
 class_name GameGridMapController
+
+@export var tile_size = 32;
 
 @onready var _map_items = $MapItems;
 @onready var _map_decorations = $MapDecorations;
@@ -46,6 +48,10 @@ func get_map_item(id: String) -> MapItem:
 func has_item_at(position: Vector3) -> bool:
 	return _map_objects.has(global_to_local(position));
 
-# Convert a global position (from map point of view) to the grid map position (index of the tile)
+# Convert a global position (from map point of view) to the map position (index of the tile)
 func global_to_local(global_position: Vector3) -> Vector3i:
 	return (global_position / tile_size).floor();
+	
+# Convert a local position (from map point of view) to the map position (index of the tile)
+func local_to_global(local_position: Vector3) -> Vector3:
+	return local_position * tile_size;

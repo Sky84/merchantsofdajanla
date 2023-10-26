@@ -1,6 +1,7 @@
 extends Panel
 class_name InventoryView
 
+@export var items_container: ItemsContainer;
 @export var container_id: String;
 @export var _show_panel_info: bool = true;
 @export var _item_button_scene: PackedScene;
@@ -22,12 +23,16 @@ var _container_owner: String;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if container_id == null:
-		printerr("container_id is not set");
 	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
 	InventoryEvents.visibility_inventory.connect(_on_visibility_inventory);
 	GridMapEvents.item_placed.connect(_on_item_placed);
-	_load_container_config();
+	ContainersController.on_registered_container.connect(on_registered_container);
+
+func on_registered_container(registered_container_id: String) -> void:
+	if registered_container_id == container_id or items_container:
+		container_id = items_container.container_id;
+		_load_container_config();
+		ContainersController.on_registered_container.disconnect(on_registered_container);
 
 func _load_container_config():
 	var container_config = ContainersController.get_container_config(container_id);

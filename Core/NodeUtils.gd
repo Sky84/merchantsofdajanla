@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 func get_mesh_in_child(parent_node: Node3D) -> MeshInstance3D:
 	var meshes = parent_node.find_children("*", "MeshInstance3D", true, false);
@@ -12,17 +12,21 @@ func get_map_item_id(map_item: MapItem) -> String:
 	var map_id = PackedStringArray([map_item.name, map_item.position.x, map_item.position.y, map_item.position.z])
 	return '_'.join(map_id);
 
-func get_random_reachable_point(start_position: Vector3, gridmap_controller: GridMapController):
-	var cells = gridmap_controller.get_items().keys();
-	var around_gap = 5;
-	var around_cells = cells.filter(func (cell: Vector3):
-		return cell.distance_to(gridmap_controller.global_to_local(start_position)) < around_gap;
+func get_random_reachable_point(start_position: Vector3, gridmap_controller: GameGridMapController) -> Vector3:
+	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state;
+	var max_distance: int = 5;
+	var random_direction: Vector3 = Vector3(
+		randi_range(-1, 1) * max_distance,
+	 	start_position.y,
+	 	randi_range(-1, 1) * max_distance
 	);
-	var random_point = around_cells[randi_range(0, around_cells.size()-1)];
-	var cell_item = gridmap_controller.get_cell_item(random_point);
-	var grounds_cell: Array = [0, 1, 2];
-	if grounds_cell.has(cell_item):
-		return random_point;
+	
+	# use global coordinates, not local to node
+	var query = PhysicsRayQueryParameters3D.create(start_position, start_position + random_direction);
+	var result = space_state.intersect_ray(query);
+	if result:
+		return result.position;
+	return start_position + random_direction;
 
 func get_atlas_tile_scale_uv1(_texture: AtlasTexture, tile_size: float):
 	var tile_number_width = _texture.region.size.x / tile_size;

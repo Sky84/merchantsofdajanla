@@ -8,7 +8,10 @@ func _ready():
 		printerr("container_id is not set");
 	InventoryEvents.reset_current_item.connect(_on_reset_current_item);
 	InventoryEvents.container_data_changed.connect(_update_shortcut_bar);
-	_load_container_config();
+	ContainersController.on_registered_container.connect(on_registered_container);
+
+func on_registered_container(registered_container_id: String) -> void:
+	super(registered_container_id);
 	_update_shortcut_bar(container_id);
 
 func _update_shortcut_bar(_container_id: String) -> void:
@@ -23,6 +26,8 @@ func _update_selector_position():
 	hover_texture.position = _items_container.position + hover_texture_position;
 
 func _input(event):
+	if _container_owner.is_empty():
+		return;
 	if event is InputEventMouse:
 		var value_to_add: int = event.get_action_strength("mouse_scroll_up") - event.get_action_strength("mouse_scroll_down");
 		index_position_selector = fposmod(index_position_selector + value_to_add, _items_container.columns);

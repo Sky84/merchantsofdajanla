@@ -4,7 +4,6 @@
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,depth_prepass_alpha;
 uniform sampler2D texture_atlas : source_color,filter_nearest;
-uniform sampler2D mask_texture : source_color,filter_nearest;
 uniform vec2 uv1_scale;
 uniform vec2 uv1_offset;
 
@@ -15,8 +14,7 @@ void vertex() {
 void fragment() {
 	vec2 uv = ((uv1_offset.xy-UV)/uv1_scale.xy);
 	
-	vec4 mask = texture(mask_texture, uv);
 	vec4 texture_albedo = texture(texture_atlas, UV);
 	ALBEDO.rgb = texture_albedo.rgb;
-	ALPHA = mask.a * texture_albedo.a;
+	ALPHA = texture_albedo.a;
 }"

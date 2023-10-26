@@ -17,5 +17,11 @@ func _ready():
 	if _have_start_items:
 		_start_items = GameItems.get_start_items(_start_items_json_path);
 	_items.merge(_start_items, true);
+
+	var parent = get_parent();
+	if parent is Alive:
+		await parent.on_set_owner_id;
+		_container_owner = parent._owner_id;
+		container_id = container_id+'_'+parent._owner_id;
 	ContainersController.register_container(container_id, rows, columns, _items, _container_owner, _is_main_container_for_owner);
 	ContainersController.update(container_id, _items);

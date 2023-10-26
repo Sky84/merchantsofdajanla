@@ -3,7 +3,7 @@ extends Camera3D;
 @export var player: CharacterBody3D;
 @export var camera_speed: float;
 @export var terrain_collision_mask: int;
-@export var _grid_map: GridMapController;
+@export var _plane_map_node: GameGridMapController;
 var _offset: Vector3;
 var _camera_factor_speed: float = 10.0;
 
@@ -27,6 +27,6 @@ func _physics_process(delta):
 	var intersect_query = PhysicsRayQueryParameters3D.create(_ray_origin, _ray_end, terrain_collision_mask);
 	var intersection = _space_state.intersect_ray(intersect_query);
 	if not intersection.is_empty():
-		var local_pos = (intersection.position / _grid_map.cell_size).floor()
-		var _pos = _grid_map.map_to_local(local_pos);
+		var local_pos = (intersection.position / _plane_map_node.tile_size).floor()
+		var _pos = _plane_map_node.local_to_global(local_pos);
 		CameraEvents.on_ray_intersect_plane.emit(_pos, intersection.collider);
