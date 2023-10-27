@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlantResource" load_steps=4 format=3 uid="uid://ctwsff3qp361r"]
+
+[ext_resource type="Script" path="res://Map/Chunk/PlantResource.gd" id="1_djnlq"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_5twbt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is4tt"]
+atlas = ExtResource("2_5twbt")
+region = Rect2(160, 384, 64, 96)
+
+[resource]
+script = ExtResource("1_djnlq")
+tile_atlas_size = 32.0
+texture = SubResource("AtlasTexture_is4tt")

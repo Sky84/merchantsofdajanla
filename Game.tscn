@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=93 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -45,6 +45,7 @@
 [ext_resource type="Script" path="res://Map/GameMapController.gd" id="42_h5fgp"]
 [ext_resource type="PackedScene" uid="uid://cqqncupius4n0" path="res://Map/ChunkMap.tscn" id="43_refum"]
 [ext_resource type="PackedScene" uid="uid://i70n87fd5ptl" path="res://Map/GridMap.tscn" id="44_uvnk4"]
+[ext_resource type="PackedScene" uid="uid://xjipt1w1cwne" path="res://Map/Chunk/chunk.tscn" id="46_33u2o"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -1218,6 +1219,7 @@ autostart = true
 [node name="GameMapController" type="NavigationRegion3D" parent="." node_paths=PackedStringArray("_player", "_world_map")]
 navigation_mesh = SubResource("NavigationMesh_qt4bp")
 script = ExtResource("42_h5fgp")
+chunk_scene = ExtResource("46_33u2o")
 chunk_tile_size = 64
 _chunk_map = ExtResource("43_refum")
 _player = NodePath("../Player")

@@ -7,7 +7,7 @@ class_name MapMesh
 	get:
 		return false;
 	set(value):
-		_update_for_atlas();
+		update_for_atlas();
 
 @export var rotate_60: bool:
 	get:
@@ -30,7 +30,7 @@ var _texture: Texture;
 var _shader: Shader = preload("res://MapMeshShader.tres");
 
 func _ready():
-	_update_for_atlas();
+	update_for_atlas();
 
 func _on_texture_changed(new_texture: Texture):
 	mesh = PlaneMesh.new();
@@ -43,7 +43,7 @@ func _on_texture_changed(new_texture: Texture):
 	_material.albedo_texture = _texture;
 	set_surface_override_material(0, _material);
 
-func _update_for_atlas():
+func update_for_atlas():
 	if _texture is AtlasTexture:
 		var _material: ShaderMaterial = ShaderMaterial.new();
 		_material.shader = _shader;

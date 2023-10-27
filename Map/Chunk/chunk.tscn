@@ -1,0 +1,281 @@
+[gd_scene load_steps=41 format=3 uid="uid://xjipt1w1cwne"]
+
+[ext_resource type="Shader" uid="uid://co7puv05g5tp4" path="res://MapChunkShader.tres" id="1_k5a2c"]
+[ext_resource type="Script" path="res://Map/Chunk/ChunkController.gd" id="2_rvlwh"]
+[ext_resource type="Resource" uid="uid://c4etby3e7cjta" path="res://Map/Chunk/Resources/BigCactus.tres" id="3_1u8en"]
+[ext_resource type="Script" path="res://Map/Chunk/PoolController.gd" id="3_kmwan"]
+[ext_resource type="Resource" uid="uid://ctwsff3qp361r" path="res://Map/Chunk/Resources/Tree.tres" id="3_p5b6n"]
+[ext_resource type="Resource" uid="uid://cskej2g0m76in" path="res://Map/Chunk/Resources/BigTree.tres" id="4_ayohp"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="10_2sn2q"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xbiit"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b27fw"]
+render_priority = 0
+shader = ExtResource("1_k5a2c")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_se7bv"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_benvy"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y2xsj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0rvub"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6tcai"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xkunp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4d4hx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aaemk"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1kkcp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uipi1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nen6g"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3sykp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8aelf"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8alfu"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5og7h"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_25sos"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3c56f"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0mol0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l5t2o"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wq4hh"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p624d"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qegol"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d4som"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s5s7t"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qlihu"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2b4vq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_buiye"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_er0to"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qyvt7"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f8427"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_227qh"]
+
+[node name="Chunk" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_xbiit")
+surface_material_override/0 = SubResource("ShaderMaterial_b27fw")
+script = ExtResource("2_rvlwh")
+plants_scenes = Array[Resource("res://Map/Chunk/PlantResource.gd")]([ExtResource("3_1u8en"), ExtResource("4_ayohp"), ExtResource("3_p5b6n")])
+
+[node name="Plants" type="Node3D" parent="."]
+script = ExtResource("3_kmwan")
+
+[node name="MapMesh" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh2" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_se7bv")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh3" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_benvy")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh4" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_y2xsj")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh5" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_0rvub")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh6" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_6tcai")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh7" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_xkunp")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh8" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_4d4hx")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh9" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_aaemk")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh10" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_1kkcp")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh11" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_uipi1")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh12" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_nen6g")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh13" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_3sykp")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh14" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_8aelf")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh15" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_8alfu")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh16" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_5og7h")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh17" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_25sos")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh18" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_3c56f")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh19" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_0mol0")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh20" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_l5t2o")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh21" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_wq4hh")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh22" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_p624d")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh23" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qegol")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh24" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_d4som")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh25" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_s5s7t")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh26" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qlihu")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh27" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2b4vq")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh28" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_buiye")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh29" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_er0to")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh30" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyvt7")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh31" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_f8427")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="MapMesh32" type="MeshInstance3D" parent="Plants"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_227qh")
+script = ExtResource("10_2sn2q")
+rotate_60 = true
+
+[node name="Decorations" type="Node3D" parent="."]
+script = ExtResource("3_kmwan")

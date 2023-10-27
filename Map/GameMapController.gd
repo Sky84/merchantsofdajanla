@@ -1,14 +1,13 @@
 extends NavigationRegion3D
 class_name GameMapController
 
+@export var chunk_scene: PackedScene;
 @export var chunk_tile_size: int;
 @export var _chunk_map: PackedScene;
 @export var _player: Player;
 
 @export var _savage_chunk_noise: FastNoiseLite;
-@onready var _noise_texture = ImageTexture.create_from_image(
-		_savage_chunk_noise.get_image(chunk_tile_size * chunk_tile_size, chunk_tile_size * chunk_tile_size)
-	);
+var _noise_texture: ImageTexture;
 
 @export var _world_map: Node3D;
 
@@ -32,8 +31,7 @@ var _chunk_shader: Shader = preload("res://MapChunkShader.tres");
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize();
-	_savage_chunk_noise.seed = randf_range(0, 1000);
+	update_noise();
 	var tile_chunk_map: TileMap = _chunk_map.instantiate();
 	var player_chunk_position: Vector3i = _player.global_position.floor() / float(chunk_tile_size);
 	var chunks_xy_to_instantiate = [-2, -1, 0, 1, 2];
@@ -50,6 +48,13 @@ func _ready():
 			else:
 				_generate_savage_chunk_at(chunk_global_position);
 	bake_navigation_mesh();
+
+func update_noise() -> void:
+	randomize();
+	_savage_chunk_noise.seed = randf_range(0, 1000);
+	_noise_texture = ImageTexture.create_from_image(
+		_savage_chunk_noise.get_image(chunk_tile_size * chunk_tile_size, chunk_tile_size * chunk_tile_size)
+	);
 
 func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i):
 	var chunk_cell_type = _get_chunk_cell_type(chunk_cell_id);
@@ -68,20 +73,10 @@ func _reparent_items_by_parent(parent_name: String, chunk_global_position: Vecto
 		item.reparent(world_map_items);
 
 func _generate_savage_chunk_at(chunk_global_position: Vector3):
-	var mesh_instance = MeshInstance3D.new();
-	mesh_instance.mesh = PlaneMesh.new();
-	var material = ShaderMaterial.new();
-	material.shader = _chunk_shader;
-	var texture_tiles = Texture2DArray.new();
-	texture_tiles.create_from_images(
-		_tile_scene_ground_placeable.map(NodeUtils.get_image_from_texture)
-	);
-	material.set_shader_parameter('noise_texture', _noise_texture);
-	material.set_shader_parameter('textures_tiles', texture_tiles);
-	mesh_instance.set_surface_override_material(0, material);
-	_world_map.add_child(mesh_instance);
-	mesh_instance.mesh.size = Vector2(chunk_tile_size, chunk_tile_size);
-	mesh_instance.global_position = chunk_global_position;
+	var chunk_instance = chunk_scene.instantiate();
+	_world_map.add_child(chunk_instance);
+	chunk_instance.init_chunk(_tile_scene_ground_placeable, _savage_chunk_noise, _noise_texture);
+	chunk_instance.global_position = chunk_global_position;
 
 func add_interior_house(house_id: String, interior_scene: PackedScene) -> Node3D:
 	var interior_instance = interior_scene.instantiate();
@@ -95,7 +90,7 @@ func _get_chunk_cell_type(chunk_id: Vector2i):
 		var chunk_cell = chunk_city_cell_types[chunk_cell_type];
 		if chunk_id == chunk_cell.id:
 			return chunk_cell;
-			
+
 func _is_a_city(chunk_cell_id: Vector2i):
 	return _get_chunk_cell_type(chunk_cell_id) != null;
 
