@@ -25,16 +25,17 @@ func init_chunk(_tile_scene_ground_placeable: Array[Texture2D], _noise: FastNois
 func init_plants() -> void:
 	for tile_x in range(64):
 		for tile_z in range(64):
-			var plant_position = Vector3(global_position.x+tile_x, global_position.y, global_position.z+tile_z);
-			var noise_index: float = noise.get_noise_2d(plant_position.x, plant_position.z);
-			if roundi(noise_index * 10) % 2 != 0:
-				continue;
-			var index: int = noise_index * plants_scenes.size();
-			var plant_resource: PlantResource = plants_scenes[index];
-			var plant_instance: MapMesh = plants.add_instance(plant_position);
-			plant_instance.tile_atlas_size = plant_resource.tile_atlas_size;
-			plant_instance.texture = plant_resource.texture;
-			plant_instance.update_for_atlas();
+			var plant_position = Vector3(
+				global_position.x + (tile_x),
+				global_position.y,
+				global_position.z + (tile_z));
+			var noise_value: float = noise.get_noise_2d(plant_position.x, plant_position.z);
+			var plant_resource: Resource = plants_scenes[roundi(noise_value * plants_scenes.size())];
+			if plant_resource:
+				var plant: MapMesh = plants.move_instance(plant_position);
+				plant.texture = plant_resource.texture;
+				plant.tile_atlas_size = plant_resource.tile_atlas_size;
+				plant.update_for_atlas();
 
 func init_decorations() -> void:
 	pass
