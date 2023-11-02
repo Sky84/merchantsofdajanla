@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwtc8wk15ov3p"]
+[gd_scene load_steps=8 format=3 uid="uid://bwtc8wk15ov3p"]
 
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_yhuf2"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_ew55k"]
-[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_unuo0"]
+[ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="2_unuo0"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_v8mlc"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_b1t7e"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kk1v4"]
-transparency = 4
-albedo_texture = ExtResource("2_unuo0")
-uv1_scale = Vector3(0.1, 0.025, 1)
-uv1_offset = Vector3(0.2, 0.3, 0)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhknv"]
+render_priority = 0
+shader = ExtResource("1_yhuf2")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.2, 0.3)
+shader_parameter/texture_atlas = ExtResource("2_unuo0")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5mt4"]
 atlas = ExtResource("2_unuo0")
@@ -20,9 +21,9 @@ region = Rect2(64, 384, 32, 32)
 size = Vector3(1.15939, 0.01, 0.621337)
 
 [node name="BonesHead" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
-mesh = SubResource("PlaneMesh_v8mlc")
-surface_material_override/0 = SubResource("StandardMaterial3D_kk1v4")
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0.37758, 0)
+mesh = SubResource("PlaneMesh_b1t7e")
+surface_material_override/0 = SubResource("ShaderMaterial_xhknv")
 script = ExtResource("2_ew55k")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_l5mt4")

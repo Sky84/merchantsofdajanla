@@ -1,25 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5q0d1fliv5ax"]
+[gd_scene load_steps=7 format=3 uid="uid://c5q0d1fliv5ax"]
 
-[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="1_u2c5d"]
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_0ywri"]
+[ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="1_u2c5d"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_jvkrv"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_8dx4x"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_af8e7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mfrv"]
-transparency = 4
-albedo_texture = ExtResource("1_u2c5d")
-uv1_scale = Vector3(0.1, 0.025, 1)
-uv1_offset = Vector3(0.1, 0.325, 0)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dh8in"]
+render_priority = 0
+shader = ExtResource("1_0ywri")
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.1, 0.325)
+shader_parameter/texture_atlas = ExtResource("1_u2c5d")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nqmti"]
 atlas = ExtResource("1_u2c5d")
 region = Rect2(32, 416, 32, 32)
 
 [node name="RedGrass" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
-mesh = SubResource("PlaneMesh_8dx4x")
-surface_material_override/0 = SubResource("StandardMaterial3D_3mfrv")
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0.843746, 0)
+mesh = SubResource("PlaneMesh_af8e7")
+surface_material_override/0 = SubResource("ShaderMaterial_dh8in")
 script = ExtResource("2_jvkrv")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_nqmti")

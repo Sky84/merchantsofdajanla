@@ -1,12 +1,19 @@
-[gd_scene load_steps=41 format=3 uid="uid://xjipt1w1cwne"]
+[gd_scene load_steps=48 format=3 uid="uid://xjipt1w1cwne"]
 
 [ext_resource type="Shader" uid="uid://co7puv05g5tp4" path="res://MapChunkShader.tres" id="1_k5a2c"]
 [ext_resource type="Script" path="res://Map/Chunk/ChunkController.gd" id="2_rvlwh"]
 [ext_resource type="Resource" uid="uid://c4etby3e7cjta" path="res://Map/Chunk/Resources/BigCactus.tres" id="3_1u8en"]
 [ext_resource type="Script" path="res://Map/Chunk/PoolController.gd" id="3_kmwan"]
 [ext_resource type="Resource" uid="uid://ctwsff3qp361r" path="res://Map/Chunk/Resources/Tree.tres" id="3_p5b6n"]
+[ext_resource type="Resource" uid="uid://dns3eg52awcbs" path="res://Map/Chunk/Resources/GrassDry.tres" id="3_wlbdk"]
+[ext_resource type="Resource" uid="uid://dkjrlmuef5gtt" path="res://Map/Chunk/Resources/RedGrass.tres" id="4_4r73l"]
 [ext_resource type="Resource" uid="uid://cskej2g0m76in" path="res://Map/Chunk/Resources/BigTree.tres" id="4_ayohp"]
+[ext_resource type="Resource" uid="uid://0mt2hy2kyl6q" path="res://Map/Chunk/Resources/YellowGrass.tres" id="5_7fsl1"]
+[ext_resource type="Resource" uid="uid://cnskpkx73md56" path="res://Map/Chunk/Resources/Rock1.tres" id="6_b2rg8"]
+[ext_resource type="Resource" uid="uid://b3x5ydal6c3b8" path="res://Map/Chunk/Resources/Rock2.tres" id="8_b8tcx"]
+[ext_resource type="Resource" uid="uid://b7ltbf2d6c8bs" path="res://Map/Chunk/Resources/LittleCactus.tres" id="8_gr88n"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="10_2sn2q"]
+[ext_resource type="Resource" uid="uid://dpmoc07tr3ihh" path="res://Map/Chunk/Resources/GreenGrass.tres" id="10_kb4wm"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xbiit"]
 size = Vector2(64, 64)
@@ -82,7 +89,7 @@ shader = ExtResource("1_k5a2c")
 mesh = SubResource("PlaneMesh_xbiit")
 surface_material_override/0 = SubResource("ShaderMaterial_b27fw")
 script = ExtResource("2_rvlwh")
-plants_scenes = Array[Resource("res://Map/Chunk/PlantResource.gd")]([null, ExtResource("3_1u8en"), null, ExtResource("4_ayohp"), null, ExtResource("3_p5b6n")])
+plants_scenes = Array[Resource("res://Map/Chunk/PlantResource.gd")]([ExtResource("3_wlbdk"), ExtResource("4_4r73l"), ExtResource("5_7fsl1"), ExtResource("6_b2rg8"), ExtResource("3_1u8en"), ExtResource("8_gr88n"), ExtResource("8_b8tcx"), ExtResource("10_kb4wm"), null, null, null, null, ExtResource("3_p5b6n"), null, ExtResource("4_ayohp")])
 
 [node name="Plants" type="Node3D" parent="."]
 script = ExtResource("3_kmwan")

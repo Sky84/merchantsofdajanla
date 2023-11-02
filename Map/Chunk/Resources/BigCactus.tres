@@ -13,3 +13,4 @@ region = Rect2(224, 416, 32, 64)
 script = ExtResource("1_sb85q")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_26o6n")
+origin_y = 1.716

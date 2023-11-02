@@ -1,19 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb5d8n5plndqv"]
+[gd_scene load_steps=7 format=3 uid="uid://bb5d8n5plndqv"]
 
 [ext_resource type="PackedScene" uid="uid://csr6yw78n2fxe" path="res://Map/Objects/Tree.tscn" id="1_unydj"]
-[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_1l2au"]
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="2_of6ug"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_e7nqr"]
-size = Vector2(4, 8)
+[sub_resource type="PlaneMesh" id="PlaneMesh_p0x6e"]
+size = Vector2(8, 16)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jwte"]
-transparency = 4
-albedo_texture = ExtResource("2_1l2au")
-uv1_scale = Vector3(0.2, 0.1, 1)
-uv1_offset = Vector3(0, 0.575, 0)
-texture_filter = 0
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r2im4"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y81sc"]
+render_priority = 0
+shader = ExtResource("2_of6ug")
+shader_parameter/uv1_scale = Vector2(0.2, 0.1)
+shader_parameter/uv1_offset = Vector2(0.2, 0.575)
+shader_parameter/texture_atlas = SubResource("CompressedTexture2D_r2im4")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbeti"]
+atlas = SubResource("CompressedTexture2D_r2im4")
+region = Rect2(64, 736, 64, 128)
 
 [node name="BigTree" instance=ExtResource("1_unydj")]
-transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 3.42, 0)
-mesh = SubResource("PlaneMesh_e7nqr")
-surface_material_override/0 = SubResource("StandardMaterial3D_0jwte")
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0.638624, 6.96289, 0)
+mesh = SubResource("PlaneMesh_p0x6e")
+surface_material_override/0 = SubResource("ShaderMaterial_y81sc")
+texture = SubResource("AtlasTexture_bbeti")

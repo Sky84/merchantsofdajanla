@@ -11,5 +11,6 @@ region = Rect2(64, 736, 64, 128)
 
 [resource]
 script = ExtResource("1_ggrhf")
-tile_atlas_size = 32.0
+tile_atlas_size = 8.0
 texture = SubResource("AtlasTexture_dcbgt")
+origin_y = 6.963

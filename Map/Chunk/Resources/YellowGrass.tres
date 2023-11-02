@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PlantResource" load_steps=4 format=3 uid="uid://0mt2hy2kyl6q"]
+
+[ext_resource type="Script" path="res://Map/Chunk/PlantResource.gd" id="1_5oo4o"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s2qnc"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njcgf"]
+atlas = SubResource("CompressedTexture2D_s2qnc")
+region = Rect2(32, 128, 32, 32)
+
+[resource]
+script = ExtResource("1_5oo4o")
+tile_atlas_size = 16.0
+texture = SubResource("AtlasTexture_njcgf")
+origin_y = 0.844

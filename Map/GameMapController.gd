@@ -75,8 +75,8 @@ func _reparent_items_by_parent(parent_name: String, chunk_global_position: Vecto
 func _generate_savage_chunk_at(chunk_global_position: Vector3):
 	var chunk_instance = chunk_scene.instantiate();
 	_world_map.add_child(chunk_instance);
-	chunk_instance.init_chunk(_tile_scene_ground_placeable, _savage_chunk_noise, _noise_texture);
 	chunk_instance.global_position = chunk_global_position;
+	chunk_instance.init_chunk(_tile_scene_ground_placeable, _savage_chunk_noise, _noise_texture);
 
 func add_interior_house(house_id: String, interior_scene: PackedScene) -> Node3D:
 	var interior_instance = interior_scene.instantiate();

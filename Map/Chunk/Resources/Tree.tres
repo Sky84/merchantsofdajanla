@@ -11,5 +11,6 @@ region = Rect2(160, 384, 64, 96)
 
 [resource]
 script = ExtResource("1_djnlq")
-tile_atlas_size = 32.0
+tile_atlas_size = 8.0
 texture = SubResource("AtlasTexture_vc7s5")
+origin_y = 5.157
