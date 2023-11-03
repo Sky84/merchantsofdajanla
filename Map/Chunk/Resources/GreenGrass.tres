@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="PlantResource" load_steps=4 format=3 uid="uid://dpmoc07tr3ihh"]
 
 [ext_resource type="Script" path="res://Map/Chunk/PlantResource.gd" id="1_i3vjw"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r3ba8"]
-load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.s3tc.ctex"
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_gk0tp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hafkk"]
-atlas = SubResource("CompressedTexture2D_r3ba8")
+atlas = ExtResource("2_gk0tp")
 region = Rect2(32, 448, 32, 32)
 
 [resource]

@@ -6,3 +6,5 @@ class_name PlantResource
 @export var texture: AtlasTexture;
 
 @export var origin_y: float = 0;
+
+@export var simulate_wind: bool = false;

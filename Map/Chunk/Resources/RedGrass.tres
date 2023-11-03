@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PlantResource" load_steps=4 format=3 uid="uid://dkjrlmuef5gtt"]
 
 [ext_resource type="Script" path="res://Map/Chunk/PlantResource.gd" id="1_hphfd"]
-[ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="2_x8i4y"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_x8i4y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2q03e"]
 atlas = ExtResource("2_x8i4y")
@@ -12,3 +12,4 @@ script = ExtResource("1_hphfd")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_2q03e")
 origin_y = 0.844
+simulate_wind = true

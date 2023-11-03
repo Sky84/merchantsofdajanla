@@ -2,6 +2,7 @@
 extends MeshInstance3D
 class_name MapMesh
 
+@export var simulate_wind: bool = false;
 @export var tile_atlas_size: float = 32;
 @export var init_atlas: bool:
 	get:
@@ -54,6 +55,7 @@ func update_for_atlas():
 		_material.set_shader_parameter('texture_atlas', _texture.atlas);
 		_material.set_shader_parameter('uv1_offset', uv1_offset);
 		_material.set_shader_parameter('uv1_scale', uv1_scale);
+		_material.set_shader_parameter('simulate_wind', simulate_wind);
 		mesh.size.x = tile_number_width;
 		mesh.size.y = tile_number_height;
 		set_surface_override_material(0, _material);

@@ -3,12 +3,19 @@
 [resource]
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,depth_prepass_alpha;
+uniform bool simulate_wind;
 uniform sampler2D texture_atlas : source_color,filter_nearest;
 uniform vec2 uv1_scale;
 uniform vec2 uv1_offset;
 
 void vertex() {
+	if(simulate_wind){
+		NORMAL = vec3(0.0, 1.0, 0.0);
+		VERTEX.x += sin(NODE_POSITION_WORLD.x + TIME * 1.25 + UV.y) * ( 1.0 - UV.y) * 0.2;
+		VERTEX.z += cos(NODE_POSITION_WORLD.z + TIME * 0.45 + UV.y) * ( 1.0 - UV.y) * 0.15;
+	}
     UV = UV * uv1_scale.xy + uv1_offset.xy;
+	
 }
 
 void fragment() {

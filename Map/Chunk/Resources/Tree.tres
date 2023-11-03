@@ -14,3 +14,4 @@ script = ExtResource("1_djnlq")
 tile_atlas_size = 8.0
 texture = SubResource("AtlasTexture_vc7s5")
 origin_y = 5.157
+simulate_wind = true

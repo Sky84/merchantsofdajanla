@@ -37,6 +37,7 @@ func init_plants() -> void:
 				plant.texture = plant_resource.texture;
 				plant.tile_atlas_size = plant_resource.tile_atlas_size;
 				plant.position.y = plant_resource.origin_y;
+				plant.simulate_wind = plant_resource.simulate_wind;
 				plant.rotation_degrees.x = 60;
 				plant.scale.x = -1 if randf() > 0.5 else 1;
 				plant.update_for_atlas();
