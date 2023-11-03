@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=112 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -10,6 +10,7 @@
 [ext_resource type="SpriteFrames" uid="uid://b116yvdld6l6t" path="res://Player/SpriteFrames/Skins_0.tres" id="8_0gosr"]
 [ext_resource type="Script" path="res://UI/UIController.gd" id="9_pdga0"]
 [ext_resource type="Script" path="res://Containers/InventoryView.gd" id="10_5jpwh"]
+[ext_resource type="Shader" path="res://Wiggle.gdshader" id="10_lb8ps"]
 [ext_resource type="PackedScene" uid="uid://c40ngw2hn56t4" path="res://Containers/ItemButton/ItemButton.tscn" id="11_gbh0b"]
 [ext_resource type="PackedScene" uid="uid://dhvoo0yx808v7" path="res://Containers/SlotItemButton/SlotItemButton.tscn" id="12_5wqja"]
 [ext_resource type="Texture2D" uid="uid://y2d5gs7ua10o" path="res://Containers/Sprites/overboxinventaire.png" id="13_ppbmy"]
@@ -319,6 +320,22 @@ radius = 2.56796
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_7ji7o"]
 size = Vector3(180, 20, 150)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bha5a"]
+frequency = 0.1918
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qh26p"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_bha5a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xq3dq"]
+shader = ExtResource("10_lb8ps")
+shader_parameter/strength = 1.0
+shader_parameter/uv_scaling = 0.3
+shader_parameter/movement_direction = Vector2(0.5, 2)
+shader_parameter/movement_speed = 0.3
+shader_parameter/NOISE_TEXTURE = SubResource("NoiseTexture2D_qh26p")
+
 [sub_resource type="Gradient" id="Gradient_m7jcj"]
 offsets = PackedFloat32Array(0, 0.0187668)
 colors = PackedColorArray(0, 0, 0, 1, 0.0196078, 0.0196078, 0.0196078, 0.317647)
@@ -378,19 +395,68 @@ load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.cte
 atlas = SubResource("CompressedTexture2D_7ehpe")
 region = Rect2(32, 256, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0s77r"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8nwnx"]
 load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1pdl"]
-atlas = SubResource("CompressedTexture2D_0s77r")
-region = Rect2(32, 320, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajr4p"]
+atlas = SubResource("CompressedTexture2D_8nwnx")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s18vg"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2y5a"]
+atlas = SubResource("CompressedTexture2D_s18vg")
+region = Rect2(128, 320, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ef05q"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi860"]
+atlas = SubResource("CompressedTexture2D_ef05q")
+region = Rect2(0, 352, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e6mrv"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgdis"]
+atlas = SubResource("CompressedTexture2D_e6mrv")
+region = Rect2(0, 352, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1quqd"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt6jy"]
+atlas = SubResource("CompressedTexture2D_1quqd")
+region = Rect2(224, 320, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_grysw"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfxyi"]
+atlas = SubResource("CompressedTexture2D_grysw")
+region = Rect2(224, 352, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g4y17"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hknh"]
+atlas = SubResource("CompressedTexture2D_g4y17")
+region = Rect2(128, 192, 32, 32)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lrlds"]
 load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m763q"]
 atlas = SubResource("CompressedTexture2D_lrlds")
-region = Rect2(32, 192, 32, 32)
+region = Rect2(192, 192, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tc85n"]
+load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvqt5"]
+atlas = SubResource("CompressedTexture2D_tc85n")
+region = Rect2(224, 192, 32, 32)
 
 [node name="Game" type="Node3D"]
 
@@ -506,6 +572,13 @@ occluder = SubResource("BoxOccluder3D_7ji7o")
 unique_name_in_owner = true
 script = ExtResource("9_pdga0")
 mouse_targets_node_to_exclude = Array[NodePath]([NodePath("PlayerMouseAction")])
+
+[node name="WiggleEffect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_xq3dq")
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 149.0
+grow_horizontal = 2
 
 [node name="Inventory" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("items_container", "_items_container")]
 visible = false
@@ -1228,7 +1301,7 @@ _chunk_map = ExtResource("43_refum")
 _player = NodePath("../Player")
 _savage_chunk_noise = SubResource("FastNoiseLite_33ooo")
 _world_map = NodePath("GridMap")
-_tile_scene_ground_placeable = Array[Texture2D]([SubResource("AtlasTexture_6ocj3"), SubResource("AtlasTexture_e1pdl"), SubResource("AtlasTexture_e1pdl"), SubResource("AtlasTexture_m763q")])
+_tile_scene_ground_placeable = Array[Texture2D]([SubResource("AtlasTexture_6ocj3"), SubResource("AtlasTexture_ajr4p"), SubResource("AtlasTexture_c2y5a"), SubResource("AtlasTexture_wi860"), SubResource("AtlasTexture_bgdis"), SubResource("AtlasTexture_kt6jy"), SubResource("AtlasTexture_sfxyi"), SubResource("AtlasTexture_5hknh"), SubResource("AtlasTexture_m763q"), SubResource("AtlasTexture_pvqt5")])
 
 [node name="GridMap" parent="GameMapController" instance=ExtResource("44_uvnk4")]
 metadata/_editor_floor_ = Vector3(0, 1000, 0)

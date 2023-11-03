@@ -18,6 +18,7 @@ func init_chunk(_tile_scene_ground_placeable: Array[Texture2D], _noise: FastNois
 	);
 	var material = get_surface_override_material(0);
 	material.set_shader_parameter('noise_texture', _noise_texture);
+	material.set_shader_parameter('tile_type_count', _tile_scene_ground_placeable.size());
 	material.set_shader_parameter('textures_tiles', texture_tiles);
 	init_plants();
 	init_decorations();

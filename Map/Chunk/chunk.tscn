@@ -22,6 +22,7 @@ center_offset = Vector3(32, 0, 32)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b27fw"]
 render_priority = 0
 shader = ExtResource("1_k5a2c")
+shader_parameter/tile_type_count = null
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_se7bv"]
 

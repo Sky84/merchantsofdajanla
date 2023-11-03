@@ -4,6 +4,7 @@
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,depth_prepass_alpha;
 
+uniform int tile_type_count;
 uniform sampler2D noise_texture: filter_nearest;
 uniform sampler2DArray textures_tiles: source_color,filter_nearest;
 varying vec3 uv1_triplanar_pos;
@@ -23,7 +24,7 @@ void fragment() {
     // Coordonnées de texture du pixel actuel
     vec2 tile = UV * 32.;
     
-	float noise_index = floor(triplanar_texture(noise_texture, uv1_triplanar_pos / 64.).r * 4.);
+	float noise_index = floor(triplanar_texture(noise_texture, uv1_triplanar_pos / 64.).r * float(tile_type_count));
     
     // Obtenez la texture correspondant à la valeur du tableau chunk_tiles
     vec4 texture_color = texture(textures_tiles, vec3(tile, noise_index));
