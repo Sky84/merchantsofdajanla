@@ -11,7 +11,7 @@ varying vec3 uv1_triplanar_pos;
 varying vec3 uv1_power_normal;
 
 vec3 debug(vec2 tile, vec4 texture_color) {
-	if (mod(tile.x*32., 32.) <= 0.2 || mod(tile.y*32., 32.) <= 0.2) {
+	if (mod(tile.x*32., 32.) < 1. || mod(tile.y*32., 32.) <= 1.) {
 		return vec3(1.0,0.,0.);
 	}
 	return texture_color.rgb;
