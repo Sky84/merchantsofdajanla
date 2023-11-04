@@ -4,11 +4,12 @@
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_ew55k"]
 [ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="2_unuo0"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_b1t7e"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_613ol"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhknv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_un7qy"]
 render_priority = 0
 shader = ExtResource("1_yhuf2")
+shader_parameter/simulate_wind = false
 shader_parameter/uv1_scale = Vector2(0.1, 0.025)
 shader_parameter/uv1_offset = Vector2(0.2, 0.3)
 shader_parameter/texture_atlas = ExtResource("2_unuo0")
@@ -22,8 +23,8 @@ size = Vector3(1.15939, 0.01, 0.621337)
 
 [node name="BonesHead" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0.37758, 0)
-mesh = SubResource("PlaneMesh_b1t7e")
-surface_material_override/0 = SubResource("ShaderMaterial_xhknv")
+mesh = SubResource("PlaneMesh_613ol")
+surface_material_override/0 = SubResource("ShaderMaterial_un7qy")
 script = ExtResource("2_ew55k")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_l5mt4")
