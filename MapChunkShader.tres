@@ -21,14 +21,13 @@ vec4 triplanar_texture(sampler2D p_sampler,vec3 p_triplanar_pos) {
 }
 
 void fragment() {
-    // Coordonnées de texture du pixel actuel
     vec2 tile = UV * 32.;
     
-	float noise_index = floor(triplanar_texture(noise_texture, uv1_triplanar_pos / 64.).r * float(tile_type_count));
+	float current_noise_value = floor(triplanar_texture(noise_texture, uv1_triplanar_pos / 64.).r * float(tile_type_count));
     
     // Obtenez la texture correspondant à la valeur du tableau chunk_tiles
-    vec4 texture_color = texture(textures_tiles, vec3(tile, noise_index));
-	
+    vec4 texture_color = texture(textures_tiles, vec3(tile, current_noise_value));
+
 	ALBEDO = texture_color.rgb;
 	ALPHA = texture_color.a;
 }

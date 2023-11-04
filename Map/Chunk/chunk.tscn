@@ -99,7 +99,6 @@ script = ExtResource("3_kmwan")
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh2" type="MeshInstance3D" parent="Plants"]
@@ -107,7 +106,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_se7bv")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh3" type="MeshInstance3D" parent="Plants"]
@@ -115,7 +113,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 2.77139, 3
 visible = false
 mesh = SubResource("PlaneMesh_benvy")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh4" type="MeshInstance3D" parent="Plants"]
@@ -123,7 +120,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_y2xsj")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh5" type="MeshInstance3D" parent="Plants"]
@@ -131,7 +127,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_0rvub")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh6" type="MeshInstance3D" parent="Plants"]
@@ -139,7 +134,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_6tcai")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh7" type="MeshInstance3D" parent="Plants"]
@@ -147,7 +141,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_xkunp")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh8" type="MeshInstance3D" parent="Plants"]
@@ -155,7 +148,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_4d4hx")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh9" type="MeshInstance3D" parent="Plants"]
@@ -163,7 +155,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_aaemk")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh10" type="MeshInstance3D" parent="Plants"]
@@ -171,7 +162,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_1kkcp")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh11" type="MeshInstance3D" parent="Plants"]
@@ -179,7 +169,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_uipi1")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh12" type="MeshInstance3D" parent="Plants"]
@@ -187,7 +176,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_nen6g")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh13" type="MeshInstance3D" parent="Plants"]
@@ -195,7 +183,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_3sykp")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh14" type="MeshInstance3D" parent="Plants"]
@@ -203,7 +190,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_8aelf")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh15" type="MeshInstance3D" parent="Plants"]
@@ -211,7 +197,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_8alfu")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh16" type="MeshInstance3D" parent="Plants"]
@@ -219,7 +204,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_5og7h")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh17" type="MeshInstance3D" parent="Plants"]
@@ -227,7 +211,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_25sos")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh18" type="MeshInstance3D" parent="Plants"]
@@ -235,7 +218,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_3c56f")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh19" type="MeshInstance3D" parent="Plants"]
@@ -243,7 +225,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_0mol0")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh20" type="MeshInstance3D" parent="Plants"]
@@ -251,7 +232,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_l5t2o")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh21" type="MeshInstance3D" parent="Plants"]
@@ -259,7 +239,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_wq4hh")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh22" type="MeshInstance3D" parent="Plants"]
@@ -267,7 +246,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_p624d")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh23" type="MeshInstance3D" parent="Plants"]
@@ -275,7 +253,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_qegol")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh24" type="MeshInstance3D" parent="Plants"]
@@ -283,7 +260,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_d4som")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh25" type="MeshInstance3D" parent="Plants"]
@@ -291,7 +267,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_s5s7t")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh26" type="MeshInstance3D" parent="Plants"]
@@ -299,7 +274,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_qlihu")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh27" type="MeshInstance3D" parent="Plants"]
@@ -307,7 +281,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_2b4vq")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh28" type="MeshInstance3D" parent="Plants"]
@@ -315,7 +288,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_buiye")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh29" type="MeshInstance3D" parent="Plants"]
@@ -323,7 +295,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_er0to")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh30" type="MeshInstance3D" parent="Plants"]
@@ -331,7 +302,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_qyvt7")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh31" type="MeshInstance3D" parent="Plants"]
@@ -339,7 +309,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_f8427")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="MapMesh32" type="MeshInstance3D" parent="Plants"]
@@ -347,7 +316,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_227qh")
 script = ExtResource("10_2sn2q")
-simulate_wind = null
 rotate_60 = true
 
 [node name="Decorations" type="Node3D" parent="."]
