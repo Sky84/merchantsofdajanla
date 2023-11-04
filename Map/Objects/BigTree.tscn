@@ -4,10 +4,10 @@
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="2_of6ug"]
 [ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="3_kmdic"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_dfcoc"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_eakav"]
 size = Vector2(8, 16)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vlo0d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drlku"]
 render_priority = 0
 shader = ExtResource("2_of6ug")
 shader_parameter/simulate_wind = false
@@ -21,6 +21,6 @@ region = Rect2(64, 736, 64, 128)
 
 [node name="BigTree" instance=ExtResource("1_unydj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0.638624, 6.96289, 0)
-mesh = SubResource("PlaneMesh_dfcoc")
-surface_material_override/0 = SubResource("ShaderMaterial_vlo0d")
+mesh = SubResource("PlaneMesh_eakav")
+surface_material_override/0 = SubResource("ShaderMaterial_drlku")
 texture = SubResource("AtlasTexture_bbeti")
