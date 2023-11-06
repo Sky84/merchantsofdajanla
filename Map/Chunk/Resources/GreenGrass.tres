@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PlantResource" load_steps=4 format=3 uid="uid://dpmoc07tr3ihh"]
 
 [ext_resource type="Script" path="res://Map/Chunk/PlantResource.gd" id="1_i3vjw"]
-[ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="2_gk0tp"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_gk0tp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hafkk"]
 atlas = ExtResource("2_gk0tp")

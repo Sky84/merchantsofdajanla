@@ -29,24 +29,27 @@ float get_noise_value_by_coord(vec3 coord) {
 vec4 debug(vec2 tile, vec4 texture_color) {
 	vec2 global_tile_pixel = tile * 32.;
 	vec2 normalized_tile_pixel = mod(global_tile_pixel, 32.) / 32.;
-	float border = 0.01 * get_noise_value_by_coord(vec3(tile.x+normalized_tile_pixel.x, 0.,tile.y+ normalized_tile_pixel.y)/32. );
-	float from_left = float(normalized_tile_pixel.x-0.1 < border);
-	float from_right = float(normalized_tile_pixel.x+0.1 > 1. - border);
-	float from_up = float(normalized_tile_pixel.y-0.1 < border);
-	float from_down = float(normalized_tile_pixel.y+0.1 > 1. - border);
-	bool in_border_limit = (from_left + from_right + from_up + from_down) > 0.;
+	float border = 0.02 * get_noise_value_by_coord(vec3(tile.x+normalized_tile_pixel.x, 0.,tile.y+ normalized_tile_pixel.y)/32. );
+	bool from_left = normalized_tile_pixel.x < border;
+	bool from_right = normalized_tile_pixel.x > 1. - border;
+	bool from_up = normalized_tile_pixel.y < border;
+	bool from_down = normalized_tile_pixel.y > 1. - border;
+	bool in_border_limit = from_left || from_right || from_up || from_down;
 	float current_noise_value = get_noise_value_by_coord(uv1_triplanar_pos);
-	for(float x = -1.; x < 1.; x++){
-		for(float z = -1.; z < 1.; z++){
-			vec3 neighboor_triplanar_pos = vec3(x/8192., 0., z/8192.);
+	for(float x = -1.; x <= 1.; x++){
+		for(float z = -1.; z <= 1.; z++){
+//			if(abs(x) == 1. && abs(z) == 1.){
+//				continue;
+//			}
+			vec3 neighboor_triplanar_relative_pos = vec3(x/8192., 0., z/8192.);
 			vec3 neighbor_coord = vec3(
-				uv1_triplanar_pos.x+(neighboor_triplanar_pos.x),
+				uv1_triplanar_pos.x+(neighboor_triplanar_relative_pos.x),
 				0.,
-				uv1_triplanar_pos.z+(neighboor_triplanar_pos.z));
+				uv1_triplanar_pos.z+(neighboor_triplanar_relative_pos.z));
 			float neighboor_noise_value = get_noise_value_by_coord(neighbor_coord);
-			if (neighboor_noise_value > current_noise_value && in_border_limit) {
+			if (current_noise_value < neighboor_noise_value && in_border_limit) {
 				texture_color.rgb = texture(textures_tiles, vec3(global_tile_pixel, neighboor_noise_value)).rgb;
-				break;
+				texture_color.rgb = vec3(1., 0., 0.);
 			}
 		}
 	}
