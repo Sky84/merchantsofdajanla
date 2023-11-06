@@ -4,10 +4,10 @@
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_oj70m"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_vsyds"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_6skn6"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_6pv1k"]
 size = Vector2(8, 12)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vvrr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddm5p"]
 render_priority = 0
 shader = ExtResource("1_oj70m")
 shader_parameter/simulate_wind = false
@@ -24,8 +24,8 @@ size = Vector3(1.99975, 0.01, 1.98669)
 
 [node name="Tree" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 5.15716, 0)
-mesh = SubResource("PlaneMesh_6skn6")
-surface_material_override/0 = SubResource("ShaderMaterial_0vvrr")
+mesh = SubResource("PlaneMesh_6pv1k")
+surface_material_override/0 = SubResource("ShaderMaterial_ddm5p")
 script = ExtResource("2_vsyds")
 tile_atlas_size = 8.0
 texture = SubResource("AtlasTexture_4f00s")
