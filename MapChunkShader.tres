@@ -10,12 +10,7 @@ uniform sampler2DArray textures_tiles: source_color,filter_nearest;
 varying vec3 uv1_triplanar_pos;
 varying vec3 uv1_power_normal;
 
-
-void vertex() {
-	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0f)).xyz;
-	// Normalisation des coordonnées triplanar pour des tuiles de 32 pixels
-    uv1_triplanar_pos /= vec3(8192.0, 1.0, 8192.0);
-}
+const float tile_size = 32.;
 
 vec4 triplanar_texture(sampler2D p_sampler,vec3 p_triplanar_pos) {
 	vec4 samp = texture(p_sampler, p_triplanar_pos.xz );
@@ -26,30 +21,56 @@ float get_noise_value_by_coord(vec3 coord) {
 	return floor(triplanar_texture(noise_texture, coord).r * float(tile_type_count));
 }
 
+float get_weight_by_noise(float noise){
+	float dirt = 2.;
+	float sand = 7.;
+	float grass = 10.;
+	if (noise < dirt) {
+		return dirt;
+	}
+	else if (noise < sand) {
+		return sand;
+	}
+	else if (noise < grass) {
+		return grass;
+	}
+	return 0.;
+}
+
+void vertex() {
+	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0f)).xyz;
+	// Normalisation des coordonnées triplanar pour des tuiles de 32 pixels
+    uv1_triplanar_pos /= vec3(8192.0, 1.0, 8192.0);
+}
+
 vec4 debug(vec2 tile, vec4 texture_color) {
-	vec2 global_tile_pixel = tile * 32.;
-	vec2 normalized_tile_pixel = mod(global_tile_pixel, 32.) / 32.;
-	float border = 0.02 * get_noise_value_by_coord(vec3(tile.x+normalized_tile_pixel.x, 0.,tile.y+ normalized_tile_pixel.y)/32. );
+	vec2 global_tile_pixel = tile * tile_size;
+	vec2 normalized_tile_pixel = mod(global_tile_pixel, tile_size) / tile_size;
+	float border = 0.04 * get_noise_value_by_coord(floor(vec3(tile.x+normalized_tile_pixel.x, 0.,tile.y+ normalized_tile_pixel.y) * 10.)/tile_size );
+
 	bool from_left = normalized_tile_pixel.x < border;
 	bool from_right = normalized_tile_pixel.x > 1. - border;
 	bool from_up = normalized_tile_pixel.y < border;
 	bool from_down = normalized_tile_pixel.y > 1. - border;
 	bool in_border_limit = from_left || from_right || from_up || from_down;
 	float current_noise_value = get_noise_value_by_coord(uv1_triplanar_pos);
+	float current_weight = get_weight_by_noise(current_noise_value);
 	for(float x = -1.; x <= 1.; x++){
 		for(float z = -1.; z <= 1.; z++){
-//			if(abs(x) == 1. && abs(z) == 1.){
-//				continue;
-//			}
 			vec3 neighboor_triplanar_relative_pos = vec3(x/8192., 0., z/8192.);
 			vec3 neighbor_coord = vec3(
 				uv1_triplanar_pos.x+(neighboor_triplanar_relative_pos.x),
 				0.,
 				uv1_triplanar_pos.z+(neighboor_triplanar_relative_pos.z));
 			float neighboor_noise_value = get_noise_value_by_coord(neighbor_coord);
-			if (current_noise_value < neighboor_noise_value && in_border_limit) {
-				texture_color.rgb = texture(textures_tiles, vec3(global_tile_pixel, neighboor_noise_value)).rgb;
-				texture_color.rgb = vec3(1., 0., 0.);
+			float neighboor_weight = get_weight_by_noise(neighboor_noise_value);
+			if (current_weight < neighboor_weight && in_border_limit) {
+				if (from_up && x == 0. && z == -1.
+					|| from_down && x == 0. && z == 1.
+					|| from_left && x == -1. && z == 0.
+					|| from_right && x == 1. && z == 0.) {
+						texture_color.rgb = texture(textures_tiles, vec3(tile, neighboor_noise_value)).rgb;
+				}
 			}
 		}
 	}
@@ -57,7 +78,7 @@ vec4 debug(vec2 tile, vec4 texture_color) {
 }
 
 void fragment() {
-    vec2 tile = UV * 32.;
+    vec2 tile = UV * tile_size;
     
 	float current_noise_value = get_noise_value_by_coord(uv1_triplanar_pos);
     // Obtenez la texture correspondant à la valeur du tableau chunk_tiles
