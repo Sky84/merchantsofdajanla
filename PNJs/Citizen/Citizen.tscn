@@ -285,7 +285,6 @@ parameters/conditions/isWalking = false
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("2_qrufn")
-_have_start_items = true
 _container_owner = "citizen"
 container_id = "citizen_inventory"
 rows = 4
@@ -366,6 +365,7 @@ shape = SubResource("SphereShape3D_deg7w")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 2.0
 avoidance_enabled = true
+debug_enabled = true
 
 [connection signal="body_entered" from="ObjectDetector" to="." method="_on_object_detector_body_entered"]
 [connection signal="body_exited" from="ObjectDetector" to="." method="_on_object_detector_body_exited"]

@@ -27,7 +27,7 @@ func _ready() -> void:
 	if inactive:
 		return;
 	super();
-#	alive_status.hunger.value = 0;
+	alive_status.hunger.value = 0;
 	_check_actions();
 
 func _handle_movement():
