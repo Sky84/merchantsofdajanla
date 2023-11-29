@@ -34,13 +34,14 @@ float get_weight_by_noise(float noise){
 	else if (noise < grass) {
 		return grass;
 	}
-	return 0.;
+	return noise;
 }
 
 void vertex() {
-	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0f)).xyz;
-	// Normalisation des coordonnées triplanar pour des tuiles de 32 pixels
-    uv1_triplanar_pos /= vec3(8192.0, 1.0, 8192.0);
+	float texture_size = float(textureSize(noise_texture, 0).x);
+	uv1_triplanar_pos = texture_size + (MODEL_MATRIX * vec4(VERTEX, 1.0f)).xyz;
+	float factor_texture = texture_size * 2.;
+    uv1_triplanar_pos /= vec3(factor_texture, 1.0, factor_texture);
 }
 
 vec4 debug(vec2 tile, vec4 texture_color) {

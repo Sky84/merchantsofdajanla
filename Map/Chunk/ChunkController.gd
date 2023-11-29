@@ -1,5 +1,8 @@
+@tool
 extends MeshInstance3D
+class_name ChunkController
 
+@export var is_city: bool;
 @export var plants_scenes: Array[PlantResource];
 @export var decorations_scenes: Array[PackedScene];
 
@@ -12,16 +15,21 @@ var noise: FastNoiseLite;
 func init_chunk(_tile_scene_ground_placeable: Array[Texture2D], _noise: FastNoiseLite, _noise_texture: ImageTexture) -> void:
 	noise_texture = _noise_texture;
 	noise = _noise;
-	var texture_tiles = Texture2DArray.new();
-	texture_tiles.create_from_images(
-		_tile_scene_ground_placeable.map(NodeUtils.get_image_from_texture)
-	);
-	var material = get_surface_override_material(0);
+	if not is_city:
+		var texture_tiles = Texture2DArray.new();
+		texture_tiles.create_from_images(
+			_tile_scene_ground_placeable.map(NodeUtils.get_image_from_texture)
+		);
+		init_shader(texture_tiles, _tile_scene_ground_placeable.size(), _noise_texture);
+		init_plants();
+		init_decorations();
+
+func init_shader(texture_tiles: Texture2DArray, tile_type_count: int, _noise_texture: ImageTexture):
+	var material = get_surface_override_material(0).duplicate(true);
 	material.set_shader_parameter('noise_texture', _noise_texture);
-	material.set_shader_parameter('tile_type_count', _tile_scene_ground_placeable.size());
+	material.set_shader_parameter('tile_type_count', tile_type_count);
 	material.set_shader_parameter('textures_tiles', texture_tiles);
-	init_plants();
-	init_decorations();
+	set_surface_override_material(0, material);
 
 func init_plants() -> void:
 	for tile_x in range(0, 64, 8):
