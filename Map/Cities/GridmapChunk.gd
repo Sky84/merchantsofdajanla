@@ -2,10 +2,10 @@
 extends GridMap
 
 var cell_value_map: Dictionary = {
-	'Dirt':[0],
-	'Sand':[1],
-	'Grass':[2],
-	'Water':[3],
+	'Dirt':[0,1],
+	'Sand':[2,3],
+	'Grass':[4,5],
+	'Water':[6],
 }
 
 var _chunk: ChunkController;
@@ -21,10 +21,6 @@ var _chunk: ChunkController;
 		return _chunk;
 
 @export var chunk_image: Image;
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
 
 func _update_chunk_image():
 	chunk_image = _capture_heightmap();
@@ -50,4 +46,4 @@ func get_cell_maped_item(position: Vector3) -> int:
 	var cell_value = get_cell_item(position);
 	var cell_name = mesh_library.get_item_name(cell_value);
 	var cell_item = cell_value_map[cell_name];
-	return cell_item[0];
+	return cell_item[randi_range(0, cell_item.size()-1)];
