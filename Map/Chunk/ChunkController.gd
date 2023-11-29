@@ -3,6 +3,7 @@ extends MeshInstance3D
 class_name ChunkController
 
 @export var is_city: bool;
+@export var border_texture_noise: Texture;
 @export var plants_scenes: Array[PlantResource];
 @export var decorations_scenes: Array[PackedScene];
 
@@ -26,7 +27,8 @@ func init_chunk(_tile_scene_ground_placeable: Array[Texture2D], _noise: FastNois
 
 func init_shader(texture_tiles: Texture2DArray, tile_type_count: int, _noise_texture: ImageTexture):
 	var material = get_surface_override_material(0).duplicate(true);
-	material.set_shader_parameter('noise_texture', _noise_texture);
+	material.set_shader_parameter('border_noise_texture', border_texture_noise);
+	material.set_shader_parameter('terrain_noise_texture', _noise_texture);
 	material.set_shader_parameter('tile_type_count', tile_type_count);
 	material.set_shader_parameter('textures_tiles', texture_tiles);
 	set_surface_override_material(0, material);

@@ -4,10 +4,15 @@
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,depth_prepass_alpha;
 
+uniform float dirt_limit = 2.;
+uniform float sand_limit = 7.;
+uniform float grass_limit = 10.;
 uniform int tile_type_count;
-uniform sampler2D noise_texture: filter_nearest;
+uniform sampler2D border_noise_texture: filter_nearest;
+uniform sampler2D terrain_noise_texture: filter_nearest;
 uniform sampler2DArray textures_tiles: source_color,filter_nearest;
 varying vec3 uv1_triplanar_pos;
+varying float factor_texture;
 varying vec3 uv1_power_normal;
 
 const float tile_size = 32.;
@@ -17,53 +22,50 @@ vec4 triplanar_texture(sampler2D p_sampler,vec3 p_triplanar_pos) {
 	return samp;
 }
 
-float get_noise_value_by_coord(vec3 coord) {
+float get_noise_value_by_coord(vec3 coord, sampler2D noise_texture) {
 	return floor(triplanar_texture(noise_texture, coord).r * float(tile_type_count));
 }
 
 float get_weight_by_noise(float noise){
-	float dirt = 2.;
-	float sand = 7.;
-	float grass = 10.;
-	if (noise < dirt) {
-		return dirt;
+	if (noise < dirt_limit) {
+		return dirt_limit;
 	}
-	else if (noise < sand) {
-		return sand;
+	else if (noise < sand_limit) {
+		return sand_limit;
 	}
-	else if (noise < grass) {
-		return grass;
+	else if (noise < grass_limit) {
+		return grass_limit;
 	}
 	return noise;
 }
 
 void vertex() {
-	float texture_size = float(textureSize(noise_texture, 0).x);
-	uv1_triplanar_pos = texture_size + (MODEL_MATRIX * vec4(VERTEX, 1.0f)).xyz;
-	float factor_texture = texture_size * 2.;
+	float texture_size = float(textureSize(terrain_noise_texture, 0).x);
+	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0f)).xyz;
+	factor_texture = texture_size * 2.;
     uv1_triplanar_pos /= vec3(factor_texture, 1.0, factor_texture);
 }
 
 vec4 debug(vec2 tile, vec4 texture_color) {
 	vec2 global_tile_pixel = tile * tile_size;
 	vec2 normalized_tile_pixel = mod(global_tile_pixel, tile_size) / tile_size;
-	float border = 0.04 * get_noise_value_by_coord(floor(vec3(tile.x+normalized_tile_pixel.x, 0.,tile.y+ normalized_tile_pixel.y) * 10.)/tile_size );
+	float border = 0.04 * get_noise_value_by_coord(floor(vec3(tile.x+normalized_tile_pixel.x, 0.,tile.y+ normalized_tile_pixel.y) * 10.)/tile_size, border_noise_texture );
 
 	bool from_left = normalized_tile_pixel.x < border;
 	bool from_right = normalized_tile_pixel.x > 1. - border;
 	bool from_up = normalized_tile_pixel.y < border;
 	bool from_down = normalized_tile_pixel.y > 1. - border;
 	bool in_border_limit = from_left || from_right || from_up || from_down;
-	float current_noise_value = get_noise_value_by_coord(uv1_triplanar_pos);
+	float current_noise_value = get_noise_value_by_coord(uv1_triplanar_pos, terrain_noise_texture);
 	float current_weight = get_weight_by_noise(current_noise_value);
 	for(float x = -1.; x <= 1.; x++){
 		for(float z = -1.; z <= 1.; z++){
-			vec3 neighboor_triplanar_relative_pos = vec3(x/8192., 0., z/8192.);
+			vec3 neighboor_triplanar_relative_pos = vec3(x/(factor_texture), 0., z/factor_texture);
 			vec3 neighbor_coord = vec3(
 				uv1_triplanar_pos.x+(neighboor_triplanar_relative_pos.x),
 				0.,
 				uv1_triplanar_pos.z+(neighboor_triplanar_relative_pos.z));
-			float neighboor_noise_value = get_noise_value_by_coord(neighbor_coord);
+			float neighboor_noise_value = get_noise_value_by_coord(neighbor_coord, terrain_noise_texture);
 			float neighboor_weight = get_weight_by_noise(neighboor_noise_value);
 			if (current_weight < neighboor_weight && in_border_limit) {
 				if (from_up && x == 0. && z == -1.
@@ -81,7 +83,7 @@ vec4 debug(vec2 tile, vec4 texture_color) {
 void fragment() {
     vec2 tile = UV * tile_size;
     
-	float current_noise_value = get_noise_value_by_coord(uv1_triplanar_pos);
+	float current_noise_value = get_noise_value_by_coord(uv1_triplanar_pos, terrain_noise_texture);
     // Obtenez la texture correspondant à la valeur du tableau chunk_tiles
     vec4 texture_color = texture(textures_tiles, vec3(tile, current_noise_value));
 	texture_color = debug(tile, texture_color);
