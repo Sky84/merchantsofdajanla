@@ -10,6 +10,7 @@ var cell_value_map: Dictionary = {
 
 var _chunk: ChunkController;
 
+@export var _shader_chunk_city: ShaderMaterial;
 @export var _tile_scene_ground_placeable: Array[Texture2D];
 @export var chunk: ChunkController:
 	set(value):
@@ -31,6 +32,7 @@ func _update_chunk_image():
 	texture_tiles.create_from_images(
 		_tile_scene_ground_placeable.map(NodeUtils.get_image_from_texture)
 	);
+	_chunk.set_surface_override_material(0, _shader_chunk_city);
 	_chunk.init_shader(texture_tiles, _tile_scene_ground_placeable.size(), ImageTexture.create_from_image(chunk_image));
 
 func _capture_heightmap() -> Image:
