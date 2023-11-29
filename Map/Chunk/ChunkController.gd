@@ -26,7 +26,7 @@ func init_chunk(_tile_scene_ground_placeable: Array[Texture2D], _noise: FastNois
 		init_decorations();
 
 func init_shader(texture_tiles: Texture2DArray, tile_type_count: int, _noise_texture: ImageTexture):
-	var material = get_surface_override_material(0).duplicate(true);
+	var material = get_surface_override_material(0).duplicate();
 	material.set_shader_parameter('border_noise_texture', border_texture_noise);
 	material.set_shader_parameter('terrain_noise_texture', _noise_texture);
 	material.set_shader_parameter('tile_type_count', tile_type_count);
