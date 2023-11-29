@@ -33,13 +33,12 @@ var _chunk_shader: Shader = preload("res://MapChunkShader.tres");
 func _ready():
 	update_noise();
 	var tile_chunk_map: TileMap = _chunk_map.instantiate();
-	var player_chunk_position: Vector3i = _player.global_position.floor() / float(chunk_tile_size);
-	var chunks_xy_to_instantiate = [-2, -1, 0, 1, 2];
+	var chunks_xy_to_instantiate = range(-10, 10);
 	
 	for chunk_x in chunks_xy_to_instantiate:
-		var start_chunk_x = player_chunk_position.x + (chunk_x * chunk_tile_size);
+		var start_chunk_x = (chunk_x * chunk_tile_size);
 		for chunk_z in chunks_xy_to_instantiate:
-			var start_chunk_z = player_chunk_position.z + (chunk_z * chunk_tile_size);
+			var start_chunk_z = (chunk_z * chunk_tile_size);
 			var local_chunk_position = Vector2(chunk_x, chunk_z);
 			var chunk_global_position = Vector3(start_chunk_x, 0, start_chunk_z);
 			var chunk_cell_id = tile_chunk_map.get_cell_atlas_coords(0, local_chunk_position);
