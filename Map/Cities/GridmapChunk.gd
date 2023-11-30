@@ -10,6 +10,7 @@ var cell_value_map: Dictionary = {
 
 var _chunk: ChunkController;
 
+@onready var navigation_region_3d: NavigationRegion3D = $"../NavigationRegion3D";
 @export var _shader_chunk_city: ShaderMaterial;
 @export var _tile_scene_ground_placeable: Array[Texture2D];
 @export var _update_chunk: bool:
@@ -47,14 +48,20 @@ func _update_collisions():
 	for cell_position in water_cells:
 		var static_body = StaticBody3D.new();
 		var collision_shape = CollisionShape3D.new();
+		var obstacle_nav = NavigationObstacle3D.new();
+		obstacle_nav.radius = 1;
+		obstacle_nav.height = 2;
 		collision_shape.shape = BoxShape3D.new();
 		collision_shape.shape.size = Vector3(2, 2, 2);
+		static_body.add_child(obstacle_nav);
 		static_body.add_child(collision_shape);
 		_chunk.add_child(static_body);
 		static_body.global_position = (cell_position * 2) + Vector3i(1, 0, 1);
 		static_body.global_position.y = _chunk.global_position.y;
 		static_body.owner = get_tree().edited_scene_root;
 		collision_shape.owner = get_tree().edited_scene_root;
+		obstacle_nav.owner = get_tree().edited_scene_root;
+		obstacle_nav.set_navigation_map(navigation_region_3d.get_region_rid());
 
 func _capture_heightmap() -> Image:
 	var chunk_size: float = 32;
