@@ -10,89 +10,6 @@
 [ext_resource type="SpriteFrames" uid="uid://b116yvdld6l6t" path="res://Player/SpriteFrames/Skins_0.tres" id="8_wmgpc"]
 [ext_resource type="PackedScene" uid="uid://bt0fs4f7tip0s" path="res://Core/Components/interact_component.tscn" id="9_oe1bg"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
-animation = &"attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grlca"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1bh7k"]
-animation = &"run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j647b"]
-animation = &"walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0adjj"]
-advance_mode = 2
-advance_condition = &"isWalking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_57c7m"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b5pm3"]
-advance_mode = 2
-advance_condition = &"isIdle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vm8ug"]
-advance_mode = 2
-advance_condition = &"isRunning"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jqkw0"]
-advance_mode = 2
-advance_condition = &"isWalking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pp7fy"]
-advance_mode = 2
-advance_condition = &"isRunning"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f620p"]
-advance_mode = 2
-advance_condition = &"isIdle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ne8y"]
-advance_mode = 2
-advance_condition = &"isAttacking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v212b"]
-advance_mode = 2
-advance_condition = &"isAttacking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ko48a"]
-advance_mode = 2
-advance_condition = &"isAttacking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_alvd4"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"isRunning"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_idgsq"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"isWalking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r00va"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"isIdle"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4qfse"]
-states/Start/position = Vector2(95, 100)
-states/attack/node = SubResource("AnimationNodeAnimation_mr8qj")
-states/attack/position = Vector2(753, 240)
-states/idle/node = SubResource("AnimationNodeAnimation_grlca")
-states/idle/position = Vector2(358, 84)
-states/run/node = SubResource("AnimationNodeAnimation_1bh7k")
-states/run/position = Vector2(460, 240)
-states/walk/node = SubResource("AnimationNodeAnimation_j647b")
-states/walk/position = Vector2(579, 84)
-transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_b5pm3"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_vm8ug"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_jqkw0"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_pp7fy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f620p"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_6ne8y"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_v212b"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_ko48a"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_alvd4"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_idgsq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_r00va")]
-graph_offset = Vector2(-50, 15)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pn48d"]
-radius = 0.548919
-height = 3.88508
-
 [sub_resource type="Animation" id="Animation_ekqna"]
 resource_name = "attack"
 length = 0.5
@@ -266,6 +183,89 @@ _data = {
 "walk": SubResource("Animation_si24n")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grlca"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1bh7k"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j647b"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0adjj"]
+advance_mode = 2
+advance_condition = &"isWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_57c7m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b5pm3"]
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vm8ug"]
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jqkw0"]
+advance_mode = 2
+advance_condition = &"isWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pp7fy"]
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f620p"]
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ne8y"]
+advance_mode = 2
+advance_condition = &"isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v212b"]
+advance_mode = 2
+advance_condition = &"isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ko48a"]
+advance_mode = 2
+advance_condition = &"isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_alvd4"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_idgsq"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r00va"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4qfse"]
+states/Start/position = Vector2(95, 100)
+states/attack/node = SubResource("AnimationNodeAnimation_mr8qj")
+states/attack/position = Vector2(753, 240)
+states/idle/node = SubResource("AnimationNodeAnimation_grlca")
+states/idle/position = Vector2(358, 84)
+states/run/node = SubResource("AnimationNodeAnimation_1bh7k")
+states/run/position = Vector2(460, 240)
+states/walk/node = SubResource("AnimationNodeAnimation_j647b")
+states/walk/position = Vector2(579, 84)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_b5pm3"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_vm8ug"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_jqkw0"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_pp7fy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f620p"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_6ne8y"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_v212b"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_ko48a"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_alvd4"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_idgsq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_r00va")]
+graph_offset = Vector2(-50, 15)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pn48d"]
+radius = 0.548919
+height = 3.88508
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
 radius = 2.56796
 
@@ -276,6 +276,9 @@ navigation_agent = NodePath("NavigationAgent3D")
 run_animation_gap = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mcocu")
+}
 tree_root = SubResource("AnimationNodeStateMachine_4qfse")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/isAttacking = false

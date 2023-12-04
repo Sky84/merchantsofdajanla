@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_yhuf2"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_ew55k"]
-[ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="2_unuo0"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_unuo0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fy0ty"]
 

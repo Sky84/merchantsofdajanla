@@ -9,6 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vyqve"]
 render_priority = 0
 shader = ExtResource("1_71dri")
+shader_parameter/simulate_wind = null
 shader_parameter/uv1_scale = Vector2(0.1, 0.025)
 shader_parameter/uv1_offset = Vector2(0.3, 0)
 shader_parameter/texture_atlas = ExtResource("2_0db0l")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dtc0anbhbcv2q" path="res://UI/Theme.tres" id="1_31o8c"]
 [ext_resource type="Script" path="res://Stand/TransactionView/StandItemButton/StandItemButton.gd" id="2_3sk7v"]
-[ext_resource type="Texture2D" uid="uid://d4cjhok5r15me" path="res://Items/bread.png" id="3_kj2yy"]
+[ext_resource type="Texture2D" uid="uid://crxoey3gwql0l" path="res://Items/bread.png" id="3_kj2yy"]
 
 [node name="StandItemButton" type="Button"]
 texture_filter = 1

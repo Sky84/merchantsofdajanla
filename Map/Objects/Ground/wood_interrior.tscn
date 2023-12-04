@@ -11,6 +11,7 @@ load_path = "res://.godot/imported/sol2.png-eb3bd275d7f138385bd859fe2bc2f6cb.cte
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qk5kf"]
 render_priority = 0
 shader = ExtResource("1_soveq")
+shader_parameter/simulate_wind = null
 shader_parameter/uv1_scale = Vector2(0.1, 0.025)
 shader_parameter/uv1_offset = Vector2(0.1, 0.05)
 shader_parameter/texture_atlas = SubResource("CompressedTexture2D_5p73f")

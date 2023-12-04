@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://b1iprgopnty87"]
 
 [ext_resource type="Script" path="res://UI/Notifications/Notification.gd" id="1_l46oe"]
-[ext_resource type="Texture2D" uid="uid://6nf4c5mpv2hx" path="res://UI/Notifications/Sprites/notification_success.png" id="2_r127w"]
-[ext_resource type="Texture2D" uid="uid://x3h5426edwjp" path="res://UI/Notifications/Sprites/notification_warn.png" id="3_7orw4"]
-[ext_resource type="FontFile" uid="uid://cgtnmxr4q7t4p" path="res://UI/NFPixels-Regular.ttf" id="3_dxghp"]
-[ext_resource type="Texture2D" uid="uid://dk8plt8c7p7f" path="res://UI/Notifications/Sprites/notification_error.png" id="4_8se2t"]
+[ext_resource type="Texture2D" uid="uid://cjofdxdba06by" path="res://UI/Notifications/Sprites/notification_success.png" id="2_r127w"]
+[ext_resource type="Texture2D" uid="uid://cjmlp775cg5n0" path="res://UI/Notifications/Sprites/notification_warn.png" id="3_7orw4"]
+[ext_resource type="FontFile" uid="uid://ct0e6w0ebycty" path="res://UI/NFPixels-Regular.ttf" id="3_dxghp"]
+[ext_resource type="Texture2D" uid="uid://yfllvhim2rsm" path="res://UI/Notifications/Sprites/notification_error.png" id="4_8se2t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_egrq7"]
 font = ExtResource("3_dxghp")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2xxhh2p8qwon"]
 
 [ext_resource type="Script" path="res://UI/Modals/DialogModal/DialogModal.gd" id="1_2sthi"]
-[ext_resource type="Texture2D" uid="uid://1x308l1g8h7d" path="res://UI/Modals/modal.png" id="2_508xq"]
-[ext_resource type="Texture2D" uid="uid://bxbuq1w6t2vof" path="res://UI/Modals/infoarrow.png" id="3_8jfid"]
+[ext_resource type="Texture2D" uid="uid://t5e5sxwub1y3" path="res://UI/Modals/modal.png" id="2_508xq"]
+[ext_resource type="Texture2D" uid="uid://bfishpvyygi0s" path="res://UI/Modals/infoarrow.png" id="3_8jfid"]
 
 [node name="AskDialog" type="Control"]
 texture_filter = 1

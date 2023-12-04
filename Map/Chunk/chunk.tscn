@@ -1,34 +1,26 @@
-[gd_scene load_steps=51 format=3 uid="uid://xjipt1w1cwne"]
+[gd_scene load_steps=52 format=3 uid="uid://xjipt1w1cwne"]
 
 [ext_resource type="Shader" uid="uid://co7puv05g5tp4" path="res://MapChunkShader.tres" id="1_k5a2c"]
+[ext_resource type="Resource" uid="uid://c4etby3e7cjta" path="res://Map/Chunk/Resources/BigCactus.tres" id="2_rmrfh"]
 [ext_resource type="Script" path="res://Map/Chunk/ChunkController.gd" id="2_rvlwh"]
-[ext_resource type="Resource" uid="uid://c4etby3e7cjta" path="res://Map/Chunk/Resources/BigCactus.tres" id="3_1u8en"]
 [ext_resource type="Script" path="res://Map/Chunk/PoolController.gd" id="3_kmwan"]
-[ext_resource type="Resource" uid="uid://ctwsff3qp361r" path="res://Map/Chunk/Resources/Tree.tres" id="3_p5b6n"]
-[ext_resource type="Resource" uid="uid://dns3eg52awcbs" path="res://Map/Chunk/Resources/GrassDry.tres" id="3_wlbdk"]
-[ext_resource type="Resource" uid="uid://dkjrlmuef5gtt" path="res://Map/Chunk/Resources/RedGrass.tres" id="4_4r73l"]
-[ext_resource type="Resource" uid="uid://cskej2g0m76in" path="res://Map/Chunk/Resources/BigTree.tres" id="4_ayohp"]
-[ext_resource type="Resource" uid="uid://0mt2hy2kyl6q" path="res://Map/Chunk/Resources/YellowGrass.tres" id="5_7fsl1"]
-[ext_resource type="Resource" uid="uid://cnskpkx73md56" path="res://Map/Chunk/Resources/Rock1.tres" id="6_b2rg8"]
-[ext_resource type="Resource" uid="uid://b3x5ydal6c3b8" path="res://Map/Chunk/Resources/Rock2.tres" id="8_b8tcx"]
-[ext_resource type="Resource" uid="uid://b7ltbf2d6c8bs" path="res://Map/Chunk/Resources/LittleCactus.tres" id="8_gr88n"]
+[ext_resource type="Resource" uid="uid://cskej2g0m76in" path="res://Map/Chunk/Resources/BigTree.tres" id="3_o2h06"]
+[ext_resource type="Resource" uid="uid://dns3eg52awcbs" path="res://Map/Chunk/Resources/GrassDry.tres" id="4_qgw64"]
+[ext_resource type="Resource" uid="uid://dpmoc07tr3ihh" path="res://Map/Chunk/Resources/GreenGrass.tres" id="5_8ouqj"]
+[ext_resource type="Resource" uid="uid://b7ltbf2d6c8bs" path="res://Map/Chunk/Resources/LittleCactus.tres" id="6_c8pb5"]
+[ext_resource type="Resource" uid="uid://dkjrlmuef5gtt" path="res://Map/Chunk/Resources/RedGrass.tres" id="7_41x5h"]
+[ext_resource type="Resource" uid="uid://cnskpkx73md56" path="res://Map/Chunk/Resources/Rock1.tres" id="8_6uvj4"]
+[ext_resource type="Resource" uid="uid://b3x5ydal6c3b8" path="res://Map/Chunk/Resources/Rock2.tres" id="9_1ko5d"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="10_2sn2q"]
-[ext_resource type="Resource" uid="uid://dpmoc07tr3ihh" path="res://Map/Chunk/Resources/GreenGrass.tres" id="10_kb4wm"]
+[ext_resource type="Resource" uid="uid://ctwsff3qp361r" path="res://Map/Chunk/Resources/Tree.tres" id="10_uiyqj"]
+[ext_resource type="Resource" uid="uid://0mt2hy2kyl6q" path="res://Map/Chunk/Resources/YellowGrass.tres" id="11_e2d3g"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_xbiit"]
-size = Vector2(64, 64)
-center_offset = Vector3(32, 0, 32)
-
-[sub_resource type="Texture2DArray" id="Texture2DArray_o837m"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b27fw"]
-render_priority = 0
-shader = ExtResource("1_k5a2c")
-shader_parameter/dirt_limit = 2.0
-shader_parameter/sand_limit = 7.0
-shader_parameter/grass_limit = 10.0
-shader_parameter/tile_type_count = 4
-shader_parameter/textures_tiles = SubResource("Texture2DArray_o837m")
+[sub_resource type="NavigationMesh" id="NavigationMesh_35xee"]
+vertices = PackedVector3Array(0.75, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.75, 63.5, 0.5, 0.5, 0.75, 0.5, 0.5, 0.5, 0.5, 0.75, 0.5, 0.5, 63.5, 63.5, 0.5, 63.5)
+polygons = [PackedInt32Array(4, 3, 0), PackedInt32Array(0, 3, 1), PackedInt32Array(1, 3, 2), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 9)]
+geometry_parsed_geometry_type = 2
+region_min_size = 10.0
+region_merge_size = 122.06
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_33ooo"]
 noise_type = 3
@@ -44,8 +36,25 @@ domain_warp_fractal_lacunarity = 0.0
 domain_warp_fractal_gain = 0.0
 metadata/_preview_in_3d_space_ = true
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jk4nw"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0a84a"]
+width = 256
+height = 256
 noise = SubResource("FastNoiseLite_33ooo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xbiit"]
+size = Vector2(64, 64)
+center_offset = Vector3(32, 0, 32)
+
+[sub_resource type="Texture2DArray" id="Texture2DArray_o837m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b27fw"]
+render_priority = 0
+shader = ExtResource("1_k5a2c")
+shader_parameter/dirt_limit = 2.0
+shader_parameter/sand_limit = 7.0
+shader_parameter/grass_limit = 10.0
+shader_parameter/tile_type_count = 4
+shader_parameter/textures_tiles = SubResource("Texture2DArray_o837m")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_se7bv"]
 
@@ -109,206 +118,185 @@ noise = SubResource("FastNoiseLite_33ooo")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_227qh"]
 
-[node name="Chunk" type="MeshInstance3D"]
+[node name="Chunk" type="NavigationRegion3D" node_paths=PackedStringArray("mesh_instance", "plants", "decorations")]
+navigation_mesh = SubResource("NavigationMesh_35xee")
+script = ExtResource("2_rvlwh")
+border_texture_noise = SubResource("NoiseTexture2D_0a84a")
+plants_scenes = Array[Resource("res://Map/Chunk/PlantResource.gd")]([ExtResource("2_rmrfh"), ExtResource("3_o2h06"), ExtResource("4_qgw64"), ExtResource("5_8ouqj"), ExtResource("6_c8pb5"), ExtResource("7_41x5h"), ExtResource("8_6uvj4"), ExtResource("9_1ko5d"), ExtResource("10_uiyqj"), ExtResource("11_e2d3g")])
+mesh_instance = NodePath("MeshInstance3D")
+plants = NodePath("MeshInstance3D/Plants")
+decorations = NodePath("MeshInstance3D/Decorations")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_xbiit")
 surface_material_override/0 = SubResource("ShaderMaterial_b27fw")
-script = ExtResource("2_rvlwh")
-border_texture_noise = SubResource("NoiseTexture2D_jk4nw")
-plants_scenes = Array[Resource("res://Map/Chunk/PlantResource.gd")]([ExtResource("3_wlbdk"), ExtResource("4_4r73l"), ExtResource("5_7fsl1"), ExtResource("6_b2rg8"), ExtResource("3_1u8en"), ExtResource("8_gr88n"), ExtResource("8_b8tcx"), ExtResource("10_kb4wm"), null, null, null, null, ExtResource("3_p5b6n"), null, ExtResource("4_ayohp")])
 
-[node name="Plants" type="Node3D" parent="."]
+[node name="Plants" type="Node3D" parent="MeshInstance3D"]
 script = ExtResource("3_kmwan")
 
-[node name="MapMesh" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh2" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh2" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_se7bv")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh3" type="MeshInstance3D" parent="Plants"]
+[node name="MapMesh3" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77139, 3.13885, 0)
 visible = false
 mesh = SubResource("PlaneMesh_benvy")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh4" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh4" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_y2xsj")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh5" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh5" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_0rvub")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh6" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh6" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_6tcai")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh7" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh7" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_xkunp")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh8" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh8" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_4d4hx")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh9" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh9" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_aaemk")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh10" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh10" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_1kkcp")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh11" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh11" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_uipi1")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh12" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh12" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_nen6g")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh13" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh13" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_3sykp")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh14" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh14" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_8aelf")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh15" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh15" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_8alfu")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh16" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh16" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_5og7h")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh17" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh17" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_25sos")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh18" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh18" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_3c56f")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh19" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh19" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_0mol0")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh20" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh20" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_l5t2o")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh21" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh21" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_wq4hh")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh22" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh22" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_p624d")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh23" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh23" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_qegol")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh24" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh24" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_d4som")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh25" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh25" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_s5s7t")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh26" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh26" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_qlihu")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh27" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh27" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_2b4vq")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh28" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh28" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_buiye")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh29" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh29" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_er0to")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh30" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh30" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_qyvt7")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh31" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh31" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_f8427")
 script = ExtResource("10_2sn2q")
 
-[node name="MapMesh32" type="MeshInstance3D" parent="Plants"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="MapMesh32" type="MeshInstance3D" parent="MeshInstance3D/Plants"]
 visible = false
 mesh = SubResource("PlaneMesh_227qh")
 script = ExtResource("10_2sn2q")
 
-[node name="Decorations" type="Node3D" parent="."]
+[node name="Decorations" type="Node3D" parent="MeshInstance3D"]
 script = ExtResource("3_kmwan")
+
+[node name="Collisions" type="Node3D" parent="MeshInstance3D"]
+
+[node name="Collisions" type="Node3D" parent="."]

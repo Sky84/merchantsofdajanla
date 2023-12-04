@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dkcpfbmoxh5d7"]
 
-[ext_resource type="Texture2D" uid="uid://dp6k87i3n31hh" path="res://Map/Sprites/torch.png" id="1_5cb75"]
+[ext_resource type="Texture2D" uid="uid://ck3f6m7qagufy" path="res://Map/Sprites/torch.png" id="1_5cb75"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wousx"]
 atlas = ExtResource("1_5cb75")
@@ -88,8 +88,8 @@ lifetime_randomness = 0.31
 emission_shape = 1
 emission_sphere_radius = 0.3
 direction = Vector3(0, 0, 0)
-gravity = Vector3(0, 1, -0.675)
 initial_velocity_max = 1.0
+gravity = Vector3(0, 1, -0.675)
 scale_min = 0.5
 scale_max = 0.6
 

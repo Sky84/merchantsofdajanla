@@ -58,13 +58,12 @@ func update_noise() -> void:
 func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i):
 	var chunk_cell_type = _get_chunk_cell_type(chunk_cell_id);
 	var city_instance: Node3D = chunk_cell_type.scene.instantiate();
-	var chunk_city_container = city_instance.get_node('NavigationRegion3D');
-	var chunk_city = city_instance.get_node('NavigationRegion3D/Chunk');
+	var chunk_city = city_instance.get_node('Chunk');
 	var ground_city = city_instance.get_node('Grounds');
 	chunk_city.is_city = true;
 	_world_map.add_child(city_instance);
 	city_instance.global_position = chunk_global_position + Vector3(32, 0, 32);
-	chunk_city_container.global_position.y = ground_city.global_position.y;
+	chunk_city.global_position.y = ground_city.global_position.y;
 	ground_city.visible = false;
 	_reparent_items_by_parent('MapItems', chunk_global_position, city_instance);
 	_reparent_items_by_parent('MapDecorations', chunk_global_position, city_instance);

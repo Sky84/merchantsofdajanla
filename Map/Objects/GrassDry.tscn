@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bpcn6vipe2yx3"]
 
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_4gpwg"]
-[ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="2_8wnro"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_8wnro"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_eyaoi"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_46x3d"]

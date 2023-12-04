@@ -8,26 +8,27 @@ var cell_value_map: Dictionary = {
 	'Water':[6],
 }
 
-var _chunk: ChunkController;
+var _chunk_navigation_region_3d: ChunkController;
 
-@onready var navigation_region_3d: NavigationRegion3D = $"../NavigationRegion3D";
+@export var chunk_navigation_region_3d: ChunkController:
+	set(value):
+		_chunk_navigation_region_3d = value;
+	get:
+		return _chunk_navigation_region_3d;
 @export var _shader_chunk_city: ShaderMaterial;
 @export var _tile_scene_ground_placeable: Array[Texture2D];
 @export var _update_chunk: bool:
 	set(value):
-		if _chunk:
+		if chunk_navigation_region_3d:
 			_update_chunk_image();
-
-@export var chunk: ChunkController:
-	set(value):
-		_chunk = value;
-	get:
-		return _chunk;
+		else:
+			printerr('value of chunk_navigation_region_3d'+str(chunk_navigation_region_3d));
 
 @export var chunk_image: Image;
 
 func _ready():
-	_update_chunk_image();
+	if chunk_navigation_region_3d:
+		_update_chunk_image();
 
 func _update_chunk_image():
 	if Engine.is_editor_hint():
@@ -37,31 +38,25 @@ func _update_chunk_image():
 	texture_tiles.create_from_images(
 		_tile_scene_ground_placeable.map(NodeUtils.get_image_from_texture)
 	);
-	_chunk.set_surface_override_material(0, _shader_chunk_city);
-	_chunk.init_shader(texture_tiles, _tile_scene_ground_placeable.size(), ImageTexture.create_from_image(chunk_image));
+	_chunk_navigation_region_3d.init_shader(_shader_chunk_city, texture_tiles, _tile_scene_ground_placeable.size(), ImageTexture.create_from_image(chunk_image));
 
 func _update_collisions():
 	var water_cells: Array[Vector3i] = get_used_cells_by_item(4);
-	for child in _chunk.get_children():
-		_chunk.remove_child(child);
+	for child in _chunk_navigation_region_3d.get_node('Collisions').get_children():
+		_chunk_navigation_region_3d.remove_child(child);
 		child.queue_free();
 	for cell_position in water_cells:
 		var static_body = StaticBody3D.new();
 		var collision_shape = CollisionShape3D.new();
-		var obstacle_nav = NavigationObstacle3D.new();
-		obstacle_nav.radius = 1;
-		obstacle_nav.height = 2;
 		collision_shape.shape = BoxShape3D.new();
-		collision_shape.shape.size = Vector3(2, 2, 2);
-		static_body.add_child(obstacle_nav);
+		collision_shape.shape.size = Vector3(2, 4, 2);
 		static_body.add_child(collision_shape);
-		_chunk.add_child(static_body);
+		_chunk_navigation_region_3d.get_node('Collisions').add_child(static_body);
 		static_body.global_position = (cell_position * 2) + Vector3i(1, 0, 1);
-		static_body.global_position.y = _chunk.global_position.y;
+		static_body.global_position.y = _chunk_navigation_region_3d.global_position.y;
 		static_body.owner = get_tree().edited_scene_root;
 		collision_shape.owner = get_tree().edited_scene_root;
-		obstacle_nav.owner = get_tree().edited_scene_root;
-		obstacle_nav.set_navigation_map(navigation_region_3d.get_region_rid());
+	_chunk_navigation_region_3d.bake_navigation_mesh();
 
 func _capture_heightmap() -> Image:
 	var chunk_size: float = 32;

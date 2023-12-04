@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://csr6yw78n2fxe" path="res://Map/Objects/Tree.tscn" id="1_unydj"]
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="2_of6ug"]
-[ext_resource type="Texture2D" uid="uid://diartowchld8h" path="res://Map/Sprites/sol2.png" id="3_kmdic"]
+[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="3_kmdic"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x3r5c"]
 size = Vector2(8, 16)
