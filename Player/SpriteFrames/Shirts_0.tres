@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://dt3tgxtd8u511"]
 
-[ext_resource type="Texture2D" uid="uid://cftg0trgclcqb" path="res://Player/Sprites/fighteshirt.png" id="1_36lfx"]
-[ext_resource type="Texture2D" uid="uid://cniejnfucmiux" path="res://Player/Sprites/shirtidle.png" id="1_dk35i"]
-[ext_resource type="Texture2D" uid="uid://bbdoj8wjdcd8t" path="res://Player/Sprites/runshirt.png" id="2_73o4m"]
-[ext_resource type="Texture2D" uid="uid://b3lhb30ullmwg" path="res://Player/Sprites/shirtwalk.png" id="2_jfuo7"]
+[ext_resource type="Texture2D" uid="uid://bj1v2wtgic5y6" path="res://Player/Sprites/fighteshirt.png" id="1_36lfx"]
+[ext_resource type="Texture2D" uid="uid://bo1dp31hpv16n" path="res://Player/Sprites/shirtidle.png" id="1_dk35i"]
+[ext_resource type="Texture2D" uid="uid://c1ryj76aoa2s2" path="res://Player/Sprites/runshirt.png" id="2_73o4m"]
+[ext_resource type="Texture2D" uid="uid://dsop44ab8b13" path="res://Player/Sprites/shirtwalk.png" id="2_jfuo7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nudlx"]
 atlas = ExtResource("1_36lfx")
