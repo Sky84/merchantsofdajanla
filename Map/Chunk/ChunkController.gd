@@ -13,6 +13,9 @@ class_name ChunkController
 var noise_texture: ImageTexture;
 var noise: FastNoiseLite;
 
+func _ready():
+	bake_finished.connect(on_bake_finished);
+
 func init_chunk(_tile_scene_ground_placeable: Array[Texture2D], _noise: FastNoiseLite, _noise_texture: ImageTexture) -> void:
 	noise_texture = _noise_texture;
 	noise = _noise;
@@ -55,3 +58,7 @@ func init_plants() -> void:
 
 func init_decorations() -> void:
 	pass
+
+func on_bake_finished() -> void:
+	print('baked')
+

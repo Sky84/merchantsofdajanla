@@ -42,7 +42,8 @@ func _update_chunk_image():
 
 func _update_collisions():
 	var water_cells: Array[Vector3i] = get_used_cells_by_item(4);
-	for child in _chunk_navigation_region_3d.get_node('Collisions').get_children():
+	var chunk_mesh_collisions = _chunk_navigation_region_3d.get_node('MeshInstance3D').get_node('Collisions');
+	for child in chunk_mesh_collisions.get_children():
 		_chunk_navigation_region_3d.remove_child(child);
 		child.queue_free();
 	for cell_position in water_cells:
@@ -51,7 +52,7 @@ func _update_collisions():
 		collision_shape.shape = BoxShape3D.new();
 		collision_shape.shape.size = Vector3(2, 4, 2);
 		static_body.add_child(collision_shape);
-		_chunk_navigation_region_3d.get_node('Collisions').add_child(static_body);
+		chunk_mesh_collisions.add_child(static_body);
 		static_body.global_position = (cell_position * 2) + Vector3i(1, 0, 1);
 		static_body.global_position.y = _chunk_navigation_region_3d.global_position.y;
 		static_body.owner = get_tree().edited_scene_root;
