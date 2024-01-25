@@ -5,15 +5,12 @@ var id: String;
 var target: String;
 var params: Array;
 
-var navigation_mesh: NavigationMesh;
-
 signal on_action_finished(id: String, owner_id: String, next_action: Action);
 
-func _init(_id: String, _target: String, _params: Array, _navigation_mesh: NavigationMesh) -> void:
+func _init(_id: String, _target: String, _params: Array, ) -> void:
 	id = _id;
 	target = _target;
 	params = _params;
-	navigation_mesh = _navigation_mesh;
 
 func execute(params: Dictionary) -> void:
 	printerr("Need implement execute function for Action and emit on_action_finished. action id is: "+ id);

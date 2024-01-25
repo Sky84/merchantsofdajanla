@@ -269,6 +269,10 @@ height = 3.88508
 radius = 2.56796
 
 [node name="Citizen" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent")]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_03gek")
 navigation_agent = NodePath("NavigationAgent3D")

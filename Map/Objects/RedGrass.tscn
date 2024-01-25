@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://c5q0d1fliv5ax"]
 
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_0ywri"]
-[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="1_u2c5d"]
+[ext_resource type="Texture2D" uid="uid://8m2gadcsvtdh" path="res://Map/Sprites/sol2.png" id="1_u2c5d"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_jvkrv"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ajum1"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_xsx2j"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5q5i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s8ws6"]
 render_priority = 0
 shader = ExtResource("1_0ywri")
 shader_parameter/simulate_wind = false
@@ -20,8 +20,9 @@ region = Rect2(32, 416, 32, 32)
 
 [node name="RedGrass" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0.843746, 0)
-mesh = SubResource("PlaneMesh_ajum1")
-surface_material_override/0 = SubResource("ShaderMaterial_v5q5i")
+mesh = SubResource("PlaneMesh_xsx2j")
+surface_material_override/0 = SubResource("ShaderMaterial_s8ws6")
 script = ExtResource("2_jvkrv")
+simulate_wind = true
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_nqmti")

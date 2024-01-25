@@ -110,6 +110,11 @@ interract_with_item_in_hand={
 
 locale/translations=PackedStringArray("res://Translations/Traductions.en.translation", "res://Translations/Traductions.fr.translation")
 
+[navigation]
+
+3d/default_cell_size=0.7
+3d/default_edge_connection_margin=2.0
+
 [physics]
 
 common/physics_ticks_per_second=30

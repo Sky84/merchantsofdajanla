@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=111 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -370,11 +370,6 @@ min_value = 0.1
 _data = [Vector2(0, 0.1), 0.0, 0.0, 0, 0, Vector2(0.31295, 0.128421), 1.90942, 25.6785, 0, 0, Vector2(0.413669, 1), 0.0, 0.0, 0, 0, Vector2(0.694245, 1), 0.0, 0.0, 0, 0, Vector2(0.984962, 0.1), 0.0, 0.0, 0, 0]
 point_count = 5
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_qt4bp"]
-geometry_parsed_geometry_type = 2
-agent_max_slope = 30.0
-vertices_per_polygon = 3.0
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_33ooo"]
 noise_type = 3
 frequency = 0.0381
@@ -463,6 +458,10 @@ region = Rect2(224, 192, 32, 32)
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98, 2.08165e-12, 0.43)
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 floor_stop_on_slope = false
 script = ExtResource("1_u7yi0")
@@ -562,7 +561,6 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("8_0gosr")
 animation = &"idle"
-frame = 1
 
 [node name="ObjectDetector" type="Area3D" parent="Player"]
 
@@ -1297,8 +1295,7 @@ world_environment = NodePath("../WorldEnvironment")
 [node name="Timer" type="Timer" parent="GameTime"]
 autostart = true
 
-[node name="GameMapController" type="NavigationRegion3D" parent="." node_paths=PackedStringArray("_player", "_world_map")]
-navigation_mesh = SubResource("NavigationMesh_qt4bp")
+[node name="GameMapController" type="Node3D" parent="." node_paths=PackedStringArray("_player", "_world_map")]
 script = ExtResource("42_h5fgp")
 chunk_scene = ExtResource("46_33u2o")
 chunk_tile_size = 64

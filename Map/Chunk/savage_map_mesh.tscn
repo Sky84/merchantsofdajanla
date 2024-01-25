@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dys2diav2ekn7"]
+
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="1_qrw34"]
+
+[node name="MapMesh" type="MeshInstance3D"]
+script = ExtResource("1_qrw34")

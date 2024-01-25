@@ -59,3 +59,6 @@ func update_for_atlas():
 		mesh.size.x = tile_number_width;
 		mesh.size.y = tile_number_height;
 		set_surface_override_material(0, _material);
+
+func update_collisions():
+	pass

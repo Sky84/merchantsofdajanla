@@ -13,8 +13,6 @@ var _actions_json_path = 'AI/Actions.json';
 var _actions_path = 'res://PNJs/Actions/';
 var _actions_path_suffix = 'Action.gd';
 
-var _navigation_region_3d: NavigationRegion3D;
-
 var last_game_time: GameTime = GameTime.new(0, 0);
 
 signal actions_ready;
@@ -26,7 +24,6 @@ func _ready():
 
 func _init_actions():
 	GameTimeEvents.on_game_time_changed.connect(func(game_time: GameTime): last_game_time = game_time);
-	_navigation_region_3d = get_node('/root/Root/Game/GameMapController');
 	_triggers = JsonResourceLoader.load_json(_triggers_json_path);
 	var actions_from_json = JsonResourceLoader.load_json(_actions_json_path);
 	for action_json in actions_from_json:
@@ -37,8 +34,7 @@ func _init_actions():
 
 func create_action(action: Dictionary) -> Action:
 	var instance_action_class: GDScript = load(_actions_path+action.id+_actions_path_suffix) as GDScript;
-	var nav_mesh_navigation = _navigation_region_3d.navigation_mesh;
-	return instance_action_class.new(action.id, action.target, action.params, nav_mesh_navigation);
+	return instance_action_class.new(action.id, action.target, action.params);
 
 func get_action_id_by_triggers(owner_id: String) -> String:
 	if _triggers.is_empty():

@@ -57,7 +57,6 @@ func _update_collisions():
 		static_body.global_position.y = _chunk_navigation_region_3d.global_position.y;
 		static_body.owner = get_tree().edited_scene_root;
 		collision_shape.owner = get_tree().edited_scene_root;
-	_chunk_navigation_region_3d.bake_navigation_mesh();
 
 func _capture_heightmap() -> Image:
 	var chunk_size: float = 32;
