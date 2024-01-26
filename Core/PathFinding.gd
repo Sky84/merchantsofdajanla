@@ -38,7 +38,7 @@ func update_pathfinding(chunks, chunk_tile_size: int, tile_size: int):
 					points[point_position] = id;
 					pathfinding.add_point(id, point_position);
 					if not point_position in debug_cubes and debug:
-						var debug_mesh := DebugMesh.new();
+						var debug_mesh := DebugMesh.new(Vector3(0.3, 1, 0.3));
 						add_child(debug_mesh);
 						debug_cubes[point_position] = debug_mesh;
 						debug_mesh.global_position = point_position;
@@ -51,9 +51,12 @@ func _is_object_on_point(chunk: ChunkController, point_position: Vector3):
 		var object = chunk.chunk_objects[key];
 		var object_position = Vector3(object.global_position.x, 0, object.global_position.z);
 		if object is MapMesh:
-			var aabb = AABB(object.global_position, Vector3(5, 5, 5));
-			result = aabb.has_point(point_position);
-			#TODO: find something that works 
+			var aabb = AABB(object_position, Vector3(3, 3, 3));
+			var aabb_point = AABB(point_position, Vector3(1, 1, 1));
+			result = aabb.intersects(aabb_point);
+			#var debug_mesh := DebugMesh.new(aabb.size);
+			#add_child(debug_mesh);
+			#debug_mesh.global_position = object_position;
 			if result:
 				break;
 	return result;
@@ -64,7 +67,8 @@ func _connect_points():
 		for x in neighbors_to_connect:
 			for z in neighbors_to_connect:
 				var offset = Vector3(x, 0, z);
-				if offset == Vector3.ZERO:
+				var is_diagonal = x + z == 0;
+				if offset == Vector3.ZERO or is_diagonal:
 					continue;
 				var neighbor_point = point + Vector3(x, 0, z);
 				if neighbor_point in points:
