@@ -1,7 +1,7 @@
 extends Action
 class_name BuyAction
 
-var navigation_agent: NavigationAgent3D;
+var astar_agent: AStarAgent;
 var scene_tree: SceneTree;
 var camera_3d: Camera3D;
 var pnj_name: String;
@@ -16,8 +16,8 @@ func execute(params: Dictionary) -> void:
 	is_running = true;
 	buyer_owner_id = params._owner_id;
 	grid_map = params.grid_map;
-	navigation_agent = params.navigation_agent;
-	scene_tree = navigation_agent.get_tree();
+	astar_agent = params.astar_agent;
+	scene_tree = astar_agent.get_tree();
 	camera_3d = params.camera_3d;
 	pnj_name = params.pnj_name;
 	seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
@@ -32,8 +32,8 @@ func execute(params: Dictionary) -> void:
 		seller = seller_alive;
 	_start_update_alive_target_position(seller);
 	var target_position: Vector3 = seller.global_position;
-	navigation_agent.target_position = target_position;
-	await navigation_agent.target_reached;
+	astar_agent.target_position = target_position;
+	await astar_agent.target_reached;
 	if seller_alive.is_busy:
 		_end_action(false);
 	else:
@@ -41,7 +41,7 @@ func execute(params: Dictionary) -> void:
 
 func _start_update_alive_target_position(seller: Node3D):
 	var target_position: Vector3 = seller.global_position;
-	navigation_agent.target_position = target_position;
+	astar_agent.target_position = target_position;
 	await scene_tree.create_timer(1).timeout;
 	if is_running:
 		seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
@@ -67,7 +67,7 @@ func _on_target_reached():
 	var should_trade: bool = true;
 	seller_alive.is_busy = true;
 	if "player" in seller_container_config.container_owner.to_lower():
-		_process_target_player(navigation_agent, item);
+		_process_target_player(astar_agent, item);
 	else:
 		_on_accept(item);
 
@@ -85,12 +85,12 @@ func _on_decline() -> void:
 	seller_alive.is_busy = false;
 	_end_action();
 
-func _process_target_player(navigation_agent, item) -> void:
-	var target_position = navigation_agent.target_position;
+func _process_target_player(astar_agent, item) -> void:
+	var target_position = astar_agent.target_position;
 	PlayerEvents.on_player_block.emit(true);
-	var nav_path = navigation_agent.get_current_navigation_path();
+	var nav_path = astar_agent.get_current_navigation_path();
 	nav_path.reverse();
-	var nav_position = navigation_agent.target_position;
+	var nav_position = astar_agent.target_position;
 	if nav_path.size():
 		nav_position = nav_path[2] if nav_path.size() > 2 else nav_path[0]
 	var gap_modal = Vector2(-170, 0) if nav_position.x - target_position.x < 0\

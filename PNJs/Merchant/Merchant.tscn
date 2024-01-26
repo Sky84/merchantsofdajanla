@@ -269,14 +269,13 @@ height = 3.88508
 [sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
 radius = 2.56796
 
-[node name="Merchant" type="CharacterBody3D" node_paths=PackedStringArray("navigation_agent")]
+[node name="Merchant" type="CharacterBody3D"]
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
 script = ExtResource("1_3k4he")
-navigation_agent = NodePath("NavigationAgent3D")
 run_animation_gap = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -361,6 +360,7 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("8_wmgpc")
 animation = &"idle"
+frame = 1
 
 [node name="ObjectDetector" type="Area3D" parent="."]
 

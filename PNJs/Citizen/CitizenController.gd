@@ -11,12 +11,12 @@ class_name CitizenController
 			_ready();
 
 @export_category("Citizen")
-@export var navigation_agent: NavigationAgent3D;
 @export var pnj_name: String = 'George';
 
 @onready var camera_3d = get_node('/root/Root/Game/Camera3D');
 @onready var grid_map: GameGridMapController = get_node('/root/Root/Game/GameMapController/GridMap');
 @onready var default_action_id: String = Actions.WAIT;
+@onready var astar_agent: AStarAgent = AStarAgent.new(grid_map.path_finding);
 
 var actions_queue = [];
 var is_running_int = 0;
@@ -24,6 +24,7 @@ var is_running_int = 0;
 var _inactive: bool = false;
 
 func _ready() -> void:
+	add_child(astar_agent);
 	if inactive:
 		return;
 	super();
@@ -32,13 +33,13 @@ func _ready() -> void:
 
 func _handle_movement():
 	# Obtenir la prochaine position sur le chemin de navigation
-	var next_position = navigation_agent.get_next_path_position();
-	var direction = next_position - global_position;
-	var distance_to_target = navigation_agent.distance_to_target();
+	var next_position: Vector3 = astar_agent.get_next_path_position();
+	var direction: Vector3 = next_position - global_position;
+	var distance_to_target: float = global_position.distance_to(astar_agent.target_position);
 	
 	var speed_run = max(1, is_running_int * speed_run_factor);
 	var speed = (speed_walk / _speed_walk_factor) * speed_run;
-	if _is_blocked or distance_to_target <= navigation_agent.target_desired_distance:
+	if _is_blocked or distance_to_target <= astar_agent.target_desired_distance:
 		speed = 0;
 	velocity = Vector3(direction.x, 0, direction.z).normalized() * speed;
 

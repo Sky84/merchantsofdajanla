@@ -12,7 +12,7 @@
 		"target": "Food",
 		"params": [
 			"_owner_id",
-			"navigation_agent",
+			"astar_agent",
 			"grid_map",
 			"camera_3d",
 			"pnj_name"
@@ -24,7 +24,7 @@
 		"params": [
 			"_owner_id",
 			"shop_position",
-			"navigation_agent",
+			"astar_agent",
 			"grid_map"
 		]
 	},
@@ -34,7 +34,7 @@
 		"params": [
 			"_owner_id",
 			"global_position",
-			"navigation_agent",
+			"astar_agent",
 			"grid_map"
 		]
 	}

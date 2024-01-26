@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=112 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -318,6 +318,9 @@ texture_filter = 0
 [sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
 radius = 2.56796
 
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_7ji7o"]
+size = Vector3(180, 20, 150)
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bha5a"]
 frequency = 0.1918
 
@@ -559,12 +562,16 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("8_0gosr")
 animation = &"idle"
-frame = 4
+frame = 3
 
 [node name="ObjectDetector" type="Area3D" parent="Player"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/ObjectDetector"]
 shape = SubResource("SphereShape3D_deg7w")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.49085, 2.11176, -64.736)
+occluder = SubResource("BoxOccluder3D_7ji7o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -1290,12 +1297,11 @@ world_environment = NodePath("../WorldEnvironment")
 [node name="Timer" type="Timer" parent="GameTime"]
 autostart = true
 
-[node name="GameMapController" type="Node3D" parent="." node_paths=PackedStringArray("_path_finding", "_player", "_world_map")]
+[node name="GameMapController" type="Node3D" parent="." node_paths=PackedStringArray("_player", "_world_map")]
 script = ExtResource("42_h5fgp")
 chunk_scene = ExtResource("46_33u2o")
 chunk_tile_size = 64
 _chunk_map = ExtResource("43_refum")
-_path_finding = NodePath("GridMap/PathFinding")
 _player = NodePath("../Player")
 _savage_chunk_noise = SubResource("FastNoiseLite_33ooo")
 _world_map = NodePath("GridMap")
@@ -1306,7 +1312,6 @@ metadata/_editor_floor_ = Vector3(0, 1000, 0)
 
 [node name="PathFinding" type="Node3D" parent="GameMapController/GridMap"]
 script = ExtResource("49_8uvbs")
-debug = true
 
 [node name="Interiors" type="Node3D" parent="GameMapController/GridMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)

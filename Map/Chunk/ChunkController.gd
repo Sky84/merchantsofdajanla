@@ -10,6 +10,9 @@ class_name ChunkController
 
 var noise_texture: ImageTexture;
 var noise: FastNoiseLite;
+var map_objects_initiated: bool = false;
+
+var chunk_objects = [];
 
 func init_chunk(_tile_scene_ground_placeable: Array[Texture2D], _noise: FastNoiseLite, _noise_texture: ImageTexture) -> void:
 	noise_texture = _noise_texture;

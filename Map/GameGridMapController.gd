@@ -5,14 +5,13 @@ class_name GameGridMapController
 
 @export var tile_size = 32;
 
+@onready var path_finding: PathFinding = $PathFinding;
 @onready var _map_items = $MapItems;
 @onready var _map_decorations = $MapDecorations;
 var _map_objects := {};
 
 func _ready():
 	GridMapEvents.place_item_at.connect(_place_item_at);
-	_map_items.child_entered_tree.connect(func(child): _init_posable(child, child.global_position, ""));
-	_map_decorations.child_entered_tree.connect(func(child): _init_decorations(child,));
 
 # Place an element of type 'Posable' on the map at a given position
 # Add the element to the _map_objects array

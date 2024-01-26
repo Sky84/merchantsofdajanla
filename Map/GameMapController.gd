@@ -4,12 +4,13 @@ class_name GameMapController
 @export var chunk_scene: PackedScene;
 @export var chunk_tile_size: int;
 @export var _chunk_map: PackedScene;
+@export var _path_finding: PathFinding;
 @export var _player: Player;
 
 @export var _savage_chunk_noise: FastNoiseLite;
 var _noise_texture: ImageTexture;
 
-@export var _world_map: Node3D;
+@export var _world_map: GameGridMapController;
 
 @export var _tile_scene_ground_placeable: Array[Texture2D];
 @onready var _tile_count = _tile_scene_ground_placeable.size();
@@ -32,6 +33,7 @@ var _chunk_shader: Shader = preload("res://MapChunkShader.tres");
 var _distance_chunk: Vector3 = Vector3(3, 0, 2);
 
 var _chunks = {};
+var chunks_visible := {};
 
 var _previous_player_position = Vector3(-1000, -1000, -1000);
 
@@ -44,14 +46,16 @@ func _process(delta):
 	if _previous_player_position != player_chunk_position:
 		_previous_player_position = player_chunk_position;
 		_update_chunks(player_chunk_position);
+		_path_finding.update_pathfinding(chunks_visible, chunk_tile_size, _tile_size);
 
 func _update_chunks(player_chunk_position: Vector3):
 	var distance_with_gap = _distance_chunk * 2;
 	var chunks_x_to_update: Array = range(player_chunk_position.x - distance_with_gap.x, player_chunk_position.x + distance_with_gap.x);
 	var chunks_z_to_update: Array = range(player_chunk_position.z - distance_with_gap.z, player_chunk_position.z + distance_with_gap.z);
-
+	var _chunks_visible = {};
 	for chunk_x in chunks_x_to_update:
 		var start_chunk_x = (chunk_x * chunk_tile_size);
+		_chunks_visible[chunk_x] = {};
 		for chunk_z in chunks_z_to_update:
 			var start_chunk_z = (chunk_z * chunk_tile_size);
 			var local_chunk_position = Vector2(chunk_x, chunk_z);
@@ -63,9 +67,25 @@ func _update_chunks(player_chunk_position: Vector3):
 				and chunk_z < player_chunk_position.z + _distance_chunk.z;
 			var chunk_instance: ChunkController = _get_or_instantiate_chunk(chunk_x, chunk_z, chunk_cell_id);
 			chunk_instance.visible = should_visible;
-			if should_visible and chunk_instance.navigation_mesh.get_polygon_count() == 0:
-				chunk_instance.bake_navigation_mesh();
+			if should_visible:
+				init_map_objects(chunk_instance);
+				_chunks_visible[chunk_x][chunk_z] = chunk_instance;
+	chunks_visible = _chunks_visible;
 
+func init_map_objects(chunk_instance: ChunkController):
+	if chunk_instance.map_objects_initiated:
+		return;
+	var map_items = chunk_instance.get_node('MapItems').get_children();
+	var map_decorations = chunk_instance.get_node('MapDecorations').get_children();
+	var chunk_objects := {};
+	for map_item in map_items:
+		chunk_objects[map_item.global_position] = map_item;
+		_world_map._init_posable(map_item, map_item.global_position, "");
+	for map_decoration in map_decorations:
+		chunk_objects[map_decoration.global_position] = map_decoration;
+		_world_map._init_decorations(map_decoration);
+	chunk_instance.chunk_objects = chunk_objects;
+	chunk_instance.map_objects_initiated = true;
 
 func _get_or_instantiate_chunk(chunk_x: int, chunk_z: int, chunk_cell_id: Vector2i) -> ChunkController:
 	if not chunk_x in _chunks:

@@ -61,6 +61,8 @@ decorations = NodePath("MapDecorations")
 
 [node name="MapDecorations" type="Node3D" parent="."]
 
+[node name="MapItems" type="Node3D" parent="."]
+
 [node name="Collisions" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
