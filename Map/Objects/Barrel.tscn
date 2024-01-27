@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx6pam6nfg3sk"]
 
-[ext_resource type="PackedScene" uid="uid://xxr4c0ovtpk6" path="res://Map/Models/barrel.gltf" id="1_2l0e5"]
+[ext_resource type="PackedScene" uid="uid://cp03x6plraqjb" path="res://Map/Models/barrel.gltf" id="1_2l0e5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_htp4x"]
 height = 5.06641

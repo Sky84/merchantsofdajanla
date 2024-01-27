@@ -50,15 +50,17 @@ func _is_object_on_point(chunk: ChunkController, point_position: Vector3):
 	for key in chunk.chunk_objects:
 		var object = chunk.chunk_objects[key];
 		var object_position = Vector3(object.global_position.x, 0, object.global_position.z);
-		if object is MapMesh:
-			var aabb = AABB(object_position, Vector3(3, 3, 3));
-			var aabb_point = AABB(point_position, Vector3(1, 1, 1));
-			result = aabb.intersects(aabb_point);
-			#var debug_mesh := DebugMesh.new(aabb.size);
-			#add_child(debug_mesh);
-			#debug_mesh.global_position = object_position;
-			if result:
-				break;
+		var object_size: Vector3 = Vector3(3, 3, 3);
+		if object is StaticBody3D:
+			var collision_shape: CollisionShape3D = object.get_node('CollisionShape3D');
+			object_size = collision_shape.shape.size if 'size' in collision_shape.shape\
+				 else Vector3(collision_shape.shape.radius, 0, collision_shape.shape.radius);
+			
+		var aabb = AABB(object_position, object_size);
+		var aabb_point = AABB(point_position, Vector3(1, 1, 1));
+		result = aabb.intersects(aabb_point);
+		if result:
+			break;
 	return result;
 
 func _connect_points():

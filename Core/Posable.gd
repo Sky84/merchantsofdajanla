@@ -1,7 +1,7 @@
 extends MapItem
 class_name Posable
 
-@onready var _collider := $Collider;
+@onready var _collider := $CollisionShape3D;
 
 func _ready():
 	_disable_collider(true);
