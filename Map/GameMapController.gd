@@ -77,6 +77,7 @@ func init_map_objects(chunk_instance: ChunkController):
 		return;
 	var map_items = chunk_instance.get_node('MapItems').get_children();
 	var map_decorations = chunk_instance.get_node('MapDecorations').get_children();
+	var map_collisions = chunk_instance.mesh_instance.get_node('Collisions').get_children();
 	var chunk_objects := {};
 	for map_item in map_items:
 		chunk_objects[map_item.global_position] = map_item;
@@ -84,6 +85,8 @@ func init_map_objects(chunk_instance: ChunkController):
 	for map_decoration in map_decorations:
 		chunk_objects[map_decoration.global_position] = map_decoration;
 		_world_map._init_decorations(map_decoration);
+	for map_collision in map_collisions:
+		chunk_objects[map_collision.global_position] = map_collision;
 	chunk_instance.chunk_objects = chunk_objects;
 	chunk_instance.map_objects_initiated = true;
 

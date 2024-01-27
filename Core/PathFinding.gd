@@ -51,13 +51,16 @@ func _is_object_on_point(chunk: ChunkController, point_position: Vector3):
 		var object = chunk.chunk_objects[key];
 		var object_position = Vector3(object.global_position.x, 0, object.global_position.z);
 		var object_size: Vector3 = Vector3(3, 3, 3);
-		if object is StaticBody3D:
-			var collision_shape: CollisionShape3D = object.get_node('CollisionShape3D');
-			object_size = collision_shape.shape.size if 'size' in collision_shape.shape\
-				 else Vector3(collision_shape.shape.radius, 0, collision_shape.shape.radius);
-			
 		var aabb = AABB(object_position, object_size);
 		var aabb_point = AABB(point_position, Vector3(1, 1, 1));
+		if object is StaticBody3D:
+			var collision_shapes: Array = object.get_children().filter(func(c): return 'CollisionShape3D' in c.name);
+			for collision_shape in collision_shapes:
+				object_size = collision_shape.shape.size if 'size' in collision_shape.shape\
+					 else Vector3(collision_shape.shape.radius, 0, collision_shape.shape.radius);
+				var object_aabb = AABB(collision_shape.global_position, object_size);
+				aabb = aabb.merge(object_aabb);
+			
 		result = aabb.intersects(aabb_point);
 		if result:
 			break;

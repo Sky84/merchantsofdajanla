@@ -1306,6 +1306,7 @@ metadata/_editor_floor_ = Vector3(0, 1000, 0)
 
 [node name="PathFinding" type="Node3D" parent="GameMapController/GridMap"]
 script = ExtResource("49_8uvbs")
+debug = true
 
 [node name="Interiors" type="Node3D" parent="GameMapController/GridMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
