@@ -35,6 +35,9 @@ var alive_status: Dictionary = {
 	"hunger": {"value": MAX_HUNGER, "max": MAX_HUNGER}
 };
 
+# equal to the house if the alive is in interior
+var current_interior: Node3D = null;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group(GROUP_NAME);

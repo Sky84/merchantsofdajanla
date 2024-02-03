@@ -8,13 +8,13 @@ var cell_value_map: Dictionary = {
 	'Water':[6],
 }
 
-var _chunk_navigation_region_3d: ChunkController;
+var _chunk: ChunkController;
 
 @export var chunk_navigation_region_3d: ChunkController:
 	set(value):
-		_chunk_navigation_region_3d = value;
+		_chunk = value;
 	get:
-		return _chunk_navigation_region_3d;
+		return _chunk;
 @export var _shader_chunk_city: ShaderMaterial;
 @export var _tile_scene_ground_placeable: Array[Texture2D];
 @export var _update_chunk: bool:
@@ -38,13 +38,13 @@ func _update_chunk_image():
 	texture_tiles.create_from_images(
 		_tile_scene_ground_placeable.map(NodeUtils.get_image_from_texture)
 	);
-	_chunk_navigation_region_3d.init_shader(_shader_chunk_city, texture_tiles, _tile_scene_ground_placeable.size(), ImageTexture.create_from_image(chunk_image));
+	_chunk.init_shader(_shader_chunk_city, texture_tiles, _tile_scene_ground_placeable.size(), ImageTexture.create_from_image(chunk_image));
 
 func _update_collisions():
 	var water_cells: Array[Vector3i] = get_used_cells_by_item(4);
-	var chunk_mesh_collisions = _chunk_navigation_region_3d.get_node('MeshInstance3D').get_node('Collisions');
+	var chunk_mesh_collisions = _chunk.get_node('MeshInstance3D').get_node('Collisions');
 	for child in chunk_mesh_collisions.get_children():
-		_chunk_navigation_region_3d.remove_child(child);
+		_chunk.remove_child(child);
 		child.queue_free();
 	for cell_position in water_cells:
 		var static_body = StaticBody3D.new();
@@ -54,7 +54,7 @@ func _update_collisions():
 		static_body.add_child(collision_shape);
 		chunk_mesh_collisions.add_child(static_body);
 		static_body.global_position = (cell_position * 2) + Vector3i(1, 0, 1);
-		static_body.global_position.y = _chunk_navigation_region_3d.global_position.y;
+		static_body.global_position.y = _chunk.global_position.y;
 		static_body.owner = get_tree().edited_scene_root;
 		collision_shape.owner = get_tree().edited_scene_root;
 

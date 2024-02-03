@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1s81gkwolrb2"]
+[gd_scene load_steps=18 format=3 uid="uid://d1s81gkwolrb2"]
 
-[ext_resource type="PackedScene" uid="uid://dkcpfbmoxh5d7" path="res://Map/Objects/BigTorch.tscn" id="1_i12b8"]
-[ext_resource type="Texture2D" uid="uid://drbwm7g3byjol" path="res://Map/Sprites/torch2.png" id="2_d6yjx"]
+[ext_resource type="Texture2D" uid="uid://cmw0hkj7puv5y" path="res://Map/Sprites/torch2.png" id="2_d6yjx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fyvan"]
 atlas = ExtResource("2_d6yjx")
@@ -46,15 +45,112 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="TorchWall" instance=ExtResource("1_i12b8")]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y3o3o"]
+height = 0.814256
+radius = 0.0202062
+
+[sub_resource type="Animation" id="Animation_4wtag"]
+resource_name = "default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpotLight3D:omni_range")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.9),
+"transitions": PackedFloat32Array(0.0490366, 0.0853775, 0.0903437, 0.0507659, 0.0769467, 0.0490366, 0.0853775, 0.0903437, 0.0507659, 0.0769467),
+"update": 0,
+"values": [33.414, 29.021, 44.298, 35.854, 47.533, 33.414, 35.855, 44.298, 33.414, 38.473]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpotLight3D:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.1, 1.3, 1.6, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.756863, 0, 1), Color(1, 0.737255, 0.372549, 1), Color(1, 0.756863, 0, 1), Color(1, 0.756863, 0, 1), Color(1, 0.686275, 0.145098, 1), Color(1, 0.737255, 0.372549, 1), Color(1, 0.756863, 0, 1), Color(1, 0.686275, 0.145098, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc5ix"]
+_data = {
+"default": SubResource("Animation_4wtag")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wb0ni"]
+lifetime_randomness = 0.31
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+gravity = Vector3(0, 1, -0.675)
+scale_min = 0.5
+scale_max = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exhir"]
+albedo_color = Color(0.996078, 0.811765, 0.317647, 1)
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_eg2vy"]
+material = SubResource("StandardMaterial3D_exhir")
+size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8jcn3"]
+albedo_color = Color(1, 0.482353, 0.231373, 1)
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_px0hs"]
+material = SubResource("StandardMaterial3D_8jcn3")
+size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3nje"]
+albedo_color = Color(1, 0.666667, 0.231373, 1)
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_htnoo"]
+material = SubResource("StandardMaterial3D_k3nje")
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="TorchWall" type="AnimatedSprite3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.773736, 0)
+pixel_size = 0.05
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_8brey")
 frame_progress = 0.342026
 
-[node name="SpotLight3D" parent="." index="1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0390001, 0)
+shape = SubResource("CylinderShape3D_y3o3o")
+
+[node name="SpotLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.10067, 0.0795465)
 light_color = Color(1, 0.733006, 0.0490392, 1)
+shadow_enabled = true
+shadow_reverse_cull_face = true
+omni_range = 33.414
 
-[node name="GPUParticles3D" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_sc5ix")
+}
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0899222, 0.0464998)
 cast_shadow = 0
+process_material = SubResource("ParticleProcessMaterial_wb0ni")
+draw_passes = 3
+draw_pass_1 = SubResource("BoxMesh_eg2vy")
+draw_pass_2 = SubResource("BoxMesh_px0hs")
+draw_pass_3 = SubResource("BoxMesh_htnoo")

@@ -1,5 +1,5 @@
 @tool
-extends NavigationRegion3D
+extends Node3D
 class_name ChunkController
 
 @export var is_city: bool;

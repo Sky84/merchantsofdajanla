@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://y0g0vlqo8yo2"]
 
-[ext_resource type="PackedScene" uid="uid://dsub828xie8le" path="res://Map/Models/hautvent.gltf" id="1_1nmd3"]
+[ext_resource type="PackedScene" uid="uid://b87ed7a2mppu" path="res://Map/Models/hautvent.gltf" id="1_1nmd3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x5y0j"]
 size = Vector3(0.251019, 6.1377, 0.265876)
 
 [node name="Porch" type="StaticBody3D"]
-transform = Transform3D(-0.715193, 0, -0.698927, 0, 1, 0, 0.698927, 0, -0.715193, 16.2218, 0, 9.31039)
 
 [node name="Porch" parent="." instance=ExtResource("1_1nmd3")]
 

@@ -1,25 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy35oetveif62"]
+[gd_scene load_steps=8 format=3 uid="uid://dy35oetveif62"]
 
-[ext_resource type="PackedScene" uid="uid://b16df5413g5io" path="res://Map/Objects/SmallCactus.tscn" id="1_awxw2"]
-[ext_resource type="Texture2D" uid="uid://bakb8ukwg417v" path="res://Map/Sprites/sol2.png" id="2_5t0l1"]
+[ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_reevs"]
+[ext_resource type="Texture2D" uid="uid://cn0g5puac0yp6" path="res://Map/Sprites/sol2.png" id="2_5t0l1"]
+[ext_resource type="Script" path="res://Core/MapMesh.gd" id="3_g8t0r"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_8cmsk"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_qdrp0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4m5n"]
-transparency = 4
-albedo_texture = ExtResource("2_5t0l1")
-uv1_scale = Vector3(0.1, 0.025, 1)
-uv1_offset = Vector3(0.8, 0.025, 0)
-texture_filter = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbvyq"]
+render_priority = 0
+shader = ExtResource("1_reevs")
+shader_parameter/simulate_wind = false
+shader_parameter/uv1_scale = Vector2(0.1, 0.025)
+shader_parameter/uv1_offset = Vector2(0.8, 0.025)
+shader_parameter/texture_atlas = ExtResource("2_5t0l1")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cdndd"]
 atlas = ExtResource("2_5t0l1")
 region = Rect2(256, 32, 32, 32)
 
-[node name="PillowRed" instance=ExtResource("1_awxw2")]
-mesh = SubResource("PlaneMesh_8cmsk")
-surface_material_override/0 = SubResource("StandardMaterial3D_r4m5n")
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2iph"]
+size = Vector3(2.03356, 0.01, 1.24933)
+
+[node name="PillowRed" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0.843746, 0)
+mesh = SubResource("PlaneMesh_qdrp0")
+surface_material_override/0 = SubResource("ShaderMaterial_bbvyq")
+script = ExtResource("3_g8t0r")
+tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_cdndd")
 
-[node name="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.222751, 0.385816)
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0440021, -0.222751, 0.358625)
+shape = SubResource("BoxShape3D_l2iph")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dkcpfbmoxh5d7"]
 
-[ext_resource type="Texture2D" uid="uid://draajag65jcbs" path="res://Map/Sprites/torch.png" id="1_5cb75"]
+[ext_resource type="Texture2D" uid="uid://b6tfr85ul87pt" path="res://Map/Sprites/torch.png" id="1_5cb75"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wousx"]
 atlas = ExtResource("1_5cb75")
@@ -46,7 +46,7 @@ animations = [{
 }]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_y3o3o"]
-height = 0.515996
+height = 0.814256
 radius = 0.0202062
 
 [sub_resource type="Animation" id="Animation_4wtag"]

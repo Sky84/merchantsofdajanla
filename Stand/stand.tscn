@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Stand/StandController.gd" id="1_ggsjm"]
 [ext_resource type="Script" path="res://Containers/PosableContainer.gd" id="2_lnpxt"]
-[ext_resource type="PackedScene" uid="uid://bhobbjg7sdtgr" path="res://Stand/Model/Stand.gltf" id="3_edxpx"]
-[ext_resource type="Texture2D" uid="uid://cps1x2xnyudv2" path="res://UI/Sprites/moneycoin.png" id="4_f22sb"]
+[ext_resource type="PackedScene" uid="uid://dlskpccjthcl5" path="res://Stand/Model/Stand.gltf" id="3_edxpx"]
+[ext_resource type="Texture2D" uid="uid://bweqem1i1yx68" path="res://UI/Sprites/moneycoin.png" id="4_f22sb"]
 [ext_resource type="PackedScene" uid="uid://bt0fs4f7tip0s" path="res://Core/Components/interact_component.tscn" id="5_b4lbc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tt3mk"]

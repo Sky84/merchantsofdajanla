@@ -1,16 +1,16 @@
 [gd_scene load_steps=8 format=3 uid="uid://csr6yw78n2fxe"]
 
-[ext_resource type="Texture2D" uid="uid://8m2gadcsvtdh" path="res://Map/Sprites/sol2.png" id="1_47oip"]
+[ext_resource type="Texture2D" uid="uid://cn0g5puac0yp6" path="res://Map/Sprites/sol2.png" id="1_47oip"]
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_oj70m"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_vsyds"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_34ixe"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_chdc8"]
 size = Vector2(8, 12)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7e51m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r23ar"]
 render_priority = 0
 shader = ExtResource("1_oj70m")
-shader_parameter/simulate_wind = false
+shader_parameter/simulate_wind = true
 shader_parameter/uv1_scale = Vector2(0.2, 0.075)
 shader_parameter/uv1_offset = Vector2(0.5, 0.3)
 shader_parameter/texture_atlas = ExtResource("1_47oip")
@@ -24,8 +24,8 @@ size = Vector3(2.14883, 0.01, 7.98413)
 
 [node name="Tree" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 5.15716, 0)
-mesh = SubResource("PlaneMesh_34ixe")
-surface_material_override/0 = SubResource("ShaderMaterial_7e51m")
+mesh = SubResource("PlaneMesh_chdc8")
+surface_material_override/0 = SubResource("ShaderMaterial_r23ar")
 script = ExtResource("2_vsyds")
 simulate_wind = true
 tile_atlas_size = 8.0

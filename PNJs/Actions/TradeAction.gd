@@ -4,7 +4,7 @@ class_name TradeAction
 var astar_agent: AStarAgent;
 
 func execute(params: Dictionary) -> void:
-	var astar_agent = params.astar_agent;
+	astar_agent = params.astar_agent;
 	var _owner_id = params._owner_id;
 	var seller = AlivesController.get_alive_by_owner_id(_owner_id);
 	var shop_position = params.shop_position;

@@ -27,6 +27,6 @@ func _physics_process(delta):
 	var intersect_query = PhysicsRayQueryParameters3D.create(_ray_origin, _ray_end, terrain_collision_mask);
 	var intersection = _space_state.intersect_ray(intersect_query);
 	if not intersection.is_empty():
-		var local_pos = (intersection.position / _plane_map_node.tile_size).floor()
+		var local_pos = (intersection.position/ _plane_map_node.tile_size).floor()
 		var _pos = _plane_map_node.local_to_global(local_pos);
 		CameraEvents.on_ray_intersect_plane.emit(_pos, intersection.collider);

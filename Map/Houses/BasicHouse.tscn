@@ -5,11 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://dkcpfbmoxh5d7" path="res://Map/Objects/BigTorch.tscn" id="4_op8ws"]
 [ext_resource type="MeshLibrary" uid="uid://crxew437c4xq1" path="res://Map/MeshLibrary.tres" id="5_drb0p"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qevpe"]
-size = Vector3(4.1933, 5, 1.22412)
+[sub_resource type="BoxShape3D" id="BoxShape3D_5us4d"]
+size = Vector3(1, 3.06849, 3.63018)
 
 [node name="BasicHouse" type="Node3D"]
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="ExitingArea3D" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0403047, 1.59283, 3.12473)
+collision_mask = 2
+gravity_point_center = Vector3(0, -9.59, 0)
+gravity_direction = Vector3(0, -9.59, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitingArea3D"]
+shape = SubResource("BoxShape3D_5us4d")
 
 [node name="MapItems" type="Node3D" parent="."]
 
@@ -36,14 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -9.42683, 
 [node name="PNJs" type="Node3D" parent="."]
 
 [node name="Spawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.079, 0, 0.708305)
-
-[node name="ExitArea3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.271471, 1.50945, 3.8825)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitArea3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275786, 1.19546, -0.59098)
-shape = SubResource("BoxShape3D_qevpe")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.708)
 
 [node name="Grounds" type="GridMap" parent="."]
 mesh_library = ExtResource("5_drb0p")
