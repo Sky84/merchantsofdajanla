@@ -15,8 +15,6 @@ class_name InventoryView
 @onready var item_with_gap = (32 + gap_hover_selector);
 @onready var ui_controller: UIController = %CanvasLayer;
 
-var _items = {};
-
 var mouse_outside: bool = false;
 var _rows: int;
 var _container_owner: String;
@@ -69,7 +67,7 @@ func _update_items(slots: Dictionary):
 			_update_custom_item(x, y, slot_instance);
 
 #use this function when you need to setup label or other element that does not exist in base class
-func _update_custom_item(slot_x: int, slot_y: int, slot_instance: SlotButton) -> void:
+func _update_custom_item(_slot_x: int, _slot_y: int, _slot_instance: SlotButton) -> void:
 	pass
 
 func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: int):

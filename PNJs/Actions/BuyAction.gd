@@ -12,14 +12,14 @@ var seller_container_config: Dictionary;
 var seller_alive: Alive;
 const DIALOG_TITLE := 'buy-action-modal';
 
-func execute(params: Dictionary) -> void:
+func execute(_params: Dictionary) -> void:
 	is_running = true;
-	buyer_owner_id = params._owner_id;
-	grid_map = params.grid_map;
-	astar_agent = params.astar_agent;
+	buyer_owner_id = _params._owner_id;
+	grid_map = _params.grid_map;
+	astar_agent = _params.astar_agent;
 	scene_tree = astar_agent.get_tree();
-	camera_3d = params.camera_3d;
-	pnj_name = params.pnj_name;
+	camera_3d = _params.camera_3d;
+	pnj_name = _params.pnj_name;
 	seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
 	if seller_container_config.is_empty():
 		_end_action();
@@ -64,10 +64,9 @@ func _on_target_reached():
 	if not is_running:
 		return;
 	var item = GameItems.get_items_by_subtype(target)[0];
-	var should_trade: bool = true;
 	seller_alive.is_busy = true;
 	if "player" in seller_container_config.container_owner.to_lower():
-		_process_target_player(astar_agent, item);
+		_process_target_player(item);
 	else:
 		_on_accept(item);
 
@@ -85,7 +84,7 @@ func _on_decline() -> void:
 	seller_alive.is_busy = false;
 	_end_action();
 
-func _process_target_player(astar_agent, item) -> void:
+func _process_target_player(item) -> void:
 	var target_position = astar_agent.target_position;
 	PlayerEvents.on_player_block.emit(true);
 	var nav_path = astar_agent.get_current_navigation_path();

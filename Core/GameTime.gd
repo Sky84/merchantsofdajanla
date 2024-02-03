@@ -11,9 +11,9 @@ var minute: int:
 	get:
 		return _minute;
 
-func _init(hour: int, minute: int):
-	_hour = hour;
-	_minute = minute;
+func _init(__hour: int, __minute: int):
+	_hour = __hour;
+	_minute = __minute;
 
 func duplicate(game_time: GameTime) -> GameTime:
 	return GameTime.new(game_time._hour, game_time._minute);
@@ -24,9 +24,9 @@ func as_dictionary() -> Dictionary:
 		'minute': _minute
 	};
 
-func is_between_incl(min: Dictionary, max: Dictionary) -> bool:
-	var min_time = GameTime.new(min.hour, min.minute);
-	var max_time = GameTime.new(max.hour, max.minute);
+func is_between_incl(_min: Dictionary, _max: Dictionary) -> bool:
+	var min_time = GameTime.new(_min.hour, _min.minute);
+	var max_time = GameTime.new(_max.hour, _max.minute);
 	if min_time._is_greater_or_equal_than(max_time):
 		return _is_greater_or_equal_than(min_time) or _is_lower_or_equal_than(max_time);
 	return _is_greater_or_equal_than(min_time) and _is_lower_or_equal_than(max_time);

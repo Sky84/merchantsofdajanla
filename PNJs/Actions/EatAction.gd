@@ -2,9 +2,9 @@ extends Action
 class_name EatAction
 
 
-func execute(params: Dictionary) -> void:
-	var _owner_id: String = params._owner_id;
-	var consume_callback: Callable = params.consume;
+func execute(_params: Dictionary) -> void:
+	var _owner_id: String = _params._owner_id;
+	var consume_callback: Callable = _params.consume;
 
 	var items_target: Array[Dictionary] = GameItems.get_items_by_subtype(target);
 	var container_ids: Array[String] = ContainersController.get_container_ids_by_owner_id(_owner_id);

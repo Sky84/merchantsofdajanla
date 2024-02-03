@@ -22,9 +22,9 @@ var has_next_nodes: bool:
 	get:
 		return _next_nodes.size() > 0;
 
-func _init(id: String, val: String, cb_name: String = '', cb_params: Array = [], next_nodes: Array = []):
+func _init(__id: String, val: String, cb_name: String = '', cb_params: Array = [], __next_nodes: Array = []):
 	_id = id;
 	value = val;
-	_next_nodes = next_nodes;
+	_next_nodes = __next_nodes;
 	callback_name = cb_name;
 	callback_params = cb_params;

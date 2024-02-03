@@ -69,11 +69,11 @@ func _on_close_button_pressed():
 func _ready():
 	pass
 
-func _input(event):
+func _input(_event):
 	pass
 
-func _handle_mouse_click(event: InputEventMouseButton) -> void:
+func _handle_mouse_click(_event: InputEventMouseButton) -> void:
 	pass
 
-func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: int):
+func _on_slot_pressed(_button_index: int, _slot: Dictionary, _slot_x: int, _slot_y: int):
 	pass

@@ -42,9 +42,9 @@ func _init_events():
 	if not remove_button.pressed.is_connected(_on_remove_button_pressed):
 		remove_button.pressed.connect(_on_remove_button_pressed);
 
-func _update_custom_item(slot_x: int, slot_y: int, slot_instance: SlotButton) -> void:
+func _update_custom_item(_slot_x: int, _slot_y: int, _slot_instance: SlotButton) -> void:
 	var slots = ContainersController.get_container_data(container_id);
-	var slot = slots[slot_x][slot_y];
+	var slot = slots[_slot_x][_slot_y];
 	if (not slot.is_empty()) and (not slot.id in desired_price_items):
 		desired_price_items[slot.id] = MarketController.get_current_price(slot);
 
@@ -58,7 +58,7 @@ func _update_items(slots: Dictionary):
 #			trade_item_container.set_trade_item(container_id, item_data.item, desired_price_items);
 	trade_item_container.visible = not _current_item_id.is_empty();
 
-func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: int):
+func _on_slot_pressed(_button_index: int, slot: Dictionary, _slot_x: int, _slot_y: int):
 	if not slot.is_empty():
 		trade_item_container.set_trade_item(container_id, slot, desired_price_items);
 

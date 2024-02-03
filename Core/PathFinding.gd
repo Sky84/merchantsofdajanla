@@ -21,7 +21,7 @@ func _set_debug(value):
 	for key in debug_cubes:
 		debug_cubes[key].visible = value;
 
-func update_pathfinding(chunks, chunk_tile_size: int, tile_size: int):
+func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
 	for chunk_x in chunks:
 		for chunk_z in chunks[chunk_x]:
 			var chunk: ChunkController = chunks[chunk_x][chunk_z];
@@ -45,7 +45,6 @@ func update_pathfinding(chunks, chunk_tile_size: int, tile_size: int):
 	_connect_points();
 
 func _is_object_on_point(chunk: ChunkController, point_position: Vector3):
-	var too_near_distance: int = 5;
 	var result = false;
 	for key in chunk.chunk_objects:
 		var object = chunk.chunk_objects[key];

@@ -44,12 +44,12 @@ func get_map_item(id: String) -> MapItem:
 			return map_object;
 	return null;
 
-func has_item_at(position: Vector3) -> bool:
-	return _map_objects.has(global_to_local(position));
+func has_item_at(_position: Vector3) -> bool:
+	return _map_objects.has(global_to_local(_position));
 
 # Convert a global position (from map point of view) to the map position (index of the tile)
-func global_to_local(global_position: Vector3) -> Vector3i:
-	return (global_position / tile_size).floor();
+func global_to_local(gbl_position: Vector3) -> Vector3i:
+	return (gbl_position / tile_size).floor();
 	
 # Convert a local position (from map point of view) to the map position (index of the tile)
 func local_to_global(local_position: Vector3) -> Vector3:

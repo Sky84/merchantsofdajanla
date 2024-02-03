@@ -18,7 +18,7 @@ func _init_container(trade_container_id: String, merchant_container_id: String, 
 	_update_items(items);
 	visible = true;
 
-func _on_slot_pressed(button_index: int, slot: Dictionary, slot_x: int, slot_y: int):
+func _on_slot_pressed(_button_index: int, slot: Dictionary, _slot_x: int, _slot_y: int):
 	if not slot.is_empty():
 		if slot.id == MarketController.MONEY_ITEM_ID:
 			NotificationEvents.notify.emit(NotificationEvents.NotificationType.ERROR, 'MARKET.CANT_BUY_MONEY');

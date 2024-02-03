@@ -69,12 +69,12 @@ func _check_merchant(validator_data: Dictionary, owner_id: String) -> bool:
 	return _check_has_property(alive, "is_merchant") and _check_value_match(alive.is_merchant, validator_data.value);
 
 
-func _check_game_time(validator_data: Dictionary, owner_id: String) -> bool:
+func _check_game_time(validator_data: Dictionary, _owner_id: String) -> bool:
 	return last_game_time.is_between_incl(validator_data.value.min, validator_data.value.max);
 
 # Helpers functions to check -> next put this in something like ValidatorUtils files
-func _check_value_between_incl(value: int, min: int, max: int) -> bool:
-	return value >= min and value <= max;
+func _check_value_between_incl(value: int, _min: int, _max: int) -> bool:
+	return value >= _min and value <= _max;
 	
 func _check_value_match(value, expected) -> bool:
 	return value == expected;

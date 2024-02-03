@@ -24,10 +24,10 @@ func _update_price() -> void:
 	var current_price = MAX_PRICE if not "current_price" in item else item.current_price;
 	item_value_label.text = str(current_price);
 
-func _input(event):
+func _input(_event):
 	pass
 
-func _handle_mouse_click(event: InputEventMouseButton) -> void:
+func _handle_mouse_click(_event: InputEventMouseButton) -> void:
 	pass
 
 func close() -> void:

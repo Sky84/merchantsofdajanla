@@ -35,8 +35,8 @@ func have_enough(container_id: String, item_id: String, amount_to_have: int):
 func get_seller_container_config_by_subtype(subtype: String) -> Dictionary:
 	var currently_trading_containers_ids: Array = ContainersController.containers.keys().filter(func(container_id):
 		var container_config = ContainersController.get_container_config(container_id);
-		var owner: Alive = AlivesController.get_alive_by_owner_id(container_config.container_owner);
-		if owner == null or (("is_trading" in owner and owner.is_trading) or owner._is_player):
+		var _owner: Alive = AlivesController.get_alive_by_owner_id(container_config.container_owner);
+		if _owner == null or (("is_trading" in _owner and _owner.is_trading) or _owner._is_player):
 			return container_id;
 	)
 	if !currently_trading_containers_ids.is_empty():

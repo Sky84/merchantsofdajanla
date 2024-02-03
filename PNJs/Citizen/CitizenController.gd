@@ -63,7 +63,7 @@ func _get_action_params(action: Action) -> Dictionary:
 		params_to_modify[param_key] = self[param_key];
 	return params_to_modify;
 
-func _on_action_finished(action_id: String, owner_id: String, next_action: Action):
+func _on_action_finished(_action_id: String, owner_id: String, next_action: Action):
 	if owner_id != _owner_id:
 		return;
 	if next_action:

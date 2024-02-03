@@ -83,19 +83,19 @@ func _mouse_outside(status:bool) -> void:
 	elif _selected_item_node != null:
 		_destroy_posable_preview();
 
-func _preview_item_on_map(position: Vector3, _plane_map: GameGridMapController) -> void:
+func _preview_item_on_map(_position: Vector3, _plane_map: GameGridMapController) -> void:
 	if _selected_item_node != null:
-		_selected_item_node.set_position(position);
+		_selected_item_node.set_position(_position);
 		var mesh_instance: MeshInstance3D = NodeUtils.get_mesh_in_child(_selected_item_node);
 		var _material: StandardMaterial3D = mesh_instance.mesh.surface_get_material(0).duplicate(true);
-		_material.albedo_color = Color(1, 0, 0) if _plane_map.has_item_at(position) else Color(1,1,1);
+		_material.albedo_color = Color(1, 0, 0) if _plane_map.has_item_at(_position) else Color(1,1,1);
 		mesh_instance.set_surface_override_material(0, _material);
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		global_position = get_global_mouse_position();
 
-func _place_item_on_map(item: Dictionary, container_owner: String) -> void:
+func _place_item_on_map(_item: Dictionary, container_owner: String) -> void:
 	GridMapEvents.place_item_at.emit(_selected_item, _selected_item_node.global_position, container_owner);
 
 func _create_posable_collider() -> void:

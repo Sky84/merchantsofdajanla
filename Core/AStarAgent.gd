@@ -21,7 +21,7 @@ signal target_reached;
 func _init(path_finding: PathFinding):
 	_path_finding = path_finding;
 
-func _process(delta):
+func _process(_delta):
 	var distance_to_target = global_position.distance_to(_target_position);
 	var distance_to_next_point = global_position.distance_to(get_next_path_position());
 	if _current_path.size() > 0 and distance_to_target <= target_desired_distance:

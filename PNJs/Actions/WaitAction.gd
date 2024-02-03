@@ -3,12 +3,12 @@ class_name WaitAction
 
 var astar_agent: AStarAgent;
 
-func execute(params: Dictionary) -> void:
-	var _owner_id = params._owner_id;
-	astar_agent = params.astar_agent;
-	_update_target_position(params.global_position, params.grid_map);
+func execute(_params: Dictionary) -> void:
+	var _owner_id = _params._owner_id;
+	astar_agent = _params.astar_agent;
+	_update_target_position(_params.global_position, _params.grid_map);
 	await astar_agent.target_reached;
-	var timer: SceneTreeTimer = params.grid_map.get_tree().create_timer(1);
+	var timer: SceneTreeTimer = _params.grid_map.get_tree().create_timer(1);
 	await timer.timeout;
 	on_action_finished.emit(id, _owner_id, null);
 

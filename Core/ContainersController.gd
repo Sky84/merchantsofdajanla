@@ -43,8 +43,8 @@ func update(container_id: String, _items: Dictionary) -> void:
 	for item_id in _items:
 		for x in slots:
 			for y in slots[x]:
-				var slot = slots[x][y];
-				slot = _items[item_id];
+				var _slot = slots[x][y];
+				_slot = _items[item_id];
 	InventoryEvents.container_data_changed.emit(container_id);
 
 func set_current_item(container_id: String, item: Dictionary):

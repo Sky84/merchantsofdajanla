@@ -10,13 +10,13 @@ func _ready():
 	super._ready();
 	_price_label_3d.visible = false;
 
-func _init_posable(_owner: String):
-	await super._init_posable(_owner);
-	_container.register_container(id, _owner);
+func _init_posable(__owner: String):
+	await super._init_posable(__owner);
+	_container.register_container(id, __owner);
 	InventoryEvents.item_in_container_selected.connect(_on_item_container_changed);
 	HudEvents.price_item_changed.connect(_on_item_container_changed);
 
-func _on_item_container_changed(mouse_item: Dictionary) -> void:
+func _on_item_container_changed(_mouse_item: Dictionary) -> void:
 	var item = MarketController.get_first_item(_container.container_id);
 	if item:
 		_price_label_3d.text = str(item.current_price);

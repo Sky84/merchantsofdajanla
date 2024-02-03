@@ -69,8 +69,8 @@ func _capture_heightmap() -> Image:
 			heightmap.set_pixel(x, z, Color(cell_height, cell_height, cell_height));
 	return heightmap;
 
-func get_cell_maped_item(position: Vector3) -> int:
-	var cell_value = get_cell_item(position);
+func get_cell_maped_item(_position: Vector3) -> int:
+	var cell_value = get_cell_item(_position);
 	var cell_name = mesh_library.get_item_name(cell_value);
 	var cell_item = cell_value_map[cell_name];
 	return cell_item[randi_range(0, cell_item.size()-1)];

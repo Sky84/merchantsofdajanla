@@ -19,7 +19,7 @@ func _process(_delta):
 	position = position.lerp(player.position - _offset, camera_speed / _camera_factor_speed);
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var _space_state = get_world_3d().direct_space_state;
 	var mouse_pos = get_viewport().get_mouse_position();
 	_ray_origin = project_ray_origin(mouse_pos);
