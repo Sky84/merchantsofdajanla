@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://w6l5bu2buh72"]
 
 [ext_resource type="Script" path="res://Map/Houses/HouseController.gd" id="1_qsxtj"]
-[ext_resource type="PackedScene" uid="uid://c3g0jjjrx6src" path="res://Map/Models/house2.gltf" id="1_vg7em"]
+[ext_resource type="PackedScene" uid="uid://clshi8glwte8d" path="res://Map/Models/house2.gltf" id="1_vg7em"]
 [ext_resource type="PackedScene" uid="uid://beuodqf5hsuuv" path="res://Map/Houses/BasicHouse.tscn" id="2_r57dn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2u4pc"]

@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://b16df5413g5io"]
 
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_qbp5x"]
-[ext_resource type="Texture2D" uid="uid://cn0g5puac0yp6" path="res://Map/Sprites/sol2.png" id="2_cxesf"]
+[ext_resource type="Texture2D" uid="uid://bu2xtqts3m8b6" path="res://Map/Sprites/sol2.png" id="2_cxesf"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="3_s6bvq"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_3sq41"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_khjcr"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_phuc5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_det8s"]
 render_priority = 0
 shader = ExtResource("1_qbp5x")
 shader_parameter/simulate_wind = false
@@ -23,8 +23,8 @@ size = Vector3(2.03356, 0.01, 1.24933)
 
 [node name="SmallCactus" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0.843746, 0)
-mesh = SubResource("PlaneMesh_3sq41")
-surface_material_override/0 = SubResource("ShaderMaterial_phuc5")
+mesh = SubResource("PlaneMesh_khjcr")
+surface_material_override/0 = SubResource("ShaderMaterial_det8s")
 script = ExtResource("3_s6bvq")
 tile_atlas_size = 16.0
 texture = SubResource("AtlasTexture_umpcc")

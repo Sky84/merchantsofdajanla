@@ -5,8 +5,6 @@ launch.json
 .godot/
 
 # Godot-specific ignores
-.import/
-*.import
 export.cfg
 export_presets.cfg
 # Dummy HTML5 export presets file for continuous integration

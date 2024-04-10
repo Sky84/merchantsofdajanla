@@ -3,7 +3,7 @@ extends MeshInstance3D
 class_name MapMesh
 
 @export var simulate_wind: bool = false;
-@export var tile_atlas_size: float = 32;
+@export var tile_atlas_size: float = 32.0;
 @export var init_atlas: bool:
 	get:
 		return false;

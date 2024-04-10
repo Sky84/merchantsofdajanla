@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c40ngw2hn56t4"]
 
-[ext_resource type="Texture2D" uid="uid://br66totjejpod" path="res://icon.svg" id="1_6cv8u"]
+[ext_resource type="Texture2D" uid="uid://cmr0d5ut2n3jg" path="res://icon.svg" id="1_6cv8u"]
 [ext_resource type="Theme" uid="uid://dtc0anbhbcv2q" path="res://UI/Theme.tres" id="1_31o8c"]
 [ext_resource type="Script" path="res://Containers/ItemButton/ItemButton.gd" id="2"]
 

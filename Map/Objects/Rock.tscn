@@ -1,13 +1,13 @@
 [gd_scene load_steps=8 format=3 uid="uid://ceh4gik2flw3s"]
 
-[ext_resource type="Texture2D" uid="uid://cn0g5puac0yp6" path="res://Map/Sprites/sol2.png" id="1_3mbbr"]
+[ext_resource type="Texture2D" uid="uid://bu2xtqts3m8b6" path="res://Map/Sprites/sol2.png" id="1_3mbbr"]
 [ext_resource type="Shader" uid="uid://ck8clvb1bmpc0" path="res://MapMeshShader.tres" id="1_qdihf"]
 [ext_resource type="Script" path="res://Core/MapMesh.gd" id="2_0g73o"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_pbwfd"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_bctoq"]
 size = Vector2(1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0na4u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hnvhl"]
 render_priority = 0
 shader = ExtResource("1_qdihf")
 shader_parameter/simulate_wind = false
@@ -24,8 +24,8 @@ size = Vector3(0.796875, 0.01, 0.661505)
 
 [node name="Rock" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0.428919, 0)
-mesh = SubResource("PlaneMesh_pbwfd")
-surface_material_override/0 = SubResource("ShaderMaterial_0na4u")
+mesh = SubResource("PlaneMesh_bctoq")
+surface_material_override/0 = SubResource("ShaderMaterial_hnvhl")
 script = ExtResource("2_0g73o")
 texture = SubResource("AtlasTexture_awkoc")
 

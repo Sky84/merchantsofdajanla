@@ -59,7 +59,7 @@ func _update_collisions():
 		collision_shape.owner = get_tree().edited_scene_root;
 
 func _capture_heightmap() -> Image:
-	var chunk_size: float = 32;
+	var chunk_size: float = 32.0;
 	var heightmap = Image.create(chunk_size, chunk_size, false, Image.FORMAT_RGB8);
 
 	for x in range(chunk_size):
