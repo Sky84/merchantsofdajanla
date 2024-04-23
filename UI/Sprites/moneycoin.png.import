@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csorispvqg02l"
-path.s3tc="res://.godot/imported/moneycoin.png-7d0cc782a192ce4f395e7a5f22252198.s3tc.ctex"
+path="res://.godot/imported/moneycoin.png-7d0cc782a192ce4f395e7a5f22252198.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://UI/Sprites/moneycoin.png"
-dest_files=["res://.godot/imported/moneycoin.png-7d0cc782a192ce4f395e7a5f22252198.s3tc.ctex"]
+dest_files=["res://.godot/imported/moneycoin.png-7d0cc782a192ce4f395e7a5f22252198.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

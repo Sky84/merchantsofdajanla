@@ -3,6 +3,10 @@ extends CanvasLayer
 @onready var animation_player = $Panel/AnimationPlayer;
 var game_scene = preload("res://Game.tscn");
 
+func _ready():
+	animation_player.current_animation = "menu_change";
+	animation_player.stop();
+
 func _on_button_start_pressed():
 	animation_player.play("menu_change");
 	await animation_player.animation_finished;

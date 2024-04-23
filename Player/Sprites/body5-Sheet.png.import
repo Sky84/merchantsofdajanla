@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dq76ock6ilw70"
-path.s3tc="res://.godot/imported/body5-Sheet.png-5593f831d2cdba792eea2395f1e17d62.s3tc.ctex"
+path="res://.godot/imported/body5-Sheet.png-5593f831d2cdba792eea2395f1e17d62.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Player/Sprites/body5-Sheet.png"
-dest_files=["res://.godot/imported/body5-Sheet.png-5593f831d2cdba792eea2395f1e17d62.s3tc.ctex"]
+dest_files=["res://.godot/imported/body5-Sheet.png-5593f831d2cdba792eea2395f1e17d62.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

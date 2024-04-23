@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dkqrc3ul4wnc1"
-path.s3tc="res://.godot/imported/torch.png-3208c1258bd687a2bee4ab9faf16a33b.s3tc.ctex"
+path="res://.godot/imported/torch.png-3208c1258bd687a2bee4ab9faf16a33b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Map/Sprites/torch.png"
-dest_files=["res://.godot/imported/torch.png-3208c1258bd687a2bee4ab9faf16a33b.s3tc.ctex"]
+dest_files=["res://.godot/imported/torch.png-3208c1258bd687a2bee4ab9faf16a33b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

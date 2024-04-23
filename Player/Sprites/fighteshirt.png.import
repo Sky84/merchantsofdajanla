@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1wjg1ipfi5la"
-path.s3tc="res://.godot/imported/fighteshirt.png-5d515ebbdf28778d0fb0b34b123a055b.s3tc.ctex"
+path="res://.godot/imported/fighteshirt.png-5d515ebbdf28778d0fb0b34b123a055b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Player/Sprites/fighteshirt.png"
-dest_files=["res://.godot/imported/fighteshirt.png-5d515ebbdf28778d0fb0b34b123a055b.s3tc.ctex"]
+dest_files=["res://.godot/imported/fighteshirt.png-5d515ebbdf28778d0fb0b34b123a055b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

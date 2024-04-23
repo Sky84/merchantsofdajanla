@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crx4sk4j1nvm"
-path.s3tc="res://.godot/imported/bed_0.png-736a5c7e81cb50acf24069253d54fd59.s3tc.ctex"
+path="res://.godot/imported/bed_0.png-736a5c7e81cb50acf24069253d54fd59.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Map/Models/bed_0.png"
-dest_files=["res://.godot/imported/bed_0.png-736a5c7e81cb50acf24069253d54fd59.s3tc.ctex"]
+dest_files=["res://.godot/imported/bed_0.png-736a5c7e81cb50acf24069253d54fd59.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
