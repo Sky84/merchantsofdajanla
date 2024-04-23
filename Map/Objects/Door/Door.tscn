@@ -10,7 +10,7 @@ size = Vector3(3.14038, 5.59738, 0.593201)
 script = ExtResource("1_ogj7h")
 
 [node name="InteractComponent" parent="." instance=ExtResource("2_1btmi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.06206, 0.31804)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.06206, -0.302183)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.79182, 0.169242)

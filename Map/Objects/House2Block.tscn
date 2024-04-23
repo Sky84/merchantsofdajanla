@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Map/Houses/HouseController.gd" id="1_qsxtj"]
 [ext_resource type="PackedScene" uid="uid://clshi8glwte8d" path="res://Map/Models/house2.gltf" id="1_vg7em"]
 [ext_resource type="PackedScene" uid="uid://beuodqf5hsuuv" path="res://Map/Houses/BasicHouse.tscn" id="2_r57dn"]
+[ext_resource type="PackedScene" uid="uid://1uc4lrt11v8" path="res://Map/Objects/Door/Door.tscn" id="3_vr7m2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2u4pc"]
 size = Vector3(5.9149, 6.05597, 8.73224)
@@ -10,12 +11,12 @@ size = Vector3(5.9149, 6.05597, 8.73224)
 [sub_resource type="BoxShape3D" id="BoxShape3D_k5epi"]
 size = Vector3(8.07935, 5.21662, 8.07465)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_aelqe"]
-size = Vector3(1, 3.28081, 1.69211)
-
 [node name="House2" type="StaticBody3D"]
 script = ExtResource("1_qsxtj")
 interior_scene = ExtResource("2_r57dn")
+
+[node name="Door" parent="." instance=ExtResource("3_vr7m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07814, 0, 3.93838)
 
 [node name="HouseModel2" parent="." instance=ExtResource("1_vg7em")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -28,15 +29,5 @@ shape = SubResource("BoxShape3D_2u4pc")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0557947, 2.59661, -0.168844)
 shape = SubResource("BoxShape3D_k5epi")
 
-[node name="EnterArea3D" type="Area3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8367, 0.509447, 3.98299)
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnterArea3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19546, 0.0580893)
-shape = SubResource("BoxShape3D_aelqe")
-
 [node name="ExitSpawn" type="Marker3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.80296, 0, 5.15054)
-
-[connection signal="body_entered" from="EnterArea3D" to="." method="_on_enter_area_3d_body_entered"]

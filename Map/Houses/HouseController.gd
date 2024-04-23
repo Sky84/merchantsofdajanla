@@ -5,8 +5,13 @@ extends StaticBody3D
 
 @onready var house_id: String = 'house_'+str(global_position.x)+'_'+str(global_position.y);
 @onready var game_map_controller: GameMapController = get_node('/root/Root/Game/GameMapController');
+@onready var door_instance = $Door;
 
-func _on_enter_area_3d_body_entered(body: Node3D):
+func _ready():
+	door_instance.door_activated.connect(_on_enter_area_3d_body_entered);
+
+func _on_enter_area_3d_body_entered(owner_id: String):
+	var body = AlivesController.get_alive_by_owner_id(owner_id);
 	if body is Alive:
 		var interior_instance: Node3D;
 		if house_id in game_map_controller.spawned_interior_houses:
