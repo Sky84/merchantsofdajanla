@@ -95,7 +95,7 @@
 		"type": "Posable",
 		"description": "ITEMS.STAND.DESCRIPTION",
 		"icon_path": "res://icon.svg",
-		"scene_path": "res://Stand/Stand.tscn",
+		"scene_path": "res://Stand/stand.tscn",
 		"base_price": 250
 	},
 	"bed": {
@@ -103,7 +103,7 @@
 		"type": "Posable",
 		"description": "ITEMS.BED.DESCRIPTION",
 		"icon_path": "res://icon.svg",
-		"scene_path": "res://Stand/Stand.tscn",
+		"scene_path": "res://Stand/stand.tscn",
 		"base_price": 500
 	},
 	"chair": {

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://1uc4lrt11v8"]
+
+[ext_resource type="Script" path="res://Map/Objects/Door/Door.gd" id="1_ogj7h"]
+[ext_resource type="PackedScene" uid="uid://bt0fs4f7tip0s" path="res://Core/Components/interact_component.tscn" id="2_1btmi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_unwhd"]
+size = Vector3(3.14038, 5.59738, 0.593201)
+
+[node name="Door" type="StaticBody3D"]
+script = ExtResource("1_ogj7h")
+
+[node name="InteractComponent" parent="." instance=ExtResource("2_1btmi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.06206, 0.31804)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.79182, 0.169242)
+shape = SubResource("BoxShape3D_unwhd")

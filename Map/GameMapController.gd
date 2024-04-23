@@ -125,10 +125,11 @@ func _generate_savage_chunk_at(chunk_global_position: Vector3)  -> ChunkControll
 	chunk_instance.global_position = chunk_global_position;
 	return chunk_instance;
 
-func add_interior_house(house_id: String, interior_scene: PackedScene) -> Node3D:
+func add_interior_house(house_id: String, interior_scene: PackedScene, go_to_location: Vector3) -> Node3D:
 	var interior_instance = interior_scene.instantiate();
 	_world_map.get_node('Interiors').add_child(interior_instance);
 	interior_instance.position.y = -250 * spawned_interior_houses.values().size();
+	interior_instance.go_to_location = go_to_location;
 	spawned_interior_houses[house_id] = {'node_path': interior_instance.get_path()};
 	return interior_instance;
 

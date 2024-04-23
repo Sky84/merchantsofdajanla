@@ -12,18 +12,7 @@ func _on_enter_area_3d_body_entered(body: Node3D):
 		if house_id in game_map_controller.spawned_interior_houses:
 			interior_instance = get_node(game_map_controller.spawned_interior_houses[house_id].node_path);
 		else:
-			interior_instance = game_map_controller.add_interior_house(house_id, interior_scene);
+			interior_instance = game_map_controller.add_interior_house(house_id, interior_scene, $ExitSpawn.global_position);
 		body.global_position = interior_instance.get_node("Spawn").global_position;
 		interior_instance.rotation_degrees = rotation_degrees;
 		body.current_interior = self;
-		var exit_area: Area3D = interior_instance.get_node('ExitingArea3D');
-		exit_area.body_entered.connect(_on_exit_area_3d_body_entered)
-
-func _on_exit_area_3d_body_entered(body: Node3D):
-	var interior_instance = get_node(game_map_controller.spawned_interior_houses[house_id].node_path);
-	print('_on_exit_area_3d_body_entered')
-	print(body.name)
-	if body is Alive:
-		interior_instance.get_node('ExitingArea3D').body_entered.disconnect(_on_exit_area_3d_body_entered);
-		body.global_position = get_node("ExitSpawn").global_position;
-		body.current_interior = null;
