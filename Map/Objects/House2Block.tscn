@@ -15,7 +15,7 @@ size = Vector3(8.07935, 5.21662, 8.07465)
 script = ExtResource("1_qsxtj")
 interior_scene = ExtResource("2_r57dn")
 
-[node name="Door" parent="." instance=ExtResource("3_vr7m2")]
+[node name="Door" parent="." groups=["reachable_objects"] instance=ExtResource("3_vr7m2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07814, 0, 3.93838)
 
 [node name="HouseModel2" parent="." instance=ExtResource("1_vg7em")]

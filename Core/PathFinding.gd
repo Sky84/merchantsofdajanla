@@ -25,6 +25,9 @@ func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
 	for chunk_x in chunks:
 		for chunk_z in chunks[chunk_x]:
 			var chunk: ChunkController = chunks[chunk_x][chunk_z];
+			for reachable_object in get_tree().get_nodes_in_group('reachable_objects'):
+				if not (reachable_object.global_position in points):
+					_add_point(reachable_object.global_position);
 			for tile_x in range(0, chunk_tile_size, gap_between_points):
 				for tile_z in range(0, chunk_tile_size, gap_between_points):
 					var point_position = Vector3(
@@ -34,15 +37,18 @@ func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
 					);
 					if point_position in points or _is_object_on_point(chunk, point_position):
 						continue;
-					var id = pathfinding.get_available_point_id();
-					points[point_position] = id;
-					pathfinding.add_point(id, point_position);
-					if not point_position in debug_cubes and debug:
-						var debug_mesh := DebugMesh.new(Vector3(0.3, 1, 0.3));
-						add_child(debug_mesh);
-						debug_cubes[point_position] = debug_mesh;
-						debug_mesh.global_position = point_position;
+					_add_point(point_position);
 	_connect_points();
+
+func _add_point(point_position: Vector3):
+	var id = pathfinding.get_available_point_id();
+	points[point_position] = id;
+	pathfinding.add_point(id, point_position);
+	if not point_position in debug_cubes and debug:
+		var debug_mesh := DebugMesh.new(Vector3(0.3, 1, 0.3));
+		add_child(debug_mesh);
+		debug_cubes[point_position] = debug_mesh;
+		debug_mesh.global_position = point_position;
 
 func _is_object_on_point(chunk: ChunkController, point_position: Vector3):
 	var result = false;

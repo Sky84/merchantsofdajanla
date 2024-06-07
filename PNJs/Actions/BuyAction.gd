@@ -12,6 +12,8 @@ var seller_container_config: Dictionary;
 var seller_alive: Alive;
 const DIALOG_TITLE := 'buy-action-modal';
 
+var _target_is_door := false;
+
 func execute(_params: Dictionary) -> void:
 	is_running = true;
 	buyer_owner_id = _params._owner_id;
@@ -31,8 +33,10 @@ func execute(_params: Dictionary) -> void:
 	if not seller:
 		seller = seller_alive;
 	_start_update_alive_target_position(seller);
-	var target_position: Vector3 = seller.global_position;
-	astar_agent.target_position = target_position;
+	if _target_is_door:
+		await astar_agent.target_reached;
+		seller._nearest_interactive.interact(buyer_owner_id);
+		_update_target_target_position(seller);
 	await astar_agent.target_reached;
 	if seller_alive.is_busy:
 		_end_action(false);
@@ -40,8 +44,7 @@ func execute(_params: Dictionary) -> void:
 		_on_target_reached();
 
 func _start_update_alive_target_position(seller: Node3D):
-	var target_position: Vector3 = seller.global_position;
-	astar_agent.target_position = target_position;
+	_update_target_target_position(seller);
 	await scene_tree.create_timer(1).timeout;
 	if is_running:
 		seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
@@ -52,6 +55,16 @@ func _start_update_alive_target_position(seller: Node3D):
 		if not new_seller:
 			new_seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
 		_start_update_alive_target_position(new_seller);
+
+func _update_target_target_position(seller: Node3D):
+	var buyer = AlivesController.get_alive_by_owner_id(buyer_owner_id);
+	var target_position: Vector3 = seller.global_position;
+	if 'current_interrior' in seller and seller.current_interrior != buyer.current_interrior:
+		target_position = seller.current_interrior.door_instance.global_position;
+		_target_is_door = true;
+	else:
+		_target_is_door = false;
+	astar_agent.target_position = target_position;
 
 func _end_action(unlock_player: bool = true):
 	var next_action = await Actions.get_action_by_id(Actions.WAIT);

@@ -17,6 +17,7 @@ const GROUP_NAME = 'alive';
 @onready var animated_sprite_3d = $ClothAnimations/SkinsAnimatedSprite3D;
 
 signal on_set_owner_id;
+signal on_building_changed;
 
 var _is_player = false;
 
@@ -35,8 +36,15 @@ var alive_status: Dictionary = {
 	"hunger": {"value": MAX_HUNGER, "max": MAX_HUNGER}
 };
 
+var _current_interior: Node3D;
+
 # equal to the house if the alive is in interior
-var current_interior: Node3D = null;
+var current_interior: Node3D:
+	get: 
+		return _current_interior;
+	set(value):
+		_current_interior = value;
+		on_building_changed.emit(_current_interior);
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
