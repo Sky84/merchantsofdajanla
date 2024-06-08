@@ -33,10 +33,6 @@ func execute(_params: Dictionary) -> void:
 	if not seller:
 		seller = seller_alive;
 	_start_update_alive_target_position(seller);
-	if _target_is_door:
-		await astar_agent.target_reached;
-		seller._nearest_interactive.interact(buyer_owner_id);
-		_update_target_target_position(seller);
 	await astar_agent.target_reached;
 	if seller_alive.is_busy:
 		_end_action(false);
@@ -45,6 +41,11 @@ func execute(_params: Dictionary) -> void:
 
 func _start_update_alive_target_position(seller: Node3D):
 	_update_target_target_position(seller);
+	if _target_is_door:
+		var buyer = AlivesController.get_alive_by_owner_id(buyer_owner_id);
+		await astar_agent.target_reached;
+		buyer._nearest_interactive = seller.current_interior.door_instance;
+		buyer._nearest_interactive.interact(buyer_owner_id);
 	await scene_tree.create_timer(1).timeout;
 	if is_running:
 		seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
@@ -54,13 +55,14 @@ func _start_update_alive_target_position(seller: Node3D):
 		var new_seller = grid_map.get_map_item(seller_container_config.container_id);
 		if not new_seller:
 			new_seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
+		
 		_start_update_alive_target_position(new_seller);
 
 func _update_target_target_position(seller: Node3D):
-	var buyer = AlivesController.get_alive_by_owner_id(buyer_owner_id);
+	var buyer: Alive = AlivesController.get_alive_by_owner_id(buyer_owner_id);
 	var target_position: Vector3 = seller.global_position;
-	if 'current_interrior' in seller and seller.current_interrior != buyer.current_interrior:
-		target_position = seller.current_interrior.door_instance.global_position;
+	if 'current_interior' in seller and seller.current_interior != buyer.current_interior:
+		target_position = seller.current_interior.door_instance.global_position;
 		_target_is_door = true;
 	else:
 		_target_is_door = false;

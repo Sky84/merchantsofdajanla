@@ -135,5 +135,5 @@ func _on_object_detector_body_entered(body: Node3D) -> void:
 		_nearest_interactives[body.name] = body;
 
 func _on_object_detector_body_exited(body: Node3D) -> void:
-	if body.get_node_or_null(InteractComponent.SCENE_NAME) and _nearest_interactives.has(body.name):
+	if _nearest_interactives.has(body.name):
 		_nearest_interactives.erase(body.name);
