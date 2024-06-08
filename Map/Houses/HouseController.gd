@@ -19,5 +19,4 @@ func _on_enter_area_3d_body_entered(owner_id: String):
 		else:
 			interior_instance = game_map_controller.add_interior_house(house_id, interior_scene, $ExitSpawn.global_position);
 		body.global_position = interior_instance.get_node("Spawn").global_position;
-		interior_instance.rotation_degrees = rotation_degrees;
 		body.current_interior = self;

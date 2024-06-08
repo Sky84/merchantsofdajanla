@@ -131,6 +131,7 @@ func add_interior_house(house_id: String, interior_scene: PackedScene, go_to_loc
 	interior_instance.position.y = -250 * spawned_interior_houses.values().size();
 	interior_instance.go_to_location = go_to_location;
 	spawned_interior_houses[house_id] = {'node_path': interior_instance.get_path()};
+	_path_finding.update_interior_pathfinding(interior_instance)
 	return interior_instance;
 
 func _get_chunk_cell_type(chunk_id: Vector2i):

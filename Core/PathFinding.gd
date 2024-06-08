@@ -42,6 +42,12 @@ func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
 					_add_point(point_position);
 	_connect_all_points();
 
+func update_interior_pathfinding(interior: Node3D):
+	var gridmap:GridMap = interior.get_node('Grounds');
+	for cell_position in gridmap.get_used_cells():
+		var point_position = gridmap.to_global(gridmap.map_to_local(cell_position))
+		_add_point(point_position)
+
 func _add_point(point_position: Vector3):
 	var id = pathfinding.get_available_point_id();
 	points[point_position] = id;
