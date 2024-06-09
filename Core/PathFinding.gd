@@ -23,13 +23,13 @@ func _set_debug(value):
 		debug_cubes[key].visible = value;
 
 func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
+	for reachable_object in get_tree().get_nodes_in_group('reachable_objects'):
+		if not (reachable_object.global_position in points):
+			_add_point(reachable_object.global_position);
+			reachable_object_points.append(reachable_object.global_position);
 	for chunk_x in chunks:
 		for chunk_z in chunks[chunk_x]:
 			var chunk: ChunkController = chunks[chunk_x][chunk_z];
-			for reachable_object in get_tree().get_nodes_in_group('reachable_objects'):
-				if not (reachable_object.global_position in points):
-					_add_point(reachable_object.global_position);
-					reachable_object_points.append(reachable_object.global_position);
 			for tile_x in range(0, chunk_tile_size, gap_between_points):
 				for tile_z in range(0, chunk_tile_size, gap_between_points):
 					var point_position = Vector3(
