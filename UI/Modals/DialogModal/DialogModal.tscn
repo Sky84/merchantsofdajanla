@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2xxhh2p8qwon"]
 
 [ext_resource type="Script" path="res://UI/Modals/DialogModal/DialogModal.gd" id="1_2sthi"]
-[ext_resource type="Texture2D" uid="uid://t5e5sxwub1y3" path="res://UI/Modals/modal.png" id="2_508xq"]
-[ext_resource type="Texture2D" uid="uid://bfishpvyygi0s" path="res://UI/Modals/infoarrow.png" id="3_8jfid"]
+[ext_resource type="Texture2D" uid="uid://brav41t0b5g0g" path="res://UI/Modals/modal.png" id="2_508xq"]
+[ext_resource type="Texture2D" uid="uid://ctqk5vicbnya8" path="res://UI/Modals/infoarrow.png" id="3_8jfid"]
 
 [node name="AskDialog" type="Control"]
 texture_filter = 1
@@ -111,8 +111,15 @@ texture = ExtResource("3_8jfid")
 flip_h = true
 
 [node name="AnswersContainer" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = -108.0
-offset_top = -21.0
-offset_right = 116.0
-offset_bottom = 280.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1645.0
+offset_top = -877.0
+offset_right = -1421.0
+offset_bottom = -576.0
+grow_horizontal = 0
+grow_vertical = 0

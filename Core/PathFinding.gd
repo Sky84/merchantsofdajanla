@@ -37,16 +37,22 @@ func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
 						chunk.global_position.y,
 						(chunk_z*chunk_tile_size) + (tile_z)
 					);
-					if point_position in points or _is_object_on_point(chunk, point_position):
+					if point_position in points or _is_object_on_point(chunk.chunk_objects, point_position):
 						continue;
 					_add_point(point_position);
-	_connect_all_points();
+	_connect_all_points(points);
 
 func update_interior_pathfinding(interior: Node3D):
 	var gridmap:GridMap = interior.get_node('Grounds');
+	var points_to_connect = {};
+	var interior_objects: Dictionary = NodeUtils.array_to_dictionary(interior.get_node('MapDecorations').get_children().filter(func(c): return c is StaticBody3D));
 	for cell_position in gridmap.get_used_cells():
+		var cell_type: int = gridmap.get_cell_item(cell_position);
+		var is_wall = [5,6].has(cell_type);
 		var point_position = gridmap.to_global(gridmap.map_to_local(cell_position))
-		_add_point(point_position)
+		if not _is_object_on_point(interior_objects, point_position) and not is_wall:
+			_add_point(point_position)
+	_connect_all_points(points_to_connect)
 
 func _add_point(point_position: Vector3):
 	var id = pathfinding.get_available_point_id();
@@ -58,10 +64,10 @@ func _add_point(point_position: Vector3):
 		debug_cubes[point_position] = debug_mesh;
 		debug_mesh.global_position = point_position;
 
-func _is_object_on_point(chunk: ChunkController, point_position: Vector3):
+func _is_object_on_point(objects: Dictionary, point_position: Vector3):
 	var result := false;
-	for key in chunk.chunk_objects:
-		var object = chunk.chunk_objects[key];
+	for key in objects:
+		var object = objects[key];
 		var object_position = Vector3(object.global_position.x, 0, object.global_position.z);
 		var object_size: Vector3 = Vector3(3, 3, 3);
 		var aabb = AABB(object_position, object_size);
@@ -79,9 +85,9 @@ func _is_object_on_point(chunk: ChunkController, point_position: Vector3):
 			break;
 	return result;
 
-func _connect_all_points():
+func _connect_all_points(points_to_connect: Dictionary):
 	var neighbors_to_connect = [-gap_between_points, 0, gap_between_points];
-	for point in points:
+	for point in points_to_connect:
 		for x in neighbors_to_connect:
 			for z in neighbors_to_connect:
 				var offset = Vector3(x, 0, z);
@@ -89,7 +95,7 @@ func _connect_all_points():
 				if offset == Vector3.ZERO or is_diagonal:
 					continue;
 				var neighbor_point = point + Vector3(x, 0, z);
-				if neighbor_point in points:
+				if neighbor_point in points_to_connect:
 					_connect_points(point, neighbor_point);
 		for reachable_object_point in reachable_object_points:
 			if point.distance_to(reachable_object_point) < gap_between_points*2:

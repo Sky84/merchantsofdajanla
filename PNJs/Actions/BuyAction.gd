@@ -12,7 +12,8 @@ var seller_container_config: Dictionary;
 var seller_alive: Alive;
 const DIALOG_TITLE := 'buy-action-modal';
 
-var _target_is_door := false;
+#can be null if its not a door
+var _door_target: Node3D;
 
 func execute(_params: Dictionary) -> void:
 	is_running = true;
@@ -41,10 +42,10 @@ func execute(_params: Dictionary) -> void:
 
 func _start_update_alive_target_position(seller: Node3D):
 	_update_target_target_position(seller);
-	if _target_is_door:
+	if _door_target != null:
 		var buyer = AlivesController.get_alive_by_owner_id(buyer_owner_id);
 		await astar_agent.target_reached;
-		buyer._nearest_interactive = seller.current_interior.door_instance;
+		buyer._nearest_interactive = _door_target;
 		buyer._nearest_interactive.interact(buyer_owner_id);
 	await scene_tree.create_timer(1).timeout;
 	if is_running:
@@ -61,11 +62,13 @@ func _start_update_alive_target_position(seller: Node3D):
 func _update_target_target_position(seller: Node3D):
 	var buyer: Alive = AlivesController.get_alive_by_owner_id(buyer_owner_id);
 	var target_position: Vector3 = seller.global_position;
+	_door_target = null;
 	if 'current_interior' in seller and seller.current_interior != buyer.current_interior:
-		target_position = seller.current_interior.door_instance.global_position;
-		_target_is_door = true;
-	else:
-		_target_is_door = false;
+		if seller.current_interior != null:
+			_door_target = seller.current_interior.door_instance;
+		elif buyer.current_interior != null:
+			_door_target = buyer.current_interior.door_instance;
+		target_position = _door_target.global_position;
 	astar_agent.target_position = target_position;
 
 func _end_action(unlock_player: bool = true):
@@ -111,7 +114,7 @@ func _process_target_player(item) -> void:
 		else Vector2(170, 0);
 	var modal_params = {
 		'id': DIALOG_TITLE,
-		'global_position':  camera_3d.unproject_position(target_position) + gap_modal,
+		'global_position':  Vector2.ONE * 100,
 		'modal_on_left': gap_modal.x < 0,
 		'ask_translation': tr('MARKET.ASK_BUY') + " 1 " + tr(item.name),
 		'name_translation': pnj_name,

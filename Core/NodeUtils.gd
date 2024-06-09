@@ -37,6 +37,12 @@ static func get_atlas_tile_scale_uv1(_texture: AtlasTexture, tile_size: float):
 	);
 	return uv1_scale;
 
+static func array_to_dictionary(arr:Array) -> Dictionary:
+	var dict := {};
+	for i in arr.size():
+		dict[i] = arr[i];
+	return dict;
+
 static func get_atlas_tile_offset_uv1(_texture: AtlasTexture, _tile_size: float):
 	var uv1_offset = Vector2(
 		_texture.region.position.x / _texture.atlas.get_width(),
