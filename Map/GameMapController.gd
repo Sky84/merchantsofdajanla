@@ -12,7 +12,13 @@ var _noise_texture: ImageTexture;
 
 @export var _world_map: GameGridMapController;
 
-@export var _tile_scene_ground_placeable: Array[Texture2D];
+var _tile_scene_ground_placeable_2d_array: Texture2DArray = Texture2DArray.new();
+
+@export var _tile_scene_ground_placeable: Array[Texture2D]:
+	set(value):
+		_tile_scene_ground_placeable_2d_array.create_from_images(
+			value.map(NodeUtils.get_image_from_texture)
+		);
 
 @onready var spawned_interior_houses: Dictionary = {};
 
@@ -120,7 +126,7 @@ func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i) -> C
 
 func _generate_savage_chunk_at(chunk_global_position: Vector3)  -> ChunkController:
 	var chunk_instance: ChunkController = chunk_scene.instantiate();
-	chunk_instance.init_chunk(_tile_scene_ground_placeable, _savage_chunk_noise, _noise_texture);
+	chunk_instance.init_chunk(_tile_scene_ground_placeable_2d_array, _savage_chunk_noise, _noise_texture);
 	_world_map.add_child(chunk_instance);
 	chunk_instance.global_position = chunk_global_position;
 	return chunk_instance;
