@@ -39,8 +39,6 @@ func execute(_params: Dictionary) -> void:
 
 func on_agent_target_reached():
 	if not _is_door_target:
-		if astar_agent.target_reached.is_connected(on_agent_target_reached):
-			astar_agent.target_reached.disconnect(on_agent_target_reached);
 		if seller_alive.is_busy:
 			_end_action(false);
 		else:

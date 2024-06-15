@@ -5,7 +5,6 @@ class_name PathFinding
 	get:
 		return _debug;
 	set(value):
-		_set_debug(value);
 		_debug = value;
 
 var _debug: bool = false;
@@ -14,13 +13,22 @@ var pathfinding: AStar3D = AStar3D.new();
 var points := {};
 var reachable_object_points = [];
 
-var debug_cubes = {};
-
 var gap_between_points: int = 4;
 
-func _set_debug(value):
-	for key in debug_cubes:
-		debug_cubes[key].visible = value;
+func _process(delta):
+	if debug:
+		for point_position in points:
+			DebugDraw3D.draw_box(point_position, Quaternion.IDENTITY, Vector3(0.3,1,0.3), Color.GREEN);
+			var neighbors_to_connect = [-gap_between_points, 0, gap_between_points];
+			for x in neighbors_to_connect:
+				for z in neighbors_to_connect:
+					var offset = Vector3(x, 0, z);
+					var is_diagonal = x + z == 0;
+					if offset == Vector3.ZERO or is_diagonal:
+						continue;
+					var neighbor_point = point_position + Vector3(x, 0, z);
+					if neighbor_point in points:
+						DebugDraw3D.draw_line(point_position, neighbor_point, Color.LIGHT_SEA_GREEN)
 
 func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
 	for reachable_object in get_tree().get_nodes_in_group('reachable_objects'):
@@ -59,11 +67,6 @@ func _add_point(point_position: Vector3) -> int:
 	var id = pathfinding.get_available_point_id();
 	points[point_position] = id;
 	pathfinding.add_point(id, point_position);
-	if not point_position in debug_cubes and debug:
-		var debug_mesh := DebugMesh.new(Vector3(0.3, 1, 0.3));
-		add_child(debug_mesh);
-		debug_cubes[point_position] = debug_mesh;
-		debug_mesh.global_position = point_position;
 	return id;
 
 func _is_object_on_point(objects: Dictionary, point_position: Vector3):

@@ -14,7 +14,6 @@ var target_position: Vector3:
 	set(value):
 		_target_position = value;
 		_current_path = _path_finding.find_path(global_position, _target_position);
-		#_debug_path();
 
 signal target_reached;
 
@@ -29,15 +28,12 @@ func _process(_delta):
 		_current_path = [];
 	elif distance_to_next_point <= target_desired_distance:
 		_current_path.pop_front();
+	if _path_finding.debug:
+		_debug_path();
 
 func _debug_path():
-	for child in _path_finding.get_children():
-		if child.global_position in _current_path:
-			_path_finding.remove_child(child);
-	for point in _current_path:
-		var debug_mesh = DebugMesh.new(Vector3(0.3, 1, 0.3));
-		_path_finding.add_child(debug_mesh);
-		debug_mesh.global_position = point;
+	if _current_path.size() > 1:
+		DebugDraw3D.draw_point_path(_current_path, DebugDraw3D.POINT_TYPE_SQUARE)
 
 func get_current_navigation_path() -> Array:
 	return _current_path.duplicate();

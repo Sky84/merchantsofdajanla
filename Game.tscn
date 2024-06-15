@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=110 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -41,7 +41,6 @@
 [ext_resource type="Texture2D" uid="uid://cmunpxjleyr4h" path="res://Stand/TransactionView/Assets/plusoverlay.png" id="38_4knah"]
 [ext_resource type="Texture2D" uid="uid://b7gn7cwlrqpct" path="res://Stand/TransactionView/Assets/plus.png" id="39_wpgd2"]
 [ext_resource type="Environment" uid="uid://bsabdpysfgvxo" path="res://environment.tres" id="40_1rdb0"]
-[ext_resource type="PackedScene" uid="uid://cggqb75a8w8r" path="res://addons/debug_menu/debug_menu.tscn" id="40_71yux"]
 [ext_resource type="Script" path="res://Player/CameraController.gd" id="40_j6fae"]
 [ext_resource type="Script" path="res://Core/GameTimeController.gd" id="41_tyyav"]
 [ext_resource type="Script" path="res://Map/GameMapController.gd" id="42_h5fgp"]
@@ -558,7 +557,6 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("8_0gosr")
 animation = &"idle"
-frame = 4
 
 [node name="ObjectDetector" type="Area3D" parent="Player"]
 
@@ -1260,8 +1258,6 @@ texture_normal = ExtResource("19_ktoqh")
 texture_hover = ExtResource("19_ktoqh")
 ignore_texture_size = true
 stretch_mode = 5
-
-[node name="DebugMenu" parent="CanvasLayer" instance=ExtResource("40_71yux")]
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player", "_plane_map_node") groups=["camera"]]
 unique_name_in_owner = true
