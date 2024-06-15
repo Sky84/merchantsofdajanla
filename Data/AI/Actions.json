@@ -37,5 +37,13 @@
 			"astar_agent",
 			"grid_map"
 		]
+	},
+	{
+		"id": "LeaveCurrentBuilding",
+		"target": "",
+		"params": [
+			"_owner_id",
+			"astar_agent",
+		]
 	}
 ]

@@ -558,7 +558,7 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("8_0gosr")
 animation = &"idle"
-frame = 3
+frame = 4
 
 [node name="ObjectDetector" type="Area3D" parent="Player"]
 

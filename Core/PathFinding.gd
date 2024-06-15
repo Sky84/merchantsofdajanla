@@ -51,10 +51,11 @@ func update_interior_pathfinding(interior: Node3D):
 		var is_wall = [5,6].has(cell_type);
 		var point_position = gridmap.to_global(gridmap.map_to_local(cell_position))
 		if not _is_object_on_point(interior_objects, point_position) and not is_wall:
-			_add_point(point_position)
+			var point_id = _add_point(point_position)
+			points_to_connect[point_position] = point_id;
 	_connect_all_points(points_to_connect)
 
-func _add_point(point_position: Vector3):
+func _add_point(point_position: Vector3) -> int:
 	var id = pathfinding.get_available_point_id();
 	points[point_position] = id;
 	pathfinding.add_point(id, point_position);
@@ -63,6 +64,7 @@ func _add_point(point_position: Vector3):
 		add_child(debug_mesh);
 		debug_cubes[point_position] = debug_mesh;
 		debug_mesh.global_position = point_position;
+	return id;
 
 func _is_object_on_point(objects: Dictionary, point_position: Vector3):
 	var result := false;

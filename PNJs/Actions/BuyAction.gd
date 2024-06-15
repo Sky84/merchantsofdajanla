@@ -12,8 +12,9 @@ var seller_container_config: Dictionary;
 var seller_alive: Alive;
 const DIALOG_TITLE := 'buy-action-modal';
 
-#can be null if its not a door
-var _door_target: Node3D;
+var _is_door_target: bool = false;
+
+signal on_enter_building;
 
 func execute(_params: Dictionary) -> void:
 	is_running = true;
@@ -34,19 +35,19 @@ func execute(_params: Dictionary) -> void:
 	if not seller:
 		seller = seller_alive;
 	_start_update_alive_target_position(seller);
-	await astar_agent.target_reached;
-	if seller_alive.is_busy:
-		_end_action(false);
-	else:
-		_on_target_reached();
+	astar_agent.target_reached.connect(on_agent_target_reached);
+
+func on_agent_target_reached():
+	if not _is_door_target:
+		if astar_agent.target_reached.is_connected(on_agent_target_reached):
+			astar_agent.target_reached.disconnect(on_agent_target_reached);
+		if seller_alive.is_busy:
+			_end_action(false);
+		else:
+			_on_seller_position_reached();
 
 func _start_update_alive_target_position(seller: Node3D):
 	_update_target_target_position(seller);
-	if _door_target != null:
-		var buyer = AlivesController.get_alive_by_owner_id(buyer_owner_id);
-		await astar_agent.target_reached;
-		buyer._nearest_interactive = _door_target;
-		buyer._nearest_interactive.interact(buyer_owner_id);
 	await scene_tree.create_timer(1).timeout;
 	if is_running:
 		seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
@@ -56,29 +57,41 @@ func _start_update_alive_target_position(seller: Node3D):
 		var new_seller = grid_map.get_map_item(seller_container_config.container_id);
 		if not new_seller:
 			new_seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
-		
 		_start_update_alive_target_position(new_seller);
 
 func _update_target_target_position(seller: Node3D):
 	var buyer: Alive = AlivesController.get_alive_by_owner_id(buyer_owner_id);
 	var target_position: Vector3 = seller.global_position;
-	_door_target = null;
-	if 'current_interior' in seller and seller.current_interior != buyer.current_interior:
-		if seller.current_interior != null:
-			_door_target = seller.current_interior.door_instance;
-		elif buyer.current_interior != null:
-			_door_target = buyer.current_interior.door_instance;
-		target_position = _door_target.global_position;
+	if seller.current_interior != buyer.current_interior:
+		_is_door_target = true;
+		if buyer.current_interior != null:
+			_end_action(false, Actions.LEAVE_CURRENT_BUILDING);
+		elif seller.current_interior != null:
+			enter_building(buyer, seller.current_interior);
+			await on_enter_building;
+			#we end action because we need this action to be restarted
+			_end_action(false, Actions.BUY);
+		return;
 	astar_agent.target_position = target_position;
 
-func _end_action(unlock_player: bool = true):
-	var next_action = await Actions.get_action_by_id(Actions.WAIT);
+func enter_building(buyer: Node3D, interior: Node3D):
+	astar_agent.target_position = interior.door_instance.global_position;
+	await astar_agent.target_reached;
+	buyer._nearest_interactive = interior.door_instance;
+	buyer._nearest_interactive.interact(buyer_owner_id);
+	buyer._nearest_interactive = null;
+	on_enter_building.emit();
+
+func _end_action(unlock_player: bool = true, next_action_id: String = Actions.WAIT):
+	if astar_agent.target_reached.is_connected(on_agent_target_reached):
+		astar_agent.target_reached.disconnect(on_agent_target_reached);
+	var _next_action = await Actions.get_action_by_id(next_action_id);
 	is_running = false;
-	on_action_finished.emit(id, buyer_owner_id, next_action);
+	on_action_finished.emit(id, buyer_owner_id, _next_action);
 	if unlock_player:
 		PlayerEvents.on_player_block.emit(false);
 
-func _on_target_reached():
+func _on_seller_position_reached():
 	if not is_running:
 		return;
 	var item = GameItems.get_items_by_subtype(target)[0];
