@@ -15,18 +15,18 @@ static func get_map_item_id(map_item: MapItem) -> String:
 
 static func get_random_reachable_point(start_position: Vector3, _gridmap_controller: GameGridMapController, space_state: PhysicsDirectSpaceState3D) -> Vector3:
 	var max_distance: int = 5;
-	var random_direction: Vector3 = Vector3(
+	var random_direction_offset: Vector3 = Vector3(
 		randi_range(-1, 1) * max_distance,
-	 	start_position.y,
+	 	0,
 	 	randi_range(-1, 1) * max_distance
 	);
 	
 	# use global coordinates, not local to node
-	var query = PhysicsRayQueryParameters3D.create(start_position, start_position + random_direction);
+	var query = PhysicsRayQueryParameters3D.create(start_position, start_position + random_direction_offset);
 	var result = space_state.intersect_ray(query);
 	if result:
 		return result.position;
-	return start_position + random_direction;
+	return start_position + random_direction_offset;
 
 static func get_atlas_tile_scale_uv1(_texture: AtlasTexture, tile_size: float):
 	var tile_number_width = _texture.region.size.x / tile_size;

@@ -14,6 +14,8 @@ var target_position: Vector3:
 	set(value):
 		_target_position = value;
 		_current_path = _path_finding.find_path(global_position, _target_position);
+		print(global_position, '+++', _target_position)
+		print(_current_path)
 
 signal target_reached;
 

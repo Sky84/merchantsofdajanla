@@ -18,17 +18,10 @@ var gap_between_points: int = 4;
 func _process(delta):
 	if debug:
 		for point_position in points:
-			DebugDraw3D.draw_box(point_position, Quaternion.IDENTITY, Vector3(0.3,1,0.3), Color.GREEN);
-			var neighbors_to_connect = [-gap_between_points, 0, gap_between_points];
-			for x in neighbors_to_connect:
-				for z in neighbors_to_connect:
-					var offset = Vector3(x, 0, z);
-					var is_diagonal = x + z == 0;
-					if offset == Vector3.ZERO or is_diagonal:
-						continue;
-					var neighbor_point = point_position + Vector3(x, 0, z);
-					if neighbor_point in points:
-						DebugDraw3D.draw_line(point_position, neighbor_point, Color.LIGHT_SEA_GREEN)
+			var point_neighbors = pathfinding.get_point_connections(points[point_position])
+			for neighbor_point_id in point_neighbors:
+				var neighbor_point = pathfinding.get_point_position(neighbor_point_id);
+				DebugDraw3D.draw_line(point_position, neighbor_point, Color.LIGHT_SEA_GREEN)
 
 func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
 	for reachable_object in get_tree().get_nodes_in_group('reachable_objects'):
@@ -84,7 +77,6 @@ func _is_object_on_point(objects: Dictionary, point_position: Vector3):
 					 else Vector3(collision_shape.shape.radius, 0, collision_shape.shape.radius);
 				var object_aabb = AABB(collision_shape.global_position, object_size);
 				aabb = aabb.merge(object_aabb);
-			
 		result = aabb.intersects(aabb_point);
 		if result:
 			break;
@@ -99,7 +91,7 @@ func _connect_all_points(points_to_connect: Dictionary):
 				var is_diagonal = x + z == 0;
 				if offset == Vector3.ZERO or is_diagonal:
 					continue;
-				var neighbor_point = point + Vector3(x, 0, z);
+				var neighbor_point = point + offset;
 				if neighbor_point in points_to_connect:
 					_connect_points(point, neighbor_point);
 		for reachable_object_point in reachable_object_points:
