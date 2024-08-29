@@ -1,4 +1,6 @@
 extends Node3D
+class_name InteriorBasicHouse
+
 
 @onready var door_instance := $Door;
 
@@ -13,3 +15,4 @@ func _on_door_activated(owner_id: String) -> void:
 	if alive:
 		alive.global_position = go_to_location;
 		alive.current_interior = null;
+		alive.current_exterior_house = null;

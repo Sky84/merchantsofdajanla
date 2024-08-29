@@ -36,15 +36,23 @@ var alive_status: Dictionary = {
 	"hunger": {"value": MAX_HUNGER, "max": MAX_HUNGER}
 };
 
-var _current_interior: Node3D;
+var _current_interior: InteriorBasicHouse;
+var _current_exterior_house: ExteriorHouseController;
 
 # equal to the house if the alive is in interior
-var current_interior: Node3D:
+var current_interior: InteriorBasicHouse:
 	get: 
 		return _current_interior;
 	set(value):
 		_current_interior = value;
 		on_building_changed.emit(_current_interior);
+
+# equal to the exterior house if the alive is in interior
+var current_exterior_house: ExteriorHouseController:
+	get: 
+		return _current_exterior_house;
+	set(value):
+		_current_exterior_house = value;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

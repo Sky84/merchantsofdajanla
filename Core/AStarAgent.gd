@@ -14,8 +14,7 @@ var target_position: Vector3:
 	set(value):
 		_target_position = value;
 		_current_path = _path_finding.find_path(global_position, _target_position);
-		print(global_position, '+++', _target_position)
-		print(_current_path)
+		DebugDraw3D.draw_line(global_position, _target_position, Color.BLUE_VIOLET, 1);
 
 signal target_reached;
 

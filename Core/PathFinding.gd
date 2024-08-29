@@ -34,22 +34,22 @@ func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
 			for tile_x in range(0, chunk_tile_size, gap_between_points):
 				for tile_z in range(0, chunk_tile_size, gap_between_points):
 					var point_position = Vector3(
-						(chunk_x*chunk_tile_size) + (tile_x),
+						(chunk_x * chunk_tile_size) + (tile_x),
 						chunk.global_position.y,
-						(chunk_z*chunk_tile_size) + (tile_z)
+						(chunk_z * chunk_tile_size) + (tile_z)
 					);
 					if point_position in points or _is_object_on_point(chunk.chunk_objects, point_position):
-						continue;
+						continue ;
 					_add_point(point_position);
 	_connect_all_points(points);
 
 func update_interior_pathfinding(interior: Node3D):
-	var gridmap:GridMap = interior.get_node('Grounds');
+	var gridmap: GridMap = interior.get_node('Grounds');
 	var points_to_connect = {};
 	var interior_objects: Dictionary = NodeUtils.array_to_dictionary(interior.get_node('MapDecorations').get_children().filter(func(c): return c is StaticBody3D));
 	for cell_position in gridmap.get_used_cells():
 		var cell_type: int = gridmap.get_cell_item(cell_position);
-		var is_wall = [5,6].has(cell_type);
+		var is_wall = [5, 6].has(cell_type);
 		var point_position = gridmap.to_global(gridmap.map_to_local(cell_position))
 		if not _is_object_on_point(interior_objects, point_position) and not is_wall:
 			var point_id = _add_point(point_position)
@@ -73,13 +73,13 @@ func _is_object_on_point(objects: Dictionary, point_position: Vector3):
 		if object is StaticBody3D:
 			var collision_shapes: Array = object.get_children().filter(func(c): return 'CollisionShape3D' in c.name);
 			for collision_shape in collision_shapes:
-				object_size = collision_shape.shape.size if 'size' in collision_shape.shape\
+				object_size = collision_shape.shape.size if 'size' in collision_shape.shape \
 					 else Vector3(collision_shape.shape.radius, 0, collision_shape.shape.radius);
 				var object_aabb = AABB(collision_shape.global_position, object_size);
 				aabb = aabb.merge(object_aabb);
 		result = aabb.intersects(aabb_point);
 		if result:
-			break;
+			break ;
 	return result;
 
 func _connect_all_points(points_to_connect: Dictionary):
@@ -90,12 +90,12 @@ func _connect_all_points(points_to_connect: Dictionary):
 				var offset = Vector3(x, 0, z);
 				var is_diagonal = x + z == 0;
 				if offset == Vector3.ZERO or is_diagonal:
-					continue;
+					continue ;
 				var neighbor_point = point + offset;
 				if neighbor_point in points_to_connect:
 					_connect_points(point, neighbor_point);
 		for reachable_object_point in reachable_object_points:
-			if point.distance_to(reachable_object_point) < gap_between_points*2:
+			if point.distance_to(reachable_object_point) < gap_between_points * 2:
 				_connect_points(point, reachable_object_point);
 
 func _connect_points(point: Vector3, neighbor_point: Vector3):
@@ -107,5 +107,5 @@ func _connect_points(point: Vector3, neighbor_point: Vector3):
 func find_path(from: Vector3, to: Vector3) -> Array:
 	var start: int = pathfinding.get_closest_point(from);
 	var end: int = pathfinding.get_closest_point(to);
-	var path: Array = pathfinding.get_point_path(start, end);
+	var path: Array = pathfinding.get_point_path(start, end, true);
 	return path;

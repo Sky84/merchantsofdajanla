@@ -11,6 +11,7 @@ func execute(_params: Dictionary) -> void:
 	if 'current_interior' in alive and alive.current_interior != null:
 		astar_agent.target_position = alive.current_interior.door_instance.global_position;
 		await astar_agent.target_reached;
+		print("targetreached leaving current building")
 		alive._nearest_interactive = alive.current_interior.door_instance;
 		alive._nearest_interactive.interact(_owner_id);
 		alive._nearest_interactive = null;

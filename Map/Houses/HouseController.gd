@@ -1,4 +1,5 @@
 extends StaticBody3D
+class_name ExteriorHouseController
 
 @export var can_enter: bool = false;
 @export var interior_scene: PackedScene;
@@ -19,4 +20,5 @@ func _on_enter_area_3d_body_entered(owner_id: String):
 		else:
 			interior_instance = game_map_controller.add_interior_house(house_id, interior_scene, $ExitSpawn.global_position);
 		body.global_position = interior_instance.get_node("Spawn").global_position;
-		body.current_interior = self;
+		body.current_interior = interior_instance;
+		body.current_exterior_house = self;

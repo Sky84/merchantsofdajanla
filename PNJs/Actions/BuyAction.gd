@@ -27,7 +27,7 @@ func execute(_params: Dictionary) -> void:
 	seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
 	if seller_container_config.is_empty():
 		_end_action();
-		return;
+		return ;
 
 	#seller can be Alive or Stand
 	var seller = grid_map.get_map_item(seller_container_config.container_id);
@@ -51,7 +51,7 @@ func _start_update_alive_target_position(seller: Node3D):
 		seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
 		if seller_container_config.is_empty():
 			_end_action();
-			return;
+			return ;
 		var new_seller = grid_map.get_map_item(seller_container_config.container_id);
 		if not new_seller:
 			new_seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
@@ -65,17 +65,16 @@ func _update_target_target_position(seller: Node3D):
 		if buyer.current_interior != null:
 			_end_action(false, Actions.LEAVE_CURRENT_BUILDING);
 		elif seller.current_interior != null:
-			enter_building(buyer, seller.current_interior);
+			enter_building(buyer, seller.current_exterior_house);
 			await on_enter_building;
-			#we end action because we need this action to be restarted
-			_end_action(false, Actions.BUY);
-		return;
+			_is_door_target = false;
+		return ;
 	astar_agent.target_position = target_position;
 
-func enter_building(buyer: Node3D, interior: Node3D):
-	astar_agent.target_position = interior.door_instance.global_position;
+func enter_building(buyer: Node3D, exterior: Node3D):
+	astar_agent.target_position = exterior.door_instance.global_position;
 	await astar_agent.target_reached;
-	buyer._nearest_interactive = interior.door_instance;
+	buyer._nearest_interactive = exterior.door_instance;
 	buyer._nearest_interactive.interact(buyer_owner_id);
 	buyer._nearest_interactive = null;
 	on_enter_building.emit();
@@ -91,7 +90,7 @@ func _end_action(unlock_player: bool = true, next_action_id: String = Actions.WA
 
 func _on_seller_position_reached():
 	if not is_running:
-		return;
+		return ;
 	var item = GameItems.get_items_by_subtype(target)[0];
 	seller_alive.is_busy = true;
 	if "player" in seller_container_config.container_owner.to_lower():
@@ -102,8 +101,8 @@ func _on_seller_position_reached():
 func _on_accept(item: Dictionary, notify: bool = false) -> void:
 	if notify:
 		NotificationEvents.notify.emit(NotificationEvents.NotificationType.SUCCESS, 'MARKET.TRADE_SUCCESS');
-	print(buyer_owner_id, " is buying things of ",seller_container_config.container_owner);
-	MarketController.trade(seller_container_config.container_id, item.id, 1, seller_container_config.container_owner,\
+	print(buyer_owner_id, " is buying things of ", seller_container_config.container_owner);
+	MarketController.trade(seller_container_config.container_id, item.id, 1, seller_container_config.container_owner, \
 							buyer_owner_id);
 	InventoryEvents.container_data_changed.emit(seller_container_config.container_id);
 	seller_alive.is_busy = false;
@@ -121,17 +120,17 @@ func _process_target_player(item) -> void:
 	var nav_position = astar_agent.target_position;
 	if nav_path.size():
 		nav_position = nav_path[2] if nav_path.size() > 2 else nav_path[0]
-	var gap_modal = Vector2(-170, 0) if nav_position.x - target_position.x < 0\
+	var gap_modal = Vector2(-170, 0) if nav_position.x - target_position.x < 0 \
 		else Vector2(170, 0);
 	var modal_params = {
 		'id': DIALOG_TITLE,
-		'global_position':  Vector2.ONE * 100,
+		'global_position': Vector2.ONE * 100,
 		'modal_on_left': gap_modal.x < 0,
 		'ask_translation': tr('MARKET.ASK_BUY') + " 1 " + tr(item.name),
 		'name_translation': pnj_name,
 		'answers': [
-			{'text':tr('MARKET.ACCEPT'), 'callback': _on_accept.bind(item, true)},
-			{'text':tr('MARKET.DECLINE'), 'callback': _on_decline}
+			{'text': tr('MARKET.ACCEPT'), 'callback': _on_accept.bind(item, true)},
+			{'text': tr('MARKET.DECLINE'), 'callback': _on_decline}
 		]
 	};
 	HudEvents.open_modal.emit('res://UI/Modals/DialogModal/DialogModal.tscn', modal_params);
