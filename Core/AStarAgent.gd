@@ -14,7 +14,6 @@ var target_position: Vector3:
 	set(value):
 		_target_position = value;
 		_current_path = _path_finding.find_path(global_position, _target_position);
-		DebugDraw3D.draw_line(global_position, _target_position, Color.BLUE_VIOLET, 1);
 
 signal target_reached;
 
@@ -24,16 +23,20 @@ func _init(path_finding: PathFinding):
 func _process(_delta):
 	var distance_to_target = global_position.distance_to(_target_position);
 	var distance_to_next_point = global_position.distance_to(get_next_path_position());
-	if _current_path.size() > 0 and distance_to_target <= target_desired_distance:
+	if _current_path.size() > 0:
+		if distance_to_target <= target_desired_distance:
+			target_reached.emit();
+			_current_path = [];
+		elif distance_to_next_point <= target_desired_distance:
+			_current_path.pop_front();
+	else:
 		target_reached.emit();
-		_current_path = [];
-	elif distance_to_next_point <= target_desired_distance:
-		_current_path.pop_front();
+		print('target reached', distance_to_target, '   ', target_desired_distance)
 	if _path_finding.debug:
 		_debug_path();
 
 func _debug_path():
-	if _current_path.size() > 1:
+	if _current_path.size() > 0:
 		DebugDraw3D.draw_point_path(_current_path, DebugDraw3D.POINT_TYPE_SQUARE)
 
 func get_current_navigation_path() -> Array:

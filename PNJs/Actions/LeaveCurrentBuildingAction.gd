@@ -9,9 +9,9 @@ func execute(_params: Dictionary) -> void:
 	
 	var alive: Alive = AlivesController.get_alive_by_owner_id(_owner_id);
 	if 'current_interior' in alive and alive.current_interior != null:
-		astar_agent.target_position = alive.current_interior.door_instance.global_position;
+		var target_pos = Vector3(alive.current_interior.door_instance.global_position.x, alive.global_position.y, alive.current_interior.door_instance.global_position.z);
+		astar_agent.target_position = target_pos;
 		await astar_agent.target_reached;
-		print("targetreached leaving current building")
 		alive._nearest_interactive = alive.current_interior.door_instance;
 		alive._nearest_interactive.interact(_owner_id);
 		alive._nearest_interactive = null;

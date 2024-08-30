@@ -68,10 +68,10 @@ func _update_target_target_position(seller: Node3D):
 			enter_building(buyer, seller.current_exterior_house);
 			await on_enter_building;
 			_is_door_target = false;
-		return ;
+		return;
 	astar_agent.target_position = target_position;
 
-func enter_building(buyer: Node3D, exterior: Node3D):
+func enter_building(buyer: Node3D, exterior: ExteriorHouseController):
 	astar_agent.target_position = exterior.door_instance.global_position;
 	await astar_agent.target_reached;
 	buyer._nearest_interactive = exterior.door_instance;
@@ -113,6 +113,9 @@ func _on_decline() -> void:
 	_end_action();
 
 func _process_target_player(item) -> void:
+	astar_agent.target_reached.disconnect(on_agent_target_reached);
+	is_running = false;
+
 	var target_position = astar_agent.target_position;
 	PlayerEvents.on_player_block.emit(true);
 	var nav_path = astar_agent.get_current_navigation_path();
