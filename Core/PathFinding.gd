@@ -15,14 +15,6 @@ var reachable_object_points = [];
 
 var gap_between_points: int = 4;
 
-func _process(delta):
-	if debug:
-		for point_position in points:
-			var point_neighbors = pathfinding.get_point_connections(points[point_position])
-			for neighbor_point_id in point_neighbors:
-				var neighbor_point = pathfinding.get_point_position(neighbor_point_id);
-				DebugDraw3D.draw_line(point_position, neighbor_point, Color.LIGHT_SEA_GREEN)
-
 func update_pathfinding(chunks, chunk_tile_size: int, _tile_size: int):
 	for reachable_object in get_tree().get_nodes_in_group('reachable_objects'):
 		if not (reachable_object.global_position in points):
@@ -67,16 +59,20 @@ func _is_object_on_point(objects: Dictionary, point_position: Vector3):
 	for key in objects:
 		var object = objects[key];
 		var object_position = Vector3(object.global_position.x, 0, object.global_position.z);
-		var object_size: Vector3 = Vector3(3, 3, 3);
+		var object_size: Vector3 = Vector3(1, 1, 1);
+		var center_offset = Vector3(-0.5, 0, -0.5);
 		var aabb = AABB(object_position, object_size);
-		var aabb_point = AABB(point_position, Vector3(1, 1, 1));
+		var aabb_point = AABB(point_position + center_offset, Vector3(1, 1, 1));
 		if object is StaticBody3D:
 			var collision_shapes: Array = object.get_children().filter(func(c): return 'CollisionShape3D' in c.name);
 			for collision_shape in collision_shapes:
 				object_size = collision_shape.shape.size if 'size' in collision_shape.shape \
 					 else Vector3(collision_shape.shape.radius, 0, collision_shape.shape.radius);
-				var object_aabb = AABB(collision_shape.global_position, object_size);
+				var object_aabb = AABB(collision_shape.global_position+ (object_size * -0.5), object_size);
 				aabb = aabb.merge(object_aabb);
+				if debug:
+					DebugDraw3D.draw_aabb(aabb, Color.RED, 1000)
+					DebugDraw3D.draw_aabb(aabb_point, Color.MEDIUM_VIOLET_RED, 1000)
 		result = aabb.intersects(aabb_point);
 		if result:
 			break ;
@@ -94,9 +90,13 @@ func _connect_all_points(points_to_connect: Dictionary):
 				var neighbor_point = point + offset;
 				if neighbor_point in points_to_connect:
 					_connect_points(point, neighbor_point);
+					if debug:
+						DebugDraw3D.draw_line(point, neighbor_point, Color.LIGHT_SEA_GREEN, 1000)
 		for reachable_object_point in reachable_object_points:
 			if point.distance_to(reachable_object_point) < gap_between_points * 2:
 				_connect_points(point, reachable_object_point);
+				if debug:
+					DebugDraw3D.draw_line(point, reachable_object_point, Color.GREEN_YELLOW, 1000)
 
 func _connect_points(point: Vector3, neighbor_point: Vector3):
 	var current_id: int = points[point];

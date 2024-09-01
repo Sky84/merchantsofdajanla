@@ -12,8 +12,6 @@ var seller_container_config: Dictionary;
 var seller_alive: Alive;
 const DIALOG_TITLE := 'buy-action-modal';
 
-var _is_door_target: bool = false;
-
 signal on_enter_building;
 
 func execute(_params: Dictionary) -> void:
@@ -38,16 +36,19 @@ func execute(_params: Dictionary) -> void:
 	astar_agent.target_reached.connect(on_agent_target_reached);
 
 func on_agent_target_reached():
-	if not _is_door_target:
-		if seller_alive.is_busy:
-			_end_action(false);
-		else:
-			_on_seller_position_reached();
+	if seller_alive.is_busy:
+		_end_action(false);
+	else:
+		_on_seller_position_reached();
 
 func _start_update_alive_target_position(seller: Node3D):
-	_update_target_target_position(seller);
-	await scene_tree.create_timer(1).timeout;
-	if is_running:
+	if seller.is_busy:
+		print('seller.is_busy');
+		return;
+	print('_start_update_alive_target_position', seller);
+	var is_target_in_same_place = await _update_target_target_position(seller);
+	if is_target_in_same_place:
+		await scene_tree.create_timer(1).timeout;
 		seller_container_config = MarketController.get_seller_container_config_by_subtype(target);
 		if seller_container_config.is_empty():
 			_end_action();
@@ -57,22 +58,22 @@ func _start_update_alive_target_position(seller: Node3D):
 			new_seller = AlivesController.get_alive_by_owner_id(seller_container_config.container_owner);
 		_start_update_alive_target_position(new_seller);
 
-func _update_target_target_position(seller: Node3D):
+func _update_target_target_position(seller: Node3D) -> bool:
 	var buyer: Alive = AlivesController.get_alive_by_owner_id(buyer_owner_id);
 	var target_position: Vector3 = seller.global_position;
 	if seller.current_interior != buyer.current_interior:
-		_is_door_target = true;
 		if buyer.current_interior != null:
 			_end_action(false, Actions.LEAVE_CURRENT_BUILDING);
 		elif seller.current_interior != null:
 			enter_building(buyer, seller.current_exterior_house);
 			await on_enter_building;
-			_is_door_target = false;
 			_end_action(false);
-		return ;
+		return false;
 	astar_agent.target_position = target_position;
+	return true;
 
 func enter_building(buyer: Node3D, exterior: ExteriorHouseController):
+	astar_agent.target_reached.disconnect(on_agent_target_reached);
 	astar_agent.target_position = exterior.door_instance.global_position;
 	await astar_agent.target_reached;
 	buyer._nearest_interactive = exterior.door_instance;
@@ -93,7 +94,6 @@ func _on_seller_position_reached():
 	if not is_running:
 		return ;
 	var item = GameItems.get_items_by_subtype(target)[0];
-	seller_alive.is_busy = true;
 	if "player" in seller_container_config.container_owner.to_lower():
 		_process_target_player(item);
 	else:
@@ -106,30 +106,20 @@ func _on_accept(item: Dictionary, notify: bool = false) -> void:
 	MarketController.trade(seller_container_config.container_id, item.id, 1, seller_container_config.container_owner, \
 							buyer_owner_id);
 	InventoryEvents.container_data_changed.emit(seller_container_config.container_id);
-	seller_alive.is_busy = false;
 	_end_action();
 
 func _on_decline() -> void:
-	seller_alive.is_busy = false;
 	_end_action();
 
 func _process_target_player(item) -> void:
-	astar_agent.target_reached.disconnect(on_agent_target_reached);
 	is_running = false;
+	astar_agent.target_reached.disconnect(on_agent_target_reached);
 
-	var target_position = astar_agent.target_position;
 	PlayerEvents.on_player_block.emit(true);
-	var nav_path = astar_agent.get_current_navigation_path();
-	nav_path.reverse();
-	var nav_position = astar_agent.target_position;
-	if nav_path.size():
-		nav_position = nav_path[2] if nav_path.size() > 2 else nav_path[0]
-	var gap_modal = Vector2(-170, 0) if nav_position.x - target_position.x < 0 \
-		else Vector2(170, 0);
 	var modal_params = {
 		'id': DIALOG_TITLE,
-		'global_position': Vector2.ONE * 100,
-		'modal_on_left': gap_modal.x < 0,
+		'global_position': Vector2.ONE * 200,
+		'modal_on_left': false,
 		'ask_translation': tr('MARKET.ASK_BUY') + " 1 " + tr(item.name),
 		'name_translation': pnj_name,
 		'answers': [

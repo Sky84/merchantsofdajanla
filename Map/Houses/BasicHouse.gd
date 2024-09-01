@@ -13,6 +13,7 @@ func _ready():
 func _on_door_activated(owner_id: String) -> void:
 	var alive : Alive = AlivesController.get_alive_by_owner_id(owner_id);
 	if alive:
+		print(alive, "exit an house")
 		alive.global_position = go_to_location;
 		alive.current_interior = null;
 		alive.current_exterior_house = null;

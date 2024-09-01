@@ -31,7 +31,6 @@ func _process(_delta):
 			_current_path.pop_front();
 	else:
 		target_reached.emit();
-		print('target reached', distance_to_target, '   ', target_desired_distance)
 	if _path_finding.debug:
 		_debug_path();
 

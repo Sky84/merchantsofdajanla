@@ -4,7 +4,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_htp4x"]
 height = 3.12768
-radius = 1.26749
+radius = 1.86916
 
 [node name="Barrel" type="StaticBody3D"]
 

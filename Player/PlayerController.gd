@@ -9,7 +9,7 @@ func _ready():
 	super();
 	_is_player = true;
 	PlayerEvents.on_item_in_hand_changed.connect(_on_item_in_hand_changed);
-	PlayerEvents.on_player_block.connect(func (value: bool): _is_blocked = value);
+	PlayerEvents.on_player_block.connect(func (value: bool): _is_blocked = value; is_busy = value);
 
 func _input(event):
 	if _is_blocked:
