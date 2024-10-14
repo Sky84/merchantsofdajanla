@@ -36,10 +36,14 @@ const chunk_city_cell_types = {
 @onready var _tile_chunk_map: TileMap = _chunk_map.instantiate();
 var _distance_chunk: Vector3 = Vector3(3, 0, 2);
 
+var _cities = {};
+
 var _chunks = {};
 var chunks_visible := {};
 
 var _previous_player_position = Vector3(-1000, -1000, -1000);
+
+signal on_cities_ready();
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -122,7 +126,15 @@ func _load_city_at(chunk_global_position: Vector3, chunk_cell_id: Vector2i) -> C
 	city_instance.global_position = chunk_global_position + Vector3(32, 0, 32);
 	chunk_city.global_position.y = ground_city.global_position.y;
 	ground_city.visible = false;
+	_cities[chunk_cell_id] = chunk_city;
 	return chunk_city;
+
+func get_city(city_name: String) -> ChunkController:
+	var chunk_cell_id = chunk_city_cell_types[city_name].id;
+	if _cities.is_empty():
+		printerr('no cities loaded');
+	print(_cities)
+	return _cities[chunk_cell_id];
 
 func _generate_savage_chunk_at(chunk_global_position: Vector3)  -> ChunkController:
 	var chunk_instance: ChunkController = chunk_scene.instantiate();
