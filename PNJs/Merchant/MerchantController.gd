@@ -33,35 +33,12 @@ func interact(_interract_owner_id: String) -> void:
 			'modal_on_left': gap_modal.x < 0,
 			'ask_translation': dialog_state.current.value,
 			'name_translation': pnj_name,
-			'answers': _get_answers_from_dialog_state(dialog_state)
+			'answers': DialogsController.get_answers_from_dialog_state(self, dialog_state)
 		};
 		HudEvents.open_modal.emit('res://UI/Modals/DialogModal/DialogModal.tscn', modal_params);
 		var result = await HudEvents.close_modal;
 		if result[0] == DIALOG_TITLE:
 			DialogsController.next(result[1]);
-
-func _get_answers_from_dialog_state(dialog_state: DialogState) -> Array:
-	var answers := [];
-	for answer in dialog_state.next_nodes:
-		answers.push_front(_build_answer_config(answer));
-	return answers;
-
-func _get_answer_params(answer: DialogNode) -> Array:
-	var params := [];
-	for param_key in answer.callback_params:
-		params.push_back(self[param_key]);
-	return params;
-
-func _build_answer_config(answer: DialogNode) -> Dictionary:
-	var answer_config := {
-		'text': answer.value
-	};
-	if answer.has_next_nodes:
-		answer_config.dialog_node_id = answer.next_nodes[0];
-	if answer.has_callback:
-		answer_config.callback = self[answer.callback_name].bindv(_get_answer_params(answer));
-	
-	return answer_config;
 
 func _on_trade() -> void:
 	_is_blocked = false;

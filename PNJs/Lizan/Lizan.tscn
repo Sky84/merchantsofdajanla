@@ -1,0 +1,374 @@
+[gd_scene load_steps=35 format=3 uid="uid://0ua18a1m8ini"]
+
+[ext_resource type="Script" path="res://PNJs/Citizen/CitizenController.gd" id="1_u4rds"]
+[ext_resource type="Script" path="res://Containers/Container.gd" id="2_ywd4i"]
+[ext_resource type="Script" path="res://Player/ClothAnimationsController.gd" id="3_d11tg"]
+[ext_resource type="SpriteFrames" uid="uid://eyq6aiiknqur" path="res://Player/SpriteFrames/Weapons_0.tres" id="4_namck"]
+[ext_resource type="SpriteFrames" uid="uid://f0jcsvd1dvbj" path="res://Player/SpriteFrames/Hairs_0.tres" id="5_7pxc8"]
+[ext_resource type="SpriteFrames" uid="uid://dt3tgxtd8u511" path="res://Player/SpriteFrames/Shirts_0.tres" id="6_cesdw"]
+[ext_resource type="SpriteFrames" uid="uid://b4o5oppunvwye" path="res://Player/SpriteFrames/Pants_1.tres" id="7_s588k"]
+[ext_resource type="SpriteFrames" uid="uid://b116yvdld6l6t" path="res://Player/SpriteFrames/Skins_0.tres" id="8_bqdlh"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grlca"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1bh7k"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j647b"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0adjj"]
+advance_mode = 2
+advance_condition = &"isWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_57c7m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b5pm3"]
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vm8ug"]
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jqkw0"]
+advance_mode = 2
+advance_condition = &"isWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pp7fy"]
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f620p"]
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ne8y"]
+advance_mode = 2
+advance_condition = &"isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v212b"]
+advance_mode = 2
+advance_condition = &"isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ko48a"]
+advance_mode = 2
+advance_condition = &"isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_alvd4"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isRunning"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_idgsq"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isWalking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r00va"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4qfse"]
+states/Start/position = Vector2(95, 100)
+states/attack/node = SubResource("AnimationNodeAnimation_mr8qj")
+states/attack/position = Vector2(753, 240)
+states/idle/node = SubResource("AnimationNodeAnimation_grlca")
+states/idle/position = Vector2(358, 84)
+states/run/node = SubResource("AnimationNodeAnimation_1bh7k")
+states/run/position = Vector2(460, 240)
+states/walk/node = SubResource("AnimationNodeAnimation_j647b")
+states/walk/position = Vector2(579, 84)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_0adjj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_57c7m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_b5pm3"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_vm8ug"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_jqkw0"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_pp7fy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_f620p"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_6ne8y"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_v212b"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_ko48a"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_alvd4"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_idgsq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_r00va")]
+graph_offset = Vector2(-50, 15)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pn48d"]
+radius = 0.548919
+height = 3.88508
+
+[sub_resource type="Animation" id="Animation_ekqna"]
+resource_name = "attack"
+length = 0.5
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hit"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"_on_animation_set_block"
+}, {
+"args": [false],
+"method": &"_on_animation_set_block"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vk8fn"]
+resource_name = "idle"
+length = 1.25
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_ri3q8"]
+resource_name = "run"
+loop_mode = 1
+step = 0.1667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1667, 0.3334, 0.5001, 0.6668, 0.8335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_sgpdw"]
+resource_name = "sit"
+length = 1.25
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"sit"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_si24n"]
+resource_name = "walk"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClothAnimations/SkinsAnimatedSprite3D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mcocu"]
+_data = {
+"attack": SubResource("Animation_ekqna"),
+"idle": SubResource("Animation_vk8fn"),
+"run": SubResource("Animation_ri3q8"),
+"sit": SubResource("Animation_sgpdw"),
+"walk": SubResource("Animation_si24n")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_deg7w"]
+radius = 2.56796
+
+[node name="Lizan" type="CharacterBody3D"]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+up_direction = Vector3(6.50515e-14, 1, 6.50515e-14)
+script = ExtResource("1_u4rds")
+pnj_name = "Lizan"
+_owner_id = "lizan"
+run_animation_gap = 4
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_4qfse")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/isAttacking = false
+parameters/conditions/isIdle = false
+parameters/conditions/isRunning = false
+parameters/conditions/isWalking = false
+
+[node name="Inventory" type="Node3D" parent="."]
+script = ExtResource("2_ywd4i")
+_container_owner = "lizan"
+container_id = "lizan_inventory"
+rows = 4
+columns = 5
+_is_main_container_for_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("CapsuleShape3D_pn48d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mcocu")
+}
+
+[node name="ClothAnimations" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.273, 0)
+script = ExtResource("3_d11tg")
+
+[node name="WeaponsAnimatedSprite3D" type="AnimatedSprite3D" parent="ClothAnimations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22505, 0.00999993)
+cast_shadow = 2
+pixel_size = 0.072
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = ExtResource("4_namck")
+animation = &"walk"
+
+[node name="HairsAnimatedSprite3D" type="AnimatedSprite3D" parent="ClothAnimations"]
+cast_shadow = 2
+pixel_size = 0.072
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = ExtResource("5_7pxc8")
+animation = &"hit"
+
+[node name="ShirtsAnimatedSprite3D" type="AnimatedSprite3D" parent="ClothAnimations"]
+cast_shadow = 2
+pixel_size = 0.072
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = ExtResource("6_cesdw")
+animation = &"hit"
+
+[node name="PantsAnimatedSprite3D" type="AnimatedSprite3D" parent="ClothAnimations"]
+cast_shadow = 2
+pixel_size = 0.072
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = ExtResource("7_s588k")
+animation = &"hit"
+
+[node name="SkinsAnimatedSprite3D" type="AnimatedSprite3D" parent="ClothAnimations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.001)
+cast_shadow = 2
+pixel_size = 0.072
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
+sprite_frames = ExtResource("8_bqdlh")
+animation = &"idle"
+
+[node name="ObjectDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectDetector"]
+shape = SubResource("SphereShape3D_deg7w")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
+avoidance_enabled = true
+debug_enabled = true
+
+[connection signal="body_entered" from="ObjectDetector" to="." method="_on_object_detector_body_entered"]
+[connection signal="body_exited" from="ObjectDetector" to="." method="_on_object_detector_body_exited"]

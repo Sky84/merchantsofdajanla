@@ -133,7 +133,6 @@ func get_city(city_name: String) -> ChunkController:
 	var chunk_cell_id = chunk_city_cell_types[city_name].id;
 	if _cities.is_empty():
 		printerr('no cities loaded');
-	print(_cities)
 	return _cities[chunk_cell_id];
 
 func _generate_savage_chunk_at(chunk_global_position: Vector3)  -> ChunkController:

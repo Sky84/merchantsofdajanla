@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://tw4nwfo04fap"]
+[gd_scene load_steps=4 format=3 uid="uid://tw4nwfo04fap"]
 
 [ext_resource type="Script" path="res://Data/BeforeIntroductionStory.gd" id="1_pnupd"]
+[ext_resource type="PackedScene" uid="uid://iwmoi20tx6x8" path="res://PNJs/Anna/Anna.tscn" id="2_8xlc2"]
+[ext_resource type="PackedScene" uid="uid://0ua18a1m8ini" path="res://PNJs/Lizan/Lizan.tscn" id="3_hy8aa"]
 
 [node name="BeforeIntroductionStory" type="Node2D"]
 script = ExtResource("1_pnupd")
+tutorial_pnj = ExtResource("2_8xlc2")
+angry_pnj = ExtResource("3_hy8aa")

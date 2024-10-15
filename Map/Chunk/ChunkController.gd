@@ -44,4 +44,3 @@ func init_decorations() -> void:
 			plant.position = Vector3(plant_position.x, plant.position.y, plant_position.z);
 			plant.scale.x = -1 if randf() > 0.5 else 1;
 			plant.update_for_atlas();
-

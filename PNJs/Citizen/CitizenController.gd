@@ -24,10 +24,10 @@ var is_running_int = 0;
 var _inactive: bool = false;
 
 func _ready() -> void:
+	super();
 	add_child(astar_agent);
 	if inactive:
 		return;
-	super();
 	alive_status.hunger.value = 0;
 	_check_actions();
 
@@ -48,7 +48,8 @@ func _check_actions() -> void:
 	var action = await Actions.get_action_by_id(action_id);
 	if action_id and actions_queue.all(func(action_from_queue): return action_from_queue.id!=action.id):
 		actions_queue.push_back(action);
-	_process_actions_queue();
+	if not inactive:
+		_process_actions_queue();
 
 func _process_actions_queue() -> void:
 	var default_action = await Actions.get_action_by_id(default_action_id);

@@ -1,4 +1,6 @@
 {
 	"merchant": "Dialogs/Merchant/",
-	"merchant-unavailable": "Dialogs/MerchantUnavailable/"
+	"merchant-unavailable": "Dialogs/MerchantUnavailable/",
+	"pnj-before-intro": "Dialogs/PnjBeforeIntro/",
+	"angry-pnj-after-intro": "Dialogs/AngryPnjAfterIntro/"
 }

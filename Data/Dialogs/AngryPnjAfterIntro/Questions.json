@@ -1,0 +1,28 @@
+{
+	"1": {
+		"value": "Pff, regarde-moi ça. Encore un amateur qui pense pouvoir réussir ici.",
+		"next_nodes": ["1", "2"]
+	},
+	"insult_1": {
+		"value": "Tu ferais mieux de partir tant que tu le peux encore. Ce genre de boulot n’est pas fait pour les faibles.",
+		"next_nodes": ["4", "5"]
+	},
+	"mocking": {
+		"value": "Je parie que tu n’as même pas assez d’argent pour t’acheter du stock, hein ? PATHÉTIQUE.",
+		"next_nodes": ["6", "7"]
+	},
+	"threat": {
+		"value": "C'est ma ville ici. Si je te revois essayer de vendre quoi que ce soit, tu regretteras de ne pas m’avoir écouté.",
+		"next_nodes": ["silence"]
+	},
+	"provocking_player": {
+		"value": "*Il s'approche lentement du joueur, un sourire mauvais sur le visage, mais avant qu'il ne puisse faire plus de dégâts, Anne intervient*.",
+		"next_nodes": ["intervention"]
+	},
+	"confrontation": {
+		"value": "*Le PNJ malveillant se tourne vers Anne et, sans avertissement, la frappe violemment au visage. Elle tombe au sol sous le choc, la bouche en sang.*",
+		"next_nodes": [
+			"end"
+		]
+	}
+}

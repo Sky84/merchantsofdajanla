@@ -1,0 +1,26 @@
+{
+	"1": {
+		"value": "Bonjour nouvele tête ! J'ai entendu parlé de vous et de votre envie d'ouvrir un commerce. Si tu veux j'ai 2-3 conseils de base !",
+		"next_nodes": ["1", "2"]
+	},
+	"tips_1": {
+		"value": "Alors premièrement, tu te dois d'avoir des resources a vendre, du stock ! Donc tu peux t'en fournir en achetant ou bien en chassant, cueillant etc...",
+		"next_nodes": ["4", "5"]
+	},
+	"ankward_tips_1": {
+		"value": "Oui ça peut faire bizarre mais c'est petit ici ! Tout le monde se connait. Bref... Il te faut du stok si tu veux vendre.",
+		"next_nodes": ["4", "5"]
+	},
+	"tips_2": {
+		"value": "Ensuite, tu dois avoir des prix justes, ni trop bas, ni trop hauts !",
+		"next_nodes": ["6", "7"]
+	},
+	"ankward_tips_2": {
+		"value": "Ouais, ça ne l'est pas pour tout le monde hein... ",
+		"next_nodes": ["6", "7"]
+	},
+	"end":{
+		"value": "Donc voilà, on pourra discuter plus tard du reste, j'ai un client qui va bientot arriver. Au revoir.",
+		"next_nodes": ["end_answer"]
+	}
+}

@@ -1,0 +1,44 @@
+{
+	"1": {
+		"value": "Bonjour ! Oui, je vous écoute.",
+		"next_nodes": ["tips_1"],
+		"callback": "",
+		"params": []
+	},
+	"2": {
+		"value": "Euh...",
+		"next_nodes": ["ankward_tips_1"],
+		"callback": "",
+		"params": []
+	},
+	"4": {
+		"value": "D'accord, ensuite ?",
+		"next_nodes": ["tips_2"],
+		"callback": "",
+		"params": []
+	},
+	"5": {
+		"value": "Ok, ça me parait logique...",
+		"next_nodes": ["ankward_tips_2"],
+		"callback": "",
+		"params": []
+	},
+	"6": {
+		"value": "Intéressant...",
+		"next_nodes": ["end"],
+		"callback": "",
+		"params": []
+	},
+	"7": {
+		"value": "C'est pas si facile.",
+		"next_nodes": ["end"],
+		"callback": "",
+		"params": []
+	},
+	"end_answer": {
+		"value": "Merci, a plus tard",
+		"next_nodes": [],
+		"callback": "_on_basic_intro_goodbye",
+		"params": ["_game_map_controller"]
+	}
+}

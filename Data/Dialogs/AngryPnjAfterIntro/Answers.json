@@ -1,0 +1,70 @@
+{
+	"1": {
+		"value": "Qui es-tu ?!",
+		"next_nodes": [
+			"insult_1"
+		],
+		"callback": "",
+		"params": []
+	},
+	"2": {
+		"value": "Pourquoi tu me parles comme ça ?",
+		"next_nodes": [
+			"insult_1"
+		],
+		"callback": "",
+		"params": []
+	},
+	"4": {
+		"value": "Tu ne sais rien de moi !",
+		"next_nodes": [
+			"mocking"
+		],
+		"callback": "",
+		"params": []
+	},
+	"5": {
+		"value": "Je ne partirai pas.",
+		"next_nodes": [
+			"mocking"
+		],
+		"callback": "",
+		"params": []
+	},
+	"6": {
+		"value": "J’ai assez d'argent pour démarrer !",
+		"next_nodes": [
+			"threat"
+		],
+		"callback": "",
+		"params": []
+	},
+	"7": {
+		"value": "Ça ne te regarde pas !",
+		"next_nodes": [
+			"threat"
+		],
+		"callback": "",
+		"params": []
+	},
+	"silence": {
+		"value": "...",
+		"next_nodes": ["provocking_player"],
+		"callback": "",
+		"params": []
+	},
+	"intervention": {
+		"value": "Anna : Hé ! Ça suffit ! Laisse ce jeune tranquille ! Il a autant le droit d'être ici que toi.",
+		"next_nodes": [
+			"confrontation"
+		],
+		"callback": "",
+		"params": []
+	},
+	"end": {
+		"value": "*La pièce est remplie de silence. Le PNJ malveillant rit méchamment avant de quitter le magasin en claquant la porte derrière lui.*",
+		"next_nodes": [],
+		"callback": "_on_after_angry_pnj",
+		"params": []
+	}
+}
