@@ -38,7 +38,7 @@
 	"end_answer": {
 		"value": "Merci, a plus tard",
 		"next_nodes": [],
-		"callback": "_on_basic_intro_goodbye",
+		"callback": "",
 		"params": ["_game_map_controller"]
 	}
 }

@@ -14,9 +14,20 @@ class_name UIController
 var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: Node3D = null;
 var _current_mouse_target: Control;
+var _health_fill: ColorRect;
+var _hunger_fill: ColorRect;
+var _debug_menu;
+var _death_screen: Control;
+var _pause_menu: Control;
+
+const GAUGE_W := 110.0;
+const GAUGE_H := 14.0;
+const GAUGE_INSET := 3.0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS;
+	get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST;
 	InventoryEvents.dialog_confirm_delete_item.connect(_show_confirm_dialog);
 	HudEvents.open_stand_setup.connect(_show_stand_setup_dialog);
 	HudEvents.open_stand_transaction.connect(_show_stand_transaction_dialog);
@@ -28,6 +39,134 @@ func _ready():
 			child.mouse_exited.connect(_on_mouse_current_target.bind(child, false));
 	HudEvents.open_modal.connect(_on_open_modal);
 	GameTimeEvents.on_formatted_game_time_changed.connect(_update_game_time_ui);
+	PlayerEvents.player_status_changed.connect(_on_player_status_changed);
+	$ShortcutBar.pivot_offset = $ShortcutBar.size / 2;
+	$ShortcutBar.scale = Vector2(1.5, 1.5);
+	var player_node = get_parent().get_node_or_null("Player");
+	if player_node != null:
+		var preview = preload("res://UI/InventoryView/CharacterPreview.gd").new(player_node, "PLAYER");
+		preview.position = Vector2($Inventory.size.x + 8, 0);
+		$Inventory.add_child(preview);
+		_debug_menu = preload("res://UI/DebugMenu/DebugMenu.gd").new(get_parent(), player_node);
+		add_child(_debug_menu);
+	_build_gauges();
+	_build_death_screen();
+	_build_pause_menu();
+	PlayerEvents.player_died.connect(func(): _death_screen.visible = true);
+
+func _build_death_screen() -> void:
+	_death_screen = Control.new();
+	_death_screen.set_anchors_preset(Control.PRESET_FULL_RECT);
+	_death_screen.visible = false;
+	_death_screen.mouse_filter = Control.MOUSE_FILTER_STOP;
+	var bg = ColorRect.new();
+	bg.color = Color(0, 0, 0, 0.65);
+	bg.set_anchors_preset(Control.PRESET_FULL_RECT);
+	_death_screen.add_child(bg);
+	var center = CenterContainer.new();
+	center.set_anchors_preset(Control.PRESET_FULL_RECT);
+	var col = VBoxContainer.new();
+	col.alignment = BoxContainer.ALIGNMENT_CENTER;
+	col.add_theme_constant_override("separation", 16);
+	var title = Label.new();
+	title.text = "VOUS ÊTES MORT";
+	title.add_theme_font_size_override("font_size", 48);
+	title.add_theme_color_override("font_color", Color(0.75, 0.15, 0.15));
+	col.add_child(title);
+	var btn = Button.new();
+	btn.text = "Respawn";
+	btn.pressed.connect(_on_respawn);
+	col.add_child(btn);
+	center.add_child(col);
+	_death_screen.add_child(center);
+	add_child(_death_screen);
+
+func _on_respawn() -> void:
+	_death_screen.visible = false;
+	PlayerEvents.respawn.emit();
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_F3:
+				_debug_menu.toggle();
+			KEY_ESCAPE:
+				_toggle_pause();
+
+func _toggle_pause() -> void:
+	if _death_screen.visible:
+		return;
+	get_tree().paused = not get_tree().paused;
+	_pause_menu.visible = get_tree().paused;
+
+func _build_pause_menu() -> void:
+	_pause_menu = Control.new();
+	_pause_menu.set_anchors_preset(Control.PRESET_FULL_RECT);
+	_pause_menu.visible = false;
+	_pause_menu.mouse_filter = Control.MOUSE_FILTER_STOP;
+	_pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS;
+	var bg = ColorRect.new();
+	bg.color = Color(0, 0, 0, 0.55);
+	bg.set_anchors_preset(Control.PRESET_FULL_RECT);
+	_pause_menu.add_child(bg);
+	var center = CenterContainer.new();
+	center.set_anchors_preset(Control.PRESET_FULL_RECT);
+	var col = VBoxContainer.new();
+	col.alignment = BoxContainer.ALIGNMENT_CENTER;
+	col.add_theme_constant_override("separation", 16);
+	var title = Label.new();
+	title.text = "PAUSE";
+	title.add_theme_font_size_override("font_size", 40);
+	title.add_theme_color_override("font_color", Color(0.9, 0.85, 0.75));
+	col.add_child(title);
+	var resume_btn = Button.new();
+	resume_btn.text = "Reprendre";
+	resume_btn.pressed.connect(_toggle_pause);
+	col.add_child(resume_btn);
+	var quit_btn = Button.new();
+	quit_btn.text = "Quitter";
+	quit_btn.pressed.connect(func(): get_tree().paused = false; get_tree().quit());
+	col.add_child(quit_btn);
+	center.add_child(col);
+	_pause_menu.add_child(center);
+	add_child(_pause_menu);
+
+func _build_gauges() -> void:
+	var gauges = Control.new();
+	add_child(gauges);
+	gauges.position = Vector2(12, 55);
+	gauges.scale = Vector2(2.5, 2.5);
+	_health_fill = _add_gauge_row(gauges, "res://UI/Sprites/heart.png", Color(0.72, 0.18, 0.18), 0);
+	_hunger_fill = _add_gauge_row(gauges, "res://Items/apple.png", Color(0.85, 0.55, 0.2), GAUGE_H + 4);
+
+func _add_gauge_row(parent: Control, icon_path: String, fill_color: Color, row_y: float) -> ColorRect:
+	var icon = TextureRect.new();
+	icon.texture = load(icon_path);
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE;
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED;
+	icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST;
+	icon.position = Vector2(0, row_y);
+	icon.size = Vector2(GAUGE_H, GAUGE_H);
+	parent.add_child(icon);
+	var frame = NinePatchRect.new();
+	frame.texture = load("res://UI/Modals/modal.png");
+	frame.patch_margin_left = 8;
+	frame.patch_margin_top = 8;
+	frame.patch_margin_right = 8;
+	frame.patch_margin_bottom = 8;
+	frame.position = Vector2(GAUGE_H + 4, row_y);
+	frame.size = Vector2(GAUGE_W, GAUGE_H);
+	parent.add_child(frame);
+	var fill = ColorRect.new();
+	fill.color = fill_color;
+	fill.position = Vector2(GAUGE_INSET, GAUGE_INSET);
+	fill.size = Vector2(GAUGE_W - GAUGE_INSET * 2, GAUGE_H - GAUGE_INSET * 2);
+	frame.add_child(fill);
+	return fill;
+
+func _on_player_status_changed(status: Dictionary) -> void:
+	_health_fill.size.x = (GAUGE_W - GAUGE_INSET * 2) * status.health.value / status.health.max;
+	_hunger_fill.size.x = (GAUGE_W - GAUGE_INSET * 2) * status.hunger.value / status.hunger.max;
 
 func _update_game_time_ui(formatted_game_time: String):
 	game_time_label.text = formatted_game_time;

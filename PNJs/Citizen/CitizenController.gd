@@ -22,13 +22,16 @@ var actions_queue = [];
 var is_running_int = 0;
 
 var _inactive: bool = false;
+var _initialized := false;
 
 func _ready() -> void:
 	super();
-	add_child(astar_agent);
+	if not _initialized:
+		_initialized = true;
+		add_child(astar_agent);
+		alive_status.hunger.value = alive_status.hunger.max;
 	if inactive:
 		return;
-	alive_status.hunger.value = 0;
 	_check_actions();
 
 func _handle_movement():

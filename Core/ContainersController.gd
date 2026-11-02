@@ -92,6 +92,8 @@ func find_item_in_containers(container_ids: Array, item_id: String) -> Dictionar
 						return {'container_id': container_id, 'item': slot};
 			return {};
 			);
+	if items.is_empty():
+		return {};
 	items.sort_custom(func(a, b): return !a.is_empty() and b.is_empty());
 	return items[0];
 

@@ -180,5 +180,40 @@
 			"alive"
 		],
 		"base_price": 100
+	},
+	"shirt_basic": {
+		"name": "ITEMS.SHIRT",
+		"type": "Equipment",
+		"slot": "shirt",
+		"description": "ITEMS.SHIRT.DESCRIPTION",
+		"sprite_frames": "res://Player/SpriteFrames/Shirts_0.tres",
+		"icon_path": "res://UI/InventoryView/Assets/icon_shirt.png",
+		"base_price": 15
+	},
+	"pants_basic": {
+		"name": "ITEMS.PANTS",
+		"type": "Equipment",
+		"slot": "pants",
+		"description": "ITEMS.PANTS.DESCRIPTION",
+		"sprite_frames": "res://Player/SpriteFrames/Pants_0.tres",
+		"icon_path": "res://UI/InventoryView/Assets/icon_pants.png",
+		"base_price": 15
+	},
+	"sword_basic": {
+		"name": "ITEMS.SWORD",
+		"type": "Equipment",
+		"slot": "weapon",
+		"description": "ITEMS.SWORD.DESCRIPTION",
+		"sprite_frames": "res://Player/SpriteFrames/Weapons_0.tres",
+		"icon_path": "res://UI/InventoryView/Assets/icon_sword.png",
+		"base_price": 30
+	},
+	"chest": {
+		"name": "ITEMS.CHEST",
+		"type": "Posable",
+		"description": "ITEMS.CHEST.DESCRIPTION",
+		"icon_path": "res://Containers/Sprites/chest.png",
+		"scene_path": "res://Stand/chest.tscn",
+		"base_price": 60
 	}
 }

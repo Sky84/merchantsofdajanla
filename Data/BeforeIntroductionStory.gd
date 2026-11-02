@@ -27,7 +27,8 @@ func play_state(game_map_controller: GameMapController, player: Player) -> void:
 	AlivesController.set_alive_blocked(true);
 	
 	PlayerEvents.on_player_block.emit(true);
-	_start_dialog("pnj-before-intro", pnj.pnj_name);
+	await _start_dialog("pnj-before-intro", pnj);
+	_on_basic_intro_goodbye(_game_map_controller);
 
 # called as answers call_back
 func _on_basic_intro_goodbye(game_map_controller: GameMapController) -> void:
@@ -37,20 +38,23 @@ func _on_basic_intro_goodbye(game_map_controller: GameMapController) -> void:
 	pnj.global_position = spawn_point;
 	AlivesController.set_alive_blocked(true);
 	await pnj.get_tree().create_timer(0.5).timeout;
-	_start_dialog("angry-pnj-after-intro", pnj.pnj_name);
+	await _start_dialog("angry-pnj-after-intro", pnj);
+	AlivesController.set_alive_blocked(false);
+	PlayerEvents.on_player_block.emit(false);
 	
 func _on_after_angry_pnj() -> void:
-	print('AfterAngryPnj'); 
+	print('AfterAngryPnj');
+	AlivesController.set_alive_blocked(false);
+	PlayerEvents.on_player_block.emit(false);
 
-func _start_dialog(dialog_configuration: String, pnj_name: String) -> void:
+func _start_dialog(dialog_configuration: String, pnj) -> void:
 	var dialog_state = DialogsController.load_dialog(dialog_configuration);
 	while dialog_state.current:
 		var modal_params = {
 			'id': DIALOG_TITLE,
-			'global_position': Vector2.ONE * 200,
-			'modal_on_left': false,
+			'speaker_alive': pnj,
 			'ask_translation': dialog_state.current.value,
-			'name_translation': pnj_name,
+			'name_translation': pnj.pnj_name,
 			'answers': DialogsController.get_answers_from_dialog_state(self, dialog_state)
 		};
 		HudEvents.open_modal.emit('res://UI/Modals/DialogModal/DialogModal.tscn', modal_params);

@@ -64,7 +64,7 @@
 	"end": {
 		"value": "*La pièce est remplie de silence. Le PNJ malveillant rit méchamment avant de quitter le magasin en claquant la porte derrière lui.*",
 		"next_nodes": [],
-		"callback": "_on_after_angry_pnj",
+		"callback": "",
 		"params": []
 	}
 }

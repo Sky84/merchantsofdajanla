@@ -17,4 +17,4 @@ func _disable_collider(state: bool) -> void:
 	_collider.set_disabled(state);
 
 func _is_interact_from_owner(interact_owner: String) -> bool:
-	return interact_owner == self._owner;
+	return interact_owner == self._owner or self._owner == "";

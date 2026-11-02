@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://PNJs/Sawaji/HostileController.gd" id="1"]
+
+[sub_resource type="BoxShape3D" id="box"]
+size = Vector3(3.5, 1.8, 2.4)
+
+[node name="Sawaji" type="CharacterBody3D"]
+script = ExtResource("1")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+cast_shadow = 2
+pixel_size = 0.06
+billboard = 1
+texture_filter = 1
+position = Vector3(0, 0.96, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.9, 0)
+shape = SubResource("box")

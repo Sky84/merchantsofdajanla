@@ -118,8 +118,7 @@ func _process_target_player(item) -> void:
 	PlayerEvents.on_player_block.emit(true);
 	var modal_params = {
 		'id': DIALOG_TITLE,
-		'global_position': Vector2.ONE * 200,
-		'modal_on_left': false,
+		'speaker_alive': AlivesController.get_alive_by_owner_id(buyer_owner_id),
 		'ask_translation': tr('MARKET.ASK_BUY') + " 1 " + tr(item.name),
 		'name_translation': pnj_name,
 		'answers': [
