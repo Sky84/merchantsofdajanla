@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name HostileController
 
+const Combat = preload("res://Core/Combat.gd");
+
 @export var species_id := "sawaji";
 @export var speed := 4.0; # entre marche (3) et course (6) du joueur
 @export var aggro_range := 8.0;
@@ -59,8 +61,7 @@ func _process(delta: float) -> void:
 		var dir = (_target.global_position - global_position).normalized();
 		velocity = Vector3(dir.x, 0, dir.z) * speed;
 		sprite.scale.x = -1 if velocity.x < 0 else 1;
-	velocity += _knockback;
-	_knockback = _knockback.move_toward(Vector3.ZERO, delta * 30.0);
+	Combat.apply_knockback(self, delta);
 	move_and_slide();
 	_update_animation();
 
@@ -90,33 +91,7 @@ func _attack() -> void:
 		_target.take_damage(attack_damage, self);
 
 func take_damage(amount: int, source = null) -> void:
-	if is_dead:
-		return;
-	alive_status.health.value = clampi(alive_status.health.value - amount, 0, alive_status.health.max);
-	var tween = create_tween();
-	tween.tween_property(sprite, "modulate", Color(2.5, 0.4, 0.4), 0.05);
-	tween.tween_property(sprite, "modulate", sprite.modulate, 0.2);
-	_spawn_damage_label(amount);
-	if source != null and source is Node3D:
-		var dir = (global_position - source.global_position).normalized();
-		_knockback = Vector3(dir.x, 0, dir.z) * 8.0;
-	if alive_status.health.value <= 0:
-		die();
-
-func _spawn_damage_label(amount: int) -> void:
-	var label = Label3D.new();
-	label.text = "-" + str(amount);
-	label.modulate = Color(1, 0.25, 0.25);
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED;
-	label.pixel_size = 0.005;
-	label.font_size = 48;
-	get_parent().add_child(label);
-	label.global_position = global_position + Vector3(0, 1.2, 0);
-	var tween = create_tween();
-	tween.set_parallel();
-	tween.tween_property(label, "global_position:y", label.global_position.y + 1.2, 0.8);
-	tween.tween_property(label, "modulate:a", 0.0, 0.8);
-	tween.chain().tween_callback(label.queue_free);
+	Combat.apply_damage(self, amount, source);
 
 func die() -> void:
 	is_dead = true;

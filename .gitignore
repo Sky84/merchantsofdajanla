@@ -26,3 +26,5 @@ mono_crash.*.json
 # test screenshots
 tests/out_*.png
 tests/crop_*.png
+tests/out_*.png.import
+tests/crop_*.png.import

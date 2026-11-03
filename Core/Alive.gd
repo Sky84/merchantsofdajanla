@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Alive
 
+const Combat = preload("res://Core/Combat.gd");
+
 const GROUP_NAME = 'alive';
 
 @export var MAX_HEALTH: int = 100;
@@ -71,50 +73,13 @@ func _update_owner_id():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta) -> void:
 	_handle_movement();
-	velocity += _knockback;
-	_knockback = _knockback.move_toward(Vector3.ZERO, _delta * 30.0);
+	Combat.apply_knockback(self, _delta);
 	_handle_animation();
 	move_and_slide();
 	_update_nearest_interactive();
 
 func take_damage(amount: int, source = null) -> void:
-	if is_dead:
-		return;
-	alive_status.health.value = clampi(alive_status.health.value - amount, 0, alive_status.health.max);
-	_hit_flash();
-	_spawn_damage_label(amount);
-	if source != null and source is Node3D:
-		_knockback_from(source);
-	if alive_status.health.value <= 0:
-		die();
-
-func _hit_flash() -> void:
-	if cloth_animations == null:
-		return;
-	for sprite in cloth_animations.get_children():
-		if sprite is AnimatedSprite3D:
-			var tween = create_tween();
-			tween.tween_property(sprite, "modulate", Color(2.5, 0.4, 0.4), 0.05);
-			tween.tween_property(sprite, "modulate", Color.WHITE, 0.2);
-
-func _knockback_from(source: Node3D) -> void:
-	var dir = (global_position - source.global_position).normalized();
-	_knockback = Vector3(dir.x, 0, dir.z) * 8.0;
-
-func _spawn_damage_label(amount: int) -> void:
-	var label = Label3D.new();
-	label.text = "-" + str(amount);
-	label.modulate = Color(1, 0.25, 0.25);
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED;
-	label.pixel_size = 0.005;
-	label.font_size = 48;
-	get_parent().add_child(label);
-	label.global_position = global_position + Vector3(0, 1.8, 0);
-	var tween = create_tween();
-	tween.set_parallel();
-	tween.tween_property(label, "global_position:y", label.global_position.y + 1.2, 0.8);
-	tween.tween_property(label, "modulate:a", 0.0, 0.8);
-	tween.chain().tween_callback(label.queue_free);
+	Combat.apply_damage(self, amount, source);
 
 func die() -> void:
 	is_dead = true;
