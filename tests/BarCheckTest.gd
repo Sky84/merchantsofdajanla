@@ -8,6 +8,9 @@ func _ready() -> void:
 	add_child(game);
 	for i in 150:
 		await get_tree().process_frame;
+	var bar = game.get_node("CanvasLayer/ShortcutBar");
+	print("view container_id=", bar.container_id, " linked=", bar.items_container.container_id, " registered=", ContainersController._containers.keys());
+	print("items_container children=", bar._items_container.get_child_count(), " margin_visible=", bar.get_node("MarginContainer").visible);
 	var player = game.get_node("Player");
 	player.take_damage(40);
 	for i in 15:
