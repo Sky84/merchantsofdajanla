@@ -15,12 +15,12 @@ var _terrain_heights: Array = [];
 
 var chunk_objects = [];
 
-func init_chunk(_tile_scene_ground_placeable_2d_array: Texture2DArray, _noise: FastNoiseLite, _noise_texture: ImageTexture) -> void:
+func init_chunk(_tile_scene_ground_placeable_2d_array: Texture2DArray, _noise: FastNoiseLite, _noise_texture: ImageTexture, city_edges: int = 0) -> void:
 	noise_texture = _noise_texture;
 	noise = _noise;
 	if not is_city:
 		init_shader(mesh_instance.get_surface_override_material(0), _tile_scene_ground_placeable_2d_array, _tile_scene_ground_placeable_2d_array.get_layers(), _noise_texture);
-		TerrainMesh.build(self, _noise);
+		TerrainMesh.build(self, _noise, city_edges);
 		init_decorations();
 
 func init_shader(shader_to_init: ShaderMaterial, texture_tiles: Texture2DArray, tile_type_count: int, _noise_texture: ImageTexture):

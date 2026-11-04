@@ -144,7 +144,15 @@ func _generate_savage_chunk_at(chunk_global_position: Vector3)  -> ChunkControll
 	var chunk_instance: ChunkController = chunk_scene.instantiate();
 	_world_map.add_child(chunk_instance);
 	chunk_instance.global_position = chunk_global_position;
-	chunk_instance.init_chunk(_tile_scene_ground_placeable_2d_array, _savage_chunk_noise, _noise_texture);
+	var chunk_x = int(chunk_global_position.x / chunk_tile_size);
+	var chunk_z = int(chunk_global_position.z / chunk_tile_size);
+	var city_edges := 0;
+	var dirs = [[Vector2(chunk_x, chunk_z - 1), 1], [Vector2(chunk_x + 1, chunk_z), 2],
+		[Vector2(chunk_x, chunk_z + 1), 4], [Vector2(chunk_x - 1, chunk_z), 8]];
+	for d in dirs:
+		if _is_a_city(_tile_chunk_map.get_cell_atlas_coords(0, d[0])):
+			city_edges |= d[1];
+	chunk_instance.init_chunk(_tile_scene_ground_placeable_2d_array, _savage_chunk_noise, _noise_texture, city_edges);
 	_spawn_sawajis(chunk_instance);
 	return chunk_instance;
 
