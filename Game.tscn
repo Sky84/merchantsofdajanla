@@ -991,6 +991,7 @@ offset_left = 36.0
 offset_top = 23.0
 offset_right = 68.0
 offset_bottom = 55.0
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_ppbmy")
 stretch_mode = 3
 
@@ -1002,14 +1003,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 859
-theme_override_constants/margin_top = 82
-theme_override_constants/margin_right = 860
-theme_override_constants/margin_bottom = 72
+theme_override_constants/margin_left = 811
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 808
+theme_override_constants/margin_bottom = 54
 
 [node name="ItemsContainerView" type="GridContainer" parent="CanvasLayer/ShortcutBar/MarginContainer"]
 use_parent_material = true
 layout_mode = 2
+scale = Vector2(1.5, 1.5)
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 10
 columns = 6

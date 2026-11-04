@@ -23,7 +23,7 @@ func _update_selector_position():
 	var local_mouse_position = Vector2(index_position_selector, 0);
 	local_mouse_position.x = clamp(local_mouse_position.x, 0, _items_container.columns-1);
 	var hover_texture_position = (local_mouse_position * item_with_gap) - offset_hover_selector;
-	hover_texture.position = _items_container.position + hover_texture_position;
+	hover_texture.position = _items_container.position + hover_texture_position * _items_container.scale;
 
 func _input(event):
 	if _container_owner.is_empty():
