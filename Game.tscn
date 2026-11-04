@@ -523,6 +523,12 @@ rows = 1
 columns = 6
 _is_main_container_for_owner = true
 
+[node name="Equipment" type="Node3D" parent="Player"]
+script = ExtResource("2_ukcsn")
+container_id = "equipment"
+rows = 1
+columns = 3
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("CapsuleShape3D_pn48d")

@@ -1,8 +1,10 @@
 extends Node
 
 const SLOT_NODES := {"shirt": "ShirtsAnimatedSprite3D", "pants": "PantsAnimatedSprite3D", "weapon": "WeaponsAnimatedSprite3D"};
+const SLOTS := ["shirt", "pants", "weapon"];
 const DEFAULT_ITEMS := {"shirt": "shirt_basic", "pants": "pants_basic", "weapon": "sword_basic"};
 var _equipped := {};
+var _equipment_cid := "";
 
 @onready var _player = get_parent();
 @onready var _cloth = _player.get_node("ClothAnimations");
@@ -13,32 +15,96 @@ func _ready() -> void:
 		var layer = _cloth.get_node_or_null(SLOT_NODES[slot]);
 		if layer != null and layer.sprite_frames != null:
 			_equipped[slot] = DEFAULT_ITEMS[slot];
+	ContainersController.on_registered_container.connect(_on_container_registered);
+	var cid = _cid();
+	if ContainersController.containers.has(cid):
+		_on_container_registered(cid);
+	InventoryEvents.container_data_changed.connect(_on_container_data_changed);
+
+func _cid() -> String:
+	return _equipment_cid if not _equipment_cid.is_empty() else "equipment_" + _player._owner_id;
+
+func _on_container_registered(cid: String) -> void:
+	if cid != _cid():
+		return;
+	_equipment_cid = cid;
+	# keep equipment cells out of the player's storage lookups
+	ContainersController.containers[cid].container_owner = _player._owner_id + "_equipment";
+	var slots = ContainersController.get_container_data(_equipment_cid);
+	for i in SLOTS.size():
+		if slots[i][0].is_empty() and _equipped.has(SLOTS[i]):
+			var item = GameItems.get_item(_equipped[SLOTS[i]]);
+			item.amount = 1;
+			slots[i][0] = item;
+	InventoryEvents.container_data_changed.emit(_equipment_cid);
+	ContainersController.on_registered_container.disconnect(_on_container_registered);
+
+func _on_container_data_changed(cid: String) -> void:
+	if cid == _equipment_cid:
+		_sync_from_container();
+
+func _sync_from_container() -> void:
+	if _equipment_cid.is_empty() or not ContainersController.containers.has(_equipment_cid):
+		return;
+	var slots = ContainersController.get_container_data(_equipment_cid);
+	var storage_ids = ContainersController.get_container_ids_by_owner_id(_player._owner_id);
+	for i in SLOTS.size():
+		var slot = SLOTS[i];
+		var cell = slots[i][0];
+		var layer = _cloth.get_node_or_null(SLOT_NODES[slot]);
+		if layer == null:
+			continue;
+		if cell.is_empty():
+			if _equipped.has(slot):
+				layer.visible = false;
+				_equipped.erase(slot);
+			continue;
+		var data = GameItems._items.get(cell.id);
+		if data != null and data.get("type") == "Equipment" and data.get("slot") == slot:
+			if _equipped.get(slot) != cell.id:
+				layer.sprite_frames = load(data["sprite_frames"]);
+				layer.visible = true;
+				_equipped[slot] = cell.id;
+		else:
+			ContainersController.add_item(storage_ids, cell.id, cell.amount);
+			slots[i][0] = {};
+			InventoryEvents.container_data_changed.emit(_equipment_cid);
+			return;
 
 func equip(item_id: String) -> void:
 	var item = GameItems._items.get(item_id);
 	if item == null or item.get("type") != "Equipment" or not item.has("slot"):
 		return;
-	var slot = item["slot"];
-	var layer = _cloth.get_node_or_null(SLOT_NODES[slot]);
-	if layer == null:
+	var cid = _cid();
+	if cid.is_empty() or not ContainersController.containers.has(cid):
 		return;
-	if _equipped.has(slot):
-		unequip(slot);
-	layer.sprite_frames = load(item["sprite_frames"]);
-	layer.visible = true;
-	_equipped[slot] = item_id;
-	var container_ids = ContainersController.get_container_ids_by_owner_id(_player._owner_id);
-	if not ContainersController.find_item_in_containers(container_ids, item_id).is_empty():
-		ContainersController.remove_item(container_ids, item_id, 1);
+	var slot = item["slot"];
+	if not SLOT_NODES.has(slot) or _cloth.get_node_or_null(SLOT_NODES[slot]) == null:
+		return;
+	var storage_ids = ContainersController.get_container_ids_by_owner_id(_player._owner_id);
+	var slots = ContainersController.get_container_data(cid);
+	var x = SLOTS.find(slot);
+	if not slots[x][0].is_empty():
+		ContainersController.add_item(storage_ids, slots[x][0].id, slots[x][0].amount);
+	var cell = GameItems.get_item(item_id);
+	cell.amount = 1;
+	slots[x][0] = cell;
+	ContainersController.remove_item(storage_ids, item_id, 1);
+	InventoryEvents.container_data_changed.emit(cid);
 	PlayerEvents.equipment_changed.emit();
 
 func unequip(slot: String) -> void:
-	if not _equipped.has(slot) or not _has_empty_slot():
+	var cid = _cid();
+	if cid.is_empty() or not SLOTS.has(slot) or not _has_empty_slot():
 		return;
-	var item_id = _equipped[slot];
-	_cloth.get_node_or_null(SLOT_NODES[slot]).visible = false;
-	_equipped.erase(slot);
-	ContainersController.add_item(ContainersController.get_container_ids_by_owner_id(_player._owner_id), item_id, 1);
+	var x = SLOTS.find(slot);
+	var slots = ContainersController.get_container_data(cid);
+	var cell = slots[x][0];
+	if cell.is_empty():
+		return;
+	slots[x][0] = {};
+	ContainersController.add_item(ContainersController.get_container_ids_by_owner_id(_player._owner_id), cell.id, cell.amount);
+	InventoryEvents.container_data_changed.emit(cid);
 	PlayerEvents.equipment_changed.emit();
 
 func _has_empty_slot() -> bool:

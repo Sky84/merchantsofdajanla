@@ -20,7 +20,7 @@ func _set_item(item_data: Dictionary):
 		_set_visibility(true);
 		_selected_item = item_data;
 		match _selected_item.type:
-			"Material", "Consomable":
+			"Material", "Consomable", "Equipment":
 				_set_material_item();
 			"Posable":
 				_set_posable_item();
