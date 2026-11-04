@@ -197,12 +197,12 @@ func _build_bar_indicators(player_node) -> void:
 	for i in 6: # encoches de faim gravées dans la texture de la barre (x168..208, pas de 7px)
 		var fill = ColorRect.new();
 		fill.color = Color(0.85, 0.55, 0.2);
-		fill.position = Vector2(168 + i * 7, 6);
-		fill.size = Vector2(5, 10);
+		fill.position = Vector2(168 + i * 7, 7);
+		fill.size = Vector2(5, 8);
 		bar.add_child(fill);
 		_hunger_fills.append(fill);
 	_money_label = Label.new();
-	_money_label.position = Vector2(12, 27);
+	_money_label.position = Vector2(16, 27);
 	_money_label.add_theme_font_size_override("font_size", 14);
 	bar.add_child(_money_label);
 	_update_money();
