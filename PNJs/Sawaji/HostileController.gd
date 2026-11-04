@@ -10,6 +10,9 @@ const Combat = preload("res://Core/Combat.gd");
 @export var attack_range := 2.5;
 @export var attack_damage := 10;
 @export var attack_cooldown := 1.0;
+@export var wander_interval := 6.0;
+@export var wander_range := 8.0;
+@export var wander_speed_ratio := 0.5;
 @export var tint: Color = Color.WHITE;
 @export var tint_random := 0.08;
 @export var max_health := 60;
@@ -27,6 +30,9 @@ var _owner_id := "";
 var _target = null;
 var _cooldown := 0.0;
 var _knockback := Vector3.ZERO;
+var _home_position = null;
+var _wander_target: Vector3;
+var _wander_timer := randf() * 6.0;
 
 @onready var sprite = $AnimatedSprite3D;
 
@@ -49,7 +55,7 @@ func _process(delta: float) -> void:
 	if not _is_valid_target(_target):
 		_target = _find_target();
 	if _target == null:
-		velocity = Vector3.ZERO;
+		_wander(delta);
 	elif global_position.distance_to(_target.global_position) > lose_interest_range:
 		_target = null;
 		velocity = Vector3.ZERO;
@@ -63,6 +69,23 @@ func _process(delta: float) -> void:
 		sprite.scale.x = -1 if velocity.x < 0 else 1;
 	Combat.apply_knockback(self, delta);
 	move_and_slide();
+	_update_animation();
+
+func _wander(delta: float) -> void:
+	if _home_position == null:
+		_home_position = global_position;
+		_wander_target = global_position;
+	_wander_timer -= delta;
+	if _wander_timer <= 0.0:
+		_wander_timer = wander_interval + randf() * wander_interval;
+		_wander_target = _home_position + Vector3(
+			randf_range(-wander_range, wander_range), 0, randf_range(-wander_range, wander_range));
+	if global_position.distance_to(_wander_target) > 1.0:
+		var dir = (_wander_target - global_position).normalized();
+		velocity = Vector3(dir.x, 0, dir.z) * speed * wander_speed_ratio;
+		sprite.scale.x = -1 if velocity.x < 0 else 1;
+	else:
+		velocity = Vector3.ZERO;
 	_update_animation();
 
 func _is_valid_target(alive) -> bool:

@@ -135,12 +135,25 @@ func get_city(city_name: String) -> ChunkController:
 		printerr('no cities loaded');
 	return _cities[chunk_cell_id];
 
+const SAWAJI_SCENE := preload("res://PNJs/Sawaji/Sawaji.tscn");
+const SAWAJI_SPAWN_CHANCE := 0.4;
+const SAWAJI_MAX_PER_CHUNK := 2;
+
 func _generate_savage_chunk_at(chunk_global_position: Vector3)  -> ChunkController:
 	var chunk_instance: ChunkController = chunk_scene.instantiate();
 	chunk_instance.init_chunk(_tile_scene_ground_placeable_2d_array, _savage_chunk_noise, _noise_texture);
 	_world_map.add_child(chunk_instance);
 	chunk_instance.global_position = chunk_global_position;
+	_spawn_sawajis(chunk_instance);
 	return chunk_instance;
+
+func _spawn_sawajis(chunk_instance: ChunkController) -> void:
+	if randf() > SAWAJI_SPAWN_CHANCE:
+		return;
+	for _i in randi_range(1, SAWAJI_MAX_PER_CHUNK):
+		var sawaji = SAWAJI_SCENE.instantiate();
+		chunk_instance.add_child(sawaji);
+		sawaji.position = Vector3(randf_range(5, chunk_tile_size - 5), 0.5, randf_range(5, chunk_tile_size - 5));
 
 func add_interior_house(house_id: String, interior_scene: PackedScene, go_to_location: Vector3) -> Node3D:
 	var interior_instance = interior_scene.instantiate();
