@@ -17,7 +17,6 @@ static func build(chunk, noise: FastNoiseLite, city_edges: int = 0) -> void:
 	for cz in range(1, CELLS + 1):
 		for cx in range(1, CELLS + 1):
 			_emit_cell(st, levels, cx, cz);
-	st.generate_normals();
 	var mesh = st.commit();
 	chunk.mesh_instance.mesh = mesh;
 	var body := StaticBody3D.new();
@@ -87,12 +86,10 @@ static func _quad(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3, d: Vector
 	_tri(st, a, c, d);
 
 static func _tri(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
-	st.set_uv(Vector2(a.x, a.z) / CHUNK_SIZE);
-	st.add_vertex(a);
-	st.set_uv(Vector2(b.x, b.z) / CHUNK_SIZE);
-	st.add_vertex(b);
-	st.set_uv(Vector2(c.x, c.z) / CHUNK_SIZE);
-	st.add_vertex(c);
+	for v in [a, b, c]:
+		st.set_uv(Vector2(v.x, v.z) / CHUNK_SIZE);
+		st.set_normal(Vector3.UP);
+		st.add_vertex(v);
 
 static func get_height(levels: Array, x: float, z: float) -> float:
 	var cx = clampi(int(x / CELL_SIZE) + 1, 1, CELLS);
