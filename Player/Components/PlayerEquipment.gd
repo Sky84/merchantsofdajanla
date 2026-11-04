@@ -48,6 +48,7 @@ func _sync_from_container() -> void:
 		return;
 	var slots = ContainersController.get_container_data(_equipment_cid);
 	var storage_ids = ContainersController.get_container_ids_by_owner_id(_player._owner_id);
+	var changed = false;
 	for i in SLOTS.size():
 		var slot = SLOTS[i];
 		var cell = slots[i][0];
@@ -58,6 +59,7 @@ func _sync_from_container() -> void:
 			if _equipped.has(slot):
 				layer.visible = false;
 				_equipped.erase(slot);
+				changed = true;
 			continue;
 		var data = GameItems._items.get(cell.id);
 		if data != null and data.get("type") == "Equipment" and data.get("slot") == slot:
@@ -65,11 +67,14 @@ func _sync_from_container() -> void:
 				layer.sprite_frames = load(data["sprite_frames"]);
 				layer.visible = true;
 				_equipped[slot] = cell.id;
+				changed = true;
 		else:
 			ContainersController.add_item(storage_ids, cell.id, cell.amount);
 			slots[i][0] = {};
 			InventoryEvents.container_data_changed.emit(_equipment_cid);
 			return;
+	if changed:
+		PlayerEvents.equipment_changed.emit();
 
 func equip(item_id: String) -> void:
 	var item = GameItems._items.get(item_id);
@@ -91,7 +96,6 @@ func equip(item_id: String) -> void:
 	slots[x][0] = cell;
 	ContainersController.remove_item(storage_ids, item_id, 1);
 	InventoryEvents.container_data_changed.emit(cid);
-	PlayerEvents.equipment_changed.emit();
 
 func unequip(slot: String) -> void:
 	var cid = _cid();
@@ -105,7 +109,6 @@ func unequip(slot: String) -> void:
 	slots[x][0] = {};
 	ContainersController.add_item(ContainersController.get_container_ids_by_owner_id(_player._owner_id), cell.id, cell.amount);
 	InventoryEvents.container_data_changed.emit(cid);
-	PlayerEvents.equipment_changed.emit();
 
 func _has_empty_slot() -> bool:
 	for cid in ContainersController.get_container_ids_by_owner_id(_player._owner_id):
