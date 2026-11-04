@@ -353,6 +353,13 @@ corner_radius_bottom_left = 3
 [sub_resource type="Gradient" id="Gradient_egbbe"]
 colors = PackedColorArray(0.184314, 0.211765, 0.243137, 1, 0.184314, 0.211765, 0.243137, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_time"]
+texture = ExtResource("17_u4qaf")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
 [sub_resource type="Gradient" id="Gradient_white"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
@@ -1042,13 +1049,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GameTimeCotainer" type="Panel" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 64.0
+offset_bottom = 28.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_time")
 
 [node name="Label" type="Label" parent="CanvasLayer/GameTimeCotainer"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TradeView" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("info_panel")]
 visible = false
