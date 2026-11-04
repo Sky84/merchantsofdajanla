@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://xjipt1w1cwne" path="res://Map/Chunk/chunk.tscn" id="46_33u2o"]
 [ext_resource type="Script" path="res://Core/PathFinding.gd" id="49_8uvbs"]
 [ext_resource type="Script" path="res://Core/StoryController.gd" id="49_thabl"]
+[ext_resource type="PackedScene" path="res://UI/StatusIndicators.tscn" id="50_sind"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -872,6 +873,8 @@ layout_mode = 2
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 10
 columns = 6
+
+[node name="StatusIndicators" parent="CanvasLayer/ShortcutBar" instance=ExtResource("50_sind")]
 
 [node name="StandSetup" parent="CanvasLayer" instance=ExtResource("24_rwecl")]
 visible = false

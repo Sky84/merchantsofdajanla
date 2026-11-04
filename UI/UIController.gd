@@ -14,9 +14,9 @@ class_name UIController
 var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: Node3D = null;
 var _current_mouse_target: Control;
-var _health_bar: TextureProgressBar;
+@onready var _health_bar: TextureProgressBar = $ShortcutBar/StatusIndicators/HealthFill;
+@onready var _money_label: Label = $ShortcutBar/StatusIndicators/MoneyLabel;
 var _hunger_fills: Array = [];
-var _money_label: Label;
 var _debug_menu;
 var _death_screen: Control;
 var _pause_menu: Control;
@@ -50,7 +50,10 @@ func _ready():
 		$Inventory.add_child(preview);
 		_debug_menu = preload("res://UI/DebugMenu/DebugMenu.gd").new(get_parent(), player_node);
 		add_child(_debug_menu);
-	_build_bar_indicators(player_node);
+	_hunger_fills.assign($ShortcutBar/StatusIndicators/HungerFills.get_children());
+	_update_money();
+	if player_node:
+		_on_player_status_changed(player_node.alive_status);
 	InventoryEvents.container_data_changed.connect(func(_id): _update_money());
 	_build_death_screen();
 	_build_pause_menu();
@@ -190,39 +193,6 @@ func _build_pause_menu() -> void:
 	panel.add_child(col);
 	_pause_menu.add_child(panel);
 	add_child(_pause_menu);
-
-func _build_bar_indicators(player_node) -> void:
-	var bar = $ShortcutBar;
-	_health_bar = _icon_fill(bar, "res://UI/Sprites/heart.png", Vector2(127, 4), Vector2(20, 14), Color(0.75, 0.15, 0.15));
-	for i in 6: # encoches de faim gravées dans la texture de la barre (x168..208, pas de 7px)
-		var fill = ColorRect.new();
-		fill.color = Color(0.85, 0.55, 0.2);
-		fill.position = Vector2(168 + i * 7, 7);
-		fill.size = Vector2(5, 8);
-		bar.add_child(fill);
-		_hunger_fills.append(fill);
-	_money_label = Label.new();
-	_money_label.position = Vector2(16, 27);
-	_money_label.add_theme_font_size_override("font_size", 14);
-	bar.add_child(_money_label);
-	_update_money();
-	if player_node:
-		_on_player_status_changed(player_node.alive_status);
-
-func _icon_fill(bar: Control, icon: String, pos: Vector2, size: Vector2, tint: Color) -> TextureProgressBar:
-	var progress = TextureProgressBar.new();
-	progress.fill_mode = TextureProgressBar.FILL_BOTTOM_TO_TOP;
-	progress.texture_under = load(icon);
-	progress.texture_progress = load(icon);
-	progress.tint_under = Color(tint.r * 0.35, tint.g * 0.35, tint.b * 0.35, 0.7);
-	progress.tint_progress = tint;
-	progress.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST;
-	progress.nine_patch_stretch = true;
-	progress.position = pos;
-	progress.size = size;
-	progress.max_value = 100;
-	bar.add_child(progress);
-	return progress;
 
 func _update_money() -> void:
 	if _money_label == null:
