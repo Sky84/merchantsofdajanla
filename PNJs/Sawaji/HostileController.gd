@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name HostileController
 
 const Combat = preload("res://Core/Combat.gd");
+const OcclusionSilhouette = preload("res://Core/OcclusionSilhouette.gd");
 
 @export var species_id := "sawaji";
 @export var speed := 4.0; # entre marche (3) et course (6) du joueur
@@ -37,6 +38,7 @@ var _home_position = null;
 var _wander_target: Vector3;
 var _wander_timer := randf() * 6.0;
 var _aggressive_to_own := false;
+var _silhouettes := {};
 
 @onready var sprite = $AnimatedSprite3D;
 
@@ -52,6 +54,7 @@ func _ready() -> void:
 		1 + randf_range(-tint_random, tint_random),
 		1 + randf_range(-tint_random, tint_random));
 	_aggressive_to_own = randf() < same_species_aggression_chance;
+	_silhouettes = OcclusionSilhouette.add(self);
 
 func _process(delta: float) -> void:
 	if is_dead:
@@ -75,6 +78,7 @@ func _process(delta: float) -> void:
 	Combat.apply_knockback(self, delta);
 	move_and_slide();
 	_update_animation();
+	OcclusionSilhouette.sync(_silhouettes);
 
 func _wander(delta: float) -> void:
 	if _home_position == null:

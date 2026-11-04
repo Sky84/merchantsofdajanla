@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Alive
 
 const Combat = preload("res://Core/Combat.gd");
+const OcclusionSilhouette = preload("res://Core/OcclusionSilhouette.gd");
 
 const GROUP_NAME = 'alive';
 
@@ -27,6 +28,7 @@ var _is_player = false;
 
 var _is_blocked = false;
 var _knockback := Vector3.ZERO;
+var _silhouettes := {};
 
 var _speed_walk_factor: float = 10.0;
 
@@ -65,6 +67,7 @@ func _ready() -> void:
 	animation_tree.active = true;
 	_update_owner_id();
 	AliveEvents.on_alive_ready.emit(self);
+	_silhouettes = OcclusionSilhouette.add(self);
 
 func _update_owner_id():
 	_owner_id = name+str(global_position.floor());
@@ -75,6 +78,7 @@ func _process(_delta) -> void:
 	_handle_movement();
 	Combat.apply_knockback(self, _delta);
 	_handle_animation();
+	OcclusionSilhouette.sync(_silhouettes);
 	move_and_slide();
 	_update_nearest_interactive();
 
