@@ -38,7 +38,6 @@ var _home_position = null;
 var _wander_target: Vector3;
 var _wander_timer := randf() * 6.0;
 var _aggressive_to_own := false;
-var _silhouettes := {};
 
 @onready var sprite = $AnimatedSprite3D;
 
@@ -54,7 +53,7 @@ func _ready() -> void:
 		1 + randf_range(-tint_random, tint_random),
 		1 + randf_range(-tint_random, tint_random));
 	_aggressive_to_own = randf() < same_species_aggression_chance;
-	_silhouettes = OcclusionSilhouette.add(self);
+	OcclusionSilhouette.attach(self);
 
 func _process(delta: float) -> void:
 	if is_dead:
@@ -79,7 +78,6 @@ func _process(delta: float) -> void:
 	move_and_slide();
 	_snap_to_ground();
 	_update_animation();
-	OcclusionSilhouette.sync(_silhouettes, self);
 
 func _snap_to_ground() -> void:
 	var ray = PhysicsRayQueryParameters3D.create(

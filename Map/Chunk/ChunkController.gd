@@ -41,19 +41,3 @@ func init_decorations() -> void:
 		plant.position = Vector3(plant_position.x, plant.position.y, plant_position.z);
 		plant.scale.x = -1 if randf() > 0.5 else 1;
 		plant.update_for_atlas();
-		_add_occluder_collider(plant);
-
-func _add_occluder_collider(plant: Node3D) -> void:
-	var body = plant.find_child("StaticBody3D", true, false);
-	if body == null:
-		body = StaticBody3D.new();
-		plant.add_child(body);
-	if body.find_child("OccluderShape", true, false) != null:
-		return;
-	var shape = CollisionShape3D.new();
-	shape.name = "OccluderShape";
-	var box = BoxShape3D.new();
-	box.size = Vector3(1.4, 6.0, 1.4);
-	shape.shape = box;
-	shape.position.y = 3.0;
-	body.add_child(shape);

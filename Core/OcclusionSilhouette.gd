@@ -1,47 +1,66 @@
 extends Node
 
-const SILHOUETTE_COLOR := Color(0.85, 0.9, 1.0, 0.55);
+# A separate render pass, never a physics obstacle or a displaced copy.
+const SHADER = preload("res://Core/OcclusionSilhouette.gdshader");
+const PASS_META := &"occlusion_pass";
+var _pairs: Dictionary = {};
 
-# Crée un sprite fantôme no_depth_test pour chaque AnimatedSprite3D sous root.
-# Retourne un dict {sprite: silhouette} à passer à sync() chaque frame.
-static func add(root: Node3D) -> Dictionary:
-	var pairs := {};
+static func attach(root: Node3D) -> void:
+	if root.has_node("OcclusionSilhouette"):
+		return;
+	var effect = new();
+	effect.name = "OcclusionSilhouette";
+	root.add_child(effect);
+	effect.process_priority = 100; # After AnimationTree and cloth synchronization.
 	for sprite in root.find_children("*", "AnimatedSprite3D", true, false):
-		var sil = AnimatedSprite3D.new();
-		sil.pixel_size = sprite.pixel_size;
-		sil.billboard = sprite.billboard;
-		sil.texture_filter = sprite.texture_filter;
-		sil.position = sprite.position;
-		sil.scale = sprite.scale;
-		sil.offset = sprite.offset;
-		sil.modulate = SILHOUETTE_COLOR;
-		sil.no_depth_test = true;
-		sil.cast_shadow = 0;
-		sil.shaded = false;
-		sprite.get_parent().add_child(sil);
-		sil.sprite_frames = sprite.sprite_frames;
-		pairs[sprite] = sil;
-	return pairs;
-
-static func sync(pairs: Dictionary, target: Node3D) -> void:
-	var occluded = _is_occluded(target);
-	for sprite in pairs:
-		var sil = pairs[sprite];
-		if not is_instance_valid(sil):
+		if sprite.has_meta(PASS_META):
 			continue;
-		sil.sprite_frames = sprite.sprite_frames;
-		sil.animation = sprite.animation;
-		sil.frame = sprite.frame;
-		sil.flip_h = sprite.flip_h;
-		sil.visible = sprite.visible and occluded;
+		var silhouette = AnimatedSprite3D.new();
+		silhouette.name = "OcclusionPass";
+		silhouette.set_meta(PASS_META, true);
+		silhouette.visible = false;
+		silhouette.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;
+		var material = ShaderMaterial.new();
+		material.shader = SHADER;
+		# Trees have an alpha prepass and a transparent color pass (priority 0).
+		material.render_priority = 100;
+		silhouette.material_override = material;
+		sprite.get_parent().add_child(silhouette);
+		effect._pairs[sprite] = silhouette;
+	effect._process(0.0);
 
-static func _is_occluded(target: Node3D) -> bool:
-	var cam = target.get_viewport().get_camera_3d();
-	if cam == null:
-		return false;
-	var from = cam.global_position;
-	var to = target.global_position + Vector3(0, 1.0, 0);
-	var query = PhysicsRayQueryParameters3D.create(from, to);
-	query.exclude = [target.get_rid()];
-	var hit = target.get_world_3d().direct_space_state.intersect_ray(query);
-	return not hit.is_empty() and from.distance_to(hit.position) < from.distance_to(to) - 0.3;
+func _process(_delta: float) -> void:
+	var dead = get_parent().get("is_dead") == true;
+	for sprite in _pairs.keys():
+		var silhouette: AnimatedSprite3D = _pairs[sprite];
+		if not is_instance_valid(sprite):
+			silhouette.queue_free();
+			_pairs.erase(sprite);
+			continue;
+		var frames: SpriteFrames = sprite.sprite_frames;
+		silhouette.visible = not dead and sprite.is_visible_in_tree() and frames != null;
+		if not silhouette.visible or not frames.has_animation(sprite.animation):
+			continue;
+		var texture = frames.get_frame_texture(sprite.animation, sprite.frame);
+		if texture == null:
+			silhouette.visible = false;
+			continue;
+		silhouette.transform = sprite.transform;
+		silhouette.pixel_size = sprite.pixel_size;
+		silhouette.billboard = sprite.billboard;
+		silhouette.axis = sprite.axis;
+		silhouette.centered = sprite.centered;
+		silhouette.offset = sprite.offset;
+		silhouette.sprite_frames = frames;
+		silhouette.animation = sprite.animation;
+		silhouette.set_frame_and_progress(sprite.frame, sprite.frame_progress);
+		silhouette.flip_h = sprite.flip_h;
+		silhouette.flip_v = sprite.flip_v;
+		silhouette.layers = sprite.layers;
+		# AnimatedSprite3D already generates UVs for the current atlas region.
+		# Bind the atlas itself; a spatial shader has no built-in TEXTURE.
+		if texture is AtlasTexture:
+			texture = texture.atlas;
+		var material: ShaderMaterial = silhouette.material_override;
+		material.set_shader_parameter("frame_atlas", texture);
+		material.set_shader_parameter("billboard_mode", sprite.billboard);

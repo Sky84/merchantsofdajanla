@@ -39,4 +39,5 @@ static func spawn_damage_label(target, amount: int) -> void:
 	tween.chain().tween_callback(label.queue_free);
 
 static func _sprites_of(target) -> Array:
-	return target.find_children("*", "AnimatedSprite3D", true, false);
+	return target.find_children("*", "AnimatedSprite3D", true, false).filter(
+		func(sprite): return not sprite.has_meta(&"occlusion_pass"));
