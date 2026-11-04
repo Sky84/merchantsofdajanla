@@ -6,6 +6,7 @@
 size = Vector3(3.5, 1.8, 2.4)
 
 [node name="Sawaji" type="CharacterBody3D"]
+axis_lock_linear_y = true
 script = ExtResource("1")
 same_species_aggression_chance = 0.25
 

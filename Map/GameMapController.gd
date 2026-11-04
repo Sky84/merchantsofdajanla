@@ -153,28 +153,31 @@ func _spawn_sawajis(chunk_instance: ChunkController) -> void:
 	for _i in randi_range(1, SAWAJI_MAX_PER_CHUNK):
 		var sawaji = SAWAJI_SCENE.instantiate();
 		_world_map.add_child(sawaji);
-		sawaji.global_position = chunk_instance.global_position + _find_free_position(chunk_instance);
+		var local_position = _find_free_position(chunk_instance, sawaji);
+		if local_position == null:
+			sawaji.queue_free();
+			continue;
+		sawaji.global_position = chunk_instance.global_position + local_position;
 
-func _find_free_position(chunk_instance: ChunkController) -> Vector3:
-	var shape = BoxShape3D.new();
-	shape.size = Vector3(1.5, 1.5, 1.5);
+func _find_free_position(chunk_instance: ChunkController, sawaji: CharacterBody3D) -> Variant:
+	var collider: CollisionShape3D = sawaji.get_node("CollisionShape3D");
 	var shape_query = PhysicsShapeQueryParameters3D.new();
-	shape_query.shape = shape;
+	shape_query.shape = collider.shape;
+	shape_query.exclude = [sawaji.get_rid()];
+	shape_query.collision_mask = sawaji.collision_mask;
 	var space = get_world_3d().direct_space_state;
+	# Chunks are flat render planes, with no ground collider. Raycasts here
+	# were selecting decorations (or other actors) instead of the terrain.
+	var ground_y = chunk_instance.mesh_instance.global_position.y - chunk_instance.global_position.y;
 	for _attempt in 10:
 		var x = randf_range(5, chunk_tile_size - 5);
 		var z = randf_range(5, chunk_tile_size - 5);
-		var ground_y = _raycast_ground_y(space, chunk_instance.global_position + Vector3(x, 0, z)) - chunk_instance.global_position.y;
 		var local_pos = Vector3(x, ground_y, z);
-		shape_query.transform = Transform3D(Basis(), chunk_instance.global_position + local_pos + Vector3(0, 0.9, 0));
+		shape_query.transform = Transform3D(sawaji.global_basis,
+			chunk_instance.global_position + local_pos) * collider.transform;
 		if space.intersect_shape(shape_query).is_empty():
 			return local_pos;
-	return Vector3(chunk_tile_size * 0.5, 0, chunk_tile_size * 0.5);
-
-func _raycast_ground_y(space: PhysicsDirectSpaceState3D, world_pos: Vector3) -> float:
-	var ray = PhysicsRayQueryParameters3D.create(world_pos + Vector3(0, 50, 0), world_pos + Vector3(0, -10, 0));
-	var hit = space.intersect_ray(ray);
-	return hit.position.y if not hit.is_empty() else 0.0;
+	return null; # Skip this spawn rather than force it into an occupied center.
 
 func add_interior_house(house_id: String, interior_scene: PackedScene, go_to_location: Vector3) -> Node3D:
 	var interior_instance = interior_scene.instantiate();

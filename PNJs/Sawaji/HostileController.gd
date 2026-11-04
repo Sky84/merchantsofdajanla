@@ -76,16 +76,7 @@ func _process(delta: float) -> void:
 		sprite.flip_h = velocity.x > 0;
 	Combat.apply_knockback(self, delta);
 	move_and_slide();
-	_snap_to_ground();
 	_update_animation();
-
-func _snap_to_ground() -> void:
-	var ray = PhysicsRayQueryParameters3D.create(
-		global_position + Vector3(0, 10, 0), global_position + Vector3(0, -20, 0));
-	ray.exclude = [get_rid()];
-	var hit = get_world_3d().direct_space_state.intersect_ray(ray);
-	if not hit.is_empty():
-		global_position.y = hit.position.y;
 
 func _wander(delta: float) -> void:
 	if _home_position == null:
