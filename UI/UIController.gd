@@ -193,16 +193,16 @@ func _build_pause_menu() -> void:
 
 func _build_bar_indicators(player_node) -> void:
 	var bar = $ShortcutBar;
-	_health_bar = _icon_fill(bar, "res://UI/Sprites/heart.png", Vector2(130, 3), Vector2(18, 18), Color(0.75, 0.15, 0.15));
-	for i in 6: # encoches de faim gravées dans la texture de la barre
+	_health_bar = _icon_fill(bar, "res://UI/Sprites/heart.png", Vector2(127, 4), Vector2(20, 14), Color(0.75, 0.15, 0.15));
+	for i in 6: # encoches de faim gravées dans la texture de la barre (x168..208, pas de 7px)
 		var fill = ColorRect.new();
 		fill.color = Color(0.85, 0.55, 0.2);
-		fill.position = Vector2(166 + i * 11, 7);
-		fill.size = Vector2(9, 14);
+		fill.position = Vector2(168 + i * 7, 6);
+		fill.size = Vector2(5, 10);
 		bar.add_child(fill);
 		_hunger_fills.append(fill);
 	_money_label = Label.new();
-	_money_label.position = Vector2(10, 27);
+	_money_label.position = Vector2(12, 27);
 	_money_label.add_theme_font_size_override("font_size", 14);
 	bar.add_child(_money_label);
 	_update_money();
