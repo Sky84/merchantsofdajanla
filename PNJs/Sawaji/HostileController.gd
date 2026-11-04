@@ -15,6 +15,8 @@ const Combat = preload("res://Core/Combat.gd");
 @export var wander_speed_ratio := 0.5;
 @export var tint: Color = Color.WHITE;
 @export var tint_random := 0.08;
+@export var sand_tint := true; # teinte aléatoire couleur sable plutôt que tint
+@export var same_species_aggression_chance := 0.0;
 @export var max_health := 60;
 
 const SPRITES := {
@@ -33,6 +35,7 @@ var _knockback := Vector3.ZERO;
 var _home_position = null;
 var _wander_target: Vector3;
 var _wander_timer := randf() * 6.0;
+var _aggressive_to_own := false;
 
 @onready var sprite = $AnimatedSprite3D;
 
@@ -43,10 +46,14 @@ func _ready() -> void:
 	alive_status.health.max = max_health;
 	_build_sprite_frames();
 	sprite.play("idle");
-	sprite.modulate = tint * Color(
-		1 + randf_range(-tint_random, tint_random),
-		1 + randf_range(-tint_random, tint_random),
-		1 + randf_range(-tint_random, tint_random));
+	if sand_tint:
+		sprite.modulate = Color(randf_range(0.8, 1.1), randf_range(0.6, 0.85), randf_range(0.4, 0.6), 1);
+	else:
+		sprite.modulate = tint * Color(
+			1 + randf_range(-tint_random, tint_random),
+			1 + randf_range(-tint_random, tint_random),
+			1 + randf_range(-tint_random, tint_random));
+	_aggressive_to_own = randf() < same_species_aggression_chance;
 
 func _process(delta: float) -> void:
 	if is_dead:
@@ -104,7 +111,9 @@ func _find_target():
 	return nearest;
 
 func is_hostile_to(alive) -> bool:
-	return alive.get("species_id") != species_id;
+	if alive.get("species_id") != species_id:
+		return true;
+	return _aggressive_to_own;
 
 func _attack() -> void:
 	_cooldown = attack_cooldown;
@@ -120,11 +129,12 @@ func die() -> void:
 	is_dead = true;
 	velocity = Vector3.ZERO;
 	sprite.play("idle");
+	$CollisionShape3D.disabled = true;
 	var tween = create_tween();
 	tween.set_parallel();
 	tween.tween_property(sprite, "rotation_degrees", Vector3(0, 0, 90), 0.4);
-	tween.tween_property(sprite, "modulate:a", 0.0, 0.5).set_delay(0.3);
-	tween.chain().tween_callback(queue_free);
+	tween.tween_property(sprite, "modulate", sprite.modulate * Color(0.7, 0.65, 0.6), 0.6);
+	tween.chain().tween_callback(func(): set_process(false));
 
 func _update_animation() -> void:
 	if sprite.animation == &"attack" and sprite.is_playing():

@@ -4,6 +4,7 @@ const FakeAlive = preload("res://tests/FakeAlive.gd");
 
 func _ready() -> void:
 	var sawaji = load("res://PNJs/Sawaji/Sawaji.tscn").instantiate();
+	sawaji.same_species_aggression_chance = 0.0; # déterministe : n'attaque jamais son espèce ici
 	add_child(sawaji);
 	var pnj_target = _spawn_target("PNJ_target", "human", Vector3(3, 0, 0));
 	var player_target = _spawn_target("Player_target", "human", Vector3(-3, 0, 0));
