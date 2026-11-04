@@ -193,17 +193,17 @@ func _build_pause_menu() -> void:
 
 func _build_bar_indicators(player_node) -> void:
 	var bar = $ShortcutBar;
-	_health_bar = _icon_fill(bar, "res://UI/Sprites/heart.png", Vector2(78, 24), Vector2(22, 22), Color(0.75, 0.15, 0.15));
-	_hunger_bar = _icon_fill(bar, "res://Items/apple.png", Vector2(104, 24), Vector2(22, 22), Color(0.85, 0.55, 0.2));
+	_health_bar = _icon_fill(bar, "res://UI/Sprites/heart.png", Vector2(130, 3), Vector2(18, 18), Color(0.75, 0.15, 0.15));
+	_hunger_bar = _icon_fill(bar, "res://Items/apple.png", Vector2(154, 3), Vector2(18, 18), Color(0.85, 0.55, 0.2));
 	var coin = TextureRect.new();
 	coin.texture = load("res://UI/Sprites/moneycoin.png");
 	coin.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED;
-	coin.position = Vector2(8, 26);
+	coin.position = Vector2(10, 27);
 	coin.size = Vector2(18, 18);
 	coin.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST;
 	bar.add_child(coin);
 	_money_label = Label.new();
-	_money_label.position = Vector2(27, 26);
+	_money_label.position = Vector2(30, 27);
 	_money_label.add_theme_font_size_override("font_size", 14);
 	bar.add_child(_money_label);
 	_update_money();
