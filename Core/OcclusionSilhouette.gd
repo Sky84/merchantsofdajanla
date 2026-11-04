@@ -13,7 +13,7 @@ static func attach(root: Node3D) -> void:
 	root.add_child(effect);
 	effect.process_priority = 100; # After AnimationTree and cloth synchronization.
 	for sprite in root.find_children("*", "AnimatedSprite3D", true, false):
-		if sprite.has_meta(PASS_META):
+		if sprite.has_meta(PASS_META) or "Weapons" in sprite.name:
 			continue;
 		var silhouette = AnimatedSprite3D.new();
 		silhouette.name = "OcclusionPass";
