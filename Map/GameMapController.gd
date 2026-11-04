@@ -152,8 +152,8 @@ func _spawn_sawajis(chunk_instance: ChunkController) -> void:
 		return;
 	for _i in randi_range(1, SAWAJI_MAX_PER_CHUNK):
 		var sawaji = SAWAJI_SCENE.instantiate();
-		chunk_instance.add_child(sawaji);
-		sawaji.position = _find_free_position(chunk_instance);
+		_world_map.add_child(sawaji);
+		sawaji.global_position = chunk_instance.global_position + _find_free_position(chunk_instance);
 
 func _find_free_position(chunk_instance: ChunkController) -> Vector3:
 	var shape = BoxShape3D.new();
