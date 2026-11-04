@@ -47,7 +47,13 @@ func _ready() -> void:
 	_build_sprite_frames();
 	sprite.play("idle");
 	if sand_tint:
-		const SAND_PALETTE := [Color(2.2, 1.9, 1.3), Color(1.8, 1.4, 0.8), Color(2.6, 2.4, 2.0), Color(1.4, 1.1, 0.7), Color(2.0, 1.6, 0.9)];
+		const SAND_PALETTE := [
+			Color(2.2, 1.9, 1.4), # beige
+			Color(1.4, 0.95, 0.55), # marron
+			Color(1.25, 1.25, 1.3), # gris
+			Color(0.55, 0.55, 0.6), # noir
+			Color(2.6, 2.5, 2.1), # creme
+		];
 		var base = SAND_PALETTE[randi() % SAND_PALETTE.size()] * randf_range(0.85, 1.15);
 		sprite.modulate = Color(base.r, base.g, base.b, 1.0);
 	else:
