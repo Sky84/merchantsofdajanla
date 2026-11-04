@@ -53,7 +53,7 @@ func _add_occluder_collider(plant: Node3D) -> void:
 	var shape = CollisionShape3D.new();
 	shape.name = "OccluderShape";
 	var box = BoxShape3D.new();
-	box.size = Vector3(0.8, 6.0, 0.8);
+	box.size = Vector3(1.4, 6.0, 1.4);
 	shape.shape = box;
 	shape.position.y = 3.0;
 	body.add_child(shape);
