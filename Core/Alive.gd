@@ -78,7 +78,7 @@ func _process(_delta) -> void:
 	_handle_movement();
 	Combat.apply_knockback(self, _delta);
 	_handle_animation();
-	OcclusionSilhouette.sync(_silhouettes);
+	OcclusionSilhouette.sync(_silhouettes, self);
 	move_and_slide();
 	_update_nearest_interactive();
 

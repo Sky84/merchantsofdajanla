@@ -20,6 +20,13 @@ func _ready() -> void:
 	var mat = StandardMaterial3D.new();
 	mat.albedo_color = Color(0.3, 0.6, 0.3);
 	occluder.material_override = mat;
+	var body = StaticBody3D.new();
+	var shape = CollisionShape3D.new();
+	var shape_box = BoxShape3D.new();
+	shape_box.size = box.size;
+	shape.shape = shape_box;
+	body.add_child(shape);
+	occluder.add_child(body);
 	add_child(occluder);
 	occluder.position = Vector3(0, 3, 4); # devant les sawajis du milieu
 	await RenderingServer.frame_post_draw;

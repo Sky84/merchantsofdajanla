@@ -78,7 +78,7 @@ func _process(delta: float) -> void:
 	Combat.apply_knockback(self, delta);
 	move_and_slide();
 	_update_animation();
-	OcclusionSilhouette.sync(_silhouettes);
+	OcclusionSilhouette.sync(_silhouettes, self);
 
 func _wander(delta: float) -> void:
 	if _home_position == null:
