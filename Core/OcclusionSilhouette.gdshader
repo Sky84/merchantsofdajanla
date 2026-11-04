@@ -3,7 +3,7 @@ render_mode unshaded, fog_disabled, cull_disabled, depth_draw_never, depth_test_
 
 uniform sampler2D frame_atlas : source_color, filter_nearest, repeat_disable;
 uniform sampler2D scene_depth : hint_depth_texture, filter_nearest, repeat_disable;
-uniform vec4 silhouette_color : source_color = vec4(0.65, 0.8, 0.9, 1.0);
+uniform vec4 silhouette_color : source_color = vec4(0.30, 0.28, 0.24, 1.0);
 uniform int billboard_mode = 0;
 uniform float depth_bias = 0.08;
 
