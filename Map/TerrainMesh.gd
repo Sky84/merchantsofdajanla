@@ -83,6 +83,8 @@ static func _emit_cell(st: SurfaceTool, levels: Array, cx: int, cz: int) -> void
 static func _quad(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3, d: Vector3) -> void:
 	_tri(st, a, c, b);
 	_tri(st, a, d, c);
+	_tri(st, a, b, c);
+	_tri(st, a, c, d);
 
 static func _tri(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
 	st.set_uv(Vector2(a.x, a.z) / CHUNK_SIZE);
