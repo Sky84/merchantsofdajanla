@@ -1,6 +1,6 @@
 extends Node
 
-const SILHOUETTE_COLOR := Color(0.0, 0.0, 0.0, 0.35);
+const SILHOUETTE_COLOR := Color(0.85, 0.9, 1.0, 0.55);
 
 # Crée un sprite fantôme no_depth_test pour chaque AnimatedSprite3D sous root.
 # Retourne un dict {sprite: silhouette} à passer à sync() chaque frame.
