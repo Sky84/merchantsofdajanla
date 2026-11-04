@@ -8,9 +8,21 @@ const DIALOG_TITLE := 'before-intro-modal';
 
 var _game_map_controller: GameMapController;
 var _interior_house: Node3D;
+var _player: Player;
+var _intro_done := false;
+
+const SAVE_PATH := "user://savegame.json";
 
 func play_state(game_map_controller: GameMapController, player: Player) -> void:
 	_game_map_controller = game_map_controller;
+	_player = player;
+	var save = _load_save();
+	_intro_done = save.get("intro_done", false);
+	GameTimeEvents.on_game_time_changed.connect(func(_t): _save_progress());
+	if _intro_done:
+		var pos = save.get("pos", [0.0, 0.0, 0.0]);
+		player.global_position = Vector3(pos[0], pos[1], pos[2]);
+		return;
 	player.global_position = _start_cut_scene_player_position;
 	print('BeforeIntroStory Start')
 	await player.get_tree().create_timer(1.0).timeout;
@@ -41,7 +53,22 @@ func _on_basic_intro_goodbye(game_map_controller: GameMapController) -> void:
 	await _start_dialog("angry-pnj-after-intro", pnj);
 	AlivesController.set_alive_blocked(false);
 	PlayerEvents.on_player_block.emit(false);
-	
+	_intro_done = true;
+	_save_progress();
+
+func _load_save() -> Dictionary:
+	if not FileAccess.file_exists(SAVE_PATH):
+		return {};
+	var parsed = JSON.parse_string(FileAccess.open(SAVE_PATH, FileAccess.READ).get_as_text());
+	return parsed if parsed is Dictionary else {};
+
+func _save_progress() -> void:
+	if not _intro_done or _player == null:
+		return;
+	var pos = _player.global_position;
+	var f = FileAccess.open(SAVE_PATH, FileAccess.WRITE);
+	f.store_string(JSON.stringify({"intro_done": true, "pos": [pos.x, pos.y, pos.z]}));
+
 func _on_after_angry_pnj() -> void:
 	print('AfterAngryPnj');
 	AlivesController.set_alive_blocked(false);

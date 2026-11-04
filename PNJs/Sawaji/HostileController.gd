@@ -15,7 +15,6 @@ const Combat = preload("res://Core/Combat.gd");
 @export var wander_speed_ratio := 0.5;
 @export var tint: Color = Color.WHITE;
 @export var tint_random := 0.08;
-@export var sand_tint := true; # teinte aléatoire couleur sable plutôt que tint
 @export var same_species_aggression_chance := 0.0;
 @export var max_health := 60;
 
@@ -24,6 +23,8 @@ const SPRITES := {
 	"walk": "res://PNJs/Sawaji/sawaji_walk.png",
 	"attack": "res://PNJs/Sawaji/sawaji_attack.png",
 };
+const VARIANTS := ["", "_beige", "_marron", "_gris", "_noir", "_creme"];
+@export var variant := ""; # "" = aléatoire
 const FRAME_SIZE := Vector2(64, 32);
 
 var alive_status := {"health": {"value": 60, "max": 60}};
@@ -46,21 +47,10 @@ func _ready() -> void:
 	alive_status.health.max = max_health;
 	_build_sprite_frames();
 	sprite.play("idle");
-	if sand_tint:
-		const SAND_PALETTE := [
-			Color(2.2, 1.9, 1.4), # beige
-			Color(1.4, 0.95, 0.55), # marron
-			Color(1.25, 1.25, 1.3), # gris
-			Color(0.55, 0.55, 0.6), # noir
-			Color(2.6, 2.5, 2.1), # creme
-		];
-		var base = SAND_PALETTE[randi() % SAND_PALETTE.size()] * randf_range(0.85, 1.15);
-		sprite.modulate = Color(base.r, base.g, base.b, 1.0);
-	else:
-		sprite.modulate = tint * Color(
-			1 + randf_range(-tint_random, tint_random),
-			1 + randf_range(-tint_random, tint_random),
-			1 + randf_range(-tint_random, tint_random));
+	sprite.modulate = tint * Color(
+		1 + randf_range(-tint_random, tint_random),
+		1 + randf_range(-tint_random, tint_random),
+		1 + randf_range(-tint_random, tint_random));
 	_aggressive_to_own = randf() < same_species_aggression_chance;
 
 func _process(delta: float) -> void:
@@ -150,9 +140,12 @@ func _update_animation() -> void:
 	sprite.play(&"idle" if velocity.length() < 1.0 else &"walk");
 
 func _build_sprite_frames() -> void:
+	if variant == "":
+		variant = VARIANTS[randi() % VARIANTS.size()];
 	var frames = SpriteFrames.new();
 	for anim in SPRITES:
-		var tex: Texture2D = load(SPRITES[anim]);
+		var path = SPRITES[anim].replace(".png", "%s.png" % variant);
+		var tex: Texture2D = load(path if ResourceLoader.exists(path) else SPRITES[anim]);
 		frames.add_animation(anim);
 		frames.set_animation_speed(anim, 8.0);
 		frames.set_animation_loop(anim, anim != "attack");

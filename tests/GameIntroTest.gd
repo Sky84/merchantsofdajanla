@@ -1,6 +1,7 @@
 extends Node
 
 func _ready() -> void:
+	DirAccess.remove_absolute("user://savegame.json");
 	var game = load("res://Game.tscn").instantiate();
 	add_child(game);
 	var modal_container = game.get_node("CanvasLayer/ModalContainer");

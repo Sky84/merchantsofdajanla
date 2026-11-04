@@ -64,9 +64,13 @@ func _build_menu() -> PanelContainer:
 	var give_btn = Button.new();
 	give_btn.text = "Give";
 	give_btn.pressed.connect(_give);
+	var reset_btn = Button.new();
+	reset_btn.text = "ResetSave";
+	reset_btn.pressed.connect(func(): DirAccess.remove_absolute("user://savegame.json"));
 	give_row.add_child(_item_edit);
 	give_row.add_child(_amount_spin);
 	give_row.add_child(give_btn);
+	give_row.add_child(reset_btn);
 	col.add_child(give_row);
 	panel.add_child(col);
 	return panel;
