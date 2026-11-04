@@ -30,17 +30,14 @@ func init_shader(shader_to_init: ShaderMaterial, texture_tiles: Texture2DArray, 
 	mesh_instance.set_surface_override_material(0, material);
 
 func init_decorations() -> void:
-	for tile_x in range(0, 64, 8):
-		for tile_z in range(0, 64, 8):
-			var plant_position = Vector3(
-				(tile_x),
-				position.y,
-				(tile_z)
-			);
-			var noise_value: float = noise.get_noise_2d(plant_position.x, plant_position.z);
-			var plant_scene = decorations_scenes[floori(noise_value * decorations_scenes.size())];
-			var plant: MapMesh = plant_scene.instantiate();
-			decorations.add_child(plant);
-			plant.position = Vector3(plant_position.x, plant.position.y, plant_position.z);
-			plant.scale.x = -1 if randf() > 0.5 else 1;
-			plant.update_for_atlas();
+	for _i in 40:
+		var plant_position = Vector3(randf_range(0, 64), position.y, randf_range(0, 64));
+		var noise_value: float = noise.get_noise_2d(plant_position.x, plant_position.z);
+		if noise_value < 0.0:
+			continue;
+		var plant_scene = decorations_scenes[floori(clamp(noise_value, 0.0, 0.999) * decorations_scenes.size())];
+		var plant: MapMesh = plant_scene.instantiate();
+		decorations.add_child(plant);
+		plant.position = Vector3(plant_position.x, plant.position.y, plant_position.z);
+		plant.scale.x = -1 if randf() > 0.5 else 1;
+		plant.update_for_atlas();

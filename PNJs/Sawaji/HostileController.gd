@@ -47,7 +47,7 @@ func _ready() -> void:
 	_build_sprite_frames();
 	sprite.play("idle");
 	if sand_tint:
-		sprite.modulate = Color(randf_range(0.8, 1.1), randf_range(0.6, 0.85), randf_range(0.4, 0.6), 1);
+		sprite.modulate = Color(randf_range(1.6, 2.4), randf_range(1.3, 1.9), randf_range(0.9, 1.4), 1);
 	else:
 		sprite.modulate = tint * Color(
 			1 + randf_range(-tint_random, tint_random),
@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 	else:
 		var dir = (_target.global_position - global_position).normalized();
 		velocity = Vector3(dir.x, 0, dir.z) * speed;
-		sprite.scale.x = -1 if velocity.x < 0 else 1;
+		sprite.flip_h = velocity.x < 0;
 	Combat.apply_knockback(self, delta);
 	move_and_slide();
 	_update_animation();
@@ -90,7 +90,7 @@ func _wander(delta: float) -> void:
 	if global_position.distance_to(_wander_target) > 1.0:
 		var dir = (_wander_target - global_position).normalized();
 		velocity = Vector3(dir.x, 0, dir.z) * speed * wander_speed_ratio;
-		sprite.scale.x = -1 if velocity.x < 0 else 1;
+		sprite.flip_h = velocity.x < 0;
 	else:
 		velocity = Vector3.ZERO;
 	_update_animation();
