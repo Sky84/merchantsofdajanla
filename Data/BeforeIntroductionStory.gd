@@ -22,6 +22,8 @@ func play_state(game_map_controller: GameMapController, player: Player) -> void:
 	PlayerEvents.save_requested.connect(_save_progress);
 	if _intro_done:
 		var pos = save.get("pos", [0.0, 0.0, 0.0]);
+		if pos[1] < -10.0: # position sauvée dans un intérieur — l'instance n'existe pas au reload
+			pos = [0.0, 0.0, 0.0];
 		player.global_position = Vector3(pos[0], pos[1], pos[2]);
 		return;
 	player.global_position = _start_cut_scene_player_position;
