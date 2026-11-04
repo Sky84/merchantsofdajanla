@@ -14,8 +14,9 @@ class_name UIController
 var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: Node3D = null;
 var _current_mouse_target: Control;
-var _health_fill: ColorRect;
-var _hunger_fill: ColorRect;
+var _health_bar: TextureProgressBar;
+var _hunger_bar: TextureProgressBar;
+var _money_label: Label;
 var _debug_menu;
 var _death_screen: Control;
 var _pause_menu: Control;
@@ -23,9 +24,6 @@ var _pause_panel: PanelContainer;
 var _pause_blur_mat: ShaderMaterial;
 var _pause_tween: Tween;
 
-const GAUGE_W := 110.0;
-const GAUGE_H := 14.0;
-const GAUGE_INSET := 3.0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,7 +50,8 @@ func _ready():
 		$Inventory.add_child(preview);
 		_debug_menu = preload("res://UI/DebugMenu/DebugMenu.gd").new(get_parent(), player_node);
 		add_child(_debug_menu);
-	_build_gauges();
+	_build_bar_indicators(player_node);
+	InventoryEvents.container_data_changed.connect(func(_id): _update_money());
 	_build_death_screen();
 	_build_pause_menu();
 	PlayerEvents.player_died.connect(func(): _death_screen.visible = true);
@@ -192,42 +191,55 @@ func _build_pause_menu() -> void:
 	_pause_menu.add_child(panel);
 	add_child(_pause_menu);
 
-func _build_gauges() -> void:
-	var gauges = Control.new();
-	add_child(gauges);
-	gauges.position = Vector2(12, 55);
-	gauges.scale = Vector2(2.5, 2.5);
-	_health_fill = _add_gauge_row(gauges, "res://UI/Sprites/heart.png", Color(0.72, 0.18, 0.18), 0);
-	_hunger_fill = _add_gauge_row(gauges, "res://Items/apple.png", Color(0.85, 0.55, 0.2), GAUGE_H + 4);
+func _build_bar_indicators(player_node) -> void:
+	var bar = $ShortcutBar;
+	_health_bar = _icon_fill(bar, "res://UI/Sprites/heart.png", Vector2(78, 24), Vector2(22, 22), Color(0.75, 0.15, 0.15));
+	_hunger_bar = _icon_fill(bar, "res://Items/apple.png", Vector2(104, 24), Vector2(22, 22), Color(0.85, 0.55, 0.2));
+	var coin = TextureRect.new();
+	coin.texture = load("res://UI/Sprites/moneycoin.png");
+	coin.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED;
+	coin.position = Vector2(8, 26);
+	coin.size = Vector2(18, 18);
+	coin.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST;
+	bar.add_child(coin);
+	_money_label = Label.new();
+	_money_label.position = Vector2(27, 26);
+	_money_label.add_theme_font_size_override("font_size", 14);
+	bar.add_child(_money_label);
+	_update_money();
+	if player_node:
+		_on_player_status_changed(player_node.alive_status);
 
-func _add_gauge_row(parent: Control, icon_path: String, fill_color: Color, row_y: float) -> ColorRect:
-	var icon = TextureRect.new();
-	icon.texture = load(icon_path);
-	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE;
-	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED;
-	icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST;
-	icon.position = Vector2(0, row_y);
-	icon.size = Vector2(GAUGE_H, GAUGE_H);
-	parent.add_child(icon);
-	var frame = NinePatchRect.new();
-	frame.texture = load("res://UI/Modals/modal.png");
-	frame.patch_margin_left = 8;
-	frame.patch_margin_top = 8;
-	frame.patch_margin_right = 8;
-	frame.patch_margin_bottom = 8;
-	frame.position = Vector2(GAUGE_H + 4, row_y);
-	frame.size = Vector2(GAUGE_W, GAUGE_H);
-	parent.add_child(frame);
-	var fill = ColorRect.new();
-	fill.color = fill_color;
-	fill.position = Vector2(GAUGE_INSET, GAUGE_INSET);
-	fill.size = Vector2(GAUGE_W - GAUGE_INSET * 2, GAUGE_H - GAUGE_INSET * 2);
-	frame.add_child(fill);
-	return fill;
+func _icon_fill(bar: Control, icon: String, pos: Vector2, size: Vector2, tint: Color) -> TextureProgressBar:
+	var progress = TextureProgressBar.new();
+	progress.fill_mode = TextureProgressBar.FILL_BOTTOM_TO_TOP;
+	progress.texture_under = load(icon);
+	progress.texture_progress = load(icon);
+	progress.tint_under = Color(tint.r * 0.35, tint.g * 0.35, tint.b * 0.35, 0.7);
+	progress.tint_progress = tint;
+	progress.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST;
+	progress.nine_patch_stretch = true;
+	progress.position = pos;
+	progress.size = size;
+	progress.max_value = 100;
+	bar.add_child(progress);
+	return progress;
+
+func _update_money() -> void:
+	if _money_label == null:
+		return;
+	var player_node = get_parent().get_node_or_null("Player");
+	var amount = 0;
+	if player_node:
+		var ids = ContainersController.get_container_ids_by_owner_id(player_node._owner_id);
+		var money = ContainersController.find_item_in_containers(ids, MarketController.MONEY_ITEM_ID);
+		if not money.is_empty():
+			amount = money.item.amount;
+	_money_label.text = str(amount);
 
 func _on_player_status_changed(status: Dictionary) -> void:
-	_health_fill.size.x = (GAUGE_W - GAUGE_INSET * 2) * status.health.value / status.health.max;
-	_hunger_fill.size.x = (GAUGE_W - GAUGE_INSET * 2) * status.hunger.value / status.hunger.max;
+	_health_bar.value = status.health.value * 100 / status.health.max;
+	_hunger_bar.value = status.hunger.value * 100 / status.hunger.max;
 
 func _update_game_time_ui(formatted_game_time: String):
 	game_time_label.text = formatted_game_time;
