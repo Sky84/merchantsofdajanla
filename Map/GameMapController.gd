@@ -153,7 +153,20 @@ func _spawn_sawajis(chunk_instance: ChunkController) -> void:
 	for _i in randi_range(1, SAWAJI_MAX_PER_CHUNK):
 		var sawaji = SAWAJI_SCENE.instantiate();
 		chunk_instance.add_child(sawaji);
-		sawaji.position = Vector3(randf_range(5, chunk_tile_size - 5), 0.5, randf_range(5, chunk_tile_size - 5));
+		sawaji.position = _find_free_position(chunk_instance);
+
+func _find_free_position(chunk_instance: ChunkController) -> Vector3:
+	var shape = BoxShape3D.new();
+	shape.size = Vector3(1.5, 1.5, 1.5);
+	var query = PhysicsShapeQueryParameters3D.new();
+	query.shape = shape;
+	var space = get_world_3d().direct_space_state;
+	for _attempt in 10:
+		var local_pos = Vector3(randf_range(5, chunk_tile_size - 5), 0.5, randf_range(5, chunk_tile_size - 5));
+		query.transform = Transform3D(Basis(), chunk_instance.global_position + local_pos);
+		if space.intersect_shape(query).is_empty():
+			return local_pos;
+	return Vector3(chunk_tile_size * 0.5, 0.5, chunk_tile_size * 0.5);
 
 func add_interior_house(house_id: String, interior_scene: PackedScene, go_to_location: Vector3) -> Node3D:
 	var interior_instance = interior_scene.instantiate();

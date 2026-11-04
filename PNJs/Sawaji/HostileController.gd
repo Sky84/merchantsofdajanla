@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 	else:
 		var dir = (_target.global_position - global_position).normalized();
 		velocity = Vector3(dir.x, 0, dir.z) * speed;
-		sprite.flip_h = velocity.x < 0;
+		sprite.flip_h = velocity.x > 0;
 	Combat.apply_knockback(self, delta);
 	move_and_slide();
 	_update_animation();
@@ -90,7 +90,7 @@ func _wander(delta: float) -> void:
 	if global_position.distance_to(_wander_target) > 1.0:
 		var dir = (_wander_target - global_position).normalized();
 		velocity = Vector3(dir.x, 0, dir.z) * speed * wander_speed_ratio;
-		sprite.flip_h = velocity.x < 0;
+		sprite.flip_h = velocity.x > 0;
 	else:
 		velocity = Vector3.ZERO;
 	_update_animation();
