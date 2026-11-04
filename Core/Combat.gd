@@ -8,6 +8,9 @@ static func apply_damage(target, amount: int, source = null) -> void:
 		return;
 	var stat = target.alive_status.health;
 	stat.value = clampi(stat.value - amount, 0, stat.max);
+	var status_node = target.get_node_or_null("PlayerStatus");
+	if status_node:
+		status_node.notify_changed();
 	for sprite in _sprites_of(target):
 		var tween = target.create_tween();
 		tween.tween_property(sprite, "modulate", Color(2.5, 0.4, 0.4), 0.05);

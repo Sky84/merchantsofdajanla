@@ -107,6 +107,9 @@ func consume(_item: Dictionary, notify: bool = false) -> void:
 				NotificationEvents.notify\
 					.emit(NotificationEvents.NotificationType.SUCCESS, 'CONSOMABLE.SUCCESS_CONSUME_'+effect_key.to_upper());
 	if success:
+		var status_node = get_node_or_null("PlayerStatus");
+		if status_node:
+			status_node.notify_changed();
 		var container_ids = ContainersController.get_container_ids_by_owner_id(_owner_id);
 		ContainersController.remove_item(container_ids, _item.id, 1);
 		for container_id in container_ids:

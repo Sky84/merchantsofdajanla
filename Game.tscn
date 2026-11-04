@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=115 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -49,7 +49,6 @@
 [ext_resource type="PackedScene" uid="uid://xjipt1w1cwne" path="res://Map/Chunk/chunk.tscn" id="46_33u2o"]
 [ext_resource type="Script" path="res://Core/PathFinding.gd" id="49_8uvbs"]
 [ext_resource type="Script" path="res://Core/StoryController.gd" id="49_thabl"]
-[ext_resource type="PackedScene" path="res://UI/StatusIndicators.tscn" id="50_sind"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -350,6 +349,30 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20ljf"]
+
+[sub_resource type="Gradient" id="Gradient_egbbe"]
+colors = PackedColorArray(0.184314, 0.211765, 0.243137, 1, 0.184314, 0.211765, 0.243137, 1)
+
+[sub_resource type="Gradient" id="Gradient_white"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_white"]
+gradient = SubResource("Gradient_white")
+width = 1
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j2jp7"]
+gradient = SubResource("Gradient_egbbe")
+width = 1
+
+[sub_resource type="Gradient" id="Gradient_7vwxs"]
+colors = PackedColorArray(0.765889, 0.446657, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m0qph"]
+gradient = SubResource("Gradient_7vwxs")
+width = 21
+height = 16
+fill_from = Vector2(0.0181818, 0)
+fill_to = Vector2(0.372727, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h76o6"]
 
@@ -814,16 +837,12 @@ stretch_mode = 5
 
 [node name="ShortcutBar" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("items_container", "_items_container")]
 texture_filter = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -139.0
-offset_top = -74.0
-offset_right = 139.0
+offset_top = 894.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_20ljf")
 script = ExtResource("22_q2by1")
 items_container = NodePath("../../Player/ShortcutBar")
@@ -843,6 +862,118 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("23_mcyqy")
+stretch_mode = 5
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/ShortcutBar/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.473
+anchor_top = 0.083
+anchor_right = 0.473
+anchor_bottom = 0.083
+offset_left = -57.16
+offset_top = -11.438
+offset_right = -11.16
+offset_bottom = 11.562
+theme_override_font_sizes/font_size = 16
+text = "01000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StatusIndicators" type="Control" parent="CanvasLayer/ShortcutBar/TextureRect"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HealthUnder" type="TextureRect" parent="CanvasLayer/ShortcutBar/TextureRect/StatusIndicators"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 930.0
+offset_top = 10.0
+offset_right = 989.0
+offset_bottom = 49.0
+mouse_filter = 2
+modulate = Color(0.2625, 0.0525, 0.0525, 0.7)
+texture = SubResource("GradientTexture1D_j2jp7")
+
+[node name="HealthGhost" type="TextureProgressBar" parent="CanvasLayer/ShortcutBar/TextureRect/StatusIndicators"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 930.0
+offset_top = 10.0
+offset_right = 989.0
+offset_bottom = 49.0
+mouse_filter = 2
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_white")
+tint_progress = Color(1, 1, 1, 0.9)
+
+[node name="HealthFill" type="TextureProgressBar" parent="CanvasLayer/ShortcutBar/TextureRect/StatusIndicators"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 930.0
+offset_top = 10.0
+offset_right = 989.0
+offset_bottom = 49.0
+mouse_filter = 2
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_m0qph")
+tint_progress = Color(0.75, 0.15, 0.15, 1)
+
+[node name="HungerFills" type="HBoxContainer" parent="CanvasLayer/ShortcutBar/TextureRect/StatusIndicators"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.533
+anchor_top = 0.071
+anchor_right = 0.579
+anchor_bottom = 0.117
+offset_left = -0.360107
+offset_top = -2.206
+offset_right = -0.680054
+offset_bottom = 2.238
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 7
+
+[node name="Fill1" type="ColorRect" parent="CanvasLayer/ShortcutBar/TextureRect/StatusIndicators/HungerFills"]
+custom_minimum_size = Vector2(12, 8)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.85, 0.55, 0.2, 1)
+
+[node name="Fill2" type="ColorRect" parent="CanvasLayer/ShortcutBar/TextureRect/StatusIndicators/HungerFills"]
+custom_minimum_size = Vector2(12, 8)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.85, 0.55, 0.2, 1)
+
+[node name="Fill3" type="ColorRect" parent="CanvasLayer/ShortcutBar/TextureRect/StatusIndicators/HungerFills"]
+custom_minimum_size = Vector2(12, 8)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.85, 0.55, 0.2, 1)
+
+[node name="Fill4" type="ColorRect" parent="CanvasLayer/ShortcutBar/TextureRect/StatusIndicators/HungerFills"]
+custom_minimum_size = Vector2(12, 8)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.85, 0.55, 0.2, 1)
+
+[node name="Fill5" type="ColorRect" parent="CanvasLayer/ShortcutBar/TextureRect/StatusIndicators/HungerFills"]
+custom_minimum_size = Vector2(12, 8)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.85, 0.55, 0.2, 1)
 
 [node name="HoverTexture" type="TextureRect" parent="CanvasLayer/ShortcutBar"]
 z_index = 2
@@ -857,6 +988,7 @@ texture = ExtResource("13_ppbmy")
 stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShortcutBar"]
+visible = false
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
@@ -874,8 +1006,6 @@ theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 10
 columns = 6
 
-[node name="StatusIndicators" parent="CanvasLayer/ShortcutBar" instance=ExtResource("50_sind")]
-
 [node name="StandSetup" parent="CanvasLayer" instance=ExtResource("24_rwecl")]
 visible = false
 
@@ -883,6 +1013,7 @@ visible = false
 visible = false
 
 [node name="Notifications" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -903,6 +1034,7 @@ offset_bottom = 561.0
 grow_horizontal = 0
 
 [node name="ModalContainer" type="Panel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

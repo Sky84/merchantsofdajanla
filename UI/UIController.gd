@@ -14,8 +14,9 @@ class_name UIController
 var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: Node3D = null;
 var _current_mouse_target: Control;
-@onready var _health_bar: TextureProgressBar = $ShortcutBar/StatusIndicators/HealthFill;
-@onready var _money_label: Label = $ShortcutBar/StatusIndicators/MoneyLabel;
+@onready var _health_bar: TextureProgressBar = $ShortcutBar/TextureRect/StatusIndicators/HealthFill;
+@onready var _health_ghost: TextureProgressBar = $ShortcutBar/TextureRect/StatusIndicators/HealthGhost;
+@onready var _money_label: Label = $ShortcutBar/TextureRect/MoneyLabel;
 var _hunger_fills: Array = [];
 var _debug_menu;
 var _death_screen: Control;
@@ -23,6 +24,7 @@ var _pause_menu: Control;
 var _pause_panel: PanelContainer;
 var _pause_blur_mat: ShaderMaterial;
 var _pause_tween: Tween;
+var _health_tween: Tween;
 
 
 # Called when the node enters the scene tree for the first time.
@@ -50,7 +52,7 @@ func _ready():
 		$Inventory.add_child(preview);
 		_debug_menu = preload("res://UI/DebugMenu/DebugMenu.gd").new(get_parent(), player_node);
 		add_child(_debug_menu);
-	_hunger_fills.assign($ShortcutBar/StatusIndicators/HungerFills.get_children());
+	_hunger_fills.assign($ShortcutBar/TextureRect/StatusIndicators/HungerFills.get_children());
 	_update_money();
 	if player_node:
 		_on_player_status_changed(player_node.alive_status);
@@ -207,7 +209,20 @@ func _update_money() -> void:
 	_money_label.text = str(amount);
 
 func _on_player_status_changed(status: Dictionary) -> void:
-	_health_bar.value = status.health.value * 100 / status.health.max;
+	var health_pct = status.health.value * 100.0 / status.health.max;
+	if health_pct < _health_bar.value:
+		_health_ghost.value = _health_bar.value;
+		_health_bar.value = health_pct;
+		if _health_tween:
+			_health_tween.kill();
+		_health_tween = create_tween();
+		_health_tween.tween_interval(0.4);
+		_health_tween.tween_property(_health_ghost, "value", health_pct, 0.5);
+	else:
+		if _health_tween:
+			_health_tween.kill();
+		_health_ghost.value = health_pct;
+		_health_bar.value = health_pct;
 	var hunger_ratio = float(status.hunger.value) / status.hunger.max;
 	for i in _hunger_fills.size():
 		_hunger_fills[i].visible = i < int(ceil(hunger_ratio * _hunger_fills.size()));
