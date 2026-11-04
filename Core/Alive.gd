@@ -83,7 +83,16 @@ func take_damage(amount: int, source = null) -> void:
 
 func die() -> void:
 	is_dead = true;
-	queue_free();
+	velocity = Vector3.ZERO;
+	var collider = find_child("CollisionShape3D", false, false);
+	if collider != null:
+		collider.disabled = true;
+	for sprite in Combat._sprites_of(self):
+		var tween = create_tween();
+		tween.set_parallel();
+		tween.tween_property(sprite, "rotation_degrees", Vector3(0, 0, 90), 0.4);
+		tween.tween_property(sprite, "modulate", sprite.modulate * Color(0.7, 0.65, 0.6), 0.6);
+	get_tree().create_timer(0.6).timeout.connect(func(): set_process(false));
 
 func consume(_item: Dictionary, notify: bool = false) -> void:
 	var success = false;
