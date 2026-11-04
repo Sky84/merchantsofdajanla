@@ -52,3 +52,6 @@ func _has_empty_slot() -> bool:
 
 func is_equipped(slot: String) -> bool:
 	return _equipped.has(slot);
+
+func get_equipped_item(slot: String) -> Dictionary:
+	return GameItems._items.get(_equipped.get(slot, ""), {});

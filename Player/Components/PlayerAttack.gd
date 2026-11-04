@@ -1,7 +1,7 @@
 extends Node
 
 const ATTACK_RANGE := 2.0;
-const ATTACK_DAMAGE := 12;
+const BASE_DAMAGE := 5; # coups à mains nues
 const ATTACK_COOLDOWN := 0.8;
 var _cooldown := 0.0;
 
@@ -14,8 +14,9 @@ func _process(delta: float) -> void:
 
 func _attack() -> void:
 	_cooldown = ATTACK_COOLDOWN;
+	var damage = int(_player.equipment.get_equipped_item("weapon").get("damage", BASE_DAMAGE));
 	for alive in get_tree().get_nodes_in_group(Alive.GROUP_NAME):
 		if alive == _player or not is_instance_valid(alive) or alive.get("is_dead"):
 			continue;
 		if _player.global_position.distance_to(alive.global_position) <= ATTACK_RANGE:
-			alive.take_damage(ATTACK_DAMAGE, _player);
+			alive.take_damage(damage, _player);

@@ -146,7 +146,8 @@
 		"target": [
 			"alive"
 		],
-		"base_price": 100
+		"base_price": 100,
+		"damage": 20
 	},
 	"axe": {
 		"name": "ITEMS.AXE",
@@ -157,7 +158,8 @@
 			"tree",
 			"alive"
 		],
-		"base_price": 100
+		"base_price": 100,
+		"damage": 12
 	},
 	"pickaxe": {
 		"name": "ITEMS.PICKAXE",
@@ -168,7 +170,8 @@
 			"ore",
 			"alive"
 		],
-		"base_price": 100
+		"base_price": 100,
+		"damage": 10
 	},
 	"shovel": {
 		"name": "ITEMS.SHOVEL",
@@ -179,7 +182,8 @@
 			"hole",
 			"alive"
 		],
-		"base_price": 100
+		"base_price": 100,
+		"damage": 8
 	},
 	"shirt_basic": {
 		"name": "ITEMS.SHIRT",
@@ -206,7 +210,8 @@
 		"description": "ITEMS.SWORD.DESCRIPTION",
 		"sprite_frames": "res://Player/SpriteFrames/Weapons_0.tres",
 		"icon_path": "res://UI/InventoryView/Assets/icon_sword.png",
-		"base_price": 30
+		"base_price": 30,
+		"damage": 15
 	},
 	"chest": {
 		"name": "ITEMS.CHEST",
