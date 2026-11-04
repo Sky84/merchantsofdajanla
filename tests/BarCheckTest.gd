@@ -34,6 +34,12 @@ func _ready() -> void:
 			row.append("null" if h == null else "%.1f" % h);
 		samples.append(str(row));
 	print("heights grid: ", samples);
+	for probe in [[0.0,0.0],[12.0,0.0],[24.0,0.0],[36.0,0.0],[48.0,0.0],[24.0,24.0],[48.0,48.0]]:
+		player.global_position = Vector3(probe[0], 0.0, probe[1]);
+		for i in 10:
+			await get_tree().process_frame;
+		var gh = map.get_ground_height(probe[0], probe[1]);
+		print("probe ", probe, " h=", gh, " player.y=", player.global_position.y);
 	player.take_damage(40);
 	for i in 15:
 		await get_tree().process_frame;
