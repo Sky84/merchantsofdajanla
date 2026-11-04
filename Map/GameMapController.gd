@@ -158,15 +158,23 @@ func _spawn_sawajis(chunk_instance: ChunkController) -> void:
 func _find_free_position(chunk_instance: ChunkController) -> Vector3:
 	var shape = BoxShape3D.new();
 	shape.size = Vector3(1.5, 1.5, 1.5);
-	var query = PhysicsShapeQueryParameters3D.new();
-	query.shape = shape;
+	var shape_query = PhysicsShapeQueryParameters3D.new();
+	shape_query.shape = shape;
 	var space = get_world_3d().direct_space_state;
 	for _attempt in 10:
-		var local_pos = Vector3(randf_range(5, chunk_tile_size - 5), 0.5, randf_range(5, chunk_tile_size - 5));
-		query.transform = Transform3D(Basis(), chunk_instance.global_position + local_pos);
-		if space.intersect_shape(query).is_empty():
+		var x = randf_range(5, chunk_tile_size - 5);
+		var z = randf_range(5, chunk_tile_size - 5);
+		var ground_y = _raycast_ground_y(space, chunk_instance.global_position + Vector3(x, 0, z)) - chunk_instance.global_position.y;
+		var local_pos = Vector3(x, ground_y, z);
+		shape_query.transform = Transform3D(Basis(), chunk_instance.global_position + local_pos + Vector3(0, 0.9, 0));
+		if space.intersect_shape(shape_query).is_empty():
 			return local_pos;
-	return Vector3(chunk_tile_size * 0.5, 0.5, chunk_tile_size * 0.5);
+	return Vector3(chunk_tile_size * 0.5, 0, chunk_tile_size * 0.5);
+
+func _raycast_ground_y(space: PhysicsDirectSpaceState3D, world_pos: Vector3) -> float:
+	var ray = PhysicsRayQueryParameters3D.create(world_pos + Vector3(0, 50, 0), world_pos + Vector3(0, -10, 0));
+	var hit = space.intersect_ray(ray);
+	return hit.position.y if not hit.is_empty() else 0.0;
 
 func add_interior_house(house_id: String, interior_scene: PackedScene, go_to_location: Vector3) -> Node3D:
 	var interior_instance = interior_scene.instantiate();
