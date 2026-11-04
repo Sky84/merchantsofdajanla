@@ -11,6 +11,7 @@ class_name ChunkController
 var noise_texture: ImageTexture;
 var noise: FastNoiseLite;
 var map_objects_initiated: bool = false;
+var _terrain_heights: Array = [];
 
 var chunk_objects = [];
 
@@ -19,6 +20,7 @@ func init_chunk(_tile_scene_ground_placeable_2d_array: Texture2DArray, _noise: F
 	noise = _noise;
 	if not is_city:
 		init_shader(mesh_instance.get_surface_override_material(0), _tile_scene_ground_placeable_2d_array, _tile_scene_ground_placeable_2d_array.get_layers(), _noise_texture);
+		TerrainMesh.build(self, _noise);
 		init_decorations();
 
 func init_shader(shader_to_init: ShaderMaterial, texture_tiles: Texture2DArray, tile_type_count: int, _noise_texture: ImageTexture):
@@ -38,6 +40,11 @@ func init_decorations() -> void:
 		var plant_scene = decorations_scenes[floori(clamp(noise_value, 0.0, 0.999) * decorations_scenes.size())];
 		var plant: MapMesh = plant_scene.instantiate();
 		decorations.add_child(plant);
-		plant.position = Vector3(plant_position.x, plant.position.y, plant_position.z);
+		plant.position = Vector3(plant_position.x, get_ground_height(plant_position.x, plant_position.z), plant_position.z);
 		plant.scale.x = -1 if randf() > 0.5 else 1;
 		plant.update_for_atlas();
+
+func get_ground_height(local_x: float, local_z: float) -> float:
+	if _terrain_heights.is_empty():
+		return mesh_instance.position.y;
+	return TerrainMesh.get_height(_terrain_heights, local_x, local_z);

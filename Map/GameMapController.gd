@@ -47,6 +47,7 @@ signal on_cities_ready();
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("game_map");
 	update_noise();
 	
 func _process(_delta):
@@ -141,11 +142,21 @@ const SAWAJI_MAX_PER_CHUNK := 2;
 
 func _generate_savage_chunk_at(chunk_global_position: Vector3)  -> ChunkController:
 	var chunk_instance: ChunkController = chunk_scene.instantiate();
-	chunk_instance.init_chunk(_tile_scene_ground_placeable_2d_array, _savage_chunk_noise, _noise_texture);
 	_world_map.add_child(chunk_instance);
 	chunk_instance.global_position = chunk_global_position;
+	chunk_instance.init_chunk(_tile_scene_ground_placeable_2d_array, _savage_chunk_noise, _noise_texture);
 	_spawn_sawajis(chunk_instance);
 	return chunk_instance;
+
+func get_ground_height(world_x: float, world_z: float) -> Variant:
+	var cx = floori(world_x / chunk_tile_size);
+	var cz = floori(world_z / chunk_tile_size);
+	if not _chunks.has(cx) or not _chunks[cx].has(cz):
+		return null;
+	var chunk: ChunkController = _chunks[cx][cz];
+	if chunk._terrain_heights.is_empty():
+		return null;
+	return chunk.get_ground_height(world_x - cx * chunk_tile_size, world_z - cz * chunk_tile_size);
 
 func _spawn_sawajis(chunk_instance: ChunkController) -> void:
 	if randf() > SAWAJI_SPAWN_CHANCE:
@@ -166,13 +177,10 @@ func _find_free_position(chunk_instance: ChunkController, sawaji: CharacterBody3
 	shape_query.exclude = [sawaji.get_rid()];
 	shape_query.collision_mask = sawaji.collision_mask;
 	var space = get_world_3d().direct_space_state;
-	# Chunks are flat render planes, with no ground collider. Raycasts here
-	# were selecting decorations (or other actors) instead of the terrain.
-	var ground_y = chunk_instance.mesh_instance.global_position.y - chunk_instance.global_position.y;
 	for _attempt in 10:
 		var x = randf_range(5, chunk_tile_size - 5);
 		var z = randf_range(5, chunk_tile_size - 5);
-		var local_pos = Vector3(x, ground_y, z);
+		var local_pos = Vector3(x, chunk_instance.get_ground_height(x, z), z);
 		shape_query.transform = Transform3D(sawaji.global_basis,
 			chunk_instance.global_position + local_pos) * collider.transform;
 		if space.intersect_shape(shape_query).is_empty():

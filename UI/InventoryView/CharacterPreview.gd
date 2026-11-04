@@ -89,6 +89,7 @@ func _refresh_body() -> void:
 	var cloth = _player.get_node_or_null("ClothAnimations");
 	if cloth == null:
 		return;
+	var body_frame_size := Vector2(32, 64);
 	for part_name in ["SkinsAnimatedSprite3D", "PantsAnimatedSprite3D", "ShirtsAnimatedSprite3D", "HairsAnimatedSprite3D", "WeaponsAnimatedSprite3D"]:
 		var spr = cloth.get_node_or_null(part_name);
 		if spr == null or spr.sprite_frames == null or not spr.visible:
@@ -102,7 +103,9 @@ func _refresh_body() -> void:
 		tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE;
 		tex_rect.stretch_mode = TextureRect.STRETCH_SCALE;
 		tex_rect.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST;
-		tex_rect.set_anchors_preset(Control.PRESET_FULL_RECT);
+		var rect_size = _body.custom_minimum_size * tex.get_size() / body_frame_size;
+		tex_rect.position = (_body.custom_minimum_size - rect_size) / 2;
+		tex_rect.size = rect_size;
 		_body.add_child(tex_rect);
 
 func _refresh_slots() -> void:

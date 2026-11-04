@@ -78,6 +78,7 @@ func _process(_delta) -> void:
 	Combat.apply_knockback(self, _delta);
 	_handle_animation();
 	move_and_slide();
+	TerrainMesh.snap(self);
 	_update_nearest_interactive();
 
 func take_damage(amount: int, source = null) -> void:

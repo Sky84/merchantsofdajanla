@@ -25,6 +25,15 @@ func _ready() -> void:
 		await get_tree().process_frame;
 	await RenderingServer.frame_post_draw;
 	get_viewport().get_texture().get_image().save_png("res://tests/out_equip_drag.png");
+	var map = get_tree().get_first_node_in_group("game_map");
+	var samples = [];
+	for dz in range(-4, 5, 2):
+		var row = [];
+		for dx in range(-4, 5, 2):
+			var h = map.get_ground_height(player.global_position.x + dx * 8, player.global_position.z + dz * 8);
+			row.append("null" if h == null else "%.1f" % h);
+		samples.append(str(row));
+	print("heights grid: ", samples);
 	player.take_damage(40);
 	for i in 15:
 		await get_tree().process_frame;

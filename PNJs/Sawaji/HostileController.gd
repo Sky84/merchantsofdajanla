@@ -76,6 +76,7 @@ func _process(delta: float) -> void:
 		sprite.flip_h = velocity.x > 0;
 	Combat.apply_knockback(self, delta);
 	move_and_slide();
+	TerrainMesh.snap(self);
 	_update_animation();
 
 func _wander(delta: float) -> void:
