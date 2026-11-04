@@ -75,14 +75,14 @@ static func _emit_cell(st: SurfaceTool, levels: Array, cx: int, cz: int) -> void
 	for d in dirs:
 		var edge = d[0];
 		if levels[cz + edge[1]][cx + edge[0]] == lvl + 1:
-			var a: Vector3 = d[1] + Vector3(0, h, 0);
-			var b: Vector3 = d[2] + Vector3(0, h, 0);
+			var a: Vector3 = d[1] + Vector3(0, h + LEVEL_HEIGHT, 0);
+			var b: Vector3 = d[2] + Vector3(0, h + LEVEL_HEIGHT, 0);
 			var o: Vector3 = d[3];
-			_quad(st, a + o + Vector3(0, LEVEL_HEIGHT, 0), b + o + Vector3(0, LEVEL_HEIGHT, 0), b, a);
+			_quad(st, a + o - Vector3(0, LEVEL_HEIGHT, 0), b + o - Vector3(0, LEVEL_HEIGHT, 0), b, a);
 
 static func _quad(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3, d: Vector3) -> void:
-	_tri(st, a, b, c);
-	_tri(st, a, c, d);
+	_tri(st, a, c, b);
+	_tri(st, a, d, c);
 
 static func _tri(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
 	st.set_uv(Vector2(a.x, a.z) / CHUNK_SIZE);
