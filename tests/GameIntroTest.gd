@@ -54,4 +54,12 @@ func _ready() -> void:
 	for j in 10:
 		await get_tree().process_frame;
 	print("shirt frames after equip=", shirts.sprite_frames != null, " equipped=", player.is_equipped("shirt"));
+	var esc = InputEventKey.new();
+	esc.keycode = KEY_ESCAPE;
+	esc.pressed = true;
+	Input.parse_input_event(esc);
+	for i in 40:
+		await get_tree().process_frame;
+	get_viewport().get_texture().get_image().save_png("res://tests/out_pause.png");
+	print("PAUSE CAPTURED paused=", get_tree().paused);
 	get_tree().quit();

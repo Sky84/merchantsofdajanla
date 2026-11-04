@@ -19,6 +19,9 @@ var _hunger_fill: ColorRect;
 var _debug_menu;
 var _death_screen: Control;
 var _pause_menu: Control;
+var _pause_panel: PanelContainer;
+var _pause_blur_mat: ShaderMaterial;
+var _pause_tween: Tween;
 
 const GAUGE_W := 110.0;
 const GAUGE_H := 14.0;
@@ -86,6 +89,8 @@ func _on_respawn() -> void:
 	PlayerEvents.respawn.emit();
 
 func _back_to_menu() -> void:
+	_hide_pause();
+	await get_tree().create_timer(0.35, true, true).timeout;
 	get_tree().paused = false;
 	get_tree().change_scene_to_file("res://Root.tscn");
 
@@ -100,8 +105,38 @@ func _input(event: InputEvent) -> void:
 func _toggle_pause() -> void:
 	if _death_screen.visible:
 		return;
-	get_tree().paused = not get_tree().paused;
-	_pause_menu.visible = get_tree().paused;
+	if get_tree().paused:
+		_hide_pause();
+	else:
+		_show_pause();
+
+func _show_pause() -> void:
+	get_tree().paused = true;
+	_pause_menu.visible = true;
+	_pause_panel.position.x = -_pause_panel.custom_minimum_size.x;
+	_pause_panel.modulate = Color(1, 1, 1, 0);
+	_pause_blur_mat.set_shader_parameter("blur", 0.0);
+	if _pause_tween:
+		_pause_tween.kill();
+	_pause_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS);
+	_pause_tween.set_parallel();
+	_pause_tween.tween_property(_pause_panel, "position:x", 0.0, 0.35);
+	_pause_tween.tween_property(_pause_panel, "modulate:a", 1.0, 0.35);
+	_pause_tween.tween_property(_pause_blur_mat, "shader_parameter/blur", 3.0, 0.4);
+
+func _hide_pause() -> void:
+	if _pause_tween:
+		_pause_tween.kill();
+	_pause_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS);
+	_pause_tween.set_parallel();
+	_pause_tween.tween_property(_pause_panel, "position:x", -_pause_panel.custom_minimum_size.x, 0.3);
+	_pause_tween.tween_property(_pause_panel, "modulate:a", 0.0, 0.3);
+	_pause_tween.tween_property(_pause_blur_mat, "shader_parameter/blur", 0.0, 0.3);
+	_pause_tween.chain().tween_callback(func():
+		get_tree().paused = false;
+		_pause_menu.visible = false;
+		_pause_panel.position.x = 0;
+		_pause_panel.modulate = Color(1, 1, 1, 1));
 
 func _build_pause_menu() -> void:
 	_pause_menu = Control.new();
@@ -109,38 +144,52 @@ func _build_pause_menu() -> void:
 	_pause_menu.visible = false;
 	_pause_menu.mouse_filter = Control.MOUSE_FILTER_STOP;
 	_pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS;
-	var bg = ColorRect.new();
-	bg.color = Color(0, 0, 0, 0.55);
-	bg.set_anchors_preset(Control.PRESET_FULL_RECT);
-	_pause_menu.add_child(bg);
-	var center = CenterContainer.new();
-	center.set_anchors_preset(Control.PRESET_FULL_RECT);
+	var blur = ColorRect.new();
+	blur.set_anchors_preset(Control.PRESET_FULL_RECT);
+	_pause_blur_mat = ShaderMaterial.new();
+	_pause_blur_mat.shader = load("res://UI/MainMenu/Blur.gdshader");
+	_pause_blur_mat.set_shader_parameter("blur", 3.0);
+	blur.material = _pause_blur_mat;
+	_pause_menu.add_child(blur);
+	var panel = PanelContainer.new();
+	_pause_panel = panel;
+	panel.set_anchors_preset(Control.PRESET_LEFT_WIDE);
+	panel.custom_minimum_size = Vector2(420, 0);
+	var panel_style = StyleBoxFlat.new();
+	panel_style.bg_color = Color(0, 0, 0, 0.55);
+	panel.add_theme_stylebox_override("panel", panel_style);
 	var col = VBoxContainer.new();
+	col.set_anchors_preset(Control.PRESET_CENTER);
 	col.alignment = BoxContainer.ALIGNMENT_CENTER;
-	col.add_theme_constant_override("separation", 16);
+	col.add_theme_constant_override("separation", 20);
 	var title = Label.new();
 	title.text = "PAUSE";
 	title.add_theme_font_size_override("font_size", 40);
 	title.add_theme_color_override("font_color", Color(0.9, 0.85, 0.75));
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER;
 	col.add_child(title);
 	var resume_btn = Button.new();
+	resume_btn.flat = true;
 	resume_btn.text = "Reprendre";
 	resume_btn.pressed.connect(_toggle_pause);
 	col.add_child(resume_btn);
 	var save_btn = Button.new();
+	save_btn.flat = true;
 	save_btn.text = "Sauvegarder";
 	save_btn.pressed.connect(func(): PlayerEvents.save_requested.emit(); save_btn.text = "Sauvegardé !"; await get_tree().create_timer(1.5).timeout; save_btn.text = "Sauvegarder");
 	col.add_child(save_btn);
 	var menu_btn = Button.new();
+	menu_btn.flat = true;
 	menu_btn.text = "Menu principal";
 	menu_btn.pressed.connect(_back_to_menu);
 	col.add_child(menu_btn);
 	var quit_btn = Button.new();
+	quit_btn.flat = true;
 	quit_btn.text = "Quitter";
 	quit_btn.pressed.connect(func(): get_tree().paused = false; get_tree().quit());
 	col.add_child(quit_btn);
-	center.add_child(col);
-	_pause_menu.add_child(center);
+	panel.add_child(col);
+	_pause_menu.add_child(panel);
 	add_child(_pause_menu);
 
 func _build_gauges() -> void:

@@ -36,3 +36,9 @@ ITEMS.AXE.DESCRIPTION,An axe. Chop some tree.,Une hache. Coupez un arbre.
 ITEMS.PICKAXE.DESCRIPTION,A pickaxe. To mine some ore.,Une pioche. Pour extraire du minerai.
 ITEMS.SHOVEL.DESCRIPTION,A shovel. You can dig with it.,Une pelle. On peut creuser avec.
 DIALOG.CONFIRM_DELETE,Drop and delete,Jeter et supprimer
+MAIN_MENU.START,Start,Jouer
+MAIN_MENU.LOAD,Load,Charger
+MAIN_MENU.OPTIONS,Options,Options
+MAIN_MENU.CREDITS,Credits,Crédits
+MAIN_MENU.QUIT,Quit,Quitter
+MAIN_MENU.RESET_SAVE,Reset Save,Réinitialiser la save
