@@ -15,7 +15,7 @@ var tooltip = preload("res://UI/Tooltip/tooltip.tscn").instantiate();
 var _nearest_interactive: Node3D = null;
 var _current_mouse_target: Control;
 var _health_bar: TextureProgressBar;
-var _hunger_bar: TextureProgressBar;
+var _hunger_fills: Array = [];
 var _money_label: Label;
 var _debug_menu;
 var _death_screen: Control;
@@ -194,16 +194,15 @@ func _build_pause_menu() -> void:
 func _build_bar_indicators(player_node) -> void:
 	var bar = $ShortcutBar;
 	_health_bar = _icon_fill(bar, "res://UI/Sprites/heart.png", Vector2(130, 3), Vector2(18, 18), Color(0.75, 0.15, 0.15));
-	_hunger_bar = _icon_fill(bar, "res://Items/apple.png", Vector2(154, 3), Vector2(18, 18), Color(0.85, 0.55, 0.2));
-	var coin = TextureRect.new();
-	coin.texture = load("res://UI/Sprites/moneycoin.png");
-	coin.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED;
-	coin.position = Vector2(10, 27);
-	coin.size = Vector2(18, 18);
-	coin.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST;
-	bar.add_child(coin);
+	for i in 6: # encoches de faim gravées dans la texture de la barre
+		var fill = ColorRect.new();
+		fill.color = Color(0.85, 0.55, 0.2);
+		fill.position = Vector2(166 + i * 11, 7);
+		fill.size = Vector2(9, 14);
+		bar.add_child(fill);
+		_hunger_fills.append(fill);
 	_money_label = Label.new();
-	_money_label.position = Vector2(30, 27);
+	_money_label.position = Vector2(10, 27);
 	_money_label.add_theme_font_size_override("font_size", 14);
 	bar.add_child(_money_label);
 	_update_money();
@@ -239,7 +238,9 @@ func _update_money() -> void:
 
 func _on_player_status_changed(status: Dictionary) -> void:
 	_health_bar.value = status.health.value * 100 / status.health.max;
-	_hunger_bar.value = status.hunger.value * 100 / status.hunger.max;
+	var hunger_ratio = float(status.hunger.value) / status.hunger.max;
+	for i in _hunger_fills.size():
+		_hunger_fills[i].visible = i < int(ceil(hunger_ratio * _hunger_fills.size()));
 
 func _update_game_time_ui(formatted_game_time: String):
 	game_time_label.text = formatted_game_time;
