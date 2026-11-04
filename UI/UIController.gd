@@ -85,6 +85,10 @@ func _on_respawn() -> void:
 	_death_screen.visible = false;
 	PlayerEvents.respawn.emit();
 
+func _back_to_menu() -> void:
+	get_tree().paused = false;
+	get_tree().change_scene_to_file("res://Root.tscn");
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
@@ -123,6 +127,14 @@ func _build_pause_menu() -> void:
 	resume_btn.text = "Reprendre";
 	resume_btn.pressed.connect(_toggle_pause);
 	col.add_child(resume_btn);
+	var save_btn = Button.new();
+	save_btn.text = "Sauvegarder";
+	save_btn.pressed.connect(func(): PlayerEvents.save_requested.emit(); save_btn.text = "Sauvegardé !"; await get_tree().create_timer(1.5).timeout; save_btn.text = "Sauvegarder");
+	col.add_child(save_btn);
+	var menu_btn = Button.new();
+	menu_btn.text = "Menu principal";
+	menu_btn.pressed.connect(_back_to_menu);
+	col.add_child(menu_btn);
 	var quit_btn = Button.new();
 	quit_btn.text = "Quitter";
 	quit_btn.pressed.connect(func(): get_tree().paused = false; get_tree().quit());

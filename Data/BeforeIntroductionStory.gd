@@ -19,6 +19,7 @@ func play_state(game_map_controller: GameMapController, player: Player) -> void:
 	var save = _load_save();
 	_intro_done = save.get("intro_done", false);
 	GameTimeEvents.on_game_time_changed.connect(func(_t): _save_progress());
+	PlayerEvents.save_requested.connect(_save_progress);
 	if _intro_done:
 		var pos = save.get("pos", [0.0, 0.0, 0.0]);
 		player.global_position = Vector3(pos[0], pos[1], pos[2]);

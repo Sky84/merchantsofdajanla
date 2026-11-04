@@ -190,6 +190,11 @@ layout_mode = 2
 text = "MAIN_MENU.LOAD"
 flat = true
 
+[node name="ButtonResetSave" type="Button" parent="MainMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "MAIN_MENU.RESET_SAVE"
+flat = true
+
 [node name="ButtonOptions" type="Button" parent="MainMenu/Panel/VBoxContainer"]
 layout_mode = 2
 text = "MAIN_MENU.OPTIONS"
@@ -211,3 +216,4 @@ libraries = {
 }
 
 [connection signal="pressed" from="MainMenu/Panel/VBoxContainer/ButtonStart" to="MainMenu" method="_on_button_start_pressed"]
+[connection signal="pressed" from="MainMenu/Panel/VBoxContainer/ButtonResetSave" to="MainMenu" method="_on_button_reset_save_pressed"]

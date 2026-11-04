@@ -8,3 +8,4 @@ signal equipment_changed();
 signal equip_item_requested(item_id: String);
 signal player_died();
 signal respawn();
+signal save_requested();
