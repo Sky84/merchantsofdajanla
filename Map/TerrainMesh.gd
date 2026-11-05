@@ -137,10 +137,39 @@ static func _tri(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
 static func get_height(levels: Array, x: float, z: float) -> float:
 	var cx = clampi(int(x / CELL_SIZE) + 1, 1, CELLS);
 	var cz = clampi(int(z / CELL_SIZE) + 1, 1, CELLS);
-	var lvl = levels[cz][cx];
 	var x0 = (cx - 1) * CELL_SIZE;
 	var z0 = (cz - 1) * CELL_SIZE;
-	return _cell_height(levels, cx, cz, lvl, x - x0, z - z0);
+	var local_x = x - x0;
+	var local_z = z - z0;
+	var cuts = [0.0, RAMP_WIDTH, RAMP_WIDTH * 2.0,
+		CELL_SIZE - RAMP_WIDTH * 2.0, CELL_SIZE - RAMP_WIDTH, CELL_SIZE];
+	cuts.sort();
+	var unique_cuts: Array[float] = [];
+	for cut in cuts:
+		if unique_cuts.is_empty() or not is_equal_approx(unique_cuts.back(), cut):
+			unique_cuts.append(cut);
+	var ix = _cut_index(unique_cuts, local_x);
+	var iz = _cut_index(unique_cuts, local_z);
+	var lx0: float = unique_cuts[ix];
+	var lx1: float = unique_cuts[ix + 1];
+	var lz0: float = unique_cuts[iz];
+	var lz1: float = unique_cuts[iz + 1];
+	var h00 = _vertex_height(levels, cx, cz, lx0, lz0);
+	var h10 = _vertex_height(levels, cx, cz, lx1, lz0);
+	var h11 = _vertex_height(levels, cx, cz, lx1, lz1);
+	var h01 = _vertex_height(levels, cx, cz, lx0, lz1);
+	var u = inverse_lerp(lx0, lx1, local_x);
+	var v = inverse_lerp(lz0, lz1, local_z);
+	# Match the a-c diagonal used by _quad().
+	if v <= u:
+		return h00 + u * (h10 - h00) + v * (h11 - h10);
+	return h00 + v * (h01 - h00) + u * (h11 - h01);
+
+static func _cut_index(cuts: Array[float], value: float) -> int:
+	for i in cuts.size() - 1:
+		if value <= cuts[i + 1]:
+			return i;
+	return cuts.size() - 2;
 
 # Snaps a walking entity to the terrain when a heightfield chunk is under
 # it. Ignored over cities/interiors or when standing on furniture.

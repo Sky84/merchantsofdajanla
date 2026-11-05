@@ -17,6 +17,7 @@ func _ready() -> void:
 		await get_tree().process_frame;
 	var player = game.get_node("Player");
 	var map = get_tree().get_first_node_in_group("game_map");
+	_validate_decorations(map);
 	for action in DIRECTIONS:
 		var start = _find_ramp_start(map, DIRECTIONS[action]);
 		if start == null:
@@ -44,6 +45,24 @@ func _ready() -> void:
 		print("RAMP ", action, " range=", max_height - min_height,
 			" snap_error=", max_snap_error, " end=", player.global_position);
 	get_tree().quit();
+
+func _validate_decorations(map) -> void:
+	var count := 0;
+	var max_error := 0.0;
+	for x_chunks in map._chunks.values():
+		for chunk in x_chunks.values():
+			if chunk._terrain_heights.is_empty():
+				continue;
+			for decoration in chunk.decorations.get_children():
+				if not decoration.has_meta(&"terrain_y_offset"):
+					continue;
+				var ground = map.get_ground_height(
+					decoration.global_position.x, decoration.global_position.z);
+				var visual_base = decoration.global_position.y \
+					- float(decoration.get_meta(&"terrain_y_offset"));
+				max_error = maxf(max_error, absf(visual_base - ground));
+				count += 1;
+	print("DECOR count=", count, " max_ground_error=", max_error);
 
 func _find_ramp_start(map, direction: Vector2i) -> Variant:
 	for x_chunks in map._chunks.values():

@@ -40,7 +40,17 @@ func init_decorations() -> void:
 		var plant_scene = decorations_scenes[floori(clamp(noise_value, 0.0, 0.999) * decorations_scenes.size())];
 		var plant: MapMesh = plant_scene.instantiate();
 		decorations.add_child(plant);
-		plant.position = Vector3(plant_position.x, get_ground_height(plant_position.x, plant_position.z), plant_position.z);
+		# Object scenes position their centered plane so its visual base sits at
+		# y=0. Preserve that authored offset and add the actual terrain height.
+		var authored_offset := plant.position;
+		# Keep the authored pivot inside its owning chunk so height lookup and
+		# chunk visibility always refer to the same terrain surface.
+		var terrain_x = clampf(plant_position.x + authored_offset.x, 0.01, 63.99);
+		var terrain_z = clampf(plant_position.z + authored_offset.z, 0.01, 63.99);
+		plant.position = Vector3(terrain_x,
+			get_ground_height(terrain_x, terrain_z) + authored_offset.y,
+			terrain_z);
+		plant.set_meta(&"terrain_y_offset", authored_offset.y);
 		plant.scale.x = -1 if randf() > 0.5 else 1;
 		plant.update_for_atlas();
 
