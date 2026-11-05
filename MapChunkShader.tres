@@ -2,7 +2,7 @@
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,depth_prepass_alpha;
+render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx,depth_prepass_alpha;
 
 uniform float dirt_limit = 2.;
 uniform float sand_limit = 7.;

@@ -543,14 +543,11 @@ transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0,
 script = ExtResource("3_ielx8")
 
 [node name="WeaponsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22505, 0.00999993)
-material_override = SubResource("StandardMaterial3D_mbmak")
 cast_shadow = 2
 pixel_size = 0.072
 shaded = true
 double_sided = false
-no_depth_test = true
-alpha_cut = 1
+alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("4_klj0y")
 animation = &"walk"

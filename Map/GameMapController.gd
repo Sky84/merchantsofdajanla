@@ -148,7 +148,9 @@ func _generate_savage_chunk_at(chunk_global_position: Vector3)  -> ChunkControll
 	var chunk_z = int(chunk_global_position.z / chunk_tile_size);
 	var city_edges := 0;
 	var dirs = [[Vector2(chunk_x, chunk_z - 1), 1], [Vector2(chunk_x + 1, chunk_z), 2],
-		[Vector2(chunk_x, chunk_z + 1), 4], [Vector2(chunk_x - 1, chunk_z), 8]];
+		[Vector2(chunk_x, chunk_z + 1), 4], [Vector2(chunk_x - 1, chunk_z), 8],
+		[Vector2(chunk_x + 1, chunk_z - 1), 16], [Vector2(chunk_x + 1, chunk_z + 1), 32],
+		[Vector2(chunk_x - 1, chunk_z + 1), 64], [Vector2(chunk_x - 1, chunk_z - 1), 128]];
 	for d in dirs:
 		if _is_a_city(_tile_chunk_map.get_cell_atlas_coords(0, d[0])):
 			city_edges |= d[1];
