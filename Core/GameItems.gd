@@ -32,7 +32,8 @@ func get_items_by_subtype(item_subtype: String) -> Array[Dictionary]:
 	return items;
 
 func is_tool_or_weapon(item: Dictionary) -> bool:
-	return item.has('type') and item.type == 'Tool';
+	return item.has('type') and (item.type == 'Tool' \
+		or (item.type == 'Equipment' and item.get('slot') == 'weapon'));
 
 func is_consomable(item: Dictionary) -> bool:
 	return item.has('type') and item.type == 'Consomable';

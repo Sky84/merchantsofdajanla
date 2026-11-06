@@ -80,8 +80,8 @@ func get_state() -> Dictionary:
 	var state = super();
 	var player_state = {
 		"is_attacking": Input.get_action_strength("attack") \
-			and ui_controller.get_current_mouse_target() == null \
-			and GameItems.is_tool_or_weapon(_item_in_hand)
+			and attack != null \
+			and attack.has_equipped_weapon()
 	};
 	player_state.merge(state);
 	return player_state;
