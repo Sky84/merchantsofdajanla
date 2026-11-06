@@ -24,4 +24,5 @@ void fragment() {
 	vec4 texture_albedo = texture(texture_atlas, UV);
 	ALBEDO.rgb = texture_albedo.rgb;
 	ALPHA = texture_albedo.a;
+	ALPHA_SCISSOR_THRESHOLD = 0.5;
 }"

@@ -18,6 +18,7 @@ static func build(chunk, noise: FastNoiseLite, city_edges: int = 0) -> void:
 			_emit_cell(st, levels, cx, cz);
 	var mesh = st.commit();
 	chunk.mesh_instance.mesh = mesh;
+	chunk.mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON;
 	var body := StaticBody3D.new();
 	var shape := CollisionShape3D.new();
 	shape.shape = mesh.create_trimesh_shape();
@@ -119,15 +120,12 @@ static func _cell_height(levels: Array, cx: int, cz: int, lvl: int, x: float, z:
 	return h;
 
 static func _quad(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3, d: Vector3) -> void:
-	_tri(st, a, c, b);
-	_tri(st, a, d, c);
+	_tri(st, a, b, c);
+	_tri(st, a, c, d);
 
 static func _tri(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
 	var normal = (b - a).cross(c - a).normalized();
 	if normal.y < 0.0:
-		var swap = b;
-		b = c;
-		c = swap;
 		normal = -normal;
 	for v in [a, b, c]:
 		st.set_uv(Vector2(v.x, v.z) / CHUNK_SIZE);

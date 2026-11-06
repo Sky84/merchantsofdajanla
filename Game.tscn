@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://5hs224whqmsn"]
+[gd_scene load_steps=117 format=3 uid="uid://5hs224whqmsn"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.gd" id="1_u7yi0"]
 [ext_resource type="Script" path="res://Containers/Container.gd" id="2_ukcsn"]
@@ -49,6 +49,8 @@
 [ext_resource type="PackedScene" uid="uid://xjipt1w1cwne" path="res://Map/Chunk/chunk.tscn" id="46_33u2o"]
 [ext_resource type="Script" path="res://Core/PathFinding.gd" id="49_8uvbs"]
 [ext_resource type="Script" path="res://Core/StoryController.gd" id="49_thabl"]
+[ext_resource type="Script" path="res://Core/WeaponAttachment3D.gd" id="50_weapon_attachment"]
+[ext_resource type="Resource" path="res://Player/Resources/HumanWeaponHoldProfile.tres" id="51_weapon_profile"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8qj"]
 animation = &"attack"
@@ -551,6 +553,9 @@ alpha_cut = 2
 texture_filter = 0
 sprite_frames = ExtResource("4_klj0y")
 animation = &"walk"
+script = ExtResource("50_weapon_attachment")
+source_sprite_path = NodePath("../SkinsAnimatedSprite3D")
+hold_profile = ExtResource("51_weapon_profile")
 
 [node name="HairsAnimatedSprite3D" type="AnimatedSprite3D" parent="Player/ClothAnimations"]
 cast_shadow = 2

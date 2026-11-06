@@ -45,6 +45,8 @@ func _get_cloth_scene_by_name(cloth_name: String) -> AnimatedSprite3D:
 func _process(_delta):
 	var current_animation_name = skins_animated_sprite_3d.animation;
 	for animated_sprite in clothes_animated_sprites:
+		if animated_sprite.has_method(&"sync_to_source"):
+			continue;
 		animated_sprite.frame = skins_animated_sprite_3d.frame;
 		animated_sprite.scale.x = skins_animated_sprite_3d.scale.x;
 		if animated_sprite.animation != current_animation_name:

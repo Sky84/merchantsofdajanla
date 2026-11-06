@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponHoldProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Core/WeaponHoldProfile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+idle_offsets = Array[Vector2]([Vector2(-2, -5), Vector2(-2, -4), Vector2(-1, -5), Vector2(-1, -4), Vector2(-2, -5)])
+walk_offsets = Array[Vector2]([Vector2(-4, -10), Vector2(-3, -7), Vector2(-3, -8), Vector2(-5, -3), Vector2(-4, -6), Vector2(-3, -5)])
+run_offsets = Array[Vector2]([Vector2(-1, -25), Vector2(-1, -7), Vector2(2, -13), Vector2(-1, -13), Vector2(0, -15), Vector2(-5, -2)])
+sit_offsets = Array[Vector2]([Vector2(-4, -8), Vector2(-4, -7)])
+attack_offsets = Array[Vector2]([Vector2(2, -15), Vector2(2, -15), Vector2(-1, -14), Vector2(-1, -18)])
